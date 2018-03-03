@@ -8,13 +8,15 @@ if (!defined('BASEPATH'))
  * 
  */
 
-function randomgen($min, $max, $quantity) {
+function randomgen($min, $max, $quantity)
+{
     $numbers = range($min, $max);
     shuffle($numbers);
     return array_slice($numbers, 0, $quantity);
 }
 
-function calculateexp($months) {
+function calculateexp($months)
+{
     $year = floor($months / 12);
     if ($year > 1):
         $year = $year . " Years";
@@ -32,4 +34,19 @@ function calculateexp($months) {
         $mth = "";
     endif;
     return $year . " " . $mth;
+}
+
+function passwordhashencode($Password)
+{
+    $options = array("cost" => 4);
+    return password_hash($Password, PASSWORD_BCRYPT, $options);
+}
+
+function verifypassword($password, $hashPassword)
+{
+    if (password_verify($password, $hashPassword)) {
+        return true;
+    } else {
+        return false;
+    }
 }
