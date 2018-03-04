@@ -8,16 +8,9 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?= base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
-<!-- Morris.js charts -->
-<script src="<?= base_url('assets/plugins/raphael/raphael.min.js') ?>"></script>
-<script src="<?= base_url('assets/plugins/morris.js/morris.min.js') ?>"></script>
-<!-- Sparkline -->
-<script src="<?= base_url('assets/plugins/jquery-sparkline/dist/jquery.sparkline.min.js') ?>"></script>
-<!-- jvectormap -->
-<script src="<?= base_url('assets/plugins/jvectormap/jquery-jvectormap.js') ?>"></script>
-<script src="<?= base_url('assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') ?>"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?= base_url('assets/plugins/jquery-knob/dist/jquery.knob.min.js') ?>"></script>
+<!-- DataTables -->
+<script src="<?= base_url('assets/plugins/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
+<script src="<?= base_url('assets/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>"></script>
 <!-- daterangepicker -->
 <script src="<?= base_url('assets/plugins/moment/min/moment.min.js') ?>"></script>
 <script src="<?= base_url('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') ?>"></script>
@@ -35,6 +28,8 @@
 <script src="<?= base_url('assets/js/pages/dashboard.js') ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url('assets/js/demo.js') ?>"></script>
+
+
 
 <!-- Library Java Script Starts Here!-->
 <script src="<?= base_url('assets/js/ajaxfetch.js') ?>"></script>
