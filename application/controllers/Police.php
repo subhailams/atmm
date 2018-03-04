@@ -9,7 +9,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Administrator extends MY_Controller
+class Police extends MY_Controller
 {
     public function __construct()
     {

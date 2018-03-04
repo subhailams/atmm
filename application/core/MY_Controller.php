@@ -3,61 +3,50 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class MY_Controller extends CI_Controller {
+class MY_Controller extends CI_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->layoutfolder = $this->config->item("layoutfolder");
         //$this->encrypt->set_cipher(MCRYPT_BLOWFISH);
-        $this->ValidateForm("Y");
         $this->UserFrom();
         $config = array("question_format" => "numeric",
             "operation" => "addition");
         $this->mathcaptcha->init($config);
         $userNameCnd = array("stp_username" => $this->session->userdata("UserName"));
         //$this->user = current($this->Adminmodel->CSearch($userNameCnd, "stp_username as UserName", "stp"));
-       //$this->userid = current($this->Adminmodel->CSearch($userNameCnd, "stp_id as UserId", "stp"));
+        //$this->userid = current($this->Adminmodel->CSearch($userNameCnd, "stp_id as UserId", "stp"));
         //$this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "stp_role as UserRole", "stp", "", TRUE));
         //$this->userDesg = current($this->Adminmodel->CSearch($userNameCnd, "des_name as Desgination", "stp", "", TRUE));
         date_default_timezone_set('Asia/Kolkata');
     }
 
 
-    protected function UserFrom() {
+    protected function UserFrom()
+    {
         if ($this->agent->is_browser()) {
-            $this->UserAcess = $this->agent->browser() . ' ' . $this->agent->version();
+            return $this->UserAcess = $this->agent->platform() . ' and ' . $this->agent->browser() . ' - ' . $this->agent->version();
         } elseif ($this->agent->is_robot()) {
-            $this->UserAcess = $this->agent->robot();
+            return $this->UserAcess = $this->agent->robot();
         } elseif ($this->agent->is_mobile()) {
-            $this->UserAcess = $this->agent->mobile();
+            return $this->UserAcess = $this->agent->mobile();
         } else {
-            $this->UserAcess = 'Unidentified User Agent';
+            return $this->UserAcess = 'Unidentified User Agent';
         }
     }
 
-    public function render($Render, $RenderData = null) {
+    public function render($Render, $RenderData = null)
+    {
         $Layout = "layout/body";
         $this->render = $Render;
         $this->load->view($Layout, $RenderData);
     }
 
-    protected function ValidateForm($runType = "Y", $DataValidateto = null) {
-        $notValidate = ($runType == "Y") ? array("ChangeSesi", "SysLog", "init", "Log") : array();
-        if (!in_array($this->router->fetch_method(), $notValidate)) {
-            $ArgStatus = $this->arg_validate->ValidateData($this->router->fetch_method(), $DataValidateto);
-            if (!$ArgStatus) {
-                $error = implode("", (array) $this->FormError + array("header" => $this->input->is_ajax_request()));
-                $error = str_replace(array("\n", "\r"), "", $error);
-                if ($this->input->is_ajax_request()) {
-                    $this->apirender->ThowError($error, null);
-                } else {
-                    $this->apirender->ThowError($error, null);
-                }
-            }
-        }
-    }
 
-    public function Inti($Class) {
+    public function Inti($Class)
+    {
         $ClassNo = array(array("register"), "homepage" => array("forgotpwd"));
         if (!(in_array($this->router->fetch_method(), $ClassNo[$Class]))) {
             if (empty($_SESSION["UserId"])) {
@@ -84,31 +73,23 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    public function Logout() {
+    public function Logout()
+    {
         $this->session->sess_destroy();
         session_unset();
         session_destroy();
         $this->session->set_userdata("Auth", "Y");
-        $this->session->set_userdata("UserName", null);
-        $this->session->set_userdata("UserFullName", null);
-        $this->session->set_userdata("UserID", null);
-        $this->session->set_userdata("UserType", null);
-        $this->session->set_userdata("UserRoleID", null);
-        $this->session->set_userdata("UserRoleName", null);
-        $this->session->set_userdata("DepartmentName", null);
-        $this->session->set_userdata("DepartmentID", null);
-        $this->session->set_userdata("DesgName", null);
-        $this->session->set_userdata("DesgShortName", null);
-        $this->session->set_userdata("AcademicYear", null);
-        $this->session->set_userdata("AcademicYearFull", null);
+
         exit($this->load->view("error/login", get_defined_vars(), true));
     }
 
-    public function accessdeined() {
+    public function accessdeined()
+    {
         $this->render("accessdeined", get_defined_vars());
     }
 
-    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc) {
+    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc)
+    {
 
         $mail = $this->emailConfig();
         $mail->setFrom('vidhyaprakash85@gmail.com', 'Mailer');
@@ -124,33 +105,20 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function emailConfig() {
+    protected function emailConfig()
+    {
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'vidhyaprakash85@gmail.com';                 // SMTP username
-        $mail->Password = 'prakash88';
+        $mail->Username = '';                 // SMTP username
+        $mail->Password = '';
         return $mail;
     }
 
-    public function DatatableGridHeader($Url, $Colmn, $RowShow = 5, $title = null, $ServerData = null) {
-        $Postdata = $this->input->post(null, true);
-        $Tableid = uniqid(round(microtime(true) * 1000) . rand() . "Table_");
-        $tmpl = array(
-            'table_open' => '<table id="' . $Tableid . '" class="table datatableD table-striped table-bordered table-condensed">',
-            'table_close' => '<tbody></tbody></table>'
-        );
-        $this->table->set_template($tmpl);
-        $this->table->set_heading($Colmn);
-        $Table['html'] = $this->table->generate();
 
-        $Table['script'] = build_datatable($Tableid, site_url($this->router->fetch_class() . '/GridDataSource/' . $Url), $ServerData);
-
-        return $Table;
-    }
-
-    public function forms($option) {
+    public function forms($option)
+    {
         switch (strtolower($option)):
             case "password_reset":
                 $this->render(strtolower($option), get_defined_vars());
@@ -158,7 +126,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function generateChartData() {
+    public function generateChartData()
+    {
         $TotalAcademicYear = $this->Adminmodel->CSearch("", "aca_id as AcademicID,aca_name as Year", "aca", "Y");
         foreach ($TotalAcademicYear as $AcademicYear) {
             $PartAInformation = array("InteralMarkODD" => $this->PartAAcademicInternalTestOddScore($AcademicYear['AcademicID'], $_SESSION['UserId']),
@@ -196,7 +165,8 @@ class MY_Controller extends CI_Controller {
         return $data;
     }
 
-    public function approval($option, $id) {
+    public function approval($option, $id)
+    {
         switch (strtolower($option)):
             case "parta_academic":
                 $Data = $this->fetch_academic_approval_data($_SESSION['DepartmentID'], $_SESSION['AcademicYear']);
@@ -244,67 +214,78 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    protected function fetch_academic_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_academic_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "stp_id as StaffID,stp_name as StaffName,sem_id as SEMID,sem_name as SemesterName,anx1_id as RecordID,anx1_subname as SubjectName,anx1_test1_app as T1A,anx1_test2_app as T2A,anx1_test1_pas as T1P,anx1_test2_pas as T2P,anx1_model_app as MA,anx1_model_pas as MP,anx1_univ_perc as UnivPER,anx1_fdbk_perc as FeedPer";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_su", "Y", "Y");
     }
 
-    protected function fetch_fdp_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_fdp_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_program_name as ProgramName,anx1_place as Place,anx1_duration as Duration,anx1_spon_agency as SponsoringAgency,anx1_proof as FDP_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_fdp", "Y", "Y");
     }
 
-    protected function fetch_membership_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_membership_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_membership_name as MemberShipName,mem_name as MemberShipType,anx1_membership_type as MemberShipTypeID,anx1_proof as Membership_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_ms", "Y", "Y");
     }
 
-    protected function fetch_conference_organized_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_conference_organized_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_sponsor_agy as SponsoringAgency,anx1_conference_title as ConferenceTitle,anx1_conference_type as EventLevel,anx1_year as YearParticipation,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_cf", "Y", "Y");
     }
 
-    protected function fetch_research_publication_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_research_publication_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_paper_title as PaperTitle,anx1_journal_name as JournalName,anx1_year_pub as YearPublished,anx1_imapct_factor as ImpactFactor,anx1_journal_type as JournalType,jot_short_name as JournalShortName,anx1_proof as Research_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_rs", "Y", "Y");
     }
 
-    protected function fetch_paper_presented_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_paper_presented_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_paper_title as PaperTitle,anx1_conf_title as ConferenceTitle,eve_id as EventID,eve_name as EventLevel,anx1_proof as Paper_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_pp", "Y", "Y");
     }
 
-    protected function fetch_books_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_books_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_book_name as BookName,anx1_author_name as AuthorName,anx1_area_spec as AreaSpecialization,anx1_publisher_name as PublisherName,anx1_year as YearPublishing,bty_id as BookType,bty_short_name as BookShortName,anx1_proof as Book_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_bk", "Y", "Y");
     }
 
-    protected function fetch_sponsored_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_sponsored_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_title as Title,anx1_amount as Amount,anx1_agency as SponsoringAgency,anx1_coordinator as ProjectCoordinators,anx1_status as ProjectStatus,pst_name as ProjectStatusName,anx1_proof as Sponsored_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_sd", "Y", "Y");
     }
 
-    protected function fetch_consultancy_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_consultancy_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_title as Title,anx1_amount as Amount,anx1_client as ClientOrganization,anx1_coordinator as ProjectCoordinators,anx1_status as ProjectStatus,pst_name as ProjectStatusName,anx1_proof as Consultancy_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_cs", "Y", "Y");
     }
 
-    protected function fetch_patent_approval_data($DepartmentID, $AcademicYear) {
+    protected function fetch_patent_approval_data($DepartmentID, $AcademicYear)
+    {
         $Select = "anx1_id as RecordID,anx1_title as PatentName,pat_id as PatentType,anx1_proof as Patent_Proof,approvalstatus as ApprovalStatus,stp_name as FacultyName";
         $Condition = array("anx1_acayear" => $AcademicYear, "dept_id" => $DepartmentID, "approvalstatus" => 0, "des_short_name!=" => "H");
         return $this->Adminmodel->CSearch($Condition, $Select, "ax_pat", "Y", "Y");
     }
 
-    public function assessmentforms($option, $id) {
+    public function assessmentforms($option, $id)
+    {
         switch (strtolower($option)):
             case "generalinformation":
                 $Data = $this->fetch_Data("generalinformation", $_SESSION['UserId'], $_SESSION['AcademicYear']);
@@ -389,14 +370,16 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function changeAcademicYear($AcademicYear) {
+    public function changeAcademicYear($AcademicYear)
+    {
         $AcademicYear = $this->encrypt->decode($AcademicYear);
         $AcademicSelect = "aca_id as AcademicID, aca_name as AcademicYear";
         $AcademicCondition = array("aca_id" => $AcademicYear);
         return $this->Adminmodel->CSearch($AcademicCondition, $AcademicSelect, "aca"); //Professional data
     }
 
-    public function fetch_Data($option, $UserRef, $AcademicYear, $Report) {
+    public function fetch_Data($option, $UserRef, $AcademicYear, $Report)
+    {
         switch (strtolower($option)) {
             case "generalinformation":
                 $Select = "stp_name as Name,stp_dept as DepartmentID,stp_desg as DesignationID,stp_qual as QualID,stp_dob as DateofBirth,stp_doj as DateofJoin,stp_rmk_exp as RMKEXP,stp_oth_exp as OtherExp,stp_ind_exp as IndExp,dept_name as Department,des_name as Designation,qua_name as Qualification";
@@ -569,7 +552,8 @@ class MY_Controller extends CI_Controller {
         return $Data;
     }
 
-    public function form_check_validation($formname) {
+    public function form_check_validation($formname)
+    {
         switch (strtolower($formname)) {
             case "generalinformation":
                 $rules = array(
@@ -776,7 +760,8 @@ class MY_Controller extends CI_Controller {
         endif;
     }
 
-    public function PaperPresentedReputedJournalScore($AcademicYear, $staffid) {
+    public function PaperPresentedReputedJournalScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as PaperPresentedI";
         $ConditionI = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "jot_short_name" => "I", "approvalstatus" => 1);
         $DataI = $this->Adminmodel->CSearch($ConditionI, $Select, "ax_rs", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -787,7 +772,8 @@ class MY_Controller extends CI_Controller {
         return (($result + $result1) > $this->config->item("paperpublicationinmax")) ? $this->config->item("paperpublicationinmax") : $result;
     }
 
-    public function PaperPresentedOtherJournalScore($AcademicYear, $staffid) {
+    public function PaperPresentedOtherJournalScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as PaperPresented";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "jot_short_name" => "O", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_rs", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -795,7 +781,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("paperpresentedmax")) ? $this->config->item("paperpresentedmax") : $result;
     }
 
-    public function BooksPublishedReputedScore($AcademicYear, $staffid) {
+    public function BooksPublishedReputedScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as BooksPublishedReputed";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "bty_short_name" => "R", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_bk", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -803,7 +790,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("bookspublishedreputedmax")) ? $this->config->item("bookspublishedreputedmax") : $result;
     }
 
-    public function BooksPublishedOtherScore($AcademicYear, $staffid) {
+    public function BooksPublishedOtherScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as BooksOtherReputed";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "bty_short_name" => "O", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_bk", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -811,7 +799,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("bookspublishedothermax")) ? $this->config->item("bookspublishedothermax") : $result;
     }
 
-    public function PaperPresentedConferenceScore($AcademicYear, $staffid) {
+    public function PaperPresentedConferenceScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as ConferencePresented";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_pp", "", "", "", "", "", "", ""); //Research Publications data
@@ -819,7 +808,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("paperpresentedmax")) ? $this->config->item("paperpresentedmax") : $result;
     }
 
-    public function ConferenceOrganizedScore($AcademicYear, $staffid) {
+    public function ConferenceOrganizedScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as ConferenceOrganized";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_cf", "", "", "", "", "", "", ""); //Research Publications data
@@ -827,7 +817,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("paperpresentedmax")) ? $this->config->item("paperpresentedmax") : $result;
     }
 
-    public function SponsoredProjectsAppliedScore($AcademicYear, $staffid) {
+    public function SponsoredProjectsAppliedScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as SponsoredProjects";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "pst_name" => "ONGOING", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_sd", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -835,7 +826,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("sponsoredprojectappliedmax")) ? $this->config->item("sponsoredprojectappliedmax") : $result;
     }
 
-    public function SponsoredProjectGrantedScore($AcademicYear, $staffid) {
+    public function SponsoredProjectGrantedScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as SponsoredProjects";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "pst_name" => "COMPLETED", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_sd", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -843,7 +835,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("sponsoredprojectgrantedmax")) ? $this->config->item("sponsoredprojectgrantedmax") : $result;
     }
 
-    public function ConsultancyProjectsCompletedScore($AcademicYear, $staffid) {
+    public function ConsultancyProjectsCompletedScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as ConferenceOrganized";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "pst_name" => "COMPLETED", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_cs", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -851,7 +844,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("consultancymax")) ? $this->config->item("consultancymax") : $result;
     }
 
-    public function ResearchGuidanceScore($AcademicYear, $staffid) {
+    public function ResearchGuidanceScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as ResearchGuidance";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_rg", "", "", "", "", "", "", ""); //Research Publications data
@@ -859,7 +853,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("phdscholarpointmax")) ? $this->config->item("phdscholarpointmax") : $result;
     }
 
-    public function PatentAppliedScore($AcademicYear, $staffid) {
+    public function PatentAppliedScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as PatentApplied";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "pat_short_name" => "A", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_pat", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -867,7 +862,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("patentappliedmax")) ? $this->config->item("patentappliedmax") : $result;
     }
 
-    public function PatentObatinedScore($AcademicYear, $staffid) {
+    public function PatentObatinedScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as PatentObtained";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "pat_short_name" => "C", "approvalstatus" => 1);
         $Data = $this->Adminmodel->CSearch($Condition, $Select, "ax_pat", "", "Y", "", "", "", "", ""); //Research Publications data
@@ -875,7 +871,8 @@ class MY_Controller extends CI_Controller {
         return ($result > $this->config->item("patentobtainedmax")) ? $this->config->item("patentobtainedmax") : $result;
     }
 
-    public function PartAAcademicInternalTestOddScore($AcademicYear, $staffid) {
+    public function PartAAcademicInternalTestOddScore($AcademicYear, $staffid)
+    {
         $Select = "anx1_inte_perc as InteralPercentage";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "sem_name" => "ODD", "approvalstatus" => 1);
         $DataODD = $this->Adminmodel->CSearch($Condition, $Select, "ax_su", "Y", "Y", "", "", "", "", ""); //Odd Semster data
@@ -884,7 +881,8 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("internalassessmentpointmax")) ? $this->config->item("internalassessmentpointmax") : $Score;
     }
 
-    public function PartAAcademicInternalTestEvenScore($AcademicYear, $staffid) {
+    public function PartAAcademicInternalTestEvenScore($AcademicYear, $staffid)
+    {
         $Select = "anx1_inte_perc as InteralPercentage";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "sem_name" => "EVEN", "approvalstatus" => 1);
         $DataEven = $this->Adminmodel->CSearch($Condition, $Select, "ax_su", "Y", "Y", "", "", "", "", ""); //Odd Semster data
@@ -892,7 +890,8 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("internalassessmentpointmax")) ? $this->config->item("internalassessmentpointmax") : $Score;
     }
 
-    public function PartAAcademicUniversityTestOddScore($AcademicYear, $staffid) {
+    public function PartAAcademicUniversityTestOddScore($AcademicYear, $staffid)
+    {
         $Select = "anx1_univ_perc as UniversityPercentage";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "sem_name" => "ODD", "approvalstatus" => 1);
         $DataODD = $this->Adminmodel->CSearch($Condition, $Select, "ax_su", "Y", "Y", "", "", "", "", ""); //Odd Semster data
@@ -900,7 +899,8 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("universityexaminationpointmax")) ? $this->config->item("universityexaminationpointmax") : $Score;
     }
 
-    public function PartAAcademicUniversityTestEvenScore($AcademicYear, $staffid) {
+    public function PartAAcademicUniversityTestEvenScore($AcademicYear, $staffid)
+    {
         $Select = "anx1_univ_perc as UniversityPercentage";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "sem_name" => "EVEN", "approvalstatus" => 1);
         $DataEVEN = $this->Adminmodel->CSearch($Condition, $Select, "ax_su", "Y", "Y", "", "", "", "", ""); //Even Semster
@@ -908,7 +908,8 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("universityexaminationpointmax")) ? $this->config->item("universityexaminationpointmax") : $Score;
     }
 
-    public function PartAAcademicFeedBackOddScore($AcademicYear, $staffid) {
+    public function PartAAcademicFeedBackOddScore($AcademicYear, $staffid)
+    {
         $Select = "anx1_fdbk_perc as FeedBackPercentage";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "sem_name" => "ODD", "approvalstatus" => 1);
         $DataODD = $this->Adminmodel->CSearch($Condition, $Select, "ax_su", "Y", "Y", "", "", "", "", ""); //Odd Semster data
@@ -916,7 +917,8 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("feedbackpointmax")) ? $this->config->item("feedbackpointmax") : $Score;
     }
 
-    public function PartAAcademicFeedBackEvenScore($AcademicYear, $staffid) {
+    public function PartAAcademicFeedBackEvenScore($AcademicYear, $staffid)
+    {
         $Select = "anx1_fdbk_perc as FeedBackPercentage";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "sem_name" => "EVEN", "approvalstatus" => 1);
         $DataEVEN = $this->Adminmodel->CSearch($Condition, $Select, "ax_su", "Y", "Y", "", "", "", "", ""); //Even Semster
@@ -924,7 +926,8 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("feedbackpointmax")) ? $this->config->item("feedbackpointmax") : $Score;
     }
 
-    public function PartAFDPScore($AcademicYear, $staffid) {
+    public function PartAFDPScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as ProgramName";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "approvalstatus" => 1);
         $DataFDP = $this->Adminmodel->CSearch($Condition, $Select, "ax_fdp", "Y", "", "", "", "", "", ""); //FDP data
@@ -932,7 +935,8 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("refreshercoursepointmax")) ? $this->config->item("refreshercoursepointmax") : $Score;
     }
 
-    public function PartAMembershipScore($AcademicYear, $staffid) {
+    public function PartAMembershipScore($AcademicYear, $staffid)
+    {
         $Select = "count(anx1_id) as ProfessionaSocietyName";
         $Condition = array("anx1_staff_ref" => $staffid, "anx1_acayear" => $AcademicYear, "approvalstatus" => 1);
         $DataProfessional = $this->Adminmodel->CSearch($Condition, $Select, "ax_ms", "Y", "", "", "", "", "", ""); //Professional data
@@ -940,14 +944,16 @@ class MY_Controller extends CI_Controller {
         return ($Score > $this->config->item("membershippointmax")) ? $this->config->item("membershippointmax") : $Score;
     }
 
-    public function PartCScore($AcademicYear, $staffid) {
+    public function PartCScore($AcademicYear, $staffid)
+    {
         $PartCSelect = "sum(ptc_iso_tc_n_he_t+ptc_cul_lit_alumi+ptc_nba_aicte_nptel_spoc+ptc_dplc_crc+ptc_stud_cou+ptc_fa_other_events+ptc_sli_inst_ks+ptc_awards+ptc_chair_mp_govt) as PartC";
         $PartcCondition = array("ptc_staff_ref" => $staffid, "ptc_aca_year" => $AcademicYear);
         $DataC = $this->Adminmodel->CSearch($PartcCondition, $PartCSelect, "ptc_o"); //Professional data
         return ($DataC['PartC'] == "") ? "0" : $DataC['PartC'];
     }
 
-    public function PartCTopScore($AcademicYear, $staffid) {
+    public function PartCTopScore($AcademicYear, $staffid)
+    {
         $PartCSelect = "sum(ptc_iso_tc_n_he_t+ptc_cul_lit_alumi+ptc_nba_aicte_nptel_spoc+ptc_dplc_crc+ptc_stud_cou+ptc_fa_other_events+ptc_sli_inst_ks+ptc_awards+ptc_chair_mp_govt) as PartC";
         $PartcCondition = array("ptc_staff_ref" => $staffid, "ptc_aca_year" => $AcademicYear);
         $DataC = $this->Adminmodel->CSearch($PartcCondition, $PartCSelect, "ptc_o"); //Professional data
@@ -956,7 +962,8 @@ class MY_Controller extends CI_Controller {
 
     /* PDF REPORT SECTION STARTS HERE */
 
-    public function pdfreport($option) {
+    public function pdfreport($option)
+    {
         switch (strtolower($option)):
             case "general_information":
                 $pdfPortarit = new mPDF('c', 'A4', 10, '', 10, 10, 15, 10, 6, 3);
@@ -1016,7 +1023,7 @@ class MY_Controller extends CI_Controller {
                 );
                 $pdfPortarit = new mPDF('c', 'A4', 10, '', 10, 10, 15, 10, 6, 3);
                 $pdfPortarit->WriteHTML($this->load->view("pdfreport/partb_research_overall", get_defined_vars(), true));
-               $pdfPortarit->Output("PartB_Research_Overall.pdf", 'I');
+                $pdfPortarit->Output("PartB_Research_Overall.pdf", 'I');
                 break;
             case "partc_institutional":
                 $DataC = $this->fetch_Data("partc_institutional", $_SESSION['UserId'], $_SESSION['AcademicYear']);
@@ -1123,7 +1130,8 @@ class MY_Controller extends CI_Controller {
 
       /* COMMON FUNCTION STARTS HERE */
 
-    public function GeneralInformationSave($option) {
+    public function GeneralInformationSave($option)
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1172,7 +1180,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartCLeaderShipOthersSave($option) {
+    public function PartCLeaderShipOthersSave($option)
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1212,7 +1221,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartAAcademicSave($option, $key = "") {
+    public function PartAAcademicSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1269,7 +1279,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartAFDPSave($option, $key = "") {
+    public function PartAFDPSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1327,8 +1338,7 @@ class MY_Controller extends CI_Controller {
                         $data['success'] = false;
                         $data['message'] = "Some thing went wrong";
                     endif;
-                }
-                else {
+                } else {
                     $data['success'] = false;
                     $data['message'] = "Some thing went wrong";
                 }
@@ -1337,7 +1347,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartAMemberShipSave($option, $key = "") {
+    public function PartAMemberShipSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1393,8 +1404,7 @@ class MY_Controller extends CI_Controller {
                         $data['success'] = false;
                         $data['message'] = "Some thing went wrong";
                     endif;
-                }
-                else {
+                } else {
                     $data['success'] = false;
                     $data['message'] = "Some thing went wrong";
                 }
@@ -1403,7 +1413,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBResearchSave($option, $key = "") {
+    public function PartBResearchSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1462,8 +1473,7 @@ class MY_Controller extends CI_Controller {
                         $data['success'] = false;
                         $data['message'] = "Some thing went wrong";
                     endif;
-                }
-                else {
+                } else {
                     $data['success'] = false;
                     $data['message'] = "File Cannot be deleted";
                 }
@@ -1472,7 +1482,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBPaperSave($option, $key = "") {
+    public function PartBPaperSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1529,8 +1540,7 @@ class MY_Controller extends CI_Controller {
                         $data['success'] = false;
                         $data['message'] = "Some thing went wrong";
                     endif;
-                }
-                else {
+                } else {
                     $data['success'] = false;
                     $data['message'] = "File Cannot be deleted";
                 }
@@ -1539,7 +1549,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBConferenceSave($option, $key = "") {
+    public function PartBConferenceSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1587,7 +1598,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBBooksSave($option, $key = "") {
+    public function PartBBooksSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1647,8 +1659,7 @@ class MY_Controller extends CI_Controller {
                         $data['success'] = false;
                         $data['message'] = "Some thing went wrong";
                     endif;
-                }
-                else {
+                } else {
                     $data['success'] = false;
                     $data['message'] = "File Cannot be deleted";
                 }
@@ -1657,7 +1668,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBSponsoredSave($option, $key = "") {
+    public function PartBSponsoredSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1716,8 +1728,7 @@ class MY_Controller extends CI_Controller {
                         $data['success'] = false;
                         $data['message'] = "Some thing went wrong";
                     endif;
-                }
-                else {
+                } else {
                     $data['success'] = false;
                     $data['message'] = "File Cannot be deleted";
                 }
@@ -1726,7 +1737,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBConsultancySave($option, $key = "") {
+    public function PartBConsultancySave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1789,7 +1801,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBResearchGuidanceSave($option, $key = "") {
+    public function PartBResearchGuidanceSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1838,7 +1851,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartBPatentSave($option, $key = "") {
+    public function PartBPatentSave($option, $key = "")
+    {
         switch ($option):
             case "add":
                 $postData = $this->input->post();
@@ -1898,7 +1912,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartCLeaderShipTopOthersSave($option) {
+    public function PartCLeaderShipTopOthersSave($option)
+    {
         switch ($option):
             case "edit":
                 $postData = $this->input->post();
@@ -1935,7 +1950,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    public function PartDAssessmentSave($option) {
+    public function PartDAssessmentSave($option)
+    {
         switch ($option):
             case "edit":
                 $postData = $this->input->post();
@@ -2005,7 +2021,8 @@ class MY_Controller extends CI_Controller {
         endswitch;
     }
 
-    private function fetch_allfaculty_by_dept($deptid) {
+    private function fetch_allfaculty_by_dept($deptid)
+    {
         $FacultySelect = "stp_id as FacultyID,stp_name as FacultyName,role_name as Role,des_short_name as Designation,des_sort_order as SortOrder";
         $FacultyCondition = array("stp_dept" => $deptid);
         $Data = $this->Adminmodel->CSearch($FacultyCondition, $FacultySelect, "stp", "Y", "Y");
@@ -2021,7 +2038,8 @@ class MY_Controller extends CI_Controller {
 
     /* Ajax Fetch for Faculy by Department Starts Here */
 
-    public function FetchFaculty() {
+    public function FetchFaculty()
+    {
         $Postdata = $this->input->post();
         $DepartmentID = $this->input->post('id', TRUE);
         $FacultySelect = "stp_id as FacultyID,stp_name as FacultyName";
@@ -2034,7 +2052,8 @@ class MY_Controller extends CI_Controller {
         echo $output;
     }
 
-    public function uploadproof($option, $filename) {
+    public function uploadproof($option, $filename)
+    {
         $config['allowed_types'] = 'jpg|jpeg';
         $config['file_name'] = $filename;
         $config['max_size'] = '1024';
@@ -2050,7 +2069,8 @@ class MY_Controller extends CI_Controller {
         endif;
     }
 
-    public function file_check($str) {
+    public function file_check($str)
+    {
         $allowed_mime_type_arr = array('image/jpeg', 'image/jpg');
         $mime = get_mime_by_extension($_FILES['file']['name']);
         if (isset($_FILES['file']['name']) && $_FILES['file']['name'] != "") {
@@ -2069,7 +2089,8 @@ class MY_Controller extends CI_Controller {
     /* Ajax Fetch for Faculy by Department Ends Here */
 
     //Password reset for all 
-    public function PasswordReset() {
+    public function PasswordReset()
+    {
         $postData = $this->input->post();
         if ($this->form_check_validation("passwordreset")):
             if ($postData['question'] === $postData['answer']):
