@@ -26,4 +26,7 @@ class Administrator extends MY_Controller
         
     }
 
+ public function demo(){
+  }
+
 }
