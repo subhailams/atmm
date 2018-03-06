@@ -330,7 +330,7 @@ return $.widget( "ui.tabs", {
 			}
 		// was active, active tab still exists
 		} else {
-			// make sure active index is correct
+			// make sure active logs is correct
 			options.active = this.tabs.index( this.active );
 		}
 
@@ -699,7 +699,7 @@ return $.widget( "ui.tabs", {
 	},
 
 	_getIndex: function( index ) {
-		// meta-function to give users option to provide a href string instead of a numerical index.
+		// meta-function to give users option to provide a href string instead of a numerical logs.
 		if ( typeof index === "string" ) {
 			index = this.anchors.index( this.anchors.filter( "[href$='" + index + "']" ) );
 		}

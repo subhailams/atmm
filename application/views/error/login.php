@@ -1,112 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>STAFF APPRAISAL PORTAL - RMKEC</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Atrocity Tracking and Management</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link type="text/css" rel="stylesheet"
+          href="<?= base_url('assets/plugins/bootstrap/dist/css/bootstrap.min.css') ?>"/>
+    <!-- Font Awesome -->
+    <link type="text/css" rel="stylesheet"
+          href="<?= base_url('assets/plugins/font-awesome/css/font-awesome.min.css') ?>"/>
+    <!-- Ionicons -->
+    <link type="text/css" rel="stylesheet" href="<?= base_url('assets/plugins/Ionicons/css/ionicons.min.css') ?>"/>
+    <!-- Theme style -->
+    <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/AdminLTE.min.css') ?>"/>
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/skins/skin-blue-light	.css') ?>"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <![endif]-->
 
-        <!-- BEGIN META -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="your,keywords">
-        <meta name="description" content="Short explanation about this website">
-        <!-- END META -->
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script>  var Geo = "";
+        function GeoLocaiton(Json) {
+            Geo = Json;
+        }
+        var base_url = "<?= base_url(); ?>";
+        var role = "<?= $this->router->fetch_class(); ?>";
+    </script>
+</head>
+<?php
+$config = array("question_format" => "numeric",
+    "operation" => "addition");
+$this->mathcaptcha->init($config);
+$data = $this->mathcaptcha->get_question();
+$breadcrumb = $this->uri->segment(3);
+?>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="../../index2.html">Atrocity Tracking Management System</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <form action="../../index2.html" method="post">
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-md-6 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+        <br/>
+        <a href="#">I forgot my password</a><br>
+        <a href="register.html" class="text-center">Register a new membership</a>
 
-        <!-- BEGIN STYLESHEETS -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
-        <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/bootstrap.css') ?>" />
-        <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>" />
-        <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>" />
-        <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/iconic-font.css') ?>" />
-        <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/theme-default/libs/select2/select2-1422823373.css') ?>" />
-    </head>
-    <?php
-    $config = array("question_format" => "numeric",
-        "operation" => "addition");
-    $this->mathcaptcha->init($config);
-    $data = $this->mathcaptcha->get_question();
-    $breadcrumb = $this->uri->segment(3);
-    ?>
-    <body class="menubar-hoverable header-fixed ">
-        <!-- BEGIN LOGIN SECTION -->
-        <section class="section-account">
-            <div class="card contain-sm style-transparent">
-                <div class="card-body">
-                    <div class="row">
-                        <?php if (!empty($Error)) { ?>
-                            <div class="alert alert-danger" role="alert"><?= $Error ?></div>
-                        <?php } ?>
-                        <div class="col-md-12">
-                            <center><img src="<?= base_url('assets/img/logo.png') ?>" alt="RMK">
-                            <span class="text-lg text-bold text-center text-primary">RMKEC STAFF APPRAISAL PORTAL</span>
-                            <img src="<?= base_url('assets/img/dnv.png') ?>" alt="RMK"></center>
-                            <br/>
-                            <form class="form floating-label" action="<?= base_url('index.php/Administrator') ?>" method="post">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="username" name="username" required="true">
-                                    <label for="username">Username</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="password" name="password">
-                                    <label for="password">Password</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select class="form-control select2-list" name="role" required="true" id="role">
-                                                <option value=""></option>
-                                                <?php foreach ($this->db->where(array("role_status" => "Y"))->order_by("role_name", "asc")->get('user_role')->result() as $detail) { ?>
-                                                    <option value="<?= $detail->role_id ?>"> <?= strtoupper($detail->role_show) ?> </option> 
-                                                <?php } ?>
-                                            </select>
-                                            <label>Choose Role</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select class="form-control select2-list" name="academicyear" required="true">
-                                                <option value=""></option>
-                                                <?php foreach ($this->db->where(array("aca_display" => "Y"))->order_by("aca_name", "asc")->get('academicyear')->result() as $detail) { ?>
-                                                    <option value="<?= $detail->aca_id ?>"> <?= strtoupper($detail->aca_name) ?> </option> 
-                                                <?php } ?>
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
 
-                                            </select>
-                                            <label>Choose Academic Year</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input  type="text" class="form-control" required="true" name="answer" id="answer">
-                                    <input type="hidden" name="question" value="<?= $data['number1'] + $data['number2'] ?>"> 
-                                    <label for="username"><?= $data['question']; ?></label>
-                                </div>
-                                <br/>
-                                <div class="row">
-                                    <div class="col-xs-6 text-left">
+<!-- BEGIN WEBSITE JAVASCRIPT -->
+<script src="<?= base_url('assets/plugins/jquery/dist/jquery.min.js') ?>"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?= base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?= base_url('assets/plugins/iCheck/icheck.min.js') ?>"></script>
 
-                                    </div><!--end .col -->
-                                    <div class="col-xs-6 text-right">
-                                        <button class="btn btn-primary btn-raised" type="submit">Login</button>
-                                    </div><!--end .col -->
-                                </div><!--end .row -->
-                            </form>
-                        </div><!--end .col -->
-                    </div><!--end .row -->
-                </div><!--end .card-body -->
-            </div><!--end .card -->
-        </section>
-        <!-- END LOGIN SECTION -->
-
-        <!-- BEGIN WEBSITE JAVASCRIPT -->
-        <script src="<?= base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
-        <script src="<?= base_url('assets/js/jquery-migrate-1.2.1.min.js') ?>"></script>
-        <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
-        <script src="<?= base_url('assets/js/libs/spin.js/spin.min.js') ?>"></script>
-        <script src="<?= base_url('assets/js/libs/autosize/jquery.autosize.min.js') ?>"></script>
-        <script src="<?= base_url('assets/js/libs/nanoscroller/jquery.nanoscroller.min.js') ?>"></script>
-        <script src="<?= base_url('assets/js/core/cache/63d0445130d69b2868a8d28c93309746.js') ?>"></script>
-        <script src="<?= base_url('assets/js/libs/select2/select2.min.js') ?>"></script>
-
-
-        <script src="<?= base_url('assets/js/Script.js') ?>"></script>
-        <!-- END WEBSITE JAVASCRIPT -->
-    </body>
+<!-- END WEBSITE JAVASCRIPT -->
+</body>
 </html>

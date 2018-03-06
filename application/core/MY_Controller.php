@@ -62,13 +62,13 @@ class MY_Controller extends CI_Controller
             if (strtoupper($_SESSION["UserRole"]) == strtoupper($Class)) {
                 return true;
             } else {
-                redirect("/" . strtolower($CtrlRole['role_name']) . "/index");
+                redirect("/" . strtolower($CtrlRole['role_name']) . "/logs");
             }
         } else {
             if (!empty($CtrlRole['role_name'])) {
-                redirect("/" . strtolower($CtrlRole['role_name']) . "/index");
+                redirect("/" . strtolower($CtrlRole['role_name']) . "/logs");
             } else {
-                redirect("/error/index/InitiThrought");
+                redirect("/error/logs/InitiThrought");
             }
         }
     }
@@ -125,6 +125,8 @@ class MY_Controller extends CI_Controller
                 break;
         endswitch;
     }
+
+
 
     public function generateChartData()
     {
@@ -1120,7 +1122,7 @@ class MY_Controller extends CI_Controller
                 $pdfPortarit->Output("Conslidated_All_Faculty.pdf", 'I');
                 break;
             default:
-                redirect('/' . strtolower($this->router->fetch_class()) . '/index');
+                redirect('/' . strtolower($this->router->fetch_class()) . '/logs');
                 break;
         endswitch;
     }

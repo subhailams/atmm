@@ -186,10 +186,10 @@ Obj: {
     "max": 100000,              // MAX values
     "from": 10000,              // FROM value
     "from_percent": 10,         // FROM value in percents
-    "from_value": 0,            // FROM index in values array (if used)
+    "from_value": 0,            logindex
     "to": 90000,                // TO value
     "to_percent": 90,           // TO value in percents
-    "to_value": 0,              // TO index in values array (if used)
+    "to_value": 0,              logindex
     "min_pretty": "1 000",      // MIN prettified (if used)
     "max_pretty": "100 000",    // MAX prettified (if used)
     "from_pretty": "10 000",    // FROM prettified (if used)

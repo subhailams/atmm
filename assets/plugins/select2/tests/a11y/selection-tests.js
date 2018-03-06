@@ -78,7 +78,7 @@ test('the container should be in the tab order', function (assert) {
   assert.equal(
     $selection.attr('tabindex'),
     '0',
-    'The tab index should allow it to fit in the natural tab order'
+    'The tab logs should allow it to fit in the natural tab order'
   );
 
   container.trigger('disable');
@@ -94,7 +94,7 @@ test('the container should be in the tab order', function (assert) {
   assert.equal(
     $selection.attr('tabindex'),
     '0',
-    'The tab index should be restored when re-enabled'
+    'The tab logs should be restored when re-enabled'
   );
 });
 
@@ -111,7 +111,7 @@ test('a custom tabindex is copied', function (assert) {
   assert.equal(
     $selection.attr('tabindex'),
     '999',
-    'The tab index should match the original tab index'
+    'The tab logs should match the original tab logs'
   );
 
   container.trigger('disable');
@@ -127,7 +127,7 @@ test('a custom tabindex is copied', function (assert) {
   assert.equal(
     $selection.attr('tabindex'),
     '999',
-    'The tab index should be restored when re-enabled'
+    'The tab logs should be restored when re-enabled'
   );
 });
 

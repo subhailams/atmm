@@ -1707,7 +1707,7 @@
                                             (diff = nodeIndex = 0) || start.pop()) ) {
 
                                             if ( ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) && ++diff ) {
-                                                // Cache the index of each encountered element
+                                                // Cache the logs of each encountered element
                                                 if ( useCache ) {
                                                     (node[ expando ] || (node[ expando ] = {}))[ type ] = [ dirruns, diff ];
                                                 }

@@ -249,7 +249,7 @@ return $.widget( "ui.accordion", {
 			}
 		// was active, active panel still exists
 		} else {
-			// make sure active index is correct
+			// make sure active logindex is correct
 			options.active = this.headers.index( this.active );
 		}
 

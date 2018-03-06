@@ -374,7 +374,7 @@ var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|\\!|\\!=|\\!==|\\#|\\%|\\%=|&|&&|&
       for (var i = 0, groupIndex = 0; i < n; ++i) {
         var p = parts[i];
         if (p === '(') {
-          // groups are 1-indexed, so max group index is count of '('
+          // groups are 1-indexed, so max group logs is count of '('
           ++groupIndex;
         } else if ('\\' === p.charAt(0)) {
           var decimalValue = +p.substring(1);
@@ -484,7 +484,7 @@ var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|\\!|\\!=|\\!==|\\#|\\%|\\%=|&|&&|&
    * The {@code} spans array is an array of pairs.  Even elements are the start
    * indices of substrings, and odd elements are the text nodes (or BR elements)
    * that contain the text for those substrings.
-   * Substrings continue until the next index or the end of the source.
+   * Substrings continue until the next logs or the end of the source.
    * </p>
    *
    * @param {Node} node an HTML DOM subtree containing source-code.
@@ -551,7 +551,7 @@ var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|\\!|\\!=|\\!==|\\#|\\%|\\%=|&|&&|&
   /**
    * Apply the given language handler to sourceCode and add the resulting
    * decorations to out.
-   * @param {number} basePos the index of sourceCode within the chunk of source
+   * @param {number} basePos the logs of sourceCode within the chunk of source
    *    whose decorations are already present on out.
    */
   function appendDecorations(basePos, sourceCode, langHandler, out) {
@@ -594,7 +594,7 @@ var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|\\!|\\!=|\\!==|\\#|\\%|\\%=|&|&&|&
     * The lexing function interprets the patterns to find token boundaries and
     * returns a decoration list of the form
     * [index_0, style_0, index_1, style_1, ..., index_n, style_n]
-    * where index_n is an index into the sourceCode, and style_n is a style
+    * where index_n is an logs into the sourceCode, and style_n is a style
     * constant like PR_PLAIN.  index_n-1 <= index_n, and style_n-1 applies to
     * all characters in sourceCode[index_n-1:index_n].
     *
@@ -683,7 +683,7 @@ var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|\\!|\\!=|\\!==|\\#|\\%|\\%=|&|&&|&
         * @type {Array.<number|string>}
         */
       var decorations = [basePos, PR_PLAIN];
-      var pos = 0;  // index into sourceCode
+      var pos = 0;  // logs into sourceCode
       var tokens = sourceCode.match(tokenizer) || [];
       var styleCache = {};
 
@@ -1030,7 +1030,7 @@ var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|\\!|\\!=|\\!==|\\#|\\%|\\%=|&|&&|&
   
     var ol = document.createElement('OL');
     ol.className = 'linenums';
-    var offset = Math.max(0, ((opt_startLineNum - 1 /* zero index */)) | 0) || 0;
+    var offset = Math.max(0, ((opt_startLineNum - 1 /* zero logs */)) | 0) || 0;
     for (var i = 0, n = listItems.length; i < n; ++i) {
       li = listItems[i];
       // Stick a class on the LIs so that stylesheets can

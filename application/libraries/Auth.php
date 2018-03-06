@@ -27,7 +27,7 @@ class Auth {
             } else {
                 exit($this->obj->load->view($LoginData, get_defined_vars(), true));
             }
-        } elseif (!empty($Postdata['username']) && !empty($Postdata['password']) && !empty($Postdata['role'])) {
+        } elseif (!empty($Postdata['username']) && !empty($Postdata['password'])) {
             $Userdetails = $this->obj->db->select(array("dept_id as DepartmentID", "dept_name as DepartmentName", "aca_name as AcademicYearFull", "aca_id as AcademicYear", "stp_id as ID", "stp_name as FullName", "stp_username as UserName", "stp_status as Status", "role_id as RoleID", "role_name as RoleName", "des_name as DesgName", "des_short_name as DesgShortName"))->where(array("stp_username" => $Postdata['username'], "stp_password" => $Postdata['password'], "stp_role" => $Postdata['role']))->join("user_role", "role_id=stp_role")->join("designation", "des_id=stp_desg")->join("academicyear", "aca_id=" . $Postdata['academicyear'])->join("departments", "dept_id=stp_dept")->get("staffprofile")->row_array();
             if (!empty($Userdetails)):
                 $this->obj->session->set_userdata("Auth", "Y");

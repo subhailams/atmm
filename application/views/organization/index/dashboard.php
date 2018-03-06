@@ -35,7 +35,6 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3>150</h3>
-
                         <p>Total Cases</p>
                     </div>
                     <div class="icon">

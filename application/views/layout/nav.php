@@ -38,7 +38,8 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="<?= base_url("assets/img/user2-160x160.jpg") ?>" class="img-circle"
+                                 alt="User Image">
 
                             <p>
                                 Alexander Pierce - Web Developer
@@ -67,7 +68,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src=<?= base_url("assets/img/user2-160x160.jpg") ?> class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>Alexander Pierce</p>
@@ -78,9 +79,9 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Navigation Menu</li>
             <li>
-                <a href="pages/widgets.html">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                    <span class="pull-right-container">
+                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <span class="pull-right-container">
             </span>
                 </a>
             </li>
@@ -146,10 +147,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> </a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
+                                    class="fa fa-circle-o"></i> Show Logs</a></li>
                 </ul>
             </li>
-
             <li>
                 <a href="pages/widgets.html">
                     <i class="fa fa-power-off"></i> <span>Logout</span>

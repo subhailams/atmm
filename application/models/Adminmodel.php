@@ -6,24 +6,29 @@
  * and open the template in the editor.
  */
 
-class Adminmodel extends CI_Model {
+class Adminmodel extends CI_Model
+{
 
-    function __construct() {
+    public function __construct()
+    {
         parent::__construct();
-        $this->TableList = array("prio" => "priority", "tick_sta" => "ticket_status", "tick" => "tickets", "exp" => "experience", "aca" => "academicyear", "msg" => "messages", "anx1_hod" => "annexure1_hod", "ax_bk" => "annexure1_books", "ax_cf" => "annexure1_conference", "ax_cs" => "annexure1_consultancy", "ax_fdp" => "annexure1_fdp", "ax_ms" => "annexure1_membership", "ax_pp" => "annexure1_paper", "ax_rs" => "annexure1_research", "ax_rg" => "annexure1_research_guidance", "ax_sd" => "annexure1_sponsored", "ax_su" => "annexure1_subject", "dept" => "departments", "desg" => "designation", "evt" => "eventtype", "ite" => "item_details", "mem" => "membershiptype", "ptc_o" => "partc_others", "ptc_t" => "partc_top", "qua" => "qualification", "sem" => "semester", "stp" => "staffprofile", "usr" => "user_role", "psta" => "projectstatus", "ax_pat" => "annexure1_patent");
-        $this->SeqID = array("priority" => "pri_id", "ticket_status" => "tick_st_id", "tickets" => "tic_id", "experience" => "exp_id", "academicyear" => "aca_id", "messages" => "msg_id", "annexure1_hod" => "anx1_id", "annexure1_books" => "anx1_id", "annexure1_conference" => "anx1_id", "annexure1_consultancy" => "anx1_id", "annexure1_fdp" => "anx1_id", "annexure1_membership" => "anx1_id", "annexure1_paper" => "anx1_id", "annexure1_research" => "anx1_id", "annexure1_research_guidance" => "anx1_id", "annexure1_sponsored" => "anx1_id", "annexure1_subject" => "anx1_id", "departments" => "dept_id", "designation" => "des_id", "eventtype" => "eve_id", "item_details" => "item_id", "membershiptype" => "mem_id", "partc_others" => "ptc_id", "partc_top" => "ptc_id", "qualification" => "qua_id", "semester" => "sem_id", "staffprofile" => "stp_id", "user_role" => "role_id", "projectstatus" => "pst_id", "annexure1_patent" => "anx1_id");
+        $this->TableList = array("log" => "logs");
+        $this->SeqID = array("logs" => "id");
     }
 
-    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
+    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY)
+    {
         $TableName = $this->TableList[$TableList];
         return $this->CSearch($Condition, $Select, $TableName, $SelectAll, $GroupBY, $OrderBY);
     }
 
-    public function AllInsert($condition, $dataDB, $Select, $Tble) {
+    public function AllInsert($condition, $dataDB, $Select, $Tble)
+    {
         return $this->Crud($condition, $dataDB, $Select, $Tble);
     }
 
-    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = true) {
+    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = true)
+    {
         $IPAdress = ($this->input->ip_address() === "::1") ? "127.0.0.1" : $this->input->ip_address();
         $TableName = $this->TableList[$TableList];
         $CrudDetails = $this->CSearch($Condition, $Select, $TableName, null, False);
@@ -45,12 +50,13 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY) {
+    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY)
+    {
         $JoinType = NULL;
         if (!empty($Select)) {
             $this->db->select($Select, FALSE);
         }
-        $_TableName = $this->TableList[$TableName];
+        $TableName = $this->TableList[$TableName];
         if (!empty($_TableName)) {
             $TableName = $_TableName;
         }
@@ -60,27 +66,24 @@ class Adminmodel extends CI_Model {
         if ($Distinct) {
             $this->db->distinct();
         }
-        if ($Condition) {
-            $this->db->distinct($Condition);
-        }
         if (!empty($Condition)) {
             $this->db->where($Condition);
         }
         if (!empty($GroupBY)) {
             $this->db->group_by($GroupBY);
         }
-        $this->db->order_by($this->SeqId[$TableName], "asc");
+        $this->db->order_by($this->SeqID[$TableName], "asc");
         $Result = $this->db->get($TableName);
 
-
         if (empty($SelectAll)):
-            return (empty($Result)) ? null : (array) $Result->row();
+            return (empty($Result)) ? null : (array)$Result->row();
         else:
-            return (empty($Result)) ? null : (array) $Result->result_array();
+            return (empty($Result)) ? null : (array)$Result->result_array();
         endif;
     }
 
-    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin) {
+    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin)
+    {
         switch ($TableName) {
             case "staffprofile":
                 $JoinTable = array(
@@ -198,16 +201,75 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    public function Delete($id, $idval, $table) {
+    public function Delete($id, $idval, $table)
+    {
         $this->db->where($id, $idval);
         return $this->db->delete($table);
     }
 
-    public function DropData($condition, $table) {
+    public function DropData($condition, $table)
+    {
         $TableName = $this->TableList[$table];
         $this->db->where($condition);
         $status = $this->db->delete($TableName);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
+
+
+    private function _get_datatables_query($tableName, $ColumnOrder, $ColumnSearch, $OrderBy)
+    {
+        $this->db->from($tableName);
+        $i = 0;
+        foreach ($ColumnSearch as $item) // loop column
+        {
+            if ($_POST['search']['value']) // if datatable send POST for search
+            {
+                if ($i === 0) // first loop
+                {
+                    $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+                    $this->db->like($item, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like($item, $_POST['search']['value']);
+                }
+
+                if (count($ColumnSearch) - 1 == $i) //last loop
+                    $this->db->group_end(); //close bracket
+            }
+            $i++;
+        }
+        if (isset($_POST['order'])) // here order processing
+        {
+            $this->db->order_by($ColumnOrder[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else if (isset($OrderBy)) {
+            $order = $OrderBy;
+            $this->db->order_by(key($order));
+        }
+    }
+
+    function get_datatables($TableList,$ColumnOrder, $ColumnSearch, $OrderBy)
+    {
+        $TableName = $this->TableList[$TableList];
+        $this->_get_datatables_query($TableName,$ColumnOrder, $ColumnSearch, $OrderBy);
+        if ($_POST['length'] != -1)
+            $this->db->limit($_POST['length'], $_POST['start']);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function count_filtered($TableList,$ColumnOrder, $ColumnSearch, $OrderBy)
+    {
+        $TableName = $this->TableList[$TableList];
+        $this->_get_datatables_query($TableName, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_all($TableList)
+    {
+        $TableName = $this->TableList[$TableList];
+        $this->db->from($TableName);
+        return $this->db->count_all_results();
+    }
+
 
 }

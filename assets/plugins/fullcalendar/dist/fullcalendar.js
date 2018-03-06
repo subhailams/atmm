@@ -4119,7 +4119,7 @@ var View = /** @class */ (function (_super) {
     // Initializes internal variables related to calculating hidden days-of-week
     View.prototype.initHiddenDays = function () {
         var hiddenDays = this.opt('hiddenDays') || []; // array of day-of-week indices that are hidden
-        var isHiddenDayHash = []; // is the day-of-week hidden? (hash with day-of-week-index -> bool)
+        var isHiddenDayHash = []; // is the day-of-week hidden? (hash with day-of-week-logs -> bool)
         var dayCnt = 0;
         var i;
         if (this.opt('weekends') === false) {
@@ -4152,7 +4152,7 @@ var View = /** @class */ (function (_super) {
         return null;
     };
     // Is the current day hidden?
-    // `day` is a day-of-week index (0-6), or a Moment
+    // `day` is a day-of-week logs (0-6), or a Moment
     View.prototype.isHiddenDay = function (day) {
         if (moment.isMoment(day)) {
             day = day.day();
@@ -5528,7 +5528,7 @@ var CoordCache = /** @class */ (function () {
         this.tops = tops;
         this.bottoms = bottoms;
     };
-    // Given a left offset (from document left), returns the index of the el that it horizontally intersects.
+    // Given a left offset (from document left), returns the logs of the el that it horizontally intersects.
     // If no intersection is made, returns undefined.
     CoordCache.prototype.getHorizontalIndex = function (leftOffset) {
         this.ensureBuilt();
@@ -5542,7 +5542,7 @@ var CoordCache = /** @class */ (function () {
             }
         }
     };
-    // Given a top offset (from document top), returns the index of the el that it vertically intersects.
+    // Given a top offset (from document top), returns the logs of the el that it vertically intersects.
     // If no intersection is made, returns undefined.
     CoordCache.prototype.getVerticalIndex = function (topOffset) {
         this.ensureBuilt();
@@ -5556,34 +5556,34 @@ var CoordCache = /** @class */ (function () {
             }
         }
     };
-    // Gets the left offset (from document left) of the element at the given index
+    // Gets the left offset (from document left) of the element at the given logs
     CoordCache.prototype.getLeftOffset = function (leftIndex) {
         this.ensureBuilt();
         return this.lefts[leftIndex];
     };
-    // Gets the left position (from offsetParent left) of the element at the given index
+    // Gets the left position (from offsetParent left) of the element at the given logs
     CoordCache.prototype.getLeftPosition = function (leftIndex) {
         this.ensureBuilt();
         return this.lefts[leftIndex] - this.origin.left;
     };
-    // Gets the right offset (from document left) of the element at the given index.
+    // Gets the right offset (from document left) of the element at the given logs.
     // This value is NOT relative to the document's right edge, like the CSS concept of "right" would be.
     CoordCache.prototype.getRightOffset = function (leftIndex) {
         this.ensureBuilt();
         return this.rights[leftIndex];
     };
-    // Gets the right position (from offsetParent left) of the element at the given index.
+    // Gets the right position (from offsetParent left) of the element at the given logs.
     // This value is NOT relative to the offsetParent's right edge, like the CSS concept of "right" would be.
     CoordCache.prototype.getRightPosition = function (leftIndex) {
         this.ensureBuilt();
         return this.rights[leftIndex] - this.origin.left;
     };
-    // Gets the width of the element at the given index
+    // Gets the width of the element at the given logs
     CoordCache.prototype.getWidth = function (leftIndex) {
         this.ensureBuilt();
         return this.rights[leftIndex] - this.lefts[leftIndex];
     };
-    // Gets the top offset (from document top) of the element at the given index
+    // Gets the top offset (from document top) of the element at the given logs
     CoordCache.prototype.getTopOffset = function (topIndex) {
         this.ensureBuilt();
         return this.tops[topIndex];
@@ -5593,19 +5593,19 @@ var CoordCache = /** @class */ (function () {
         this.ensureBuilt();
         return this.tops[topIndex] - this.origin.top;
     };
-    // Gets the bottom offset (from the document top) of the element at the given index.
+    // Gets the bottom offset (from the document top) of the element at the given logs.
     // This value is NOT relative to the offsetParent's bottom edge, like the CSS concept of "bottom" would be.
     CoordCache.prototype.getBottomOffset = function (topIndex) {
         this.ensureBuilt();
         return this.bottoms[topIndex];
     };
-    // Gets the bottom position (from the offsetParent top) of the element at the given index.
+    // Gets the bottom position (from the offsetParent top) of the element at the given logs.
     // This value is NOT relative to the offsetParent's bottom edge, like the CSS concept of "bottom" would be.
     CoordCache.prototype.getBottomPosition = function (topIndex) {
         this.ensureBuilt();
         return this.bottoms[topIndex] - this.origin.top;
     };
-    // Gets the height of the element at the given index
+    // Gets the height of the element at the given logs
     CoordCache.prototype.getHeight = function (topIndex) {
         this.ensureBuilt();
         return this.bottoms[topIndex] - this.tops[topIndex];
@@ -6101,7 +6101,7 @@ var DayTableMixin = /** @class */ (function (_super) {
             return col;
         }
     };
-    // Given a date, returns its chronolocial cell-index from the first cell of the grid.
+    // Given a date, returns its chronolocial cell-logs from the first cell of the grid.
     // If the date lies between cells (because of hiddenDays), returns a floating-point value between offsets.
     // If before the first offset, returns a negative number.
     // If after the last offset, returns an offset past the last cell offset.
@@ -6141,14 +6141,14 @@ var DayTableMixin = /** @class */ (function (_super) {
     DayTableMixin.prototype.sliceRangeByRow = function (unzonedRange) {
         var daysPerRow = this.daysPerRow;
         var normalRange = this.view.computeDayRange(unzonedRange); // make whole-day range, considering nextDayThreshold
-        var rangeFirst = this.getDateDayIndex(normalRange.start); // inclusive first index
-        var rangeLast = this.getDateDayIndex(normalRange.end.clone().subtract(1, 'days')); // inclusive last index
+        var rangeFirst = this.getDateDayIndex(normalRange.start); // inclusive first logs
+        var rangeLast = this.getDateDayIndex(normalRange.end.clone().subtract(1, 'days')); // inclusive last logs
         var segs = [];
         var row;
         var rowFirst;
-        var rowLast; // inclusive day-index range for current row
+        var rowLast; // inclusive day-logs range for current row
         var segFirst;
-        var segLast; // inclusive day-index range for segment
+        var segLast; // inclusive day-logs range for segment
         for (row = 0; row < this.rowCnt; row++) {
             rowFirst = row * daysPerRow;
             rowLast = rowFirst + daysPerRow - 1;
@@ -6177,15 +6177,15 @@ var DayTableMixin = /** @class */ (function (_super) {
     DayTableMixin.prototype.sliceRangeByDay = function (unzonedRange) {
         var daysPerRow = this.daysPerRow;
         var normalRange = this.view.computeDayRange(unzonedRange); // make whole-day range, considering nextDayThreshold
-        var rangeFirst = this.getDateDayIndex(normalRange.start); // inclusive first index
-        var rangeLast = this.getDateDayIndex(normalRange.end.clone().subtract(1, 'days')); // inclusive last index
+        var rangeFirst = this.getDateDayIndex(normalRange.start); // inclusive first logs
+        var rangeLast = this.getDateDayIndex(normalRange.end.clone().subtract(1, 'days')); // inclusive last logs
         var segs = [];
         var row;
         var rowFirst;
-        var rowLast; // inclusive day-index range for current row
+        var rowLast; // inclusive day-logs range for current row
         var i;
         var segFirst;
-        var segLast; // inclusive day-index range for segment
+        var segLast; // inclusive day-logs range for segment
         for (row = 0; row < this.rowCnt; row++) {
             rowFirst = row * daysPerRow;
             rowLast = rowFirst + daysPerRow - 1;
@@ -11978,7 +11978,7 @@ var TimeGrid = /** @class */ (function (_super) {
         // constrained because minTime/maxTime might be customized.
         slatCoverage = Math.max(0, slatCoverage);
         slatCoverage = Math.min(len, slatCoverage);
-        // an integer index of the furthest whole slat
+        // an integer logs of the furthest whole slat
         // from 0 to number slats (*exclusive*, so len-1)
         slatIndex = Math.floor(slatCoverage);
         slatIndex = Math.min(slatIndex, len - 1);
@@ -12063,7 +12063,7 @@ var TimeGrid = /** @class */ (function (_super) {
     };
     TimeGrid.prototype.getHitFootprint = function (hit) {
         var start = this.getCellDate(0, hit.col); // row=0
-        var time = this.computeSnapTime(hit.snap); // pass in the snap-index
+        var time = this.computeSnapTime(hit.snap); // pass in the snap-logs
         var end;
         start.time(time);
         end = start.clone().add(this.snapDuration);
@@ -13842,7 +13842,7 @@ var TimeGridEventRenderer = /** @class */ (function (_super) {
     // compute their verical/horizontal coordinates and assign to their elements.
     TimeGridEventRenderer.prototype.updateFgSegCoords = function (segs) {
         this.timeGrid.computeSegVerticals(segs); // horizontals relies on this
-        this.computeFgSegHorizontals(segs); // compute horizontal coordinates, z-index's, and reorder the array
+        this.computeFgSegHorizontals(segs); // compute horizontal coordinates, z-logs's, and reorder the array
         this.timeGrid.assignSegVerticals(segs);
         this.assignFgSegHorizontals(segs);
     };
@@ -14409,7 +14409,7 @@ var DayGridEventRenderer = /** @class */ (function (_super) {
                     break;
                 }
             }
-            // `j` now holds the desired subrow index
+            // `j` now holds the desired subrow logs
             seg.level = j;
             // create new level array if needed and append segment
             (levels[j] || (levels[j] = [])).push(seg);

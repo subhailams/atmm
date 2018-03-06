@@ -4986,7 +4986,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     > Parameters
 	     **
-	     - index (number) position of the deletion
+	     - logs (number) position of the deletion
 	     - count (number) number of element to remove
 	     - insertion… (object) #optional elements to insert
 	     = (object) set elements that were deleted
@@ -5691,7 +5691,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - name (array) if you don’t want to use separators, you can use array of strings
 	     - f (function) event handler function
 	     **
-	     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
+	     = (function) returned function accepts a single numeric parameter that represents z-logs of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment.
 	     > Example:
 	     | eve.on("mouse", eatIt)(2);
 	     | eve.on("mouse", scream);
@@ -5699,7 +5699,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * This will ensure that `catchIt` function will be called before `eatIt`.
 	     *
 	     * If you want to put your handler before non-indexed handlers, specify a negative value.
-	     * Note: I assume most of the time you don’t need to worry about z-index, but it’s nice to have this feature “just in case”.
+	     * Note: I assume most of the time you don’t need to worry about z-logs, but it’s nice to have this feature “just in case”.
 	    \*/
 	    eve.on = function (name, f) {
 	        if (typeof f != "function") {
