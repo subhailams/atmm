@@ -20,6 +20,14 @@ class Administrator extends MY_Controller
     {
         $this->render("dashboard", get_defined_vars());
     }
+    
+    public function HelloWorld()
+    {
+        
+    }
+
+ public function demo(){
+  }
 
     public function logs()
     {
