@@ -216,9 +216,10 @@ class Adminmodel extends CI_Model
     }
 
 
-    private function _get_datatables_query($tableName, $ColumnOrder, $ColumnSearch, $OrderBy)
+    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
     {
         $this->db->from($tableName);
+        $this->db->where($Condition);
         $i = 0;
         foreach ($ColumnSearch as $item) // loop column
         {
@@ -246,28 +247,29 @@ class Adminmodel extends CI_Model
         }
     }
 
-    function get_datatables($TableList,$ColumnOrder, $ColumnSearch, $OrderBy)
+    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
     {
         $TableName = $this->TableList[$TableList];
-        $this->_get_datatables_query($TableName,$ColumnOrder, $ColumnSearch, $OrderBy);
+        $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         if ($_POST['length'] != -1)
             $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
 
-    function count_filtered($TableList,$ColumnOrder, $ColumnSearch, $OrderBy)
+    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
     {
         $TableName = $this->TableList[$TableList];
-        $this->_get_datatables_query($TableName, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function count_all($TableList)
+    public function count_all($TableList, $Condition)
     {
         $TableName = $this->TableList[$TableList];
         $this->db->from($TableName);
+        $this->db->where($Condition);
         return $this->db->count_all_results();
     }
 

@@ -1,11 +1,12 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Log Management - Notices</h1>
+        <h1>Log Management - Errors</h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("logs.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                             class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Logs</li>
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"> Logs</a></li>
+            <li class="active">Errors</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -15,12 +16,12 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="showallNotices" class="table table-bordered table-striped dataTable" role="grid"
+                        <table id="showallErrors" class="table table-bordered table-striped dataTable" role="grid"
                                aria-describedby="example1_info">
                             <thead>
                             <tr role="row">
-                                <th> Error Type</th>
                                 <th> Error String</th>
+                                <th> Error File</th>
                                 <th> Error Line</th>
                                 <th> Time</th>
                                 <th> Actions</th>
@@ -44,13 +45,13 @@
     var base_url = '<?php echo base_url();?>';
     $(document).ready(function () {
         //datatables
-        table = $('#showallNotices').DataTable({
+        table = $('#showallErrors').DataTable({
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/administrator/notice_ajax_list') ?>",
+                "url": "<?= base_url('index.php/administrator/logs_ajax_list/errors') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.

@@ -20,36 +20,61 @@ class Administrator extends MY_Controller
     {
         $this->render("dashboard", get_defined_vars());
     }
-    
-    public function HelloWorld()
+
+    public function logs($options = null)
     {
-        
+        $render = "";
+        switch (strtolower($options)) {
+            case "notices";
+                $render = "showallnotices";
+                break;
+            case "warnings";
+                $render = "showallwarnings";
+                break;
+            case "errors";
+                $render = "showallerrors";
+                break;
+            case "all";
+                $render = "showall";
+                break;
+            default:
+                $logsNotice = $this->getlogs_notices();
+                $logsWarning = $this->getlogs_warning();
+                $logsError = $this->getlogs_error();
+                $logsAll = $this->getlogs_all();
+                $render = "logs";
+                break;
+
+        }
+        $this->render($render, get_defined_vars());
     }
 
- public function demo(){
-  }
 
-    public function logs()
+    public function logs_ajax_list($options = null)
     {
-        $logsNotice = $this->getlogs_notices();
-        $logsWarning = $this->getlogs_warning();
-        $logsError = $this->getlogs_error();
-        $logsAll = $this->getlogs_all();
-        $this->render("logs", get_defined_vars());
-    }
+        switch (strtolower($options)) {
+            case "notices":
+                $Condition = array("errtype" => "Notice");;
+                break;
+            case "warnings":
+                $Condition = array("errtype" => "Warning");
+                break;
+            case "errors":
+                $Condition = array("errtype" => "Error");
+                break;
+            case "all":
+                $Condition = array();
+                break;
+            default:
+                $Condition = array();
+                break;
+        }
 
-    public function notice()
-    {
-        $this->render("showall", get_defined_vars());
-    }
-
-    public function notice_ajax_list()
-    {
         $TableListname = "log";
         $ColumnOrder = array('errstr', 'errfile', 'errline', 'time');
         $ColumnSearch = array('errstr', 'errfile', 'errline', 'time');
         $OrderBy = array('id' => 'desc');
-        $list = $this->Adminmodel->get_datatables($TableListname, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $logNotice) {
@@ -59,7 +84,6 @@ class Administrator extends MY_Controller
             $row[] = $logNotice->errfile;
             $row[] = $logNotice->errline;
             $row[] = $logNotice->time;
-
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $logNotice->id . "'" . ')"><i class="fa fa-eye"></i>   View</a>';
 
@@ -68,8 +92,8 @@ class Administrator extends MY_Controller
 
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname,$Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
             "data" => $data,
         );
         //output to json format

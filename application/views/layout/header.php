@@ -16,7 +16,7 @@
     <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/AdminLTE.min.css') ?>" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/skins/skin-blue-light	.css') ?>" />
+    <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/skins/skin-blue-light.css') ?>" />
     <!-- Morris chart -->
     <link type="text/css" rel="stylesheet" href="<?= base_url('assets/plugins/morris.js/morris.css') ?>" />
     <!-- jvectormap -->
@@ -80,7 +80,7 @@
         </script>
     </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
 
         <!-- END HEADER-->
