@@ -124,7 +124,24 @@ class MY_Controller extends CI_Controller {
                 $render = "showallcases";
                 break;
             case "casehistory";
-                $render = "showallcasehistory";
+                $render = "showcasehistory";
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+
+        }
+        $this->render($render, get_defined_vars());
+    }
+     public function casehistory($options = null)
+    {
+        $render = "";
+        switch (strtolower($options)) {
+            case "show";
+                $render = "casehistory";
                 break;
             default:
                 $caseregister = $this->getcase_register();
