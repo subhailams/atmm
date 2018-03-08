@@ -9,7 +9,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Administrator extends MY_Controller
+class User extends MY_Controller
 {
     public function __construct()
     {
@@ -23,11 +23,27 @@ class Administrator extends MY_Controller
     public function users()
     {
          $this->render("newuser", get_defined_vars());
-         
     }
-   
-   
-
+    
+    public function updateprofile()
+    {
+         $this->render("updateprofile", get_defined_vars());
+    }
+    
+    public function changepassword()
+    {
+         $this->render("changepassword", get_defined_vars());
+    }
+    public function importantcontacts()
+    {
+         $this->render("importantcontacts", get_defined_vars());
+    }
+    public function offencesandpunishments()
+    {
+         $this->render("offencesandpunishments", get_defined_vars());
+    }
+ 
+ 
 
     public function logs($options = null)
     {

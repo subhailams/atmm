@@ -79,10 +79,10 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Navigation Menu</li>
             <li>
-                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                <span class="pull-right-container">
-            </span>
+                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <span class="pull-right-container">
+                    </span>
                 </a>
             </li>
 
@@ -91,12 +91,15 @@
                     <i class="fa fa-user"></i>
                     <span>User Management</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Create New User</a></li>
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> All Users</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i class="fa fa-circle-o"></i> Update Profile</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i class="fa fa-circle-o"></i> Change Password</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i class="fa fa-circle-o"></i> Important Contacts</a></li>
+
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i class="fa fa-circle-o"></i>Offences and Punishments</a></li>
                 </ul>
             </li>
 
@@ -105,8 +108,8 @@
                     <i class="fa fa-black-tie"></i>
                     <span>Role Management</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Create New Role</a></li>
@@ -120,8 +123,8 @@
                     <i class="fa fa-paper-plane"></i>
                     <span>Case Management</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Register New Case</a></li>
@@ -134,7 +137,7 @@
                 <a href="pages/widgets.html">
                     <i class="fa fa-medium"></i> <span>Messages</span>
                     <span class="pull-right-container">
-            </span>
+                    </span>
                 </a>
             </li>
 
@@ -143,19 +146,19 @@
                     <i class="fa fa-gears"></i>
                     <span>Admin Management</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
-                                    class="fa fa-circle-o"></i> Show Logs</a></li>
+                                class="fa fa-circle-o"></i> Show Logs</a></li>
                 </ul>
             </li>
             <li>
                 <a href="pages/widgets.html">
                     <i class="fa fa-power-off"></i> <span>Logout</span>
                     <span class="pull-right-container">
-            </span>
+                    </span>
                 </a>
             </li>
         </ul>
