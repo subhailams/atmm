@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Description of About
- *
- * @author VidhyaPrakash
- */
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
