@@ -5,7 +5,8 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                             class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Logs</li>
+                              <li><a href="#">Cases</a></li>
+            <li class="active">New Case</li>
         </ol>
     </section>
     <!-- Main content -->
