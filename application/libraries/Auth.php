@@ -3,22 +3,24 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Auth {
+class Auth
+{
 
-    public function __construct() {
-        $this->obj = & get_instance();
+    public function __construct()
+    {
+        $this->obj = &get_instance();
     }
 
-    function Authencation($FirstLogin = null, $Class = null) {
+    function Authencation($FirstLogin = null, $Class = null)
+    {
         $Postdata = $this->obj->input->post();
         $_SESSION = $this->obj->session->userdata;
         $HttpRequestType = $this->obj->auth->UserRequestFrom();
-        $LoginData = "error/login";
+        $LoginData = "homepage/index";
         $Class = strtolower($Class);
         if (!empty($_SESSION['UserId'])) {
             return true;
-        }
-        //captacha checking
+        } //captacha checking
         elseif ($Postdata['question'] != $Postdata['answer']) {
             $Error = "Invalid Capatcha. Please Try Again!!";
             if ($HttpRequestType) {
@@ -32,17 +34,6 @@ class Auth {
             if (!empty($Userdetails)):
                 $this->obj->session->set_userdata("Auth", "Y");
                 $this->obj->session->set_userdata("UserName", $Userdetails['UserName']);
-                $this->obj->session->set_userdata("UserFullName", $Userdetails['FullName']);
-                $this->obj->session->set_userdata("UserId", $Userdetails['ID']);
-                $this->obj->session->set_userdata("UserType", $Userdetails['Status']);
-                $this->obj->session->set_userdata("UserRoleID", $Userdetails['RoleID']);
-                $this->obj->session->set_userdata("UserRoleName", $Userdetails['RoleName']);
-                $this->obj->session->set_userdata("DepartmentName", $Userdetails['DepartmentName']);
-                $this->obj->session->set_userdata("DepartmentID", $Userdetails['DepartmentID']);
-                $this->obj->session->set_userdata("DesgName", $Userdetails['DesgName']);
-                $this->obj->session->set_userdata("DesgShortName", $Userdetails['DesgShortName']);
-                $this->obj->session->set_userdata("AcademicYear", $Userdetails['AcademicYear']);
-                $this->obj->session->set_userdata("AcademicYearFull", $Userdetails['AcademicYearFull']);
                 $_SESSION = $this->obj->session->userdata;
                 return true;
             else:
@@ -68,7 +59,8 @@ class Auth {
         }
     }
 
-    public function UserRequestFrom() {
+    public function UserRequestFrom()
+    {
         if (($_POST['Api'] == "Webview") || (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')) {
             return true;
         } else {

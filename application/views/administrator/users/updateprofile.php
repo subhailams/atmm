@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            New User Registration
-            <small>Creating a New User</small>
+            Profile Change
+            <small>Edit Profile</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
