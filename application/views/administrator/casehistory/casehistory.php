@@ -24,7 +24,7 @@
                            
                         </blockquote>
                     </div>
-                    <!-- /.box-body -->
+                    <!-- /.comment-body -->
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         </h3>
 
                     </div>
-                    <!-- /.box-header -->
+                    <!-- /.comment body -->
                     <form>
                         <div class="box-body pad">
                             <textarea class="textarea" placeholder="Type your comment here"
