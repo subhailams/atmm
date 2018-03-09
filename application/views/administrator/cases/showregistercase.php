@@ -61,8 +61,9 @@
 
                                 </div>
                             </div>
-                            <div class="form-group">
+                           
                                 <div class="col-md-12">
+                                     <div class="form-group">
                                     <label>If Others</label>
                                     <input class="form-control" id="others" placeholder="Others" type="text">
 
