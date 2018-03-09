@@ -57,15 +57,12 @@
                       <span class="dropdown-wrapper" aria-hidden="true"> </span>
                   </span>
                 </div>
-                <div class="form-group">
-                  <label>If Others</label>
-                  <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option selected="selected">Others</option>
-                  
-                  
-             
-                
-              </div>
+               <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Others</label>
+                    <input class="form-control" id="exampleInputPassword1" placeholder="Enter your case details" type="text">
+                  </div>
+                </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
