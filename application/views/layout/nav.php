@@ -134,9 +134,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Register New Case</a></li>
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Show all Cases</a></li>
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Case History</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i class="fa fa-circle-o"></i> Register New Case</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i class="fa fa-circle-o"></i> Show all Cases</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/casehistory/show") ?>"><i class="fa fa-circle-o"></i> Case History</a></li>
                 </ul>
             </li>
 
