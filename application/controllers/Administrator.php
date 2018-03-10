@@ -15,11 +15,7 @@ class Administrator extends MY_Controller
     {
         $this->render("dashboard", get_defined_vars());
     }
-    public function users()
-    {
-         $this->render("newuser", get_defined_vars());
-         
-    }
+    
    
    
 
