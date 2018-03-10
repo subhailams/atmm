@@ -2,14 +2,15 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <?= $this->lang->line('Change Password') ?>
-            <small><?= $this->lang->line('Edit profile') ?></small>
+            Change Password
+
+            <small>Edit Profile</small>
         </h1>
 
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Users</a></li>
-            <li class="active"><?= $this->lang->line('mobile_number') ?></li>
+            <li class="active">Mobile Number</li>
         </ol>
 
     </section>
@@ -31,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?= $this->lang->line('Old Password') ?></label>
+                                        <label for="exampleInputEmail1"><?= $this->lang->line('old_password') ?></label>
                                         <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Enter Old Password">
                                     </div>
                                 </div>
@@ -49,7 +50,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="Confirmation Password"><?= $this->lang->line('confirmationpassword') ?></label>
+                                        <label for="Confirmation Password"><?= $this->lang->line('confirmation_password') ?></label>
                                         <input type="password" class="form-control" id="ConfirmationPassword" name="ConfirmationPassword" placeholder="Enter Confirmation Password">
                                     </div>
                                 </div>
