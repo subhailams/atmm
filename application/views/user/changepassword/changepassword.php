@@ -5,11 +5,7 @@
             Change Password
             <small>Edit password</small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Users</a></li>
-            <li class="active">Change Password</li>
-        </ol>
+       
     </section>
 
     <!-- Main content -->
@@ -70,6 +66,7 @@
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            
                         </div>
                     </form>
                 </div>
