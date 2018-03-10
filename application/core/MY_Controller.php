@@ -3,11 +3,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class MY_Controller extends CI_Controller
-{
+class MY_Controller extends CI_Controller {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
         $this->lang->load('message', $this->session->userdata('site_lang'));
         $this->layoutfolder = $this->config->item("layoutfolder");
@@ -24,8 +22,7 @@ class MY_Controller extends CI_Controller
         date_default_timezone_set('Asia/Kolkata');
     }
 
-    protected function UserFrom()
-    {
+    protected function UserFrom() {
         if ($this->agent->is_browser()) {
             return $this->UserAcess = $this->agent->platform() . ' and ' . $this->agent->browser() . ' - ' . $this->agent->version();
         } elseif ($this->agent->is_robot()) {
@@ -37,15 +34,13 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    public function render($Render, $RenderData = null)
-    {
+    public function render($Render, $RenderData = null) {
         $Layout = "layout/body";
         $this->render = $Render;
         $this->load->view($Layout, $RenderData);
     }
 
-    public function Inti($Class)
-    {
+    public function Inti($Class) {
         $ClassNo = array(array("register"), "homepage" => array("forgotpwd"));
         if (!(in_array($this->router->fetch_method(), $ClassNo[$Class]))) {
             if (empty($_SESSION["UserId"])) {
@@ -72,8 +67,7 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    public function Logout()
-    {
+    public function Logout() {
         $this->session->sess_destroy();
         session_unset();
         session_destroy();
@@ -82,13 +76,11 @@ class MY_Controller extends CI_Controller
         exit($this->load->view("error/login", get_defined_vars(), true));
     }
 
-    public function accessdeined()
-    {
+    public function accessdeined() {
         $this->render("accessdeined", get_defined_vars());
     }
 
-    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc)
-    {
+    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc) {
 
         $mail = $this->emailConfig();
         $mail->setFrom('vidhyaprakash85@gmail.com', 'Mailer');
@@ -104,8 +96,7 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    protected function emailConfig()
-    {
+    protected function emailConfig() {
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
@@ -115,8 +106,7 @@ class MY_Controller extends CI_Controller
         return $mail;
     }
 
-    public function forms($option)
-    {
+    public function forms($option) {
         switch (strtolower($option)):
             case "password_reset":
                 $this->render(strtolower($option), get_defined_vars());
@@ -124,13 +114,18 @@ class MY_Controller extends CI_Controller
         endswitch;
     }
 
-    /* Form Validation Starts Here*/
-    public function form_validation($option)
-    {
+    /* Form Validation Starts Here */
+    public function form_validation($option) {
         switch (strtolower($option)) {
             case "user":
                 $rules = array(
                     array('field' => 'fullname', 'label' => 'Full Name ', 'rules' => 'required'),
+                );
+                break;
+            case "casehistory":
+                $rules = array(
+                    array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
+                    
                 );
                 break;
         }
@@ -141,22 +136,30 @@ class MY_Controller extends CI_Controller
             return TRUE;
         endif;
     }
+    /* Form Validation Ends Here */
 
-    /* Form Validation Ends Here*/
-
-    public function addtoDB()
-    {
+    public function addtoDB() {
         $postData = $this->input->post();
-        if ($this->form_validation()):
-            //logic
+        if ($this->form_validation("casehistory")):
+        //logic
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
-
     }
 
-    public function cases($options = null)
-    {
+    public function casehistorysave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("casehistory")):
+            echo "<pre>";
+            print_r($postData);
+            exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function cases($options = null) {
         $render = "";
         switch (strtolower($options)) {
             case "newcase";
@@ -174,14 +177,11 @@ class MY_Controller extends CI_Controller
                 $casehistory = $this->getcase_casehistory();
                 $render = "cases";
                 break;
-
         }
         $this->render($render, get_defined_vars());
     }
 
-    public
-    function casehistory($options = null)
-    {
+    public function casehistory($options = null) {
         $render = "";
         switch (strtolower($options)) {
             case "show";
@@ -196,8 +196,8 @@ class MY_Controller extends CI_Controller
         }
         $this->render($render, get_defined_vars());
     }
-      public function email($options = null)
-    {
+
+    public function email($options = null) {
         $render = "";
         switch (strtolower($options)) {
             case "show";
@@ -212,8 +212,8 @@ class MY_Controller extends CI_Controller
                 $casehistory = $this->getcase_casehistory();
                 $render = "cases";
                 break;
-
         }
         $this->render($render, get_defined_vars());
     }
+
 }

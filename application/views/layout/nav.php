@@ -78,7 +78,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Navigation Menu</li>
             <li>
-                <a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>">
+                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     <span class="pull-right-container">
                     </span>
@@ -95,17 +95,17 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
                                     class="fa fa-circle-o"></i> Update Profile</a></li>
                     <li>
-                        <a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
                                     class="fa fa-circle-o"></i> Change Password</a></li>
                     <li>
-                        <a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
                                     class="fa fa-circle-o"></i> Important Contacts</a></li>
 
                     <li>
-                        <a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
                                     class="fa fa-circle-o"></i>Offences and Punishments</a></li>
                 </ul>
             </li>
@@ -134,9 +134,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i class="fa fa-circle-o"></i> Register New Case</a></li>
-                    <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i class="fa fa-circle-o"></i> Show all Cases</a></li>
-                    <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/casehistory/show") ?>"><i class="fa fa-circle-o"></i> Case History</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i class="fa fa-circle-o"></i> Register New Case</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i class="fa fa-circle-o"></i> Show all Cases</a></li>
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/casehistory/show") ?>"><i class="fa fa-circle-o"></i> Case History</a></li>
                 </ul>
             </li>
 
@@ -157,7 +157,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
+                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
                                     class="fa fa-circle-o"></i> Show Logs</a></li>
                 </ul>
             </li>
@@ -170,7 +170,7 @@
             </li>
             <li class="header">Change Language</li>
             <li>
-                <a href="<?= base_url("dashboard.php/LanguageSwitcher/switchLang/english") ?>">
+                <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/english") ?>">
                     <i class="fa fa-language"></i> <span>English</span>
                     <span class="pull-right-container"></span>
                     <?php if ($this->session->userdata('site_lang') == 'english'): ?>
@@ -179,7 +179,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= base_url("dashboard.php/LanguageSwitcher/switchLang/marathi") ?>">
+                <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/marathi") ?>">
                     <i class="fa fa-language"></i> <span> मराठी</span>
                     <span class="pull-right-container"></span>
                     <?php if ($this->session->userdata('site_lang') == 'marathi'): ?>
@@ -188,7 +188,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= base_url("dashboard.php/LanguageSwitcher/switchLang/hindi") ?>">
+                <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/hindi") ?>">
                     <i class="fa fa-language"></i> <span> हिंदी</span>
                     <span class="pull-right-container"></span>
                     <?php if ($this->session->userdata('site_lang') == 'hindi'): ?>
