@@ -2,7 +2,7 @@
 
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
-<<<<<<< HEAD
+
 $lang['name'] = 'नाव';
 $lang['select'] = 'निवडा';
 $lang['email_id'] = 'ई - मेल आयडी';
@@ -22,7 +22,4 @@ $lang['profile_change'] = 'प्रोफाइल बदल';
 $lang['edit_profile'] = 'प्रोफाईल संपादित करा';
 $lang['personal_information'] = 'वैयक्तिक माहिती';
 $lang['confirmation_password'] = 'पुष्टीकरण बदला';
-=======
 
-/* case_history */
->>>>>>> 41a80b8dd80ffe1912a5f9b1acf5d5441cc95628
