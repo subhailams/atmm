@@ -13,6 +13,11 @@ class Homepage extends CI_Controller
 
     public function index()
     {
-        $this->load->view('welcome_message');
+        $this->load->view('homepage/dashboard');
+    }
+
+    public function email()
+    {
+        $this->load->view('emaillayouts/usersignup');
     }
 }

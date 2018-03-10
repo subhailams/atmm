@@ -93,7 +93,7 @@ class MY_Controller extends CI_Controller
         $mail = $this->emailConfig();
         $mail->setFrom('vidhyaprakash85@gmail.com', 'Mailer');
         $mail->addAddress($EmailTo);     // Add a recipient
-        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->isHTML(true);                                  // Set emaillayouts format to HTML
         $mail->Subject = $Subject;
         $mail->Body = $Message;
 
@@ -124,6 +124,37 @@ class MY_Controller extends CI_Controller
         endswitch;
     }
 
+    /* Form Validation Starts Here*/
+    public function form_validation($option)
+    {
+        switch (strtolower($option)) {
+            case "user":
+                $rules = array(
+                    array('field' => 'fullname', 'label' => 'Full Name ', 'rules' => 'required'),
+                );
+                break;
+        }
+        $this->form_validation->set_rules($rules);
+        if ($this->form_validation->run() == FALSE):
+            return FALSE;
+        else :
+            return TRUE;
+        endif;
+    }
+
+    /* Form Validation Ends Here*/
+
+    public function addtoDB()
+    {
+        $postData = $this->input->post();
+        if ($this->form_validation()):
+            //logic
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+
+    }
+
     public function cases($options = null)
     {
         $render = "";
@@ -147,7 +178,9 @@ class MY_Controller extends CI_Controller
         }
         $this->render($render, get_defined_vars());
     }
-     public function casehistory($options = null)
+
+    public
+    function casehistory($options = null)
     {
         $render = "";
         switch (strtolower($options)) {
@@ -160,7 +193,6 @@ class MY_Controller extends CI_Controller
                 $casehistory = $this->getcase_casehistory();
                 $render = "cases";
                 break;
-
         }
         $this->render($render, get_defined_vars());
     }

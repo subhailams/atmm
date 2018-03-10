@@ -245,7 +245,7 @@ if ( ! function_exists('mailto'))
 	/**
 	 * Mailto Link
 	 *
-	 * @param	string	the email address
+	 * @param	string	the emaillayouts address
 	 * @param	string	the link title
 	 * @param	mixed	any attributes
 	 * @return	string
@@ -272,7 +272,7 @@ if ( ! function_exists('safe_mailto'))
 	 *
 	 * Create a spam-protected mailto link written in Javascript
 	 *
-	 * @param	string	the email address
+	 * @param	string	the emaillayouts address
 	 * @param	string	the link title
 	 * @param	mixed	any attributes
 	 * @return	string
@@ -386,14 +386,14 @@ if ( ! function_exists('auto_link'))
 	 * off and add them after the link.
 	 *
 	 * @param	string	the string
-	 * @param	string	the type: email, url, or both
+	 * @param	string	the type: emaillayouts, url, or both
 	 * @param	bool	whether to create pop-up links
 	 * @return	string
 	 */
 	function auto_link($str, $type = 'both', $popup = FALSE)
 	{
 		// Find and replace any URLs.
-		if ($type !== 'email' && preg_match_all('#(\w*://|www\.)[a-z0-9]+(-+[a-z0-9]+)*(\.[a-z0-9]+(-+[a-z0-9]+)*)+(/([^\s()<>;]+\w)?/?)?#i', $str, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER))
+		if ($type !== 'emaillayouts' && preg_match_all('#(\w*://|www\.)[a-z0-9]+(-+[a-z0-9]+)*(\.[a-z0-9]+(-+[a-z0-9]+)*)+(/([^\s()<>;]+\w)?/?)?#i', $str, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER))
 		{
 			// Set our target HTML if using popup links.
 			$target = ($popup) ? ' target="_blank"' : '';

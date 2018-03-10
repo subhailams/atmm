@@ -3,9 +3,9 @@
     <section class="content-header">
         <h1>Case Management - All Cases</h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                             class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"> Cases</a></li>
+            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"> Cases</a></li>
             
             <li class="active">All Cases</li>
         </ol>
@@ -59,7 +59,7 @@
             //Set column definition initialisation properties.
             "columnDefs": [
                 {
-                    "targets": [ -1,-2], //last column
+                    "targets": [ -1], //last column
                     "orderable": false, //set not orderable
                 },
 

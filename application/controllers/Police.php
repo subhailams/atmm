@@ -18,7 +18,7 @@ class Police extends MY_Controller
 
     public function index()
     {
-        $this->render("dashboard", get_defined_vars());
+        $this->render("index", get_defined_vars());
     }
 
 }
