@@ -5,7 +5,7 @@
             Profile Change
             <small>Edit Profile</small>
         </h1>
-       
+
     </section>
 
     <!-- Main content -->
@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label for="Email ID"><?= $this->lang->line('email_id') ?></label>
                                         <input type="text" class="form-control" id="Email ID" name="Email ID" data-rule-required="true"
-data-rule-email="true" placeholder="Enter Email Id">
+                                               data-rule-email="true" placeholder="Enter Email Id">
                                     </div>
                                 </div>
                             </div>
@@ -95,8 +95,7 @@ data-rule-email="true" placeholder="Enter Email Id">
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                         <label for="Country"><?= $this->lang->line('country') ?></label>
-                                        
+                                        <label for="Country"><?= $this->lang->line('country') ?></label>
                                         <input type="text" class="form-control" id="Country" name="Country"
                                                placeholder="Enter Country">
                                     </div>
@@ -105,7 +104,11 @@ data-rule-email="true" placeholder="Enter Email Id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+
                                         <label for="Mobile Number"><?= $this->lang->line('mobile_number') ?></label>
+
+
+
                                         <input type="number" class="form-control" id="Mobile Number"
                                                name="Mobile Number" placeholder="Enter Mobile Number">
                                     </div>
@@ -123,17 +126,17 @@ data-rule-email="true" placeholder="Enter Email Id">
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
-                           
-                          
-                            
-                       
-                       
+
+
+
+
+
+                        </div>
+                        <!-- /.box -->
                 </div>
-                <!-- /.box -->
+                <!--/.col (left) -->
             </div>
-            <!--/.col (left) -->
-        </div>
-        <!-- /.row -->
+            <!-- /.row -->
     </section>
     <!-- /.content -->
 </div>

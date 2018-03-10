@@ -51,7 +51,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('dashboard.php/administrator/logs_ajax_list/errors') ?>",
+                "url": "<?= base_url('index.php/administrator/logs_ajax_list/errors') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.

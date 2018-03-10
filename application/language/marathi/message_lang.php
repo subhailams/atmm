@@ -1,5 +1,5 @@
 <?php
-
+/*marathi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
 $lang['select'] = 'निवडा';

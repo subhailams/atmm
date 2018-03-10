@@ -1,5 +1,5 @@
 <?php
-
+/*english language*/
 $lang['mobile_number'] = 'Mobile Number';
 $lang['submit'] = 'Submit';
 $lang['confirmation_password'] = 'Confirmation Password';
