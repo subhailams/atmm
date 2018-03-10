@@ -19,30 +19,125 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Registration Form</h3>
                     </div>
+
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form
-                          <div class="col-md-6">
-                          < div class="box box-primary">
+                    <form role="form">
 
-                          <div class="box-header with-border">
-                            <h3 class ="box-title">Victims Details</h3>
-                            <div class="box-body">
+                        <div class="box-body">
+                            <h4>Victim Details</h4>  
+                            <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
-                                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter name" type="text">
+                                        <label for="Victim Name">Name</label>
+                                        <input class="form-control" id="Victim Name" placeholder="Enter name" type="text" name="victimname">
                                     </div>
                                 </div>   
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Date Of Incident</label>
-                                        <input class="form-control" id="exampleInputPassword1" placeholder="date" type="date">
+                                        <label for="email">Email id</label>
+                                        <input class="form-control" id="email" placeholder="Enter Email id" type="text" name="victimemail">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Address">Address</label>
+                                        <input type="text" class="form-control" id="Address" name="victimaddress"
+                                               placeholder="Enter Address">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="aadhar">Aadhar Number</label>
+                                        <input type="number" class="form-control" id="aadhar" name="victimaadhar"
+                                               placeholder="Enter Aadhar No">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile no">Mobile Number</label>
+                                        <input type="number" class="form-control" id="mobile no" name="victimmobile"
+                                               placeholder="Enter Mobile No">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="City">City</label>
+                                        <input type="text" class="form-control" id="City" name="victimcity"
+                                               placeholder="Enter City">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="State">State</label>
+                                        <input type="text" class="form-control" id="State" name="victimstate"
+                                               placeholder="Enter State">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h4>Offender Details</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="offender name">Name</label>
+                                        <input type="text" class="form-control" id="offender name" name="offendername"
+                                               placeholder="Enter Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Address">Address</label>
+                                        <input type="text" class="form-control" id="Address" name="offenderaddress"
+                                               placeholder="Enter Address">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">    
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile no">Mobile Number</label>
+                                        <input type="number" class="form-control" id="mobile no" name="offendermobile"
+                                               placeholder="Enter Mobile No">
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="City">City</label>
+                                        <input type="text" class="form-control" id="City" name="offendercity"
+                                               placeholder="Enter City">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="State">State</label>
+                                        <input type="text" class="form-control" id="State" name="offenderstate"
+                                               placeholder="Enter State">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr>
+
+                            <h4>Case Details</h4>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Case Details</label>
+
                                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option selected="selected">select details</option>
                                             <option>Alaska</option>
@@ -66,7 +161,8 @@
 
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>If Others</label>
@@ -74,9 +170,19 @@
 
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Date of Incident</label>
+                                        <input class="form-control" id="date" placeholder="date" type="date" name="incidentdate">
+
+                                    </div>
+                                </div>
 
 
-
+                            </div>
+                            <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-12">   
                                         <label>Case Description</label>
@@ -86,16 +192,22 @@
 
 
                             </div>
-                            <!-- /.box-body -->
+
                             <div class="box-footer">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
+                        </div>
+
                     </form>
+
+
+
+
                 </div>
             </div>
-            <!-- /.row -->
+        </div>
     </section>
     <!-- /.content -->
 </div>

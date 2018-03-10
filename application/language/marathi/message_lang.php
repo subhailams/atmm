@@ -1,7 +1,8 @@
 <?php
-
+/*marathi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
+$lang['select'] = 'निवडा';
 $lang['name'] = 'नाव';
 $lang['select'] = 'निवडा';
 $lang['email_id'] = 'ई - मेल आयडी';
@@ -10,7 +11,7 @@ $lang['address1'] = 'पत्ता 1';
 $lang['address2'] = 'पत्ता 2';
 $lang['city'] = 'शहर';
 $lang['state'] = 'राज्य';
-$lang['adhaar_number'] = 'आधार नंबर';
+$lang['aadhaar_number'] = 'आधार नंबर';
 $lang['country'] = 'देश';
 $lang['old_password'] = 'जुना संकेतशब्द';
 $lang['new_password'] = 'नवीन पासवर्ड';
@@ -21,6 +22,7 @@ $lang['profile_change'] = 'प्रोफाइल बदल';
 $lang['edit_profile'] = 'प्रोफाईल संपादित करा';
 $lang['personal_information'] = 'वैयक्तिक माहिती';
 $lang['confirmation_password'] = 'पुष्टीकरण बदला';
+
 
 /* Log Managment Starts Here */
 $lang['log_mgnt'] = 'लॉग व्यवस्थापन';
