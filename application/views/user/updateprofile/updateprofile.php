@@ -30,8 +30,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name</label>
-                                        <input type="name" class="form-control" id="PersonName" name="PersonName"
-                                               placeholder="Enter Full Name">
+                                        <input type="name" class="form-control" id="PersonName" name="PersonName"  placeholder="Enter Full Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -59,8 +58,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Email ID">Email ID</label>
-                                        <input type="text" class="form-control" id="Email ID" name="Email ID"
-                                               placeholder="Enter Email Id">
+                                        <input type="text" class="form-control" id="Email ID" name="Email ID" data-rule-required="true"
+data-rule-email="true" placeholder="Enter Email Id">
                                     </div>
                                 </div>
                             </div>

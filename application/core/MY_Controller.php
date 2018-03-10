@@ -164,4 +164,24 @@ class MY_Controller extends CI_Controller
         }
         $this->render($render, get_defined_vars());
     }
+      public function email($options = null)
+    {
+        $render = "";
+        switch (strtolower($options)) {
+            case "show";
+                $render = "inbox";
+                break;
+            case "composemail";
+                $render = "compose";
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+
+        }
+        $this->render($render, get_defined_vars());
+    }
 }
