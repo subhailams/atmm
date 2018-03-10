@@ -2,7 +2,7 @@
     <section class="content-header">
         <h1>Case History</h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Logs</li>
         </ol>
@@ -39,9 +39,9 @@
 
                     </div>
                     <!-- /.comment body -->
-                    <form>
+                    <form method="post" action="<?= base_url('index.php/'.strtolower($this->router->fetch_class()) . "/casehistorysave") ?> ">
                         <div class="box-body pad">
-                            <textarea class="textarea" placeholder="Type your comment here"
+                            <textarea class="textarea" placeholder="Type your comment here" name="casehistory"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                         </div>

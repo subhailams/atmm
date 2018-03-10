@@ -5,11 +5,7 @@
             Profile Change
             <small>Edit Profile</small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Users</a></li>
-            <li class="active">New User</li>
-        </ol>
+       
     </section>
 
     <!-- Main content -->
@@ -30,8 +26,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name</label>
-                                        <input type="name" class="form-control" id="PersonName" name="PersonName"
-                                               placeholder="Enter Full Name">
+                                        <input type="name" class="form-control" id="PersonName" name="PersonName"  placeholder="Enter Full Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -59,8 +54,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Email ID">Email ID</label>
-                                        <input type="text" class="form-control" id="Email ID" name="Email ID"
-                                               placeholder="Enter Email Id">
+                                        <input type="text" class="form-control" id="Email ID" name="Email ID" data-rule-required="true"
+data-rule-email="true" placeholder="Enter Email Id">
                                     </div>
                                 </div>
                             </div>
@@ -100,6 +95,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                         <label for="Country"><?= $this->lang->line('Country') ?></label>
                                         <label for="Country">Country</label>
                                         <input type="text" class="form-control" id="Country" name="Country"
                                                placeholder="Enter Country">
@@ -109,7 +105,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Mobile Number"><?= $this->lang->line('mobile_number') ?></label>
+                                        <label for="Mobile Number"><?= $this->lang->line('MobileNumber') ?></label>
                                         <input type="number" class="form-control" id="Mobile Number"
                                                name="Mobile Number" placeholder="Enter Mobile Number">
                                     </div>
@@ -127,8 +123,11 @@
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
-                        </div>
-                    </form>
+                           
+                          
+                            
+                       
+                       
                 </div>
                 <!-- /.box -->
             </div>

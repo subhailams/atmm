@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if ( ! function_exists('valid_email'))
 {
 	/**
-	 * Validate email address
+	 * Validate emaillayouts address
 	 *
 	 * @deprecated	3.0.0	Use PHP's filter_var() instead
 	 * @param	string	$email
@@ -69,7 +69,7 @@ if ( ! function_exists('valid_email'))
 if ( ! function_exists('send_email'))
 {
 	/**
-	 * Send an email
+	 * Send an emaillayouts
 	 *
 	 * @deprecated	3.0.0	Use PHP's mail() instead
 	 * @param	string	$recipient
