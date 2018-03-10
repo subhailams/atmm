@@ -3,9 +3,9 @@
     <section class="content-header">
         <h1>Log Management - Notices</h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                             class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"> Logs</a></li>
+            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"> Logs</a></li>
             <li class="active">Notices</li>
         </ol>
     </section>
@@ -51,7 +51,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/administrator/logs_ajax_list/notices') ?>",
+                "url": "<?= base_url('dashboard.php/administrator/logs_ajax_list/notices') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.
