@@ -95,8 +95,7 @@ data-rule-email="true" placeholder="Enter Email Id">
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                         <label for="Country"><?= $this->lang->line('Country') ?></label>
-                                        <label for="Country">Country</label>
+                                         <label for="Country"><?= $this->lang->line('country') ?></label>
                                         <input type="text" class="form-control" id="Country" name="Country"
                                                placeholder="Enter Country">
                                     </div>
@@ -105,7 +104,7 @@ data-rule-email="true" placeholder="Enter Email Id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Mobile Number"><?= $this->lang->line('MobileNumber') ?></label>
+                                        <label for="MobileNumber"><?= $this->lang->line('mobile_number') ?></label>
                                         <input type="number" class="form-control" id="Mobile Number"
                                                name="Mobile Number" placeholder="Enter Mobile Number">
                                     </div>

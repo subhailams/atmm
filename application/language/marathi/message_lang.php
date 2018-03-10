@@ -2,7 +2,6 @@
 
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
-
 $lang['name'] = 'नाव';
 $lang['select'] = 'निवडा';
 $lang['email_id'] = 'ई - मेल आयडी';
