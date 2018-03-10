@@ -4,9 +4,9 @@
         <h1>Case Management - All Cases</h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                            class="fa fa-dashboard"></i> Home</a></li>
+                        class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"> Cases</a></li>
-            
+
             <li class="active">All Cases</li>
         </ol>
     </section>
@@ -20,14 +20,14 @@
                         <table id="showallCases" class="table table-bordered table-striped dataTable" role="grid"
                                aria-describedby="example1_info">
                             <thead>
-                            <tr role="row">
-                                <th> Victim Name</th>
-                                <th> Offence Date</th>
-                                <th> Mobile No</th>
-                                <th> Email id</th>
-                                 <th> Status</th>
-                                <th> Actions</th>
-                            </tr>
+                                <tr role="row">
+                                    <th> Victim Name</th>
+                                    <th> Offence Date</th>
+                                    <th> Mobile No</th>
+                                    <th> Email id</th>
+                                    <th> Status</th>
+                                    <th> Actions</th>
+                                </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
@@ -35,16 +35,17 @@
                 </div>
             </div>
         </div>
-        <!-- /.box-body -->
+
+    </section>
 </div>
 <!-- /.row -->
-</section>
+
 <!-- /.content -->
-</div>
+
 
 <script type="text/javascript">
     var table;
-    var base_url = '<?php echo base_url();?>';
+    var base_url = '<?php echo base_url(); ?>';
     $(document).ready(function () {
         //datatables
         table = $('#showallCases').DataTable({
@@ -59,10 +60,9 @@
             //Set column definition initialisation properties.
             "columnDefs": [
                 {
-                    "targets": [ -1], //last column
+                    "targets": [-1], //last column
                     "orderable": false, //set not orderable
                 },
-
             ],
         });
     });
