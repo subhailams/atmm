@@ -22,3 +22,8 @@ $lang['edit_profile'] = 'प्रोफाईल संपादित कर�
 $lang['personal_information'] = 'वैयक्तिक माहिती';
 $lang['confirmation_password'] = 'पुष्टीकरण बदला';
 
+/* Log Managment Starts Here */
+$lang['log_mgnt'] = 'लॉग व्यवस्थापन';
+$lang['more_info'] = 'और जानकारी';
+$lang['notice'] = 'सूचना';
+/* Log Managment Ends Here */
