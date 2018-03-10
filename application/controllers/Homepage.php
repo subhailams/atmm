@@ -1,16 +1,11 @@
 <?php
-
-/**
- * Description of About
- *
- * @author VidhyaPrakash
- */
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Police extends MY_Controller
+class Homepage extends CI_Controller
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -18,7 +13,11 @@ class Police extends MY_Controller
 
     public function index()
     {
-        $this->render("index", get_defined_vars());
+        $this->load->view('homepage/dashboard');
     }
 
+    public function email()
+    {
+        $this->load->view('emaillayouts/usersignup');
+    }
 }

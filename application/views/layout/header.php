@@ -59,7 +59,7 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/js/adminlte.min.js') ?>"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?= base_url('assets/js/pages/dashboard.js') ?>"></script>
+    <script src="<?= base_url('assets/js/pages/index.js') ?>"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?= base_url('assets/js/demo.js') ?>"></script>
 
