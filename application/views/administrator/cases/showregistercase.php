@@ -47,12 +47,13 @@
                                         <input type="text" class="form-control" id="mobile no" name="victimmobile"
                                                placeholder="Enter Mobile No">
 
+                                  
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="aadhar"><?= $this->lang->line('adhaar_number') ?></label>
-                                        <input type="number" class="form-control" id="aadhar" name="victimaadhaar"
+                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?></label>
+                                        <input type="number" class="form-control" id="aadhar" name="victimaadhar"
                                                placeholder="Enter Aadhaar No">
                                     </div>
                                 </div>
@@ -60,7 +61,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Address"><?= $this->lang->line('address1') ?></label>
+                                        <label for="Address"><?= $this->lang->line('victim_address') ?></label>
                                         <input type="text" class="form-control" id="Address" name="victimaddress"
                                                placeholder="Enter Address">
                                     </div>
@@ -95,6 +96,28 @@
                                                placeholder="Enter Name">
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="gender"><?= $this->lang->line('gender') ?></label>
+                                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option selected="selected">select gender</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Others</option>
+                                        </select>
+                                        <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
+                                            <span class="selection">
+
+
+                                                <span class="select2-selection__arrow" role="presentation">
+                                                    <b role="presentation"></b>
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="dropdown-wrapper" aria-hidden="true"> </span>
+
+                                    </div>
+                                </div>
                                   <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="mobile no"><?= $this->lang->line('mobile_number') ?></label>
@@ -104,19 +127,19 @@
                                     </div>
                                 </div>
                             
-                               <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="Address"><?= $this->lang->line('address1') ?></label>
-                                        <input type="text" class="form-control" id="Address" name="offenderaddress"
-                                               placeholder="Enter Address">
-                                    </div>
-                                </div>
+                              
                             </div>
 
                             <div class="row">    
                               
 
-
+  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Address"><?= $this->lang->line('offender_address') ?></label>
+                                        <input type="text" class="form-control" id="Address" name="offenderaddress"
+                                               placeholder="Enter Address">
+                                    </div>
+                                </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -141,7 +164,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label> Case</label>
+                                        <label>  </label>
                                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option selected="selected">select details</option>
                                             <option>Alaska</option>
@@ -174,7 +197,7 @@
                                 </div>
 
                             </div>
-                          <!-- <div class="row">
+                          <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label><?= $this->lang->line('if_others') ?></label>
@@ -182,7 +205,7 @@
 
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row">
                                 
 

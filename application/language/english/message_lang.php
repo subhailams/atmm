@@ -11,7 +11,7 @@ $lang['address2'] = 'Address2';
 $lang['address1'] = 'Address1';
 $lang['city'] = 'City';
 $lang['state'] = 'State';
-$lang['adhaar_number'] = 'Adhaar Number';
+$lang['aadhaar_number'] = 'Aadhaar Number';
 $lang['country'] = 'Country';
 $lang['old_password'] = 'Old Password';
 $lang['new_password'] = 'New Password';
@@ -31,8 +31,9 @@ $lang['case_details']='Case Details';
 $lang['if_others']='If Others';
 $lang['date_of_incident']='Date of Incident';
 $lang['case_description']='Case Description';
-$lang['address'] = 'Address';
-
+$lang['offender_address'] = 'Address';
+$lang['victim_address']='Address';
+$lang['gender']='Gender';
 /*Case Management Ends Here*/
 
 /* Log Managment Starts Here */
