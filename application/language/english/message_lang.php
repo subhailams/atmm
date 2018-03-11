@@ -22,8 +22,17 @@ $lang['edit_profile'] = 'Edit Profile';
 $lang['personal_information'] = 'Personal Information';
 $lang['confirmation_password'] = 'Confirmation Password';
 
+/*Case Management Starts*/
+$lang['case_management']='Case Management';
+$lang['registeration_form']='Registration Form';
+$lang['victim_details']='Victim Details';
+$lang['offender_details']='Offender Details';
+$lang['case_details']='Case Details';
+$lang['if_others']='If Others';
+$lang['date_of_incident']='Date of Incident';
+$lang['case_description']='Case Description';
 
-
+/*Case Management Ends Here*/
 
 /* Log Managment Starts Here */
 $lang['log_mgnt'] = 'Log Managment';

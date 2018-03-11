@@ -31,12 +31,15 @@ $lang['user_name'] = 'उपयोगकर्ता नाम';
 
 /* case management form*/
 
-$lang['Registration Form'] = 'पंजीकरण फॉर्म';
-$lang['Case Details'] = 'केस विवरण';
-$lang['If others'] = 'अगर अन्य';
-$lang['Case Description'] ='केस विवरण';
-$lang['Date of Incident'] ='घटना की तिथि';
-$lang['Victim Name']='शिकार का नाम';
+$lang['registration_form'] = 'पंजीकरण फॉर्म';
+$lang['case_details'] = 'केस विवरण';
+$lang['if_others'] = 'अगर अन्य';
+$lang['case_description'] ='केस विवरण';
+$lang['date_of_incident'] ='घटना की तिथि';
+$lang['victim_details']='शिकार का नाम';
+$lang['case_management']='मामला प्रबंधन';
+$lang['offender_details']='अपराधी विवरण';
+
 
 
 /* Log Managment Starts Here */
