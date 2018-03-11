@@ -39,7 +39,9 @@ $lang['date_of_incident'] ='घटना की तिथि';
 $lang['victim_details']='शिकार का नाम';
 $lang['case_management']='मामला प्रबंधन';
 $lang['offender_details']='अपराधी विवरण';
+$lang['address'] = 'पता ';
 
+/* case managment Ends Here */
 
 
 /* Log Managment Starts Here */

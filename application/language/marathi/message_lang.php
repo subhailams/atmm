@@ -29,3 +29,15 @@ $lang['log_mgnt'] = 'लॉग व्यवस्थापन';
 $lang['more_info'] = 'और जानकारी';
 $lang['notice'] = 'सूचना';
 /* Log Managment Ends Here */
+
+
+/* case management form*/
+$lang['registration_form'] = 'नोंदणी पत्रक';
+$lang['case_details'] = 'केस तपशील';
+$lang['if_others'] = 'इतरांना तर';
+$lang['case_description'] ='केस विवरण';
+$lang['date_of_incident'] ='घटनेची तारीख';
+$lang['victim_details']='बळी तपशील';
+$lang['case_management']='विषयव्यवस्थापन';
+$lang['offender_details']='अपराधी तपशील';
+/* case managment Ends Here */

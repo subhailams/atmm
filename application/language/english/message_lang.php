@@ -31,6 +31,7 @@ $lang['case_details']='Case Details';
 $lang['if_others']='If Others';
 $lang['date_of_incident']='Date of Incident';
 $lang['case_description']='Case Description';
+$lang['address'] = 'Address';
 
 /*Case Management Ends Here*/
 
