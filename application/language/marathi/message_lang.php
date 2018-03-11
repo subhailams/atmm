@@ -32,6 +32,7 @@ $lang['notice'] = 'सूचना';
 
 
 /* case management form*/
+$lang['address'] = 'पत्ता ';
 $lang['registration_form'] = 'नोंदणी पत्रक';
 $lang['case_details'] = 'केस तपशील';
 $lang['if_others'] = 'इतरांना तर';
@@ -40,4 +41,5 @@ $lang['date_of_incident'] ='घटनेची तारीख';
 $lang['victim_details']='बळी तपशील';
 $lang['case_management']='विषयव्यवस्थापन';
 $lang['offender_details']='अपराधी तपशील';
+
 /* case managment Ends Here */

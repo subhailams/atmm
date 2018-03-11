@@ -45,15 +45,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Address"><?= $this->lang->line('address1') ?></label>
+                                        <label for="Address"><?= $this->lang->line('address') ?></label>
                                         <input type="text" class="form-control" id="Address" name="victimaddress"
                                                placeholder="Enter Address">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="aadhar"><?= $this->lang->line('adhaar_number') ?></label>
-                                        <input type="number" class="form-control" id="aadhar" name="victimaadhaar"
+                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?></label>
+                                        <input type="number" class="form-control" id="aadhar" name="victimaadhar"
                                                placeholder="Enter Aadhaar No">
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Address"><?= $this->lang->line('address1') ?></label>
+                                        <label for="Address"><?= $this->lang->line('address') ?></label>
                                         <input type="text" class="form-control" id="Address" name="offenderaddress"
                                                placeholder="Enter Address">
                                     </div>
@@ -195,7 +195,7 @@
 
                             <div class="box-footer">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary"><?= $this->lang->line('email_id') ?></button>
+                                    <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
                                 </div>
                             </div>
                         </div>
