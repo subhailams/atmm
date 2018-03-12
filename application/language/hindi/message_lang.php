@@ -7,6 +7,7 @@
  */
 /*hindi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
+
 $lang['submit'] = 'जमा करें';
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
