@@ -15,12 +15,13 @@ $lang['aadhaar_number'] = 'Aadhaar Number';
 $lang['country'] = 'Country';
 $lang['old_password'] = 'Old Password';
 $lang['new_password'] = 'New Password';
-$lang['change_password '] = 'Change Password';
+$lang['change_password'] = 'Change Password';
 $lang['edit_password'] = 'Edit Password';
 $lang['profile_change'] = 'Profile Change';
 $lang['edit_profile'] = 'Edit Profile';
 $lang['personal_information'] = 'Personal Information';
 $lang['confirmation_password'] = 'Confirmation Password';
+$lang['update_profile'] = 'Update Profile';
 
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
@@ -29,11 +30,21 @@ $lang['victim_details']='Victim Details';
 $lang['offender_details']='Offender Details';
 $lang['case_details']='Case Details';
 $lang['if_others']='If Others';
-$lang['date_of_incident']='Date of Incident';
 $lang['case_description']='Case Description';
 $lang['offender_address'] = 'Address';
 $lang['victim_address']='Address';
 $lang['gender']='Gender';
+$lang['offence_date']='Offence Date';
+$lang['victim_name']='Victim Name';
+$lang['status']='Status';
+$lang['actions']='Actions';
+$lang['all_cases']='All Cases';
+$lang['male']='Male';
+$lang['female']='Female';
+$lang['others']='Others';
+$lang['select_gender']='Select gender';
+
+        
 /*Case Management Ends Here*/
 
 /* Log Managment Starts Here */

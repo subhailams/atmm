@@ -20,4 +20,9 @@ class Homepage extends CI_Controller
     {
         $this->load->view('emaillayouts/usersignup');
     }
+     public function loginscreen()
+    {
+        $this->load->view('homepage/login');
+    }
 }
+

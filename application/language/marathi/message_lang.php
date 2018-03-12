@@ -16,12 +16,13 @@ $lang['country'] = 'देश';
 $lang['old_password'] = 'जुना संकेतशब्द';
 $lang['new_password'] = 'नवीन पासवर्ड';
 $lang['confirmation_password'] = 'पुष्टीकरण संकेतशब्द';
-$lang['change_password '] = 'पासवर्ड बदला';
+$lang['change_password'] = 'पासवर्ड बदला';
 $lang['edit_password'] = 'संपादित करा बदला';
 $lang['profile_change'] = 'प्रोफाइल बदल';
 $lang['edit_profile'] = 'प्रोफाईल संपादित करा';
 $lang['personal_information'] = 'वैयक्तिक माहिती';
 $lang['confirmation_password'] = 'पुष्टीकरण बदला';
+$lang['update_profile'] = 'प्रोफाइल अद्यतनित करा';
 
 
 /* Log Managment Starts Here */
@@ -37,14 +38,22 @@ $lang['registration_form'] = 'नोंदणी पत्रक';
 $lang['case_details'] = 'केस तपशील';
 $lang['if_others'] = 'इतरांना तर';
 $lang['case_description'] ='केस विवरण';
-$lang['date_of_incident'] ='घटनेची तारीख';
 $lang['victim_details']='बळी तपशील';
 $lang['case_management']='विषयव्यवस्थापन';
 $lang['offender_details']='अपराधी तपशील';
 $lang['offender_address'] = 'पत्ता';
 $lang['victim_address']='पत्ता';
 $lang['gender']='लिंग';
-
+$lang['offence_date']='गुन्हा तारीख';
+$lang['victim_name']='बळी चे नाव';
+$lang['status']='स्थिती';
+$lang['actions']='क्रिया';
+$lang['all_cases']='सर्व प्रकरणांमध्ये';
+$lang['male']='नर';
+$lang['female']='महिला';
+$lang['others']='इतर';
+$lang['select_gender']='लिंग निवडा';
+        
 /* case managment Ends Here */
 
 /* case history starts here */

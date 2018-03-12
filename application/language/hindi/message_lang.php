@@ -10,6 +10,9 @@ $lang['mobile_number'] = 'मोबाइल नंबर';
 
 
 
+
+
+
 $lang['submit'] = 'जमा करें';
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
@@ -27,25 +30,34 @@ $lang['select'] = 'चुनते हैं';
 $lang['change_password'] = 'पासवर्ड बदलें';
 $lang['edit_password'] = 'पासवर्ड संपादित करें';
 $lang['profile_change'] = 'प्रोफाइल परिवर्तन';
-$lang['editprofile'] = 'प्रोफाइल एडिट करें';
+$lang['edit_profile'] = 'प्रोफाइल अपडेट करें';
 $lang['personalinformation'] = 'व्यक्तिगत जानकारी';
 $lang['user_name'] = 'उपयोगकर्ता नाम'; 
+$lang['update_profile'] = 'प्रोफ़ाइल अपडेट करें';
 
 
 /* case management form*/
-$lang['address'] = 'पता ';
+$lang['address'] = 'पता';
 $lang['registration_form'] = 'पंजीकरण फॉर्म';
 $lang['case_details'] = 'केस विवरण';
 $lang['if_others'] = 'अगर अन्य';
 $lang['case_description'] ='केस विवरण';
-$lang['date_of_incident'] ='घटना की तिथि';
+$lang['victim_name']='शिकार का नाम';
 $lang['victim_details']='शिकार का नाम';
 $lang['case_management']='मामला प्रबंधन';
 $lang['offender_details']='अपराधी विवरण';
 $lang['offender_address'] = 'पता';
 $lang['victim_address']='पता';
 $lang['gender']='लिंग';
-
+$lang['offence_date']='अपराध की तारीख';
+$lang['status']='स्थिति';
+$lang['actions']='कार्रवाई';
+$lang['all_cases']='सभी मामलों';
+$lang['male']='नर';
+$lang['female']='महिला';
+$lang['others']='अन्य लोग';
+$lang['select_gender']='लिंग चुनें';
+        
 
 /* case managment Ends Here */
 
@@ -56,6 +68,7 @@ $lang['more_info'] = 'अधिक माहिती';
 $lang['notice'] = 'नोटिस';
 /* Log Managment Ends Here */
 
+
 /* case history starts here */
  $lang['post']='जमा करें';
  $lang['postedby']='द्वारा प्रकाशित किया गया था';
@@ -63,3 +76,6 @@ $lang['notice'] = 'नोटिस';
  $lang['typeyourcommenthere']='अपनी टिप्पणी यहां टाइप करें';
  
  /* case history ends here */
+
+
+

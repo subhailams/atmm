@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-           Imporatant Contacts
+           Important Contacts
             <small>List of Important Contacts</small>
         </h1>
     </section>
