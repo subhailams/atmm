@@ -20,18 +20,13 @@ class Adminmodel extends CI_Model {
     }
 
     public function AllInsert($condition, $dataDB, $Select, $Tble) {
-       
         return $this->Crud($condition, $dataDB, $Select, $Tble);
     }
 
     public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = false) {
         $IPAdress = ($this->input->ip_address() === "::1") ? "127.0.0.1" : $this->input->ip_address();
+        $CrudDetails = $this->CSearch($Condition, $Select, $TableList, null,null,null,null,null,null);
         $TableName = $this->TableList[$TableList];
-         
-        $CrudDetails = $this->CSearch($Condition, $Select, $TableName, null, False,"","","","","");
-        echo "<pre>";
-        print_r(get_defined_vars());
-        exit();
         $this->db->set($DBdata);
         if (!(empty($CrudDetails))) {
             $this->db->where($Condition);
@@ -50,8 +45,7 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY) {
-        $JoinType = NULL;
+    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $Distinct, $Omit, $LeftJoin, $GroupBY) {
         if (!empty($Select)) {
             $this->db->select($Select, FALSE);
         }

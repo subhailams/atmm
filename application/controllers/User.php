@@ -18,7 +18,7 @@ class User extends MY_Controller
 
     public function index()
     {
-        $this->render("index", get_defined_vars());
+        $this->render("dashboard", get_defined_vars());
     }
     public function users()
     {
