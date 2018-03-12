@@ -15,12 +15,13 @@ $lang['aadhaar_number'] = 'Aadhaar Number';
 $lang['country'] = 'Country';
 $lang['old_password'] = 'Old Password';
 $lang['new_password'] = 'New Password';
-$lang['change_password '] = 'Change Password';
+$lang['change_password'] = 'Change Password';
 $lang['edit_password'] = 'Edit Password';
 $lang['profile_change'] = 'Profile Change';
 $lang['edit_profile'] = 'Edit Profile';
 $lang['personal_information'] = 'Personal Information';
 $lang['confirmation_password'] = 'Confirmation Password';
+$lang['update_profile'] = 'Update Profile';
 
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
