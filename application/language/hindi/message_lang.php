@@ -17,6 +17,7 @@ $lang['state'] = 'राज्य';
 $lang['country'] = 'देश';
 $lang['aadhaar_number'] = 'आधार संख्या';
 $lang['email_id'] = 'ईमेल आईडी';
+$lang['password'] = 'पासवर्ड';
 $lang['old_password'] = 'पुराना पासवर्ड';
 $lang['new_password'] = 'नया पासवर्ड';
 $lang['confirmation_password'] = 'पुष्टिकरण पासवर्ड';
@@ -27,6 +28,7 @@ $lang['profile_change'] = 'प्रोफाइल परिवर्तन';
 $lang['edit_profile'] = 'प्रोफाइल अपडेट करें';
 $lang['personalinformation'] = 'व्यक्तिगत जानकारी';
 $lang['user_name'] = 'उपयोगकर्ता नाम'; 
+$lang['register'] = 'रजिस्टर';
 $lang['update_profile'] = 'प्रोफ़ाइल अपडेट करें';
 $lang['personal_information'] = 'व्यक्तिगत जानकारी';
 
@@ -61,8 +63,6 @@ $lang['log_mgnt'] = 'लॉग प्रबंध';
 $lang['more_info'] = 'अधिक माहिती';
 $lang['notice'] = 'नोटिस';
 /* Log Managment Ends Here */
-
-
 /* case history starts here */
  $lang['post']='जमा करें';
  $lang['postedby']='द्वारा प्रकाशित किया गया था';
@@ -70,4 +70,3 @@ $lang['notice'] = 'नोटिस';
  $lang['typeyourcommenthere']='अपनी टिप्पणी यहां टाइप करें';
  
  /* case history ends here */
-

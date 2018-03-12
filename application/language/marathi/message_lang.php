@@ -13,6 +13,7 @@ $lang['city'] = 'शहर';
 $lang['state'] = 'राज्य';
 $lang['aadhaar_number'] = 'आधार नंबर';
 $lang['country'] = 'देश';
+$lang['password'] = 'संकेतशब्द';
 $lang['old_password'] = 'जुना संकेतशब्द';
 $lang['new_password'] = 'नवीन पासवर्ड';
 $lang['confirmation_password'] = 'पुष्टीकरण संकेतशब्द';
@@ -22,6 +23,7 @@ $lang['profile_change'] = 'प्रोफाइल बदल';
 $lang['edit_profile'] = 'प्रोफाईल संपादित करा';
 $lang['personal_information'] = 'वैयक्तिक माहिती';
 $lang['confirmation_password'] = 'पुष्टीकरण बदला';
+$lang['register'] = 'नोंदणी करा';
 $lang['update_profile'] = 'प्रोफाइल अद्यतनित करा';
 $lang['personal_information'] = 'वैयक्तिक माहिती';
 
