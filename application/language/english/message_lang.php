@@ -41,3 +41,11 @@ $lang['log_mgnt'] = 'Log Managment';
 $lang['more_info'] = 'More Info';
 $lang['notice'] = 'Notice';
 /* Log Managment Ends Here */
+
+/* case history starts here */
+ $lang['post']='Post';
+ $lang['postedby']='Posted by';
+ $lang['commenthere']='Please enter your comment here';
+ $lang['typeyourcommenthere']='Type your comment here';
+ 
+ /* case history ends here */

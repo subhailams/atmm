@@ -12,7 +12,10 @@
             <div class="col-md-12">
                 <div class="box box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Posted by</h3>
+                        
+                        <h3 
+                            
+                            class="box-title"><?= $this->lang->line('postedby') ?></h3>
                          <div class="pull-right">
                                 <h3 class="box-title">09-03-2018</h3>
                             </div>
@@ -33,7 +36,10 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Please enter your comment below
+                        
+                        <h3 
+                          
+                          class="box-title"> <?= $this->lang->line('commenthere') ?>  
                             
                         </h3>
 
@@ -41,14 +47,17 @@
                     <!-- /.comment body -->
                     <form method="post" action="<?= base_url('index.php/'.strtolower($this->router->fetch_class()) . "/casehistorysave") ?> ">
                         <div class="box-body pad">
-                            <textarea class="textarea" placeholder="Type your comment here" name="casehistory"
+                           
+                            <textarea class="textarea" placeholder="<?= $this->lang->line('typeyourcommenthere') ?>" name="casehistory"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                         </div>
                         <div class="box-footer">
                             <!-- submit button -->
                             <div class="pull-right">
-                                <input type="submit" class="btn btn-lg btn-primary"  value="Post">
+                                
+                                 <button type="submit" class="btn btn-lg  btn-primary"><?= $this->lang->line('post') ?></button>
+                               
                             </div>
                             <!-- /. submit button -->
                         </div>

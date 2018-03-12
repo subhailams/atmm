@@ -7,9 +7,9 @@
  */
 /*hindi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
-<<<<<<< HEAD
-$lang['submit'] = 'जमा करें';
-=======
+
+
+
 $lang['submit'] = 'जमा करें';
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
@@ -56,4 +56,10 @@ $lang['more_info'] = 'अधिक माहिती';
 $lang['notice'] = 'नोटिस';
 /* Log Managment Ends Here */
 
->>>>>>> 82e0aa2a7713e765e878a892d7d2a99779039195
+/* case history starts here */
+ $lang['post']='जमा करें';
+ $lang['postedby']='द्वारा प्रकाशित किया गया था';
+ $lang['commenthere']='यहां टिप्पणी करें';
+ $lang['typeyourcommenthere']='अपनी टिप्पणी यहां टाइप करें';
+ 
+ /* case history ends here */

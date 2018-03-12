@@ -46,3 +46,12 @@ $lang['victim_address']='पत्ता';
 $lang['gender']='लिंग';
 
 /* case managment Ends Here */
+
+/* case history starts here */
+ $lang['post']='पोस्ट';
+ $lang['postedby']='द्वारा पोस्ट केलेले';
+ $lang['commenthere']='येथे टिप्पणी';
+ $lang['typeyourcommenthere']='येथे आपली टिप्पणी टाइप करा';
+ 
+ /* case history ends here */
+ 
