@@ -7,9 +7,7 @@
  */
 /*hindi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
-<<<<<<< HEAD
 $lang['submit'] = 'जमा करें';
-=======
 $lang['submit'] = 'जमा करें';
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
@@ -31,7 +29,7 @@ $lang['edit_profile'] = 'प्रोफाइल अपडेट करें';
 $lang['personalinformation'] = 'व्यक्तिगत जानकारी';
 $lang['user_name'] = 'उपयोगकर्ता नाम'; 
 $lang['update_profile'] = 'प्रोफ़ाइल अपडेट करें';
-
+$lang['personal_information'] = 'व्यक्तिगत जानकारी';
 
 /* case management form*/
 $lang['address'] = 'पता';
@@ -55,6 +53,4 @@ $lang['gender']='लिंग';
 $lang['log_mgnt'] = 'लॉग प्रबंध';
 $lang['more_info'] = 'अधिक माहिती';
 $lang['notice'] = 'नोटिस';
-/* Log Managment Ends Here */
-
->>>>>>> 82e0aa2a7713e765e878a892d7d2a99779039195
+/* Log Managment Ends Here *

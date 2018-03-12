@@ -24,5 +24,9 @@ class Homepage extends CI_Controller
     {
         $this->load->view('homepage/login');
     }
+     public function forgot()
+    {
+        $this->load->view('homepage/forgotpassword');
+    }
 }
 

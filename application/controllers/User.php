@@ -42,7 +42,7 @@ class User extends MY_Controller
     {
          $this->render("offencesandpunishments", get_defined_vars());
     }
-  
+
  
 
     public function logs($options = null)

@@ -128,36 +128,22 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
                 );
                 break;
-            case "cases":
-                $rules = array(
-                    array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                    array('field' => 'victimemail', 'label' => 'Email ID'),
-                    array('field' => 'victimaddress', 'label' => 'Address', 'rules' => 'required'),
-                    array('field' => 'victimaadhaar', 'label' => 'Aadhaar Number', 'rules' => 'required'),
-                    array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required'),
-                    array('field' => 'victimcity', 'label' => 'Name', 'City' => 'required'),
-                    array('field' => 'victimstate', 'label' => 'Name', 'State' => 'required'),
-                    array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required'),
-                    array('field' => 'offenderaddress', 'label' => 'Address', 'rules' => 'required'),
-                    array('field' => 'offendermobile', 'label' => 'Mobile Number', 'rules' => 'required'),
-                    array('field' => 'offendercity', 'label' => 'City', 'rules' => 'required'),
-                    array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
-                    array('field' => 'incidentdate', 'label' => 'Date of Incident', 'rules' => 'required'),
-                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
-                );break;
             
-            case "users":
+            
+
+
+            case "login":
                 $rules = array(
-                array('field' => '', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
-                );
+                    array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
+                    array('field' => 'password', 'label' => 'Password', 'rules' => 'required'),
+                );break;
+                case "forgot":
+                $rules = array(
+                    array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
+                    array('field' => 'verificationcode', 'label' => 'Verification Code', 'rules' => 'required'),
+                    array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
+                    array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
+                );break;
         }
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() == FALSE):
@@ -202,9 +188,22 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function usersave() {
+  
+    public function forgotsave() {
         $postData = $this->input->post();
-        if ($this->form_validation("users")):
+        if ($this->form_validation("forgot")):
+            echo "<pre>";
+            print_r($postData);
+            exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function loginsave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("login")):
             echo "<pre>";
             print_r($postData);
             exit();
