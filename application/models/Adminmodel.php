@@ -6,32 +6,32 @@
  * and open the template in the editor.
  */
 
-class Adminmodel extends CI_Model
-{
+class Adminmodel extends CI_Model {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs");
-        $this->SeqID = array("logs" => "id");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id");
     }
 
-    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY)
-    {
+    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
         $TableName = $this->TableList[$TableList];
         return $this->CSearch($Condition, $Select, $TableName, $SelectAll, $GroupBY, $OrderBY);
     }
 
-    public function AllInsert($condition, $dataDB, $Select, $Tble)
-    {
+    public function AllInsert($condition, $dataDB, $Select, $Tble) {
+       
         return $this->Crud($condition, $dataDB, $Select, $Tble);
     }
 
-    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = true)
-    {
+    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = false) {
         $IPAdress = ($this->input->ip_address() === "::1") ? "127.0.0.1" : $this->input->ip_address();
         $TableName = $this->TableList[$TableList];
-        $CrudDetails = $this->CSearch($Condition, $Select, $TableName, null, False);
+         
+        $CrudDetails = $this->CSearch($Condition, $Select, $TableName, null, False,"","","","","");
+        echo "<pre>";
+        print_r(get_defined_vars());
+        exit();
         $this->db->set($DBdata);
         if (!(empty($CrudDetails))) {
             $this->db->where($Condition);
@@ -50,8 +50,7 @@ class Adminmodel extends CI_Model
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY)
-    {
+    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY) {
         $JoinType = NULL;
         if (!empty($Select)) {
             $this->db->select($Select, FALSE);
@@ -76,14 +75,13 @@ class Adminmodel extends CI_Model
         $Result = $this->db->get($TableName);
 
         if (empty($SelectAll)):
-            return (empty($Result)) ? null : (array)$Result->row();
+            return (empty($Result)) ? null : (array) $Result->row();
         else:
-            return (empty($Result)) ? null : (array)$Result->result_array();
+            return (empty($Result)) ? null : (array) $Result->result_array();
         endif;
     }
 
-    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin)
-    {
+    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin) {
         switch ($TableName) {
             case "staffprofile":
                 $JoinTable = array(
@@ -201,32 +199,25 @@ class Adminmodel extends CI_Model
         }
     }
 
-    public function Delete($id, $idval, $table)
-    {
+    public function Delete($id, $idval, $table) {
         $this->db->where($id, $idval);
         return $this->db->delete($table);
     }
 
-    public function DropData($condition, $table)
-    {
+    public function DropData($condition, $table) {
         $TableName = $this->TableList[$table];
         $this->db->where($condition);
         $status = $this->db->delete($TableName);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 
-
-    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
-    {
+    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
         $this->db->from($tableName);
         $this->db->where($Condition);
         $i = 0;
-        foreach ($ColumnSearch as $item) // loop column
-        {
-            if ($_POST['search']['value']) // if datatable send POST for search
-            {
-                if ($i === 0) // first loop
-                {
+        foreach ($ColumnSearch as $item) { // loop column
+            if ($_POST['search']['value']) { // if datatable send POST for search
+                if ($i === 0) { // first loop
                     $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
                     $this->db->like($item, $_POST['search']['value']);
                 } else {
@@ -238,8 +229,7 @@ class Adminmodel extends CI_Model
             }
             $i++;
         }
-        if (isset($_POST['order'])) // here order processing
-        {
+        if (isset($_POST['order'])) { // here order processing
             $this->db->order_by($ColumnOrder[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         } else if (isset($OrderBy)) {
             $order = $OrderBy;
@@ -247,8 +237,7 @@ class Adminmodel extends CI_Model
         }
     }
 
-    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
-    {
+    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
         $TableName = $this->TableList[$TableList];
         $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         if ($_POST['length'] != -1)
@@ -257,21 +246,18 @@ class Adminmodel extends CI_Model
         return $query->result();
     }
 
-    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
-    {
+    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
         $TableName = $this->TableList[$TableList];
         $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function count_all($TableList, $Condition)
-    {
+    public function count_all($TableList, $Condition) {
         $TableName = $this->TableList[$TableList];
         $this->db->from($TableName);
         $this->db->where($Condition);
         return $this->db->count_all_results();
     }
-
 
 }

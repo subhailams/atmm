@@ -157,7 +157,8 @@
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
-            </section>
+            </section
+            
             <!-- /.content -->
         </div>
         <!-- /.container -->

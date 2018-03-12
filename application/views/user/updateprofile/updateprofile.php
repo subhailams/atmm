@@ -54,7 +54,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Email ID"><?= $this->lang->line('email_id') ?></label>
-                                        <input type="text" class="form-control" id="Email ID" name="Email ID" data-rule-required="true"
+                                        <input type="text" class="form-control" id="Email ID" name="EmailID" data-rule-required="true"
                                                data-rule-email="true" placeholder="Enter Email Id">
                                     </div>
                                 </div>
@@ -110,14 +110,14 @@
 
 
                                         <input type="number" class="form-control" id="Mobile Number"
-                                               name="Mobile Number" placeholder="Enter Mobile Number">
+                                               name="MobileNumber" placeholder="Enter Mobile Number">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Aadhaar Number"><?= $this->lang->line('aadhaar_number') ?></label>
                                         <input type="number" class="form-control" id="Aadhaar Number"
-                                               name="Aadhaar Number" placeholder="Enter Aadhaar Number ">
+                                               name="AadhaarNumber" placeholder="Enter Aadhaar Number ">
                                     </div>
                                 </div>
                             </div>

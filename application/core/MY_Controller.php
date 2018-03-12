@@ -115,6 +115,7 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Form Validation Starts Here */
+
     public function form_validation($option) {
         switch (strtolower($option)) {
             case "user":
@@ -125,28 +126,59 @@ class MY_Controller extends CI_Controller {
             case "casehistory":
                 $rules = array(
                     array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
-                    
                 );
                 break;
             case "cases":
-                $rules=array(
-                  
-                    array('field'=> 'victimname', 'label'=>'Name' , 'rules'=>'required'),
-                    array('field'=> 'victimemail', 'label'=>'Email ID'),
-                    array('field'=> 'victimaddress', 'label'=>'Address' , 'rules'=>'required'),
-                    array('field'=> 'victimaadhaar', 'label'=>'Aadhaar Number' , 'rules'=>'required'),
-                    array('field'=> 'victimmobile', 'label'=>'Mobile Number' , 'rules'=>'required'),
-                    array('field'=> 'victimcity', 'label'=>'Name' , 'City'=>'required'),
-                    array('field'=> 'victimstate', 'label'=>'Name' , 'State'=>'required'),
-                    array('field'=> 'offendername', 'label'=>'Name' , 'rules'=>'required'),
-                    array('field'=> 'offenderaddress', 'label'=>'Address' , 'rules'=>'required'),
-                    array('field'=> 'offendermobile', 'label'=>'Mobile Number' , 'rules'=>'required'),
-                    array('field'=> 'offendercity', 'label'=>'City' , 'rules'=>'required'),
-                    array('field'=> 'offenderstate', 'label'=>'State' , 'rules'=>'required'),
-                    array('field'=> 'incidentdate', 'label'=>'Date of Incident' , 'rules'=>'required'),
-                     array('field'=> 'gender', 'label'=>'Gender' , 'rules'=>'required'),
+                $rules = array(
+                    array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
+                    array('field' => 'victimemail', 'label' => 'Email ID'),
+                    array('field' => 'victimaddress', 'label' => 'Address', 'rules' => 'required'),
+                    array('field' => 'victimaadhaar', 'label' => 'Aadhaar Number', 'rules' => 'required'),
+                    array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required'),
+                    array('field' => 'victimcity', 'label' => 'Name', 'City' => 'required'),
+                    array('field' => 'victimstate', 'label' => 'Name', 'State' => 'required'),
+                    array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required'),
+                    array('field' => 'offenderaddress', 'label' => 'Address', 'rules' => 'required'),
+                    array('field' => 'offendermobile', 'label' => 'Mobile Number', 'rules' => 'required'),
+                    array('field' => 'offendercity', 'label' => 'City', 'rules' => 'required'),
+                    array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
+                    array('field' => 'incidentdate', 'label' => 'Date of Incident', 'rules' => 'required'),
+                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                );
+                break;
 
-                                         );
+            case "userreg":
+                $rules = array(
+                    array('field' => 'PersonName', 'label' => 'Person Name', 'rules' => 'required|max_length[25]'),
+                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
+                    array('field' => 'Password', 'label' => 'Password', 'rules' => 'required'),
+                    array('feild' => 'ConfirmationPassword', 'label' => 'Confirmation Password', 'rules' => 'requird | match[Password]'),
+                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
+                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
+                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|exact_length[10]'),
+                    array('field' => 'City', 'label' => 'Name', 'City' => 'required'),
+                    array('field' => 'State', 'label' => 'Name', 'State' => 'required'),
+                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required|max_length[35]'),
+                    array('field' => 'Country', 'label' => 'Country', 'rules' => 'required'),
+                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+                );
+
+                break;
+            case "profile":
+                $rules = array(
+                    array('field' => 'PersonName', 'label' => 'Name', 'rules' => 'required | max_length[25]'),
+                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'required | valid_email'),
+                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
+                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
+                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required | max_length[20]'),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required | exact_length[10]'),
+                    array('field' => 'City', 'label' => 'Name', 'City' => 'required'),
+                    array('field' => 'State', 'label' => 'Name', 'State' => 'required'),
+                    array('field' => 'Username', 'label' => 'User Name', 'rules' => 'required | max_length[15]'),
+                    array('field' => 'Country', 'label' => 'Country', 'rules' => 'required'),
+                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+                );break;
         }
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() == FALSE):
@@ -155,6 +187,7 @@ class MY_Controller extends CI_Controller {
             return TRUE;
         endif;
     }
+
     /* Form Validation Ends Here */
 
     public function addtoDB() {
@@ -177,7 +210,7 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
-    
+
     public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
@@ -189,6 +222,31 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
+
+    public function userregister() {
+        $postData = $this->input->post();
+        if ($this->form_validation("userreg")):
+            echo "<pre>";
+            print_r($postData);
+            exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function profilesave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("profile")):
+            echo "<pre>";
+            print_r($postData);
+            exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
 
     public function cases($options = null) {
         $render = "";
@@ -212,7 +270,6 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    
     public function casehistory($options = null) {
         $render = "";
         switch (strtolower($options)) {
