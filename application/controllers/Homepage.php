@@ -53,4 +53,9 @@ class Homepage extends MY_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+     public function loginscreen()
+    {
+        $this->load->view('homepage/login');
+    }
 }
+

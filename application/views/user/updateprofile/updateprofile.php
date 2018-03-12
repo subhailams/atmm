@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Profile Change
-            <small>Edit Profile</small>
+           <?= $this->lang->line('update_profile') ?>
+            <small> <?= $this->lang->line('edit_profile') ?></small>
         </h1>
 
     </section>
