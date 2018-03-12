@@ -3,13 +3,16 @@
     <section class="content-header">
         <h1>
             Change Password
-            <small>Edit password</small>
+
+            <small>Edit Profile</small>
         </h1>
+
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Users</a></li>
-            <li class="active">Change Password</li>
+            <li class="active">Mobile Number</li>
         </ol>
+
     </section>
 
     <!-- Main content -->
@@ -29,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Old Password</label>
+                                        <label for="exampleInputEmail1"><?= $this->lang->line('old_password') ?></label>
                                         <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Enter Old Password">
                                     </div>
                                 </div>
@@ -41,35 +44,28 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="Password">New Password</label>
+                                        <label for="Password"><?= $this->lang->line('new_password') ?></label>
                                         <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter New Password">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="Confirmation Password">Confirmation Password</label>
+                                        <label for="Confirmation Password"><?= $this->lang->line('confirmation_password') ?></label>
                                         <input type="password" class="form-control" id="ConfirmationPassword" name="ConfirmationPassword" placeholder="Enter Confirmation Password">
                                     </div>
                                 </div>
                             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                            
+
+                            <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
+
                         </div>
                     </form>
                 </div>

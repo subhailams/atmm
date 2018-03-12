@@ -15,16 +15,9 @@ class Administrator extends MY_Controller
     {
         $this->render("dashboard", get_defined_vars());
     }
-    public function users()
-    {
-         $this->render("newuser", get_defined_vars());
-         
-    }
-   
-   
 
 
-    public function logs($options = null)
+    public function logs($options = null, $id=null)
     {
         $render = "";
         switch (strtolower($options)) {
@@ -36,6 +29,10 @@ class Administrator extends MY_Controller
                 break;
             case "errors";
                 $render = "showallerrors";
+                break;
+            case "shownotice":
+                $render = "shownotice";
+                $noticeinformation = $this->shownotice($id);
                 break;
             case "all";
                 $render = "showall";
@@ -88,14 +85,14 @@ class Administrator extends MY_Controller
             $row[] = $logNotice->errline;
             $row[] = $logNotice->time;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $logNotice->id . "'" . ')"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/logs/shownotice/' . $logNotice->id) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
 
             $data[] = $row;
         }
 
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname,$Condition),
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
             "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
             "data" => $data,
         );
@@ -103,6 +100,12 @@ class Administrator extends MY_Controller
         echo json_encode($output);
     }
 
+    protected function shownotice($id)
+    {
+        $condition = array("id" => $id);
+        $select = "errstr as ErrorString, errfile as ErrorFilename, errline as ErrorLine,time as Time";
+        return $this->Adminmodel->CSearch($condition, $select, "log", "", "", "", "", "", "", "");
+    }
 
     protected function getlogs_notices()
     {
@@ -131,5 +134,6 @@ class Administrator extends MY_Controller
         $select = "id as ID, errstr as ErrorString, time as Time";
         return $this->Adminmodel->CSearch($condition, $select, "log", "Y", "Y", "", "", "", "", "");
     }
-            
+
+
 }

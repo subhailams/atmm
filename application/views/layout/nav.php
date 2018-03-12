@@ -180,7 +180,7 @@
             </li>
             <li>
                 <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/marathi") ?>">
-                    <i class="fa fa-language"></i> <span> मराठी</span>
+                    <i class="fa fa-language"></i> <span> मराठी - (Marathi)</span>
                     <span class="pull-right-container"></span>
                     <?php if ($this->session->userdata('site_lang') == 'marathi'): ?>
                         <i class="fa fa-check pull-right" style="color: green"></i>
@@ -189,7 +189,7 @@
             </li>
             <li>
                 <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/hindi") ?>">
-                    <i class="fa fa-language"></i> <span> हिंदी</span>
+                    <i class="fa fa-language"></i> <span> हिंदी - (Hindi) </span>
                     <span class="pull-right-container"></span>
                     <?php if ($this->session->userdata('site_lang') == 'hindi'): ?>
                         <i class="fa fa-check pull-right" style="color: green"></i>

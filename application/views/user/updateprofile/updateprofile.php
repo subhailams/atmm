@@ -5,11 +5,7 @@
             Profile Change
             <small>Edit Profile</small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Users</a></li>
-            <li class="active">New User</li>
-        </ol>
+
     </section>
 
     <!-- Main content -->
@@ -29,13 +25,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
+                                        <label for="exampleInputEmail1"><?= $this->lang->line('name') ?></label>
                                         <input type="name" class="form-control" id="PersonName" name="PersonName"  placeholder="Enter Full Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Select</label>
+                                        <label for="exampleInputRole"><?= $this->lang->line('select') ?></label>
                                         <select class="form-control" id="Role" name="Role" placeholder="Select Role">
                                             <option>Select Role</option>
                                             <option>Police</option>
@@ -50,16 +46,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="User Name">User Name</label>
+                                        <label for="User Name"><?= $this->lang->line('user_name') ?></label>
                                         <input type="text" class="form-control" id="UserName" name="UserName"
                                                placeholder="Enter User Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Email ID">Email ID</label>
+                                        <label for="Email ID"><?= $this->lang->line('email_id') ?></label>
                                         <input type="text" class="form-control" id="Email ID" name="Email ID" data-rule-required="true"
-data-rule-email="true" placeholder="Enter Email Id">
+                                               data-rule-email="true" placeholder="Enter Email Id">
                                     </div>
                                 </div>
                             </div>
@@ -68,14 +64,14 @@ data-rule-email="true" placeholder="Enter Email Id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Address1">Address1</label>
+                                        <label for="Address1"><?= $this->lang->line('address1') ?></label>
                                         <input type="text" class="form-control" id="Address1" name="Address1"
                                                placeholder="Enter Address1">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Address2">Address2</label>
+                                        <label for="Address2"><?= $this->lang->line('address2') ?></label>
                                         <input type="text" class="form-control" id="Address2" name="Address2"
                                                placeholder="Enter Address2">
                                     </div>
@@ -84,14 +80,14 @@ data-rule-email="true" placeholder="Enter Email Id">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="City">City</label>
+                                        <label for="City"><?= $this->lang->line('city') ?></label>
                                         <input type="text" class="form-control" id="City" name="City"
                                                placeholder="Enter City">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="State">State</label>
+                                        <label for="State"><?= $this->lang->line('state') ?></label>
                                         <input type="text" class="form-control" id="State" name="State"
                                                placeholder="Enter State">
 
@@ -99,7 +95,7 @@ data-rule-email="true" placeholder="Enter Email Id">
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="Country">Country</label>
+                                        <label for="Country"><?= $this->lang->line('country') ?></label>
                                         <input type="text" class="form-control" id="Country" name="Country"
                                                placeholder="Enter Country">
                                     </div>
@@ -108,14 +104,18 @@ data-rule-email="true" placeholder="Enter Email Id">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+
                                         <label for="Mobile Number"><?= $this->lang->line('mobile_number') ?></label>
+
+
+
                                         <input type="number" class="form-control" id="Mobile Number"
                                                name="Mobile Number" placeholder="Enter Mobile Number">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Aadhaar Number">Aadhaar Number</label>
+                                        <label for="Aadhaar Number"><?= $this->lang->line('aadhaar_number') ?></label>
                                         <input type="number" class="form-control" id="Aadhaar Number"
                                                name="Aadhaar Number" placeholder="Enter Aadhaar Number ">
                                     </div>
@@ -126,14 +126,17 @@ data-rule-email="true" placeholder="Enter Email Id">
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
+
+
+
+
+
                         </div>
-                    </form>
+                        <!-- /.box -->
                 </div>
-                <!-- /.box -->
+                <!--/.col (left) -->
             </div>
-            <!--/.col (left) -->
-        </div>
-        <!-- /.row -->
+            <!-- /.row -->
     </section>
     <!-- /.content -->
 </div>
