@@ -115,6 +115,7 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Form Validation Starts Here */
+
     public function form_validation($option) {
         switch (strtolower($option)) {
             case "user":
@@ -125,10 +126,10 @@ class MY_Controller extends CI_Controller {
             case "casehistory":
                 $rules = array(
                     array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
-                    
                 );
                 break;
             case "cases":
+
                 $rules=array(
                   
                     array('field'=> 'victimname', 'label'=>'Name' , 'rules'=>'required|alpha'),
@@ -150,6 +151,9 @@ class MY_Controller extends CI_Controller {
 
 
                                          );
+                break;
+            
+        
         }
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() == FALSE):
@@ -158,6 +162,7 @@ class MY_Controller extends CI_Controller {
             return TRUE;
         endif;
     }
+
     /* Form Validation Ends Here */
 
     public function addtoDB() {
@@ -180,12 +185,24 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
-    
+
     public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             echo "<pre>";
             print_r(get_defined_vars());
+            exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function usersave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("users")):
+            echo "<pre>";
+            print_r($postData);
             exit();
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
@@ -215,7 +232,6 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    
     public function casehistory($options = null) {
         $render = "";
         switch (strtolower($options)) {
