@@ -131,20 +131,23 @@ class MY_Controller extends CI_Controller {
             case "cases":
                 $rules=array(
                   
-                    array('field'=> 'victimname', 'label'=>'Name' , 'rules'=>'required'),
-                    array('field'=> 'victimemail', 'label'=>'Email ID'),
+                    array('field'=> 'victimname', 'label'=>'Name' , 'rules'=>'required|alpha'),
+                    array('field'=> 'victimemail', 'label'=>'Email ID','rules'=>'valid_email'),
                     array('field'=> 'victimaddress', 'label'=>'Address' , 'rules'=>'required'),
-                    array('field'=> 'victimaadhaar', 'label'=>'Aadhaar Number' , 'rules'=>'required'),
-                    array('field'=> 'victimmobile', 'label'=>'Mobile Number' , 'rules'=>'required'),
-                    array('field'=> 'victimcity', 'label'=>'Name' , 'City'=>'required'),
-                    array('field'=> 'victimstate', 'label'=>'Name' , 'State'=>'required'),
-                    array('field'=> 'offendername', 'label'=>'Name' , 'rules'=>'required'),
+                    array('field'=> 'victimaadhaar', 'label'=>'Aadhaar Number' , 'rules'=>'required|integer|exact_length[12]'),
+                    array('field'=> 'victimmobile', 'label'=>'Mobile Number' , 'rules'=>'required|integer'),
+                    array('field'=> 'victimcity', 'label'=>'City' , 'City'=>'required'),
+                    array('field'=> 'victimstate', 'label'=>'State' , 'State'=>'required'),
+                    array('field'=> 'offendername', 'label'=>'Name' , 'rules'=>'required|alpha'),
                     array('field'=> 'offenderaddress', 'label'=>'Address' , 'rules'=>'required'),
-                    array('field'=> 'offendermobile', 'label'=>'Mobile Number' , 'rules'=>'required'),
+                    array('field'=> 'offendermobile', 'label'=>'Mobile Number' , 'rules'=>'integer'),
                     array('field'=> 'offendercity', 'label'=>'City' , 'rules'=>'required'),
+                     array('field'=> 'ifothers', 'label'=>'If Others' , 'rules'=>'max_length[100]'),
                     array('field'=> 'offenderstate', 'label'=>'State' , 'rules'=>'required'),
                     array('field'=> 'incidentdate', 'label'=>'Date of Incident' , 'rules'=>'required'),
                      array('field'=> 'gender', 'label'=>'Gender' , 'rules'=>'required'),
+                     array('field'=> 'casedescription', 'label'=>'Case Description' , 'rules'=>'required|min_lenghth[10]|max_length[400]'),
+
 
                                          );
         }
@@ -182,7 +185,7 @@ class MY_Controller extends CI_Controller {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             echo "<pre>";
-            print_r($postData);
+            print_r(get_defined_vars());
             exit();
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');

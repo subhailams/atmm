@@ -7,9 +7,6 @@
  */
 /*hindi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
-<<<<<<< HEAD
-$lang['submit'] = 'जमा करें';
-=======
 $lang['submit'] = 'जमा करें';
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
@@ -56,4 +53,4 @@ $lang['more_info'] = 'अधिक माहिती';
 $lang['notice'] = 'नोटिस';
 /* Log Managment Ends Here */
 
->>>>>>> 82e0aa2a7713e765e878a892d7d2a99779039195
+
