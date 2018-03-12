@@ -7,7 +7,16 @@
  */
 /*hindi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
+<<<<<<< HEAD
 $lang['submit'] = 'जमा करें';
+=======
+
+
+
+
+
+
+>>>>>>> bcee7d425020f515a6794ba2e90c9ccce32b047e
 $lang['submit'] = 'जमा करें';
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
@@ -37,14 +46,22 @@ $lang['registration_form'] = 'पंजीकरण फॉर्म';
 $lang['case_details'] = 'केस विवरण';
 $lang['if_others'] = 'अगर अन्य';
 $lang['case_description'] ='केस विवरण';
-$lang['date_of_incident'] ='घटना की तिथि';
+$lang['victim_name']='शिकार का नाम';
 $lang['victim_details']='शिकार का नाम';
 $lang['case_management']='मामला प्रबंधन';
 $lang['offender_details']='अपराधी विवरण';
 $lang['offender_address'] = 'पता';
 $lang['victim_address']='पता';
 $lang['gender']='लिंग';
-
+$lang['offence_date']='अपराध की तारीख';
+$lang['status']='स्थिति';
+$lang['actions']='कार्रवाई';
+$lang['all_cases']='सभी मामलों';
+$lang['male']='नर';
+$lang['female']='महिला';
+$lang['others']='अन्य लोग';
+$lang['select_gender']='लिंग चुनें';
+        
 
 /* case managment Ends Here */
 
@@ -53,4 +70,20 @@ $lang['gender']='लिंग';
 $lang['log_mgnt'] = 'लॉग प्रबंध';
 $lang['more_info'] = 'अधिक माहिती';
 $lang['notice'] = 'नोटिस';
+<<<<<<< HEAD
 /* Log Managment Ends Here *
+=======
+/* Log Managment Ends Here */
+
+
+/* case history starts here */
+ $lang['post']='जमा करें';
+ $lang['postedby']='द्वारा प्रकाशित किया गया था';
+ $lang['commenthere']='यहां टिप्पणी करें';
+ $lang['typeyourcommenthere']='अपनी टिप्पणी यहां टाइप करें';
+ 
+ /* case history ends here */
+
+
+
+>>>>>>> bcee7d425020f515a6794ba2e90c9ccce32b047e

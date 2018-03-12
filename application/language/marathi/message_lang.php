@@ -38,12 +38,29 @@ $lang['registration_form'] = 'नोंदणी पत्रक';
 $lang['case_details'] = 'केस तपशील';
 $lang['if_others'] = 'इतरांना तर';
 $lang['case_description'] ='केस विवरण';
-$lang['date_of_incident'] ='घटनेची तारीख';
 $lang['victim_details']='बळी तपशील';
 $lang['case_management']='विषयव्यवस्थापन';
 $lang['offender_details']='अपराधी तपशील';
 $lang['offender_address'] = 'पत्ता';
 $lang['victim_address']='पत्ता';
 $lang['gender']='लिंग';
-
+$lang['offence_date']='गुन्हा तारीख';
+$lang['victim_name']='बळी चे नाव';
+$lang['status']='स्थिती';
+$lang['actions']='क्रिया';
+$lang['all_cases']='सर्व प्रकरणांमध्ये';
+$lang['male']='नर';
+$lang['female']='महिला';
+$lang['others']='इतर';
+$lang['select_gender']='लिंग निवडा';
+        
 /* case managment Ends Here */
+
+/* case history starts here */
+ $lang['post']='पोस्ट';
+ $lang['postedby']='द्वारा पोस्ट केलेले';
+ $lang['commenthere']='येथे टिप्पणी';
+ $lang['typeyourcommenthere']='येथे आपली टिप्पणी टाइप करा';
+ 
+ /* case history ends here */
+ 

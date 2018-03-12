@@ -129,7 +129,13 @@ class MY_Controller extends CI_Controller {
                 );
                 break;
             
-            
+            case "password":
+                $rules = array(
+                    array('field' => 'oldpassword','label' => 'Old Password', 'rules' => 'required'),
+                    array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
+                    array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
+                );break;
+                
 
 
             case "login":
@@ -179,6 +185,17 @@ class MY_Controller extends CI_Controller {
     public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
+            echo "<pre>";
+            print_r($postData);
+            exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+        public function passwordchange() {
+        $postData = $this->input->post();
+        if ($this->form_validation("password")):
             echo "<pre>";
             print_r($postData);
             exit();
