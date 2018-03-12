@@ -15,7 +15,9 @@ class Homepage extends MY_Controller {
     }
 
     public function email() {
-        $this->load->view('emaillayouts/usersignup');
+        $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
+        $Subject = "Atrocity Case Management - New Account Created";
+        $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject,"");
     }
 
     public function userregister() {
@@ -40,9 +42,12 @@ class Homepage extends MY_Controller {
                 "mobilenumber" => $postData['MobileNumber'],
                 "email" => $postData['EmailID']
             );
-             
+
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
             if (!empty($response)):
+                $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
+                $Subject = "Atrocity Case Management - New Account Created";
+                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject,"");
                 $this->session->set_flashdata('ME_SUCCESS', 'User Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');

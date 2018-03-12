@@ -81,28 +81,30 @@ class MY_Controller extends CI_Controller {
     }
 
     public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc) {
-
-        $mail = $this->emailConfig();
-        $mail->setFrom('vidhyaprakash85@gmail.com', 'Mailer');
-        $mail->addAddress($EmailTo);     // Add a recipient
-        $mail->isHTML(true);                                  // Set emaillayouts format to HTML
-        $mail->Subject = $Subject;
-        $mail->Body = $Message;
-
-        if (!$mail->send()) {
-            return 1;
-        } else {
-            return 0;
+        try {
+            $mail = $this->emailConfig();
+            $mail->setFrom('atrocitymgnt@gmail.com', 'Atrocity Case Management');
+            $mail->addAddress($EmailTo);     // Add a recipient
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = $Subject;
+            $mail->Body = $Message;
+            if (!$mail->Send()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (phpmailerException $e) {
+            echo $e->errorMessage(); //Pretty error messages from PHPMailer
         }
     }
 
     protected function emailConfig() {
-        $mail = new PHPMailer();
+        $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
         $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = '';                 // SMTP username
-        $mail->Password = '';
+        $mail->Username = "atrocitymgnt@gmail.com";                 // SMTP username
+        $mail->Password = "rmkenggcollege";
         return $mail;
     }
 
@@ -135,8 +137,6 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
                     array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
                 );break;
-                
-
 
             case "login":
                 $rules = array(
