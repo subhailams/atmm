@@ -36,14 +36,22 @@ $lang['registration_form'] = 'पंजीकरण फॉर्म';
 $lang['case_details'] = 'केस विवरण';
 $lang['if_others'] = 'अगर अन्य';
 $lang['case_description'] ='केस विवरण';
-$lang['date_of_incident'] ='घटना की तिथि';
+$lang['victim_name']='शिकार का नाम';
 $lang['victim_details']='शिकार का नाम';
 $lang['case_management']='मामला प्रबंधन';
 $lang['offender_details']='अपराधी विवरण';
 $lang['offender_address'] = 'पता';
 $lang['victim_address']='पता';
 $lang['gender']='लिंग';
-
+$lang['offence_date']='अपराध की तारीख';
+$lang['status']='स्थिति';
+$lang['actions']='कार्रवाई';
+$lang['all_cases']='सभी मामलों';
+$lang['male']='नर';
+$lang['female']='महिला';
+$lang['others']='अन्य लोग';
+$lang['select_gender']='लिंग चुनें';
+        
 
 /* case managment Ends Here */
 

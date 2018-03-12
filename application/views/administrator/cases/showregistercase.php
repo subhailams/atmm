@@ -17,7 +17,7 @@
                 <div class="box box-primary">
 
                     <div class="box-header with-border">
-                     <h3 class="box-title"><?= $this->lang->line('registeration_form') ?></h3>
+                        <h3 class="box-title"><?= $this->lang->line('registeration_form') ?></h3>
                     </div>
 
                     <!-- /.box-header -->
@@ -39,10 +39,10 @@
                                     <div class="form-group">
                                         <label for="gender"><?= $this->lang->line('gender') ?><span style="color: red ">*</span></label>
                                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                            <option selected="selected">select gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Others</option>
+                                            <option selected="selected"><?= $this->lang->line('select_gender') ?></option>
+                                            <option><?= $this->lang->line('male') ?></option>
+                                            <option><?= $this->lang->line('female') ?></option>
+                                            <option><?= $this->lang->line('others') ?></option>
                                         </select>
                                         <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
                                             <span class="selection">
@@ -124,10 +124,10 @@
                                     <div class="form-group">
                                         <label for="gender"><?= $this->lang->line('gender') ?><span style="color: red ">*</span></label>
                                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                            <option selected="selected">Select gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Others</option>
+                                           <option selected="selected"><?= $this->lang->line('select_gender') ?></option>
+                                            <option><?= $this->lang->line('male') ?></option>
+                                            <option><?= $this->lang->line('female') ?></option>
+                                            <option><?= $this->lang->line('others') ?></option>
                                         </select>
                                         <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
                                             <span class="selection">
@@ -183,7 +183,7 @@
 
                             </div>
 
-                            <div><hr></div>
+
                             <h4><?= $this->lang->line('case_details') ?><span style="color: red ">*</span></h4>
                             <div class="row">
                                 <div class="col-md-8">
@@ -214,8 +214,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label><?= $this->lang->line('date_of_incident') ?><span style="color: red ">*</span></label>
-                                        <input class="form-control" id="date" placeholder="date" type="date" name="incidentdate">
+                                        <label><?= $this->lang->line('offence_date') ?><span style="color: red ">*</span></label>
+                                        <input class="form-control" id="date" placeholder="date" type="date" name="offencedate">
 
                                     </div>
                                 </div>
@@ -247,7 +247,7 @@
 
                             <div class="box-footer">
                                 <center>   <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
+                                        <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
                                     </div></center>
                             </div>
 

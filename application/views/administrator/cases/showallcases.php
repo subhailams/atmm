@@ -1,12 +1,11 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Case Management - All Cases</h1>
+        <h1><?= $this->lang->line('all_cases') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"> Cases</a></li>
-
+             <li><a href="#">Cases</a></li>
             <li class="active">All Cases</li>
         </ol>
     </section>
@@ -21,12 +20,12 @@
                                aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
-                                    <th> Victim Name</th>
-                                    <th> Offence Date</th>
-                                    <th> Mobile No</th>
-                                    <th> Email id</th>
-                                    <th> Status</th>
-                                    <th> Actions</th>
+                                    <th> <?= $this->lang->line('victim_name') ?></th>
+                                    <th> <?= $this->lang->line('offence_date') ?></th>
+                                    <th> <?= $this->lang->line('mobile_number') ?></th>
+                                    <th> <?= $this->lang->line('email_id') ?></th>
+                                    <th> <?= $this->lang->line('status') ?></th>
+                                    <th> <?= $this->lang->line('actions') ?></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
