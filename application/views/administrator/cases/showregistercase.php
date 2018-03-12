@@ -22,7 +22,8 @@
 
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form role="form" method="post" action="<?= base_url('index.php/'.strtolower($this->router->fetch_class()) . "/casessave") ?> ">
+
 
                         <div class="box-body">
                             <h4><?= $this->lang->line('victim_details') ?></h4>  
@@ -53,7 +54,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?></label>
-                                        <input type="number" class="form-control" id="aadhar" name="victimaadhar"
+                                        <input type="text" class="form-control" id="aadhar" name="victimaadhar"
                                                placeholder="Enter Aadhaar No">
                                     </div>
                                 </div>
@@ -85,8 +86,10 @@
 
                                     </div>
                                 </div>
+                               
                             </div>
-                            <hr>
+                                                                                    
+                            <hr><hr>
                             <h4><?= $this->lang->line('offender_details') ?></h4>
                             <div class="row">
                                 <div class="col-md-3">
@@ -121,7 +124,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="mobile no"><?= $this->lang->line('mobile_number') ?></label>
-                                        <input type="number" class="form-control" id="mobile no" name="offendermobile"
+                                        <input type="text" class="form-control" id="mobile no" name="offendermobile"
                                                placeholder="Enter Mobile No">
 
                                     </div>
@@ -158,7 +161,7 @@
                                 </div>
 
                             </div>
-                            <hr>
+                            <hr><hr>
 
                             <h4><?= $this->lang->line('case_details') ?></h4>
                             <div class="row">
