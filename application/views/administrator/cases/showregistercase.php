@@ -17,12 +17,12 @@
                 <div class="box box-primary">
 
                     <div class="box-header with-border">
-                        <h3 class="box-title"><?= $this->lang->line('registeration_form') ?></h3>
+                     <h3 class="box-title"><?= $this->lang->line('registeration_form') ?></h3>
                     </div>
 
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="<?= base_url('index.php/'.strtolower($this->router->fetch_class()) . "/casessave") ?> ">
+                    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/casessave") ?> ">
 
 
                         <div class="box-body">
@@ -31,77 +31,13 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="Victim Name"><?= $this->lang->line('name') ?></label>
+                                        <label for="Victim Name"><?= $this->lang->line('name') ?> <span style="color: red ">*</span></label>
                                         <input class="form-control" id="Victim Name" placeholder="Enter name" type="text" name="victimname">
                                     </div>
                                 </div>   
-
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="email"><?= $this->lang->line('email_id') ?></label>
-                                        <input class="form-control" id="email" placeholder="Enter Email id" type="text" name="victimemail">
-                                    </div>
-                                </div>
-                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="mobile no"><?= $this->lang->line('mobile_number') ?></label>
-                                        <input type="text" class="form-control" id="mobile no" name="victimmobile"
-                                               placeholder="Enter Mobile No">
-
-                                  
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?></label>
-                                        <input type="text" class="form-control" id="aadhar" name="victimaadhar"
-                                               placeholder="Enter Aadhaar No">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="Address"><?= $this->lang->line('victim_address') ?></label>
-                                        <input type="text" class="form-control" id="Address" name="victimaddress"
-                                               placeholder="Enter Address">
-                                    </div>
-                                </div>
-                                
-                         
-                          
-                               
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="City"><?= $this->lang->line('city') ?></label>
-                                        <input type="text" class="form-control" id="City" name="victimcity"
-                                               placeholder="Enter City">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="State"><?= $this->lang->line('state') ?></label>
-                                        <input type="text" class="form-control" id="State" name="victimstate"
-                                               placeholder="Enter State">
-
-                                    </div>
-                                </div>
-                               
-                            </div>
-                                                                                    
-                            <hr><hr>
-                            <h4><?= $this->lang->line('offender_details') ?></h4>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="offender name"><?= $this->lang->line('name') ?></label>
-                                        <input type="text" class="form-control" id="offender name" name="offendername"
-                                               placeholder="Enter Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="gender"><?= $this->lang->line('gender') ?></label>
+                                        <label for="gender"><?= $this->lang->line('gender') ?><span style="color: red ">*</span></label>
                                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option selected="selected">select gender</option>
                                             <option>Male</option>
@@ -121,7 +57,92 @@
 
                                     </div>
                                 </div>
-                                  <div class="col-md-3">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="email"><?= $this->lang->line('email_id') ?></label>
+                                        <input class="form-control" id="email" placeholder="Enter Email id" type="text" name="victimemail">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="mobile no"><?= $this->lang->line('mobile_number') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="mobile no" name="victimmobile"
+                                               placeholder="Enter Mobile No">
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="aadhar" name="victimaadhar"
+                                               placeholder="Enter Aadhaar No">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Address"><?= $this->lang->line('victim_address') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="Address" name="victimaddress"
+                                               placeholder="Enter Address">
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="City"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="City" name="victimcity"
+                                               placeholder="Enter City">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="State"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="State" name="victimstate"
+                                               placeholder="Enter State">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <h4><?= $this->lang->line('offender_details') ?></h4>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="offender name"><?= $this->lang->line('name') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="offender name" name="offendername"
+                                               placeholder="Enter Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="gender"><?= $this->lang->line('gender') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option selected="selected">Select gender</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Others</option>
+                                        </select>
+                                        <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
+                                            <span class="selection">
+
+
+                                                <span class="select2-selection__arrow" role="presentation">
+                                                    <b role="presentation"></b>
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="dropdown-wrapper" aria-hidden="true"> </span>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="mobile no"><?= $this->lang->line('mobile_number') ?></label>
                                         <input type="text" class="form-control" id="mobile no" name="offendermobile"
@@ -129,16 +150,16 @@
 
                                     </div>
                                 </div>
-                            
-                              
+
+
                             </div>
 
                             <div class="row">    
-                              
 
-  <div class="col-md-6">
+
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="Address"><?= $this->lang->line('offender_address') ?></label>
+                                        <label for="Address"><?= $this->lang->line('offender_address') ?><span style="color: red ">*</span></label>
                                         <input type="text" class="form-control" id="Address" name="offenderaddress"
                                                placeholder="Enter Address">
                                     </div>
@@ -146,14 +167,14 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="City"><?= $this->lang->line('city') ?></label>
+                                        <label for="City"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
                                         <input type="text" class="form-control" id="City" name="offendercity"
                                                placeholder="Enter City">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="State"><?= $this->lang->line('state') ?></label>
+                                        <label for="State"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
                                         <input type="text" class="form-control" id="State" name="offenderstate"
                                                placeholder="Enter State">
 
@@ -161,11 +182,11 @@
                                 </div>
 
                             </div>
-                            <hr><hr>
 
-                            <h4><?= $this->lang->line('case_details') ?></h4>
+                            <div><hr></div>
+                            <h4><?= $this->lang->line('case_details') ?><span style="color: red ">*</span></h4>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <label>  </label>
                                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
@@ -193,45 +214,45 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label><?= $this->lang->line('date_of_incident') ?></label>
+                                        <label><?= $this->lang->line('date_of_incident') ?><span style="color: red ">*</span></label>
                                         <input class="form-control" id="date" placeholder="date" type="date" name="incidentdate">
 
                                     </div>
                                 </div>
 
                             </div>
-                          <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label><?= $this->lang->line('if_others') ?></label>
-                                        <input class="form-control" id="others" placeholder="Others" type="text">
+                                        <input class="form-control" id="others" placeholder="Others" type="text" name="ifothers">
 
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                
+
 
                             </div>
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-12">   
-                                        <label><?= $this->lang->line('case_description') ?></label>
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                        <label><?= $this->lang->line('case_description') ?><span style="color: red ">*</span></label>
+                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="casedescription"></textarea>
                                     </div>   
                                 </div>
 
 
                             </div>
-   
+
                             <div class="box-footer">
-                                <div class="col-md-12">
+                                <center>   <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
-                                </div>
+                                    </div></center>
                             </div>
-  
+
                         </div>
-                      
+
                     </form>
 
 

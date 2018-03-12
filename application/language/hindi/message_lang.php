@@ -25,13 +25,14 @@ $lang['select'] = 'चुनते हैं';
 $lang['change_password'] = 'पासवर्ड बदलें';
 $lang['edit_password'] = 'पासवर्ड संपादित करें';
 $lang['profile_change'] = 'प्रोफाइल परिवर्तन';
-$lang['editprofile'] = 'प्रोफाइल एडिट करें';
+$lang['edit_profile'] = 'प्रोफाइल अपडेट करें';
 $lang['personalinformation'] = 'व्यक्तिगत जानकारी';
 $lang['user_name'] = 'उपयोगकर्ता नाम'; 
+$lang['update_profile'] = 'प्रोफ़ाइल अपडेट करें';
 
 
 /* case management form*/
-$lang['address'] = 'पता ';
+$lang['address'] = 'पता';
 $lang['registration_form'] = 'पंजीकरण फॉर्म';
 $lang['case_details'] = 'केस विवरण';
 $lang['if_others'] = 'अगर अन्य';
@@ -53,4 +54,5 @@ $lang['log_mgnt'] = 'लॉग प्रबंध';
 $lang['more_info'] = 'अधिक माहिती';
 $lang['notice'] = 'नोटिस';
 /* Log Managment Ends Here */
+
 
