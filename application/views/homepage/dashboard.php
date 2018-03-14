@@ -35,6 +35,9 @@
     <!-- DataTables -->
     <link type="text/css" rel="stylesheet"
           href="<?= base_url('assets/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>"/>
+
+    <!-- Sweetalert -->
+    <link type="text/css" rel="stylesheet" href="<?= base_url('assets/plugins/sweetalert/sweetalert.css') ?>"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
@@ -64,8 +67,8 @@
     <script src="<?= base_url('assets/plugins/fastclick/lib/fastclick.js') ?>"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/js/adminlte.min.js') ?>"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?= base_url('assets/js/pages/index.js') ?>"></script>
+    <!-- Sweetalert -->
+    <script src="<?= base_url('assets/plugins/sweetalert/sweetalert.js') ?>"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?= base_url('assets/js/demo.js') ?>"></script>
 
@@ -88,6 +91,19 @@
 </head>
 
 <body class="hold-transition skin-blue-light layout-top-nav">
+
+<!-- Notifications -->
+<?php if (!empty($this->session->flashdata('ME_ERROR'))) : ?>
+    <script>
+        var msg = "<?= $this->session->flashdata('ME_ERROR') ?>";
+        swal("Oops...!", msg, "error")
+    </script>
+<?php elseif (!empty($this->session->flashdata('ME_SUCCESS'))) : ?>
+    <script>
+        var msg = "<?= $this->session->flashdata('ME_SUCCESS') ?>";
+        swal("SUCCESS!", msg, "success")
+    </script>
+<?php endif; ?>
 <div class="wrapper">
     <header class="main-header">
         <nav class="navbar navbar-static-top">

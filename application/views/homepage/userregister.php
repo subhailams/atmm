@@ -150,6 +150,9 @@
                             </div>
                             <!-- /.box-header -->
                             <!-- form start -->
+                            <?php if($_SESSION['formError']!=null): ?>
+                                <p><?= $_SESSION['formError']; $_SESSION['formError'] = null?></p>
+                            <?php endif; ?>
                             <form role="form" method="post" action="<?= base_url('index.php/homepage/register') ?>">
                                 <div class="box-body">
                                     <div class="row">
@@ -177,9 +180,10 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <?php echo form_error('UserName'); ?>
                                                 <label for="User Name"><?= $this->lang->line('user_name') ?></label>
                                                 <input type="text" class="form-control" id="UserName" name="UserName"
-                                                       placeholder="Enter User Name">
+                                                       placeholder="Enter User Name" value="<?php echo set_value('UserName'); ?>" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -193,9 +197,10 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <?php echo form_error('Password'); ?>
                                                 <label for="Password"><?= $this->lang->line('password') ?></label>
                                                 <input type="password" class="form-control" name="Password"
-                                                       placeholder="Enter Password">
+                                                       placeholder="Enter Password" value="<?php echo set_value('password'); ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -261,8 +266,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <?php echo form_error('AadhaarNumber'); ?>
                                                 <label for="Aadhaar Number"><?= $this->lang->line('aadhaar_number') ?></label>
-                                                <input type="number" class="form-control" id="Aadhaar Number"
+                                                <input type="number" class="form-control" id="AadhaarNumber"
                                                        name="AadhaarNumber" placeholder="Enter Aadhaar Number ">
                                             </div>
                                         </div>
@@ -284,11 +290,11 @@
         <!-- /.container -->
     </div>
     <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            Developed by <strong>RMK Engineering College</strong> and Designed by <a href="https://adminlte.io">Almsaeed
-                Studio</a>
-        </footer>
-    </div>
-    <!-- ./wrapper -->
+    <footer class="main-footer">
+        Developed by <strong>RMK Engineering College</strong> and Designed by <a href="https://adminlte.io">Almsaeed
+            Studio</a>
+    </footer>
+</div>
+<!-- ./wrapper -->
 </body>
 </html>

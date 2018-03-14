@@ -53,9 +53,10 @@ class Homepage extends MY_Controller {
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
             endif;
         else:
-            $this->session->set_flashdata('ME_ERROR', validation_errors());
+            $_SESSION['formError'] = validation_errors();
+            $this->session->set_flashdata('ME_FORM', "ERROR");
         endif;
-        redirect($_SERVER['HTTP_REFERER']);
+        $this->load->view('homepage/userregister');
     }
 
      public function login()
