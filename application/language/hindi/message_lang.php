@@ -39,11 +39,14 @@ $lang['case_details'] = 'केस विवरण';
 $lang['if_others'] = 'अगर अन्य';
 $lang['case_description'] ='केस विवरण';
 $lang['victim_name']='शिकार का नाम';
+$lang['offender_name']='अपराधी नाम';
 $lang['victim_details']='शिकार का नाम';
 $lang['case_management']='मामला प्रबंधन';
 $lang['offender_details']='अपराधी विवरण';
 $lang['offender_address'] = 'पता';
 $lang['victim_address']='पता';
+$lang['victimdob']='जन्म की तारीख';
+
 $lang['gender']='लिंग';
 $lang['offence_date']='अपराध की तारीख';
 $lang['status']='स्थिति';

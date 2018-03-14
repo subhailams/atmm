@@ -130,26 +130,28 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
                 );
                 break;
-           
+
             case "password":
                 $rules = array(
-                    array('field' => 'oldpassword','label' => 'Old Password', 'rules' => 'required'),
+                    array('field' => 'oldpassword', 'label' => 'Old Password', 'rules' => 'required'),
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
+
                     array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required'),
                 );break;
+
 
             case "login":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
                     array('field' => 'password', 'label' => 'Password', 'rules' => 'required'),
-                );break;
-                case "forgot":
+                );
+                break;
+            case "forgot":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
-                    array('field' => 'verificationcode', 'label' => 'Verification Code', 'rules' => 'required'),
-                    array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
-                    array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
-                );break;
+                    array('field' => 'mobilenumber', 'label' => 'Mobile Number', 'rules' => 'required'),
+                );
+                break;
 
 
             case "userreg":
@@ -186,12 +188,11 @@ class MY_Controller extends CI_Controller {
                 );
                 break;
             case "cases":
-
                 $rules = array(
                     array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required|alpha'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'victimaddress', 'label' => 'Address', 'rules' => 'required'),
-                    array('field' => 'victimaadhaar', 'label' => 'Aadhaar Number', 'rules' => 'required|integer|exact_length[12]'),
+                    array('field' => 'victimaadhaar', 'label' => 'Aadhaar Number', 'rules' => ''),
                     array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
                     array('field' => 'victimcity', 'label' => 'City', 'City' => 'required'),
                     array('field' => 'victimstate', 'label' => 'State', 'State' => 'required'),
@@ -201,9 +202,14 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'offendercity', 'label' => 'City', 'rules' => 'required'),
                     array('field' => 'ifothers', 'label' => 'If Others', 'rules' => 'max_length[100]'),
                     array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
-                    array('field' => 'offence_date', 'label' => 'Offence Date', 'rules' => 'required'),
+                    array('field' => 'offencedate', 'label' => 'Offence Date', 'rules' => 'required'),
                     array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
-                    array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|min_lenghth[10]|max_length[400]'));
+                    array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|min_length[10]|max_length[400]'),
+                    array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
+                    array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
+                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                );
+
                 break;
         }
         $this->form_validation->set_rules($rules);
@@ -237,20 +243,9 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function casessave() {
+
+    public function passwordchange() {
         $postData = $this->input->post();
-        if ($this->form_validation("cases")):
-            echo "<pre>";
-            print_r($postData);
-            exit();
-        else:
-            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
-        endif;
-        redirect($_SERVER['HTTP_REFERER']);
-    }
-        public function passwordchange() {
-        $postData = $this->input->post;
-        
         if ($this->form_validation("password")):
             echo "<pre>";
             print_r($postData);
@@ -261,10 +256,9 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    
-  
     public function forgotsave() {
         $postData = $this->input->post();
+
         if ($this->form_validation("forgot")):
             echo "<pre>";
             print_r($postData);
@@ -333,11 +327,12 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function casehistory($options = null) {
+    public function casehistory($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
+
                 break;
             default:
                 $caseregister = $this->getcase_register();
