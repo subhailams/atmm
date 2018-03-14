@@ -10,7 +10,7 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users" );
         $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id");
     }
 
