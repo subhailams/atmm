@@ -141,37 +141,38 @@ class User extends MY_Controller {
 
     public function UpdatePassword() {
         $postData = $this->input->post();
-        if (true):
-            //add to database
-            $condition = array("user_id" => "1", "password" => '1');
-            $select = "user_id as ID,email as EmailID";
-            $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-            echo "<pre>";
-            print_r(get_defined_vars($result));
-            exit();
+        if ($this->form_validation("password")):
+        //add to database
+        $condition = array("user_id" => "1", "password" => $postData['oldpassword']);
+        $select = "user_id as ID,email as EmailID";
+        $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+//       echo "<pre>";
+//       print_r(get_defined_vars($result));
+//       exit();
 
-            if (!empty($result)):
-                    $condition = array("user_id" => "1");
-                    $DBData = array("password"=>$postData['newPassword']);
+   if (!empty($result)):
+//                    echo "<pre>";
+//        print_r(get_defined_vars($result));
+//        exit();
 
-            else:
+        $condition = array("user_id" => "1");
+        $DBData = array("password" => $postData['newpassword']);
+        $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
 
-            endif;
-
-            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
-            if (!empty($response)):
-                $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
-                $Subject = "Atrocity Case Management - Your password has been updated.";
-                $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
-                $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
-            else:
-                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
-            endif;
-        else:
-            $_SESSION['formError'] = validation_errors();
-            $this->session->set_flashdata('ME_FORM', "ERROR");
+             if (!empty($response)):
+                  $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
+                  $Subject = "Atrocity Case Management - Your password has been updated.";
+                 // $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+                  $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
+             else:
+                  $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+             endif;
         endif;
-        $this->load->view('homepage/userregister');
+        else:
+             
+        $this->session->set_flashdata('ME_FORM', "ERROR");
+        endif;
+        $this->load->view('homepage/dashboard');
     }
 
 }

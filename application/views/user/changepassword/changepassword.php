@@ -27,43 +27,33 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form role="form" method="post" action="<?= base_url('index.php/user/UpdatePassword') ?> ">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?= $this->lang->line('old_password') ?></label>
+                                        <label for="Exampleinputoldpassword"><?= $this->lang->line('old_password') ?></label>
                                         <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Enter Old Password">
                                     </div>
                                 </div>
-
                             </div>
-
-
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="Password"><?= $this->lang->line('new_password') ?></label>
-                                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter New Password">
-                                    </div>
+                                        <label for="password"><?= $this->lang->line('new_password') ?></label>
+                                    </div>                                        <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Enter New Password">
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="Confirmation Password"><?= $this->lang->line('confirmation_password') ?></label>
-                                        <input type="password" class="form-control" id="ConfirmationPassword" name="ConfirmationPassword" placeholder="Enter Confirmation Password">
+                                        <label for="ConfirmationPassword"><?= $this->lang->line('confirmation_password') ?></label>
+                                        <input type="password" class="form-control" id="confirmationpassword" name="confirmationpassword" placeholder="Enter Confirmation Password">
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-
-                            
-
                             <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
 
                         </div>

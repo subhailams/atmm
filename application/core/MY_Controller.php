@@ -135,7 +135,7 @@ class MY_Controller extends CI_Controller {
                 $rules = array(
                     array('field' => 'oldpassword','label' => 'Old Password', 'rules' => 'required'),
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
-                    array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
+                    array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required'),
                 );break;
 
             case "login":
@@ -178,8 +178,8 @@ class MY_Controller extends CI_Controller {
                     array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
                     array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required|max_length[12]'),
                     array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|exact_length[10]|integer'),
-                    array('field' => 'City', 'label' => 'Name', 'City' => 'required'),
-                    array('field' => 'State', 'label' => 'Name', 'State' => 'required'),
+                    array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
+                    array('field' => 'State', 'label' => 'State', 'rules' => 'required'),
                     array('field' => 'Username', 'label' => 'User Name', 'rules' => 'required|max_length[35]'),
                     array('field' => 'Country', 'label' => 'Country', 'rules' => 'required'),
                     array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
@@ -249,7 +249,8 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
         public function passwordchange() {
-        $postData = $this->input->post();
+        $postData = $this->input->post;
+        
         if ($this->form_validation("password")):
             echo "<pre>";
             print_r($postData);
@@ -260,6 +261,7 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    
   
     public function forgotsave() {
         $postData = $this->input->post();
