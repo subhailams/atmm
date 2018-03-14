@@ -251,8 +251,6 @@ class MY_Controller extends CI_Controller {
     }
 
 
-<<<<<<< HEAD
-=======
     public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
@@ -265,9 +263,6 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-
-
->>>>>>> 0deba5c93c8be94fa6f20f7270b7000306a6260c
     public function passwordchange() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
