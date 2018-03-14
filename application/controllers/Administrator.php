@@ -78,7 +78,7 @@ class Administrator extends MY_Controller {
             case "cases":
                 $Condition = array();
                 $TableListname = "case";
-                $ColumnOrder = array('victimname', 'offendername', 'createdat', 'victimmobile', 'casestatus');
+                $ColumnOrder = array('victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
                 $ColumnSearch = array('victimname', 'victimmobile', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
                 break;
@@ -96,9 +96,9 @@ class Administrator extends MY_Controller {
             $no++;
             $row = array();
             $row[] = $logNotice->victimname;
+            $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->offendername;
             $row[] = $logNotice->createdat;
-            $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->casestatus;
             //add html for action
             if (strtolower($options) == "cases"):
