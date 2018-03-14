@@ -130,26 +130,27 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
                 );
                 break;
-           
+
             case "password":
                 $rules = array(
-                    array('field' => 'oldpassword','label' => 'Old Password', 'rules' => 'required'),
+                    array('field' => 'oldpassword', 'label' => 'Old Password', 'rules' => 'required'),
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
                     array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
-                );break;
+                );
+                break;
 
             case "login":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
                     array('field' => 'password', 'label' => 'Password', 'rules' => 'required'),
-                );break;
-                case "forgot":
+                );
+                break;
+            case "forgot":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
-                    array('field' => 'verificationcode', 'label' => 'Verification Code', 'rules' => 'required'),
-                    array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
-                    array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
-                );break;
+                    array('field' => 'mobilenumber', 'label' => 'Mobile Number', 'rules' => 'required'),
+                );
+                break;
 
 
             case "userreg":
@@ -206,7 +207,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
-                    );
+                );
 
                 break;
         }
@@ -241,7 +242,7 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-        public function passwordchange() {
+    public function passwordchange() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
             echo "<pre>";
@@ -253,9 +254,9 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-  
     public function forgotsave() {
         $postData = $this->input->post();
+
         if ($this->form_validation("forgot")):
             echo "<pre>";
             print_r($postData);
@@ -324,11 +325,12 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function casehistory($options = null,$id=null) {
+    public function casehistory($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
+
                 break;
             default:
                 $caseregister = $this->getcase_register();

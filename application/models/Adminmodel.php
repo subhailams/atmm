@@ -10,8 +10,8 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users","case"=>"cases");
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id","cases"=>"caseid");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "case" => "cases");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "cases" => "caseid");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
@@ -25,7 +25,7 @@ class Adminmodel extends CI_Model {
 
     public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = false) {
         $IPAdress = ($this->input->ip_address() === "::1") ? "127.0.0.1" : $this->input->ip_address();
-        $CrudDetails = $this->CSearch($Condition, $Select, $TableList, null,null,null,null,null,null);
+        $CrudDetails = $this->CSearch($Condition, $Select, $TableList, null, null, null, null, null, null);
         $TableName = $this->TableList[$TableList];
         $this->db->set($DBdata);
         if (!(empty($CrudDetails))) {
