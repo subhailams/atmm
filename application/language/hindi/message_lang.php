@@ -8,6 +8,8 @@
 /*hindi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'जमा करें';
+$lang['login']= 'लॉग इन';
+
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
 $lang['address1'] = 'पता 1';

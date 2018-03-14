@@ -180,7 +180,7 @@
                                 <!-- /.box-body -->
                                 <div class="box-footer">
                                     <button type="submit"
-                                            class="btn btn-primary"><?= $this->lang->line('register') ?></button>
+                                            class="btn btn-primary"><?= $this->lang->line('login') ?></button>
                                 </div>
                                 <!-- /.box -->
                         </div>

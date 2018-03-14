@@ -126,7 +126,7 @@ class Administrator extends MY_Controller
             case "cases":
                 $Condition = array();
                 $TableListname = "case";
-                $ColumnOrder = array('victimname', 'offendername', 'createdat', 'victimmobile', 'casestatus');
+                $ColumnOrder = array('victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
                 $ColumnSearch = array('victimname', 'victimmobile', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
                 break;

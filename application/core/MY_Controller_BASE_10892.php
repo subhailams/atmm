@@ -14,10 +14,11 @@ class MY_Controller extends CI_Controller {
         $config = array("question_format" => "numeric",
             "operation" => "addition");
         $this->mathcaptcha->init($config);
-        $userNameCnd = array("username" => $this->session->userdata("UserName"));
-        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
-        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
-        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));
+        $userNameCnd = array("stp_username" => $this->session->userdata("UserName"));
+        //$this->user = current($this->Adminmodel->CSearch($userNameCnd, "stp_username as UserName", "stp"));
+        //$this->userid = current($this->Adminmodel->CSearch($userNameCnd, "stp_id as UserId", "stp"));
+        //$this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "stp_role as UserRole", "stp", "", TRUE));
+        //$this->userDesg = current($this->Adminmodel->CSearch($userNameCnd, "des_name as Desgination", "stp", "", TRUE));
         date_default_timezone_set('Asia/Kolkata');
     }
 
@@ -50,29 +51,29 @@ class MY_Controller extends CI_Controller {
                 }
             }
         }
-        $CtrlRole = $this->db->where(array("user_id" => $_SESSION["UserId"]))->join("roles", "roleid=role")->get("users")->row_array();
-        if ((!empty($CtrlRole)) && (strtoupper($CtrlRole['rolename']) == strtoupper($Class))) {
+        $CtrlRole = $this->db->where(array("stp_id" => $_SESSION["UserId"]))->join("user_role", "role_id=stp_role")->get("staffprofile")->row_array();
+        if ((!empty($CtrlRole)) && ($CtrlRole['role_name'] == strtoupper($Class))) {
             if (strtoupper($_SESSION["UserRole"]) == strtoupper($Class)) {
                 return true;
             } else {
-                redirect("/index.php/" . strtolower($CtrlRole['rolename']) . "/index");
+                redirect("/" . strtolower($CtrlRole['role_name']) . "/logs");
             }
         } else {
-            if (!empty($CtrlRole['rolename'])) {
-                redirect("/index.php/" . strtolower($CtrlRole['rolename']) . "/index");
+            if (!empty($CtrlRole['role_name'])) {
+                redirect("/" . strtolower($CtrlRole['role_name']) . "/logs");
             } else {
                 redirect("/error/logs/InitiThrought");
             }
         }
     }
 
-    public function logout() {
+    public function Logout() {
         $this->session->sess_destroy();
         session_unset();
         session_destroy();
         $this->session->set_userdata("Auth", "Y");
-        $_SESSION = null;
-        exit($this->load->view("homepage/login", get_defined_vars(), true));
+
+        exit($this->load->view("error/login", get_defined_vars(), true));
     }
 
     public function accessdeined() {
@@ -250,6 +251,7 @@ class MY_Controller extends CI_Controller {
     }
 
 
+
     public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
@@ -261,6 +263,8 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
+
+
 
     public function passwordchange() {
         $postData = $this->input->post();
