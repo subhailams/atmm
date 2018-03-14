@@ -22,9 +22,7 @@
 
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/casessave") ?> ">
-
-
+                    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/caseregisterSave") ?> ">
                         <div class="box-body">
                             <h4><?= $this->lang->line('victim_details') ?></h4>  
                             <div class="row">
@@ -37,30 +35,20 @@
                                 </div>   
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="gender"><?= $this->lang->line('gender') ?><span style="color: red ">*</span></label>
-                                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                            <option selected="selected"><?= $this->lang->line('select_gender') ?></option>
-                                            <option><?= $this->lang->line('male') ?></option>
-                                            <option><?= $this->lang->line('female') ?></option>
-                                            <option><?= $this->lang->line('others') ?></option>
+                                        <label for="gender"><?= $this->lang->line('gender') ?></label>
+                                        <select class="form-control" id="gender" name="gender" placeholder="Select Gender">
+                                            <option>Select Gender</option>
+                                            <?php foreach ($this->db->where(array("gender_display" => "Y"))->order_by("gender_name", "asc")->get('gender')->result() as $detail) { ?>
+                                                <option value="<?= $detail->gender_id ?>"> <?= strtoupper($detail->gender_name) ?> </option>
+                                            <?php } ?>
+
                                         </select>
-                                        <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
-                                            <span class="selection">
-
-
-                                                <span class="select2-selection__arrow" role="presentation">
-                                                    <b role="presentation"></b>
-                                                </span>
-                                            </span>
-                                        </span>
-                                        <span class="dropdown-wrapper" aria-hidden="true"> </span>
-
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="email"><?= $this->lang->line('email_id') ?></label>
-                                        <input class="form-control" id="email" placeholder="Enter Email id" type="text" name="victimemail">
+                                        <input class="form-control" id="email" placeholder="Enter Email id" type="email" name="victimemail">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -72,11 +60,18 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-9">
                                     <div class="form-group">
                                         <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?><span style="color: red ">*</span></label>
                                         <input type="text" class="form-control" id="aadhar" name="victimaadhar"
                                                placeholder="Enter Aadhaar No">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="dob"><?= $this->lang->line('victimdob') ?><span style="color: red ">*</span></label>
+                                        <input type="date" class="form-control" id="dob" name="victimdob"
+                                               placeholder="Enter date of birth">
                                     </div>
                                 </div>
                             </div>
@@ -122,24 +117,14 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="gender"><?= $this->lang->line('gender') ?><span style="color: red ">*</span></label>
-                                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                           <option selected="selected"><?= $this->lang->line('select_gender') ?></option>
-                                            <option><?= $this->lang->line('male') ?></option>
-                                            <option><?= $this->lang->line('female') ?></option>
-                                            <option><?= $this->lang->line('others') ?></option>
+                                        <label for="gender"><?= $this->lang->line('gender') ?></label>
+                                        <select class="form-control" id="gender" name="gender" placeholder="Select Gender">
+                                            <option>Select Gender</option>
+                                            <?php foreach ($this->db->where(array("gender_display" => "Y"))->order_by("gender_name", "asc")->get('gender')->result() as $detail) { ?>
+                                                <option value="<?= $detail->gender_id ?>"> <?= strtoupper($detail->gender_name) ?> </option>
+                                            <?php } ?>                         
+
                                         </select>
-                                        <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
-                                            <span class="selection">
-
-
-                                                <span class="select2-selection__arrow" role="presentation">
-                                                    <b role="presentation"></b>
-                                                </span>
-                                            </span>
-                                        </span>
-                                        <span class="dropdown-wrapper" aria-hidden="true"> </span>
-
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -150,13 +135,15 @@
 
                                     </div>
                                 </div>
-
-
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="emailid"><?= $this->lang->line('email_id') ?></label>
+                                        <input type="email" class="form-control" id="emailid" name="offenderemail"
+                                               placeholder="Enter  emailid">
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="row">    
-
-
+                            <div class="row">   
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Address"><?= $this->lang->line('offender_address') ?><span style="color: red ">*</span></label>
@@ -189,15 +176,11 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label>  </label>
-                                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                            <option selected="selected">select details</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                            <option>Delaware</option>
-                                            <option>Tennessee</option>
-                                            <option>Texas</option>
-                                            <option>Washington</option>
-                                            <option>Others</option>
+                                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="offenece">
+                                            <option>Select offenses from List</option>
+                                            <?php foreach ($this->db->where(array("offshow" => "Y"))->order_by("offid", "asc")->get('offences_master')->result() as $detail) { ?>
+                                                <option value="<?= $detail->offid ?>"> <?= strtoupper($detail->offname) ?> </option>
+                                            <?php } ?>  
                                         </select>
                                         <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
                                             <span class="selection">

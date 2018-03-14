@@ -21,9 +21,9 @@
                             <thead>
                                 <tr role="row">
                                     <th> <?= $this->lang->line('victim_name') ?></th>
-                                    <th> <?= $this->lang->line('offence_date') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
-                                    <th> <?= $this->lang->line('email_id') ?></th>
+                                    <th> <?= $this->lang->line('offender_name') ?></th>
+                                    <th> <?= $this->lang->line('offence_date') ?></th>
                                     <th> <?= $this->lang->line('status') ?></th>
                                     <th> <?= $this->lang->line('actions') ?></th>
                                 </tr>
@@ -53,7 +53,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "",
+                "url": "<?= base_url('index.php/administrator/ajax_list/cases') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.

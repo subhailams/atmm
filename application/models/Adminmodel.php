@@ -10,8 +10,8 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users");
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users","case"=>"cases");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id","cases"=>"caseid");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
@@ -30,16 +30,16 @@ class Adminmodel extends CI_Model {
         $this->db->set($DBdata);
         if (!(empty($CrudDetails))) {
             $this->db->where($Condition);
-            $this->db->set("updatedBy", $_SESSION["UserFullName"]);
-            $this->db->set("updatedAt", "CURRENT_TIMESTAMP", false);
-            $this->db->set("updatedIP", ip2long($IPAdress), false);
+            $this->db->set("updatedby", $_SESSION["UserFullName"]);
+            $this->db->set("updatedat", "CURRENT_TIMESTAMP", false);
+            $this->db->set("updatedip", ip2long($IPAdress), false);
             $this->db->update($TableName);
             return $CrudDetails[$this->SeqID[$TableName]];
         } else {
             $this->db->set($Condition);
-            $this->db->set("createdBy", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
-            $this->db->set("createdAt", "CURRENT_TIMESTAMP", false);
-            $this->db->set("createdIP", ip2long($IPAdress), false);
+            $this->db->set("createdby", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
+            $this->db->set("createdat", "CURRENT_TIMESTAMP", false);
+            $this->db->set("createdip", ip2long($IPAdress), false);
             $this->db->insert($TableName);
             return $this->db->insert_id();
         }
