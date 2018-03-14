@@ -127,7 +127,7 @@ class MY_Controller extends CI_Controller {
                 break;
             case "casehistory":
                 $rules = array(
-                    array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
+                    array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|max_length[400]'),
                 );
                 break;
 
@@ -233,9 +233,8 @@ class MY_Controller extends CI_Controller {
     public function casehistorysave() {
         $postData = $this->input->post();
         if ($this->form_validation("casehistory")):
-            echo "<pre>";
-            print_r($postData);
-            exit();
+             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation SUCCESSFUL');
+           
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
