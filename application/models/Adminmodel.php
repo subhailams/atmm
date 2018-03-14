@@ -30,7 +30,7 @@ class Adminmodel extends CI_Model {
         $this->db->set($DBdata);
         if (!(empty($CrudDetails))) {
             $this->db->where($Condition);
-            $this->db->set("updatedBy", $_SESSION["UserFullName"]);
+            $this->db->set("updatedBy", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
             $this->db->set("updatedAt", "CURRENT_TIMESTAMP", false);
             $this->db->set("updatedIP", ip2long($IPAdress), false);
             $this->db->update($TableName);
