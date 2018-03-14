@@ -336,6 +336,7 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
+                
                 break;
             default:
                 $caseregister = $this->getcase_register();
