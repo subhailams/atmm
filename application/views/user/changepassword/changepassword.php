@@ -33,7 +33,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="Exampleinputoldpassword"><?= $this->lang->line('old_password') ?></label>
-                                        <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Enter Old Password">
+                                        <input type="password" class="form-control" id="oldpassword" name="oldpassword"
+                                               placeholder="Enter Old Password">
                                     </div>
                                 </div>
                             </div>
@@ -41,12 +42,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="password"><?= $this->lang->line('new_password') ?></label>
-                                    </div>                                        <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Enter New Password">
+                                        <input type="password" class="form-control" id="newpassword" name="newpassword"
+                                               placeholder="Enter New Password">
+                                    </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="ConfirmationPassword"><?= $this->lang->line('confirmation_password') ?></label>
-                                        <input type="password" class="form-control" id="confirmationpassword" name="confirmationpassword" placeholder="Enter Confirmation Password">
+                                        <input type="password" class="form-control" id="confirmationpassword"
+                                               name="confirmationpassword" placeholder="Enter Confirmation Password">
                                     </div>
                                 </div>
                             </div>
