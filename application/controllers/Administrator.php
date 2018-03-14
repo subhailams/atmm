@@ -150,6 +150,8 @@ class Administrator extends MY_Controller {
         $select = "id as ID, errstr as ErrorString, time as Time";
         return $this->Adminmodel->CSearch($condition, $select, "log", "Y", "Y", "", "", "", "", "");
     }
+    
+
 
     public function caseregisterSave() {
         $postData = $this->input->post();

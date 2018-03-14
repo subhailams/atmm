@@ -127,7 +127,7 @@ class MY_Controller extends CI_Controller {
                 break;
             case "casehistory":
                 $rules = array(
-                    array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
+                    array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|max_length[400]'),
                 );
                 break;
 
@@ -149,7 +149,13 @@ class MY_Controller extends CI_Controller {
             case "forgot":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
+
+                    array('field' => 'verificationcode', 'label' => 'Verification Code', 'rules' => 'required'),
+                    array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
+                    array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
+
                     array('field' => 'mobilenumber', 'label' => 'Mobile Number', 'rules' => 'required'),
+
                 );
                 break;
 
@@ -233,6 +239,7 @@ class MY_Controller extends CI_Controller {
 
     public function casehistorysave() {
         $postData = $this->input->post();
+
         if ($this->form_validation("casehistory")):
             echo "<pre>";
             print_r($postData);
@@ -244,6 +251,23 @@ class MY_Controller extends CI_Controller {
     }
 
 
+<<<<<<< HEAD
+=======
+    public function casessave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("cases")):
+            echo "<pre>";
+            print_r($postData);
+            exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+
+
+>>>>>>> 0deba5c93c8be94fa6f20f7270b7000306a6260c
     public function passwordchange() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
@@ -333,13 +357,58 @@ class MY_Controller extends CI_Controller {
             case "show";
                 $render = "casehistory";
 
+               /*$postData = $this->input->post();
+                if ($this->form_validation("casehistory")):
+                    //add to database
+                    $condition = array("casehistoryid"=>"");
+                    $select = "casehistoryid as casehisid";
+                    $result = $this->Adminmodel->CSearch($condition, $select, "casehis", "", "", "", "", "", "", "");
+                    echo "<pre>";
+                    print_r(get_defined_vars($result));
+                    exit();
+
+                    if (!empty($result)):
+                        $condition = array("casehistoryid" => "");
+                        $DBData = array("password" => $postData['newPassword']);
+
+                    else:
+
+                    endif;
+
+                    $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+                    if (!empty($response)):
+                        $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
+                        $Subject = "Atrocity Case Management - Your password has been updated.";
+                        $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+                        $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
+                    else:
+                        $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+                    endif;
+                else:
+                    $_SESSION['formError'] = validation_errors();
+                    $this->session->set_flashdata('ME_FORM', "ERROR");
+                endif;
+                $this->load->view('administrator/casehistory/casehistory');
+                */
+
+
                 break;
             default:
                 $caseregister = $this->getcase_register();
                 $caseallcases = $this->getcase_allcases();
                 $casehistory = $this->getcase_casehistory();
                 $render = "cases";
+
                 break;
+
+       
+        
+        default:
+        $caseregister = $this->getcase_register();
+        $caseallcases = $this->getcase_allcases();
+        $casehistory = $this->getcase_casehistory();
+        $render = "cases";
+        break;
         }
         $this->render($render, get_defined_vars());
     }
