@@ -250,9 +250,6 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-
-<<<<<<< HEAD
-=======
     public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
@@ -264,10 +261,6 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
-
-
-
->>>>>>> 0deba5c93c8be94fa6f20f7270b7000306a6260c
     public function passwordchange() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
@@ -356,7 +349,6 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
-
                /*$postData = $this->input->post();
                 if ($this->form_validation("casehistory")):
                     //add to database
@@ -391,18 +383,8 @@ class MY_Controller extends CI_Controller {
                 $this->load->view('administrator/casehistory/casehistory');
                 */
 
-
-                break;
-            default:
-                $caseregister = $this->getcase_register();
-                $caseallcases = $this->getcase_allcases();
-                $casehistory = $this->getcase_casehistory();
-                $render = "cases";
-
                 break;
 
-       
-        
         default:
         $caseregister = $this->getcase_register();
         $caseallcases = $this->getcase_allcases();
