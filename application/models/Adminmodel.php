@@ -10,8 +10,8 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users" );
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users" ,"casehis" => "casehistory");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {

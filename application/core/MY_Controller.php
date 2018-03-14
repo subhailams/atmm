@@ -127,29 +127,32 @@ class MY_Controller extends CI_Controller {
                 break;
             case "casehistory":
                 $rules = array(
-                    array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|exact_length[400]'),
+                    array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|max_length[400]'),
                 );
                 break;
-           
+
             case "password":
                 $rules = array(
-                    array('field' => 'oldpassword','label' => 'Old Password', 'rules' => 'required'),
+                    array('field' => 'oldpassword', 'label' => 'Old Password', 'rules' => 'required'),
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
                     array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
-                );break;
+                );
+                break;
 
             case "login":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
                     array('field' => 'password', 'label' => 'Password', 'rules' => 'required'),
-                );break;
-                case "forgot":
+                );
+                break;
+            case "forgot":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
                     array('field' => 'verificationcode', 'label' => 'Verification Code', 'rules' => 'required'),
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
                     array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
-                );break;
+                );
+                break;
 
 
             case "userreg":
@@ -227,6 +230,7 @@ class MY_Controller extends CI_Controller {
 
     public function casehistorysave() {
         $postData = $this->input->post();
+
         if ($this->form_validation("casehistory")):
             echo "<pre>";
             print_r($postData);
@@ -248,7 +252,8 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
-        public function passwordchange() {
+
+    public function passwordchange() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
             echo "<pre>";
@@ -260,7 +265,6 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-  
     public function forgotsave() {
         $postData = $this->input->post();
         if ($this->form_validation("forgot")):
@@ -336,14 +340,49 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
-                
+               /*$postData = $this->input->post();
+                if ($this->form_validation("casehistory")):
+                    //add to database
+                    $condition = array("casehistoryid"=>"");
+                    $select = "casehistoryid as casehisid";
+                    $result = $this->Adminmodel->CSearch($condition, $select, "casehis", "", "", "", "", "", "", "");
+                    echo "<pre>";
+                    print_r(get_defined_vars($result));
+                    exit();
+
+                    if (!empty($result)):
+                        $condition = array("casehistoryid" => "");
+                        $DBData = array("password" => $postData['newPassword']);
+
+                    else:
+
+                    endif;
+
+                    $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+                    if (!empty($response)):
+                        $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
+                        $Subject = "Atrocity Case Management - Your password has been updated.";
+                        $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+                        $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
+                    else:
+                        $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+                    endif;
+                else:
+                    $_SESSION['formError'] = validation_errors();
+                    $this->session->set_flashdata('ME_FORM', "ERROR");
+                endif;
+                $this->load->view('administrator/casehistory/casehistory');
+                */
                 break;
-            default:
-                $caseregister = $this->getcase_register();
-                $caseallcases = $this->getcase_allcases();
-                $casehistory = $this->getcase_casehistory();
-                $render = "cases";
-                break;
+
+       
+        
+        default:
+        $caseregister = $this->getcase_register();
+        $caseallcases = $this->getcase_allcases();
+        $casehistory = $this->getcase_casehistory();
+        $render = "cases";
+        break;
         }
         $this->render($render, get_defined_vars());
     }
