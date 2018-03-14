@@ -1,6 +1,6 @@
 <div class="content-wrapper"> 
     <section class="content-header">
-        <h1>Case History</h1>
+        <h1><?= $this->lang->line('casehistory') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>

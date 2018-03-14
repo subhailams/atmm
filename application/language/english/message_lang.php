@@ -57,6 +57,7 @@ $lang['notice'] = 'Notice';
 
 /* case history starts here */
  $lang['post']='Post';
+ $lang['casehistory']='Case History';
  $lang['postedby']='Posted by';
  $lang['commenthere']='Please enter your comment here';
  $lang['typeyourcommenthere']='Type your comment here';

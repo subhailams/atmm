@@ -65,6 +65,7 @@ $lang['notice'] = 'नोटिस';
 /* Log Managment Ends Here */
 /* case history starts here */
  $lang['post']='जमा करें';
+ $lang['casehistory']='मामले का इतिहास';
  $lang['postedby']='द्वारा प्रकाशित किया गया था';
  $lang['commenthere']='यहां टिप्पणी करें';
  $lang['typeyourcommenthere']='अपनी टिप्पणी यहां टाइप करें';
