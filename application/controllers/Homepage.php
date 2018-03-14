@@ -17,7 +17,7 @@ class Homepage extends MY_Controller {
     public function email() {
         $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
         $Subject = "Atrocity Case Management - New Account Created";
-        $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject,"");
+        $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject, "");
     }
 
     public function userregister() {
@@ -47,7 +47,7 @@ class Homepage extends MY_Controller {
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Account Created";
-                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject,"");
+                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'User Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -59,13 +59,42 @@ class Homepage extends MY_Controller {
         $this->load->view('homepage/userregister');
     }
 
-     public function login()
-    {
+    public function forgotpasswordsave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("forgot")):
+            //add to database
+            $condition = array("email" => $postData['emailid'], "mobilenumber" => $postData['mobilenumber']);
+            $select = "mobilenumber as MobileNumber,email as EmailID,user_id as UID";
+            $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+            if (!empty($result)):
+                $RandomPassword = randomgen(100000, 999999, 1);
+                $condition = array("user_id" => $result['UID']);
+                $DBData = array("password" => $RandomPassword[0]);
+                $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
+                if (!empty($response)):
+                    $Message = $this->load->view("emaillayouts/forgotpass", get_defined_vars(), true);
+                    $Subject = "Atrocity Case Managment - Password Reset";
+                    //$this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+                    $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
+                else:
+                    $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Contact Adminsitrator');
+                endif;
+            else:
+                $this->session->set_flashdata('ME_ERROR', 'Your data not matched with our records');
+            endif;
+        else:
+            $_SESSION['formError'] = validation_errors();
+            $this->session->set_flashdata('ME_FORM', "ERROR");
+        endif;
+        $this->load->view('homepage/dashboard');
+    }
+
+    public function login() {
         $this->load->view('homepage/login');
     }
-     public function forgot()
-    {
+
+    public function forgotpassword() {
         $this->load->view('homepage/forgotpassword');
     }
-}
 
+}
