@@ -72,16 +72,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $active_record = TRUE;
-
-if (SysRun == "Local") {
-    $db['default']['username'] = 'root';
-    $db['default']['password'] = '';
-    $db['default']['database'] = 'atrocity';
-} else {
-    $db['default']['username'] = 'root';
-    $db['default']['password'] = '';
-    $db['default']['database'] = 'atrocity';
-}
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'atrocity';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['hostname'] = 'localhost';
 $db['default']['dbprefix'] = '';

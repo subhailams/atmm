@@ -2,7 +2,7 @@
 /*english language*/
 $lang['mobile_number'] = 'Mobile Number';
 $lang['submit'] = 'Submit';
-$lang['confirmation_password'] = 'Confirmation Password';
+$lang['login']= 'Log In';
 $lang['name'] = 'Name';
 $lang['select'] = 'Select';
 $lang['email_id'] = 'Email ID';
