@@ -211,11 +211,11 @@ class MY_Controller extends CI_Controller
                     array('field' => 'ifothers', 'label' => 'If Others', 'rules' => 'max_length[100]'),
                     array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
                     array('field' => 'offencedate', 'label' => 'Offence Date', 'rules' => 'required'),
-                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                    array('field' => 'victimgender', 'label' => 'Gender', 'rules' => 'required'),
                     array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|min_length[10]|max_length[400]'),
                     array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                    array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
                 );
                 break;
         }
