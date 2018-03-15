@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?><span style="color: red ">*</span></label>
+                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?></label>
                                         <input type="text" class="form-control" id="aadhar" name="victimaadhar"
                                                placeholder="Enter Aadhaar No">
                                     </div>
