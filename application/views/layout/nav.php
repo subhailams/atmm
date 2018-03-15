@@ -83,47 +83,59 @@
                     </span>
                 </a>
             </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>User Management</span>
-                    <span class="pull-right-container">
+            <?php if (strtoupper($_SESSION['UserRoleName']) == "ADMINISTRATOR"): ?>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <span>User Management</span>
+                        <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
-                                    class="fa fa-circle-o"></i> Update Profile</a></li>
-                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
-                                    class="fa fa-circle-o"></i> Change Password</a></li>
-                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
-                                    class="fa fa-circle-o"></i> Important Contacts</a></li>
-
-                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
-                                    class="fa fa-circle-o"></i>Offences and Punishments</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-black-tie"></i>
-                    <span>Role Management</span>
-                    <span class="pull-right-container">
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
+                                        class="fa fa-circle-o"></i> Update Profile</a></li>
+                        <li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
+                                        class="fa fa-circle-o"></i> Change Password</a></li>
+                        <li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
+                                        class="fa fa-circle-o"></i> Important Contacts</a></li>
+                        <li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
+                                        class="fa fa-circle-o"></i>Offences and Punishments</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-black-tie"></i>
+                        <span>Role Management</span>
+                        <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Create New Role</a></li>
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Role Users</a></li>
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> All Roles</a></li>
-                </ul>
-            </li>
-
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Create New Role</a></li>
+                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Role Users</a></li>
+                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> All Roles</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-gears"></i>
+                        <span>Admin Management</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
+                                        class="fa fa-circle-o"></i> Show Logs</a></li>
+                    </ul>
+                </li>
+            <?php endif; ?>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-paper-plane"></i>
@@ -151,20 +163,6 @@
                     <span class="pull-right-container">
                     </span>
                 </a>
-            </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-gears"></i>
-                    <span>Admin Management</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
-                                    class="fa fa-circle-o"></i> Show Logs</a></li>
-                </ul>
             </li>
             <li>
                 <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logout") ?>">

@@ -140,17 +140,13 @@ class MY_Controller extends CI_Controller
                     array('field' => 'casehistory', 'label' => 'Case History ', 'rules' => 'required|max_length[400]'),
                 );
                 break;
-
             case "password":
                 $rules = array(
                     array('field' => 'oldpassword', 'label' => 'Old Password', 'rules' => 'required'),
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
-
                     array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required'),
                 );
                 break;
-
-
             case "login":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
@@ -160,17 +156,12 @@ class MY_Controller extends CI_Controller
             case "forgot":
                 $rules = array(
                     array('field' => 'emailid', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
-
                     array('field' => 'verificationcode', 'label' => 'Verification Code', 'rules' => 'required'),
                     array('field' => 'newpassword', 'label' => 'New Password', 'rules' => 'required'),
                     array('field' => 'confirmationpassword', 'label' => 'Confirmation Password', 'rules' => 'required|match[newpassword]'),
-
                     array('field' => 'mobilenumber', 'label' => 'Mobile Number', 'rules' => 'required'),
-
                 );
                 break;
-
-
             case "userreg":
                 $rules = array(
                     array('field' => 'PersonName', 'label' => 'Person Name', 'rules' => 'required|max_length[30]|alpha'),
@@ -226,7 +217,6 @@ class MY_Controller extends CI_Controller
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
                 );
-
                 break;
         }
         $this->form_validation->set_rules($rules);

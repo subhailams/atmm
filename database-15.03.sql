@@ -34,7 +34,7 @@ CREATE TABLE `case_status_master` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`case_status_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='This table contains case status master information';
@@ -70,7 +70,7 @@ CREATE TABLE `casehistory` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`casehistoryid`),
   KEY `case_ref_idx` (`caseid`),
@@ -126,7 +126,7 @@ CREATE TABLE `cases` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`caseid`),
   KEY `user_ref_idx` (`userid`,`victimgender`),
@@ -175,7 +175,7 @@ CREATE TABLE `gender` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`gender_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COMMENT='Master Table for Gender Details';
@@ -278,7 +278,7 @@ CREATE TABLE `offences_master` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`offid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Contains all offenses';
@@ -315,7 +315,7 @@ CREATE TABLE `privatemessages` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`msgid`),
   KEY `message_from_user_idx` (`msgfrom`),
@@ -354,7 +354,7 @@ CREATE TABLE `roles` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`roleid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -401,7 +401,7 @@ CREATE TABLE `users` (
   `updatedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedip` varchar(45) DEFAULT NULL,
   `deletedby` varchar(45) DEFAULT NULL,
-  `deletedat` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `role_ref_idx` (`role`),
@@ -428,4 +428,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-14 22:55:20
+-- Dump completed on 2018-03-15  7:33:37

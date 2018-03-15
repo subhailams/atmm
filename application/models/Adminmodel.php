@@ -89,6 +89,25 @@ class Adminmodel extends CI_Model
                     "roles" => "roleid=role"
                 );
                 break;
+            case "cases":
+                $JoinTable = array(
+                    "users" => "users.user_id=userid",
+                    "offences_master" => "offences_master.offid=offid",
+                    "offences_master" => "offences_master.offid=offid",
+                    "offences_master" => "offences_master.offid=offid",
+                    "users" => "users.user_id=policeassignedto",
+                    "users" => "users.user_id=organizationassignedto",
+                    "gender" => "gender.gender_id=victimgender",
+                    "gender" => "gender.gender_id=offendergender",
+                    "case_status_master" => "case_status_master.case_status_id=casestatus",
+                );
+                break;
+            case "casehistory":
+                $JoinTable = array(
+                    "cases" => "cases.caseid=caseid",
+                    "users" => "users.user_id=userid",
+                );
+                break;
         }
         if (!empty($JoinTable)) {
             foreach ($JoinTable as $key => $val) {

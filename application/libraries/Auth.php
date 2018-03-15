@@ -43,7 +43,6 @@ class Auth
                 $this->obj->session->set_userdata('site_lang', "english");
                 $_SESSION = $this->obj->session->userdata;
 
-
                 return true;
             else:
                 $Error = "User Name or Password is not match";
