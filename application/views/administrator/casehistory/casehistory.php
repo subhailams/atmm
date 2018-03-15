@@ -67,7 +67,4 @@
             <!-- /.col-->
         </div>
 </div>
-</div>
-</section>
-</div>
 
