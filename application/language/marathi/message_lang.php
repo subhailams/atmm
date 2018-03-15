@@ -3,7 +3,7 @@
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
 $lang['login']= 'लॉगइन';
-
+$lang['signup'] = 'साइनअप';
 $lang['select'] = 'निवडा';
 $lang['name'] = 'नाव';
 $lang['select'] = 'निवडा';
