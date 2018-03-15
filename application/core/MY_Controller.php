@@ -3,11 +3,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class MY_Controller extends CI_Controller
-{
+class MY_Controller extends CI_Controller {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
         $this->lang->load('message', $this->session->userdata('site_lang'));
         $this->layoutfolder = $this->config->item("layoutfolder");
@@ -23,8 +21,7 @@ class MY_Controller extends CI_Controller
         date_default_timezone_set('Asia/Kolkata');
     }
 
-    protected function UserFrom()
-    {
+    protected function UserFrom() {
         if ($this->agent->is_browser()) {
             return $this->UserAcess = $this->agent->platform() . ' and ' . $this->agent->browser() . ' - ' . $this->agent->version();
         } elseif ($this->agent->is_robot()) {
@@ -36,15 +33,13 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    public function render($Render, $RenderData = null)
-    {
+    public function render($Render, $RenderData = null) {
         $Layout = "layout/body";
         $this->render = $Render;
         $this->load->view($Layout, $RenderData);
     }
 
-    public function Inti($Class)
-    {
+    public function Inti($Class) {
         $ClassNo = array(array("register"), "homepage" => array("forgotpwd"));
         if (!(in_array($this->router->fetch_method(), $ClassNo[$Class]))) {
             if (empty($_SESSION["UserId"])) {
@@ -71,8 +66,7 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    public function logout()
-    {
+    public function logout() {
         $this->session->sess_destroy();
         session_unset();
         session_destroy();
@@ -81,13 +75,11 @@ class MY_Controller extends CI_Controller
         exit($this->load->view("homepage/login", get_defined_vars(), true));
     }
 
-    public function accessdeined()
-    {
+    public function accessdeined() {
         $this->render("accessdeined", get_defined_vars());
     }
 
-    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc)
-    {
+    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc) {
         try {
             $mail = $this->emailConfig();
             $mail->setFrom('atrocitymgnt@gmail.com', 'Atrocity Case Management');
@@ -105,8 +97,7 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    protected function emailConfig()
-    {
+    protected function emailConfig() {
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
         $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
@@ -116,8 +107,7 @@ class MY_Controller extends CI_Controller
         return $mail;
     }
 
-    public function forms($option)
-    {
+    public function forms($option) {
         switch (strtolower($option)):
             case "password_reset":
                 $this->render(strtolower($option), get_defined_vars());
@@ -127,8 +117,7 @@ class MY_Controller extends CI_Controller
 
     /* Form Validation Starts Here */
 
-    public function form_validation($option)
-    {
+    public function form_validation($option) {
         switch (strtolower($option)) {
             case "user":
                 $rules = array(
@@ -211,11 +200,11 @@ class MY_Controller extends CI_Controller
                     array('field' => 'ifothers', 'label' => 'If Others', 'rules' => 'max_length[100]'),
                     array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
                     array('field' => 'offencedate', 'label' => 'Offence Date', 'rules' => 'required'),
-                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                    array('field' => 'victimgender', 'label' => 'Gender', 'rules' => 'required'),
                     array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|min_length[10]|max_length[400]'),
                     array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                    array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
                 );
                 break;
         }
@@ -228,34 +217,39 @@ class MY_Controller extends CI_Controller
     }
 
     /* Form Validation Ends Here */
-
-    public function addtoDB()
-    {
+//
+    public function addtoDB() {
         $postData = $this->input->post();
         if ($this->form_validation("casehistory")):
-            //logic
+        //logic
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
     }
 
-    public function casehistorysave()
-    {
+    public function casehistorysave() {
         $postData = $this->input->post();
 
-        if ($this->form_validation("casehistory")):
-            echo "<pre>";
-            print_r($postData);
-            exit();
-        else:
-            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+            if ($this->form_validation("casehistory")):
+
+            $condition = array("caseid" => 6);
+            $select = "victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail , victimaadhar as VictimAadhar , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , offendermobile as OffenderMobile , casedescription as CaseDescription ";
+            $result = $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
+            
+            
+            if(!empty($result)):
+            $condition = array("casehistoryid" => "","userid"=> 1,"caseid" => 6);
+            $DBData = array("casehistorydesc" => $postData['casehistory']);
+            $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+
+            
+            endif;
+
         endif;
-        redirect($_SERVER['HTTP_REFERER']);
+         redirect($_SERVER['HTTP_REFERER']);
     }
 
-
-    public function casessave()
-    {
+    public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             echo "<pre>";
@@ -267,8 +261,7 @@ class MY_Controller extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function passwordchange()
-    {
+    public function passwordchange() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
             echo "<pre>";
@@ -280,8 +273,7 @@ class MY_Controller extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function forgotsave()
-    {
+    public function forgotsave() {
         $postData = $this->input->post();
 
         if ($this->form_validation("forgot")):
@@ -294,8 +286,7 @@ class MY_Controller extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function loginsave()
-    {
+    public function loginsave() {
         $postData = $this->input->post();
         if ($this->form_validation("login")):
             echo "<pre>";
@@ -307,8 +298,7 @@ class MY_Controller extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function userregister()
-    {
+    public function userregister() {
         $postData = $this->input->post();
         if ($this->form_validation("userreg")):
             echo "<pre>";
@@ -320,8 +310,7 @@ class MY_Controller extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function profilesave()
-    {
+    public function profilesave() {
         $postData = $this->input->post();
         if ($this->form_validation("profile")):
             echo "<pre>";
@@ -333,8 +322,7 @@ class MY_Controller extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function cases($options = null)
-    {
+    public function cases($options = null) {
         $render = "";
         switch (strtolower($options)) {
             case "newcase";
@@ -356,48 +344,11 @@ class MY_Controller extends CI_Controller
         $this->render($render, get_defined_vars());
     }
 
-    public function casehistory($options = null, $id = null)
-    {
+    public function casehistory($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
-
-                /*$postData = $this->input->post();
-                 if ($this->form_validation("casehistory")):
-                     //add to database
-                     $condition = array("casehistoryid"=>"");
-                     $select = "casehistoryid as casehisid";
-                     $result = $this->Adminmodel->CSearch($condition, $select, "casehis", "", "", "", "", "", "", "");
-                     echo "<pre>";
-                     print_r(get_defined_vars($result));
-                     exit();
-
-                     if (!empty($result)):
-                         $condition = array("casehistoryid" => "");
-                         $DBData = array("password" => $postData['newPassword']);
-
-                     else:
-
-                     endif;
-
-                     $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
-                     if (!empty($response)):
-                         $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
-                         $Subject = "Atrocity Case Management - Your password has been updated.";
-                         $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
-                         $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
-                     else:
-                         $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
-                     endif;
-                 else:
-                     $_SESSION['formError'] = validation_errors();
-                     $this->session->set_flashdata('ME_FORM', "ERROR");
-                 endif;
-                 $this->load->view('administrator/casehistory/casehistory');
-                 */
-
-
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -409,8 +360,7 @@ class MY_Controller extends CI_Controller
         $this->render($render, get_defined_vars());
     }
 
-    public function email($options = null)
-    {
+    public function email($options = null) {
         $render = "";
         switch (strtolower($options)) {
             case "show";
