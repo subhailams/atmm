@@ -501,17 +501,20 @@
                                                         <div class="vticker" style="position: relative; height: 196px; overflow: hidden;">
                                                             <ul style="margin: 0px; position: absolute; top: 0px;">		
                                                                 <br>
-                                                                <li style="margin: 0px;"><span class="blueSpan">1. Sir, Accused Kumar in FIR No 20/2018 under P.S.(ammapet) not yet arrested. Kindly direct the concerned officials to arrest them.NCSPOA-New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">1. Sir, Accused Kumar in FIR No 20/2018 under P.S.(ammapet) not yet arrested. Kindly direct the concerned officials to arrest them.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">2. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.NCSPOA
-                                                                        -New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">2. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">3. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.NCSPOA
-                                                                        -New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">3. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">4. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.NCSPOA-New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">4. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">5. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.NCSPOA-New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">5. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
+                                                                        -Maharashtra.</span></li>
 
 
 
@@ -544,34 +547,7 @@
 
 
 
-                    <section class="content">
-                        <div class="callout callout-info">
-                            <h4>Tip!</h4>
-
-                            <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used
-                                with a
-                                sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and
-                                use regular
-                                links instead.</p>
-                        </div>
-                        <div class="callout callout-danger">
-                            <h4>Warning!</h4>
-
-                            <p>The construction of this layout differs from the normal one. In other words, the HTML markup of
-                                the navbar
-                                and the content will slightly differ than that of the normal layout.</p>
-                        </div>
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Blank Box</h3>
-                            </div>
-                            <div class="box-body">
-                                The great content goes here
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
-                    </section>
+                 
                     <!-- /.content -->
                 </div>
                 <!-- /.container -->
