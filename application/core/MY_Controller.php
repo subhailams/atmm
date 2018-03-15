@@ -3,9 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class MY_Controller extends CI_Controller {
+class MY_Controller extends CI_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->lang->load('message', $this->session->userdata('site_lang'));
         $this->layoutfolder = $this->config->item("layoutfolder");
@@ -21,7 +23,8 @@ class MY_Controller extends CI_Controller {
         date_default_timezone_set('Asia/Kolkata');
     }
 
-    protected function UserFrom() {
+    protected function UserFrom()
+    {
         if ($this->agent->is_browser()) {
             return $this->UserAcess = $this->agent->platform() . ' and ' . $this->agent->browser() . ' - ' . $this->agent->version();
         } elseif ($this->agent->is_robot()) {
@@ -33,13 +36,15 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    public function render($Render, $RenderData = null) {
+    public function render($Render, $RenderData = null)
+    {
         $Layout = "layout/body";
         $this->render = $Render;
         $this->load->view($Layout, $RenderData);
     }
 
-    public function Inti($Class) {
+    public function Inti($Class)
+    {
         $ClassNo = array(array("register"), "homepage" => array("forgotpwd"));
         if (!(in_array($this->router->fetch_method(), $ClassNo[$Class]))) {
             if (empty($_SESSION["UserId"])) {
@@ -66,7 +71,8 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         $this->session->sess_destroy();
         session_unset();
         session_destroy();
@@ -75,11 +81,13 @@ class MY_Controller extends CI_Controller {
         exit($this->load->view("homepage/login", get_defined_vars(), true));
     }
 
-    public function accessdeined() {
+    public function accessdeined()
+    {
         $this->render("accessdeined", get_defined_vars());
     }
 
-    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc) {
+    public function SendEmail($EmailTo, $Message, $ReturnData, $Subject, $EmailBcc)
+    {
         try {
             $mail = $this->emailConfig();
             $mail->setFrom('atrocitymgnt@gmail.com', 'Atrocity Case Management');
@@ -97,7 +105,8 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function emailConfig() {
+    protected function emailConfig()
+    {
         $mail = new \PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
         $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
@@ -107,7 +116,8 @@ class MY_Controller extends CI_Controller {
         return $mail;
     }
 
-    public function forms($option) {
+    public function forms($option)
+    {
         switch (strtolower($option)):
             case "password_reset":
                 $this->render(strtolower($option), get_defined_vars());
@@ -117,7 +127,8 @@ class MY_Controller extends CI_Controller {
 
     /* Form Validation Starts Here */
 
-    public function form_validation($option) {
+    public function form_validation($option)
+    {
         switch (strtolower($option)) {
             case "user":
                 $rules = array(
@@ -219,46 +230,44 @@ class MY_Controller extends CI_Controller {
     /* Form Validation Ends Here */
 
 //
-    public function addtoDB() {
+    public function addtoDB()
+    {
         $postData = $this->input->post();
         if ($this->form_validation("casehistory")):
-        //logic
+            //logic
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
     }
 
-    public function casehistorysave($id) {
+    public function casehistorysave($id)
+    {
         $condition = array("caseid" => $id);
-        $select = "victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , casedescription as CaseDescription ";
+        $select = "caseid as CaseID,victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , casedescription as CaseDescription ";
         return $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
     }
 
     public function casehistorycomments($id)
     {
-    $condition = array("casehistoryid" => "", "userid" => 1, "caseid" => 6);
-                $select = "casehistorydesc as CaseHistoryDesc";
-                return $this->Adminmodel->CSearch($condition,$select, "casehis","", "", "", "", "", "", "");
+        $condition = array("caseid" => $id);
+        $select = "casehistorydesc as CaseHistoryDesc";
+        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", "", "", "", "", "", "");
     }
-    public function casehistoryval() {
+
+    public function casehistoryval()
+    {
         $postData = $this->input->post();
-
         if ($this->form_validation("casehistory")):
-
-               $condition = array("casehistoryid" => "", "userid" => 1, "caseid" => 6);
-                $DBData = array("casehistorydesc" => $postData['casehistory']);
-                $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
-                
-
-
-            endif;
-
-        
+            $condition = array("casehistoryid" => "", "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
+            $DBData = array("casehistorydesc" => $postData['casehistory']);
+            $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+        endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    
-    public function casessave() {
+
+    public function casessave()
+    {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             echo "<pre>";
@@ -270,7 +279,8 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function passwordchange() {
+    public function passwordchange()
+    {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
             echo "<pre>";
@@ -282,7 +292,8 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function forgotsave() {
+    public function forgotsave()
+    {
         $postData = $this->input->post();
 
         if ($this->form_validation("forgot")):
@@ -295,7 +306,8 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function loginsave() {
+    public function loginsave()
+    {
         $postData = $this->input->post();
         if ($this->form_validation("login")):
             echo "<pre>";
@@ -307,7 +319,8 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function userregister() {
+    public function userregister()
+    {
         $postData = $this->input->post();
         if ($this->form_validation("userreg")):
             echo "<pre>";
@@ -319,7 +332,8 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function profilesave() {
+    public function profilesave()
+    {
         $postData = $this->input->post();
         if ($this->form_validation("profile")):
             echo "<pre>";
@@ -331,7 +345,8 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function cases($options = null) {
+    public function cases($options = null)
+    {
         $render = "";
         switch (strtolower($options)) {
             case "newcase";
@@ -353,15 +368,15 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function casehistory($options = null, $id = null) {
+    public function casehistory($options = null, $id = null)
+    {
         $render = "";
 
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
                 $casedatabase = $this->casehistorysave($id);
-        
-                $casecomment = $this->casehistorycomments($id);
+                $casecomments = $this->casehistorycomments($id);
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -373,7 +388,8 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function email($options = null) {
+    public function email($options = null)
+    {
         $render = "";
         switch (strtolower($options)) {
             case "show";
