@@ -2,6 +2,8 @@
 /*marathi language*/
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
+$lang['login']= 'लॉगइन';
+
 $lang['select'] = 'निवडा';
 $lang['name'] = 'नाव';
 $lang['select'] = 'निवडा';
@@ -48,6 +50,7 @@ $lang['victim_address']='पत्ता';
 $lang['gender']='लिंग';
 $lang['offence_date']='गुन्हा तारीख';
 $lang['victim_name']='बळी चे नाव';
+$lang['offender_name']='अपराधाचे नाव';
 $lang['status']='स्थिती';
 $lang['actions']='क्रिया';
 $lang['all_cases']='सर्व प्रकरणांमध्ये';
@@ -55,6 +58,8 @@ $lang['male']='नर';
 $lang['female']='महिला';
 $lang['others']='इतर';
 $lang['select_gender']='लिंग निवडा';
+$lang['victimdob']='जन्म तारीख';
+
         
 /* case managment Ends Here */
 

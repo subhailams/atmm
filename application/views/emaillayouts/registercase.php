@@ -70,8 +70,15 @@
 <body>
 
 <div id="container">
-    <h1>Your Password has been updated</h1>
+    <h1>Case Registered</h1>
 
-            
+    <div id="body">
+        <p>Thank you for registering case in Atrocity Case Management</p>
+        <br/><br/><br/>
+        <a href="#">Verfiy</a>
+        <p></p>
+
+    </div>
+
 </body>
 </html>

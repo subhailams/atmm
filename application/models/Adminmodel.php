@@ -6,46 +6,52 @@
  * and open the template in the editor.
  */
 
-class Adminmodel extends CI_Model {
+class Adminmodel extends CI_Model
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users" );
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid");
     }
 
-    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
+    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY)
+    {
         $TableName = $this->TableList[$TableList];
         return $this->CSearch($Condition, $Select, $TableName, $SelectAll, $GroupBY, $OrderBY);
     }
 
-    public function AllInsert($condition, $dataDB, $Select, $Tble) {
+    public function AllInsert($condition, $dataDB, $Select, $Tble)
+    {
         return $this->Crud($condition, $dataDB, $Select, $Tble);
     }
 
-    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = false) {
+    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = null)
+    {
         $IPAdress = ($this->input->ip_address() === "::1") ? "127.0.0.1" : $this->input->ip_address();
-        $CrudDetails = $this->CSearch($Condition, $Select, $TableList, null,null,null,null,null,null);
+        $CrudDetails = $this->CSearch($Condition, $Select, $TableList, null, null, null, null, null, null);
         $TableName = $this->TableList[$TableList];
         $this->db->set($DBdata);
         if (!(empty($CrudDetails))) {
             $this->db->where($Condition);
-            $this->db->set("updatedBy", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
-            $this->db->set("updatedAt", "CURRENT_TIMESTAMP", false);
-            $this->db->set("updatedIP", ip2long($IPAdress), false);
+            $this->db->set("updatedby", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
+            $this->db->set("updatedat", "CURRENT_TIMESTAMP", false);
+            $this->db->set("updatedip", ip2long($IPAdress), false);
             $this->db->update($TableName);
             return $CrudDetails[$this->SeqID[$TableName]];
         } else {
             $this->db->set($Condition);
-            $this->db->set("createdBy", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
-            $this->db->set("createdAt", "CURRENT_TIMESTAMP", false);
-            $this->db->set("createdIP", ip2long($IPAdress), false);
+            $this->db->set("createdby", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
+            $this->db->set("createdat", "CURRENT_TIMESTAMP", false);
+            $this->db->set("createdip", ip2long($IPAdress), false);
             $this->db->insert($TableName);
             return $this->db->insert_id();
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $Distinct, $Omit, $LeftJoin, $GroupBY) {
+    public function CSearch($Condition, $Select, $TableName, $SelectAll = null, $JoinRequired = null, $Distinct = null, $Omit = null, $LeftJoin = null, $GroupBY = null, $JoinType = null)
+    {
         if (!empty($Select)) {
             $this->db->select($Select, FALSE);
         }
@@ -69,117 +75,37 @@ class Adminmodel extends CI_Model {
         $Result = $this->db->get($TableName);
 
         if (empty($SelectAll)):
-            return (empty($Result)) ? null : (array) $Result->row();
+            return (empty($Result)) ? null : (array)$Result->row();
         else:
-            return (empty($Result)) ? null : (array) $Result->result_array();
+            return (empty($Result)) ? null : (array)$Result->result_array();
         endif;
     }
 
-    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin) {
+    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin)
+    {
         switch ($TableName) {
-            case "staffprofile":
+            case "users":
                 $JoinTable = array(
-                    "user_role" => "role_id=stp_role",
-                    "designation" => "des_id=stp_desg",
-                    "departments" => "dept_id=stp_dept",
-                    "qualification" => "qua_id=stp_qual"
+                    "roles" => "roleid=role"
                 );
                 break;
-            case "annexure1_subject":
+            case "cases":
                 $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "semester" => "sem_id=anx1_sem",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
+                    "users" => "users.user_id=userid",
+                    "offences_master" => "offences_master.offid=offid",
+                    "offences_master" => "offences_master.offid=offid",
+                    "offences_master" => "offences_master.offid=offid",
+                    "users" => "users.user_id=policeassignedto",
+                    "users" => "users.user_id=organizationassignedto",
+                    "gender" => "gender.gender_id=victimgender",
+                    "gender" => "gender.gender_id=offendergender",
+                    "case_status_master" => "case_status_master.case_status_id=casestatus",
                 );
                 break;
-            case "annexure1_membership":
+            case "casehistory":
                 $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "membershiptype" => "mem_id=anx1_membership_type",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                );
-                break;
-            case "annexure1_fdp":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                );
-                break;
-            case "annexure1_research":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                    "journaltype" => "jot_id=anx1_journal_type"
-                );
-                break;
-            case "annexure1_conference":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "eventtype" => "eve_id=anx1_conference_type",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                );
-                break;
-            case "annexure1_paper":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                    "eventtype" => "eve_id=anx1_event_ref",
-                );
-                break;
-            case "annexure1_sponsored":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                    "projectstatus" => "pst_id=anx1_status"
-                );
-                break;
-            case "annexure1_consultancy":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                    "projectstatus" => "pst_id=anx1_status"
-                );
-                break;
-            case "annexure1_books":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "booktype" => "bty_id=anx1_book_type_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                );
-                break;
-            case "annexure1_patent":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=anx1_acayear",
-                    "staffprofile" => "stp_id=anx1_staff_ref",
-                    "departments" => "dept_id=stp_dept",
-                    "designation" => "des_id=stp_desg",
-                    "patenttype" => "pat_id=anx1_patent_ref"
-                );
-                break;
-            case "tickets":
-                $JoinTable = array(
-                    "academicyear" => "aca_id=tic_aca_year",
-                    "staffprofile" => "stp_id=tic_staffprofile",
-                    "priority" => "pri_id=tic_priority",
-                    "ticket_status" => "tick_st_id=tic_status",
+                    "cases" => "cases.caseid=caseid",
+                    "users" => "users.user_id=userid",
                 );
                 break;
         }
@@ -193,19 +119,22 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    public function Delete($id, $idval, $table) {
+    public function Delete($id, $idval, $table)
+    {
         $this->db->where($id, $idval);
         return $this->db->delete($table);
     }
 
-    public function DropData($condition, $table) {
+    public function DropData($condition, $table)
+    {
         $TableName = $this->TableList[$table];
         $this->db->where($condition);
         $status = $this->db->delete($TableName);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 
-    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
+    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
+    {
         $this->db->from($tableName);
         $this->db->where($Condition);
         $i = 0;
@@ -231,7 +160,8 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
+    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
+    {
         $TableName = $this->TableList[$TableList];
         $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         if ($_POST['length'] != -1)
@@ -240,14 +170,16 @@ class Adminmodel extends CI_Model {
         return $query->result();
     }
 
-    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
+    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
+    {
         $TableName = $this->TableList[$TableList];
         $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function count_all($TableList, $Condition) {
+    public function count_all($TableList, $Condition)
+    {
         $TableName = $this->TableList[$TableList];
         $this->db->from($TableName);
         $this->db->where($Condition);

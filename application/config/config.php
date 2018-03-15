@@ -522,7 +522,6 @@ $config['rewrite_short_tags'] = FALSE;
  */
 $config['proxy_ips'] = '';
 
-$Env = (SysRun == "Local") ? "Y" : "N";
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 $config['layoutfolder'] = 'layout';

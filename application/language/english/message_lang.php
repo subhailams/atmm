@@ -2,7 +2,7 @@
 /*english language*/
 $lang['mobile_number'] = 'Mobile Number';
 $lang['submit'] = 'Submit';
-$lang['confirmation_password'] = 'Confirmation Password';
+$lang['login']= 'Log In';
 $lang['name'] = 'Name';
 $lang['select'] = 'Select';
 $lang['email_id'] = 'Email ID';
@@ -38,6 +38,8 @@ $lang['victim_address']='Address';
 $lang['gender']='Gender';
 $lang['offence_date']='Offence Date';
 $lang['victim_name']='Victim Name';
+$lang['victimdob']='Date Of Birth';
+$lang['offender_name']='Offender Name';
 $lang['status']='Status';
 $lang['actions']='Actions';
 $lang['all_cases']='All Cases';
