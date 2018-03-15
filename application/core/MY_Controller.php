@@ -217,6 +217,7 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Form Validation Ends Here */
+
 //
     public function addtoDB() {
         $postData = $this->input->post();
@@ -227,28 +228,36 @@ class MY_Controller extends CI_Controller {
         endif;
     }
 
-    public function casehistorysave() {
-        $postData = $this->input->post();
-
-            if ($this->form_validation("casehistory")):
-
-            $condition = array("caseid" => 6);
-            $select = "victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail , victimaadhar as VictimAadhar , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , offendermobile as OffenderMobile , casedescription as CaseDescription ";
-            $result = $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
-            
-            
-            if(!empty($result)):
-            $condition = array("casehistoryid" => "","userid"=> 1,"caseid" => 6);
-            $DBData = array("casehistorydesc" => $postData['casehistory']);
-            $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
-
-            
-            endif;
-
-        endif;
-         redirect($_SERVER['HTTP_REFERER']);
+    public function casehistorysave($id) {
+        $condition = array("caseid" => $id);
+        $select = "victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , casedescription as CaseDescription ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
     }
 
+    public function casehistorycomments($id)
+    {
+    $condition = array("casehistoryid" => "", "userid" => 1, "caseid" => 6);
+                $select = "casehistorydesc as CaseHistoryDesc";
+                return $this->Adminmodel->CSearch($condition,$select, "casehis","", "", "", "", "", "", "");
+    }
+    public function casehistoryval() {
+        $postData = $this->input->post();
+
+        if ($this->form_validation("casehistory")):
+
+               $condition = array("casehistoryid" => "", "userid" => 1, "caseid" => 6);
+                $DBData = array("casehistorydesc" => $postData['casehistory']);
+                $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+                
+
+
+            endif;
+
+        
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    
     public function casessave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
@@ -346,9 +355,13 @@ class MY_Controller extends CI_Controller {
 
     public function casehistory($options = null, $id = null) {
         $render = "";
+
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
+                $casedatabase = $this->casehistorysave($id);
+        
+                $casecomment = $this->casehistorycomments($id);
                 break;
             default:
                 $caseregister = $this->getcase_register();
