@@ -166,8 +166,10 @@ class Administrator extends MY_Controller
     {
         $condition = array("id" => $id);
         $select = "errstr as ErrorString, errfile as ErrorFilename, errline as ErrorLine,time as Time";
+       
         return $this->Adminmodel->CSearch($condition, $select, "log", "", "", "", "", "", "", "");
     }
+    
 
     protected function getlogs_notices()
     {
