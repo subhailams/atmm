@@ -181,9 +181,9 @@
                                 <div class="box-footer">
                                     <button type="submit"
                                             class="btn btn-primary"><?= $this->lang->line('login') ?></button>
-                                    <a href="userregister"
+                                    <a href="<?= base_url('index.php/homepage/userregister') ?>"
                                        class="btn btn-info"><b><?= $this->lang->line('signup') ?></b></a>
-                                    <a href="forgotpassword" class="btn btn-danger">I forgot my password</a>
+                                    <a href="<?= base_url('index.php/homepage/forgotpassword') ?>" class="btn btn-danger">I forgot my password</a>
                                 </div>
                         </div>
                         <!-- /.box -->
