@@ -118,7 +118,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <ul class="nav navbar-nav">
+                       <ul class="nav navbar-nav">
                             <li class="active"><a href="<?= base_url('index.php/homepage/index') ?>">Home</a></li>
                             <li><a href="#">Offences and Punishments</a></li>
                             <li><a href="<?= base_url('index.php/administrator') ?>">Login</a></li>
@@ -178,13 +178,15 @@
                                     </div>
                                 </div>
                                 <!-- /.box-body -->
-                                <div class="box-footer">
+                               <div class="box-footer">
                                     <button type="submit"
                                             class="btn btn-primary"><?= $this->lang->line('login') ?></button>
-                                    <a href="userregister"
+                                    <a href="<?= base_url('index.php/homepage/userregister') ?>"
                                        class="btn btn-info"><b><?= $this->lang->line('signup') ?></b></a>
-                                    <a href="forgotpassword" class="btn btn-danger">I forgot my password</a>
+                                    <a href="<?= base_url('index.php/homepage/forgotpassword') ?>" class="btn btn-danger">I forgot my password</a>
                                 </div>
+                            </form>
+
                         </div>
                         <!-- /.box -->
 

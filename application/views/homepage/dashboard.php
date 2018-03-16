@@ -135,130 +135,41 @@
                     <!-- Main content -->
 
 
-                    <div id="bannerWrap">
-
-                        <div id="banner">
-
-
-                            <div id="jssor_1" style="position: relative; margin: 0px auto; top: 0px; left: 0px; width: 655px; height: 254px; overflow: hidden; visibility: visible;" jssor-slider="true">
-                                <!-- Loading Screen -->
-
-
-                                <!-- Thumbnail Navigator -->
-
-                                <!-- Bullet Navigator -->
-
-                                <!-- Arrow Navigator -->
-                                <!--<span data-u="arrowleft" class="jssora05l" style="top:0px;left:8px;width:40px;height:40px;" data-autocenter="2"></span>
-                                <span data-u="arrowright" class="jssora05r" style="top:0px;right:8px;width:40px;height:40px;" data-autocenter="2"></span>-->
-                                <div style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; transform-origin: 0px 0px 0px; transform: scale(1);"><div class="" style="position: relative; margin: 0px auto; top: 0px; left: 0px; width: 655px; height: 254px; overflow: visible; visibility: visible; display: block;"><div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; display: none;">
-                                            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                            <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                        </div><div data-u="slides" style="cursor: default; position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; overflow: hidden; z-index: 0;"><div style="position: absolute; z-index: 0; pointer-events: none; display: none;"></div></div><div data-u="slides" style="cursor: default; position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; overflow: hidden; z-index: 0;"><div style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0; display: none;"></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px; transform: translate3d(655px, 0px, 0px);">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_160713032738_123480.jpg" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px; transform: translate3d(-655px, 0px, 0px);">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_160713033529_20605.JPG" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px; transform: translate3d(-655px, 0px, 0px);">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_161020020604_81243.jpg" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px; transform: translate3d(-655px, 0px, 0px);">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_170817030149_123402.JPG" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px; transform: translate3d(-655px, 0px, 0px);">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_170804041902_108680.jpg" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px; transform: translate3d(-655px, 0px, 0px);">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_170817030524_211500.JPG" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px; transform: translate3d(-655px, 0px, 0px);">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_170817030823_41724.JPG" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-                                            <div data-p="112.50" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute; overflow: hidden; perspective: 112.5px;">
-                                                <img data-u="image" src="uploads/home_banner/show-image/data_170817033045_87590.JPG" border="0" style="top: 0px; left: 0px; width: 655px; height: 254px; position: absolute;">
-                                                <div data-u="thumb" style="display: none;"></div>
-                                                <div data-u="loading" style="position: absolute; top: 0px; left: 0px; width: 655px; height: 254px; z-index: 1000; display: none;">
-                                                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; "></div>
-                                                    <div style="position:absolute;display:block;background:url('img-slider/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;"></div>
-                                                </div></div>
-
-
-                                        </div><div data-u="thumbnavigator" class="jssort09-600-45" style="position: absolute; bottom: 0px; left: 0px; width: 655px; visibility: visible; height: 0px;" jssor-slider="true">
-
-                                            <!-- Thumbnail Item Skin Begin -->
-
-                                            <!-- Thumbnail Item Skin End -->
-                                            <div style="position: absolute; top: 0px; left: 0px; width: 655px; height: 0px; transform-origin: 0px 0px 0px; transform: scale(1);"><div class="jssort09-600-45" style="position: relative; bottom: 0px; left: 0px; width: 655px; visibility: visible; display: block; top: 0px; overflow: visible;"><div style="position: absolute; top: 0; left: 0; width: 100%; height:100%; background-color: #000; filter:alpha(opacity=40.0); opacity:0.4;"></div><div data-u="slides" style="cursor: default; position: absolute; overflow: hidden; left: 27.5px; top: -12.5px; width: 600px; height: 25px; z-index: 0;"><div style="position: absolute; z-index: 0; pointer-events: none; transform: translate3d(600px, 0px, 0px);"></div></div><div data-u="slides" style="cursor: default; position: absolute; overflow: hidden; left: 27.5px; top: -12.5px; width: 600px; height: 25px; z-index: 0;"><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0;"></div>
-
-                                                        <div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden; transform: translate3d(600px, 0px, 0px);"><div data-u="prototype" class="p" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden; transform: translate3d(-600px, 0px, 0px);"><div data-u="prototype" class="p" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden; transform: translate3d(-600px, 0px, 0px);"><div data-u="prototype" class="p" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden; transform: translate3d(-600px, 0px, 0px);"><div data-u="prototype" class="p" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden; transform: translate3d(-600px, 0px, 0px);"><div data-u="prototype" class="p" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden; transform: translate3d(-600px, 0px, 0px);"><div data-u="prototype" class="p" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden; transform: translate3d(-600px, 0px, 0px);"><div data-u="prototype" class="p" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div><div style="top: 0px; left: 0px; width: 600px; height: 25px; position: absolute; overflow: hidden;"><div data-u="prototype" class="p pav" style="left: 0px; top: 0px;">
-                                                                <div data-u="thumb" class="t" style=""></div>
-                                                            </div><div style="top: 0px; left: 0px; width: 600px; height: 25px; z-index: 1000; display: none;"></div></div></div></div></div></div><div data-u="navigator" class="jssorb01" style="bottom: 14px; right: 14px; width: 182px; height: 14px;">
-
-                                            <div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 0px; top: 0px;" class=""></div><div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 24px; top: 0px;" class=""></div><div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 48px; top: 0px;" class=""></div><div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 72px; top: 0px;" class=""></div><div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 96px; top: 0px;" class=""></div><div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 120px; top: 0px;" class=""></div><div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 144px; top: 0px;" class=""></div><div data-u="prototype" style="width: 14px; height: 14px; position: absolute; left: 168px; top: 0px;" class="av"></div></div></div></div></div>
-
-
-                        </div>
+                   
+              
                         <input type="hidden" name="dd" id="dd" value="11">
-
-                        <div id="rightBanner">
-                            <!--- bABASAHEB -->
-                            <div id="quote-ambedkar">
-                                <h2>&nbsp;
-                                </h2>
+                      
+                        <div class="row">
+                            <div class="col-md-12">
+						
+                                <img title="Government of India" alt="Government of India" src="assets/img/credit/LOGOO.png" align="right" width="100%" height="180">
+                                </div>
+                       
                             </div>
-                            <div id="external-link"><a href="http://ccnmtl.columbia.edu/projects/mmt/ambedkar/web/index.html" target="_blank"><img src="images/home_right.jpg"></a></div>					
+                        <br>    
+                  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;height:"600" ; margin:="" auto="" float:left="" border:="" 3px="" solid="" #1aa1f0="">
 
+ <div class="carousel-inner" role="listbox">
+     
+    
 
+      <div class="item">        <img src="assets/img/credit/gateway-of-india.jpg" alt="" align="middle" style="height: 180px;" align="left" width="100%" height="400">
+         
+      </div>
+      <div class="item">        <img src="assets/img/credit/sjsa.png" alt="" style="height: 180px;" width="100%" height="400">
+         
+      </div>
 
+      <div class="item active">        <img src="assets/img/credit/sjsa2.jpg" alt="" style="height: 180px;" width="100%" height="400">
+         
+      </div>
+     
 
-                            <!---- bABASAHEB -->
-                        </div>
-
-                    </div>
+     
+     
+          </div>
+                  </div> 
+                        
                     <section class="content">
 
                         <div class="row">
@@ -501,17 +412,20 @@
                                                         <div class="vticker" style="position: relative; height: 196px; overflow: hidden;">
                                                             <ul style="margin: 0px; position: absolute; top: 0px;">		
                                                                 <br>
-                                                                <li style="margin: 0px;"><span class="blueSpan">1. Sir, Accused Kumar in FIR No 20/2018 under P.S.(ammapet) not yet arrested. Kindly direct the concerned officials to arrest them.NCSPOA-New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">1. Sir, Accused Kumar in FIR No 20/2018 under P.S.(ammapet) not yet arrested. Kindly direct the concerned officials to arrest them.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">2. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.NCSPOA
-                                                                        -New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">2. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">3. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.NCSPOA
-                                                                        -New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">3. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">4. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.NCSPOA-New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">4. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
+                                                                        -Maharashtra.</span></li>
 
-                                                                <li style="margin: 0px;"><span class="blueSpan">5. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.NCSPOA-New Delhi.</span></li>
+                                                                <li style="margin: 0px;"><span class="blueSpan">5. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
+                                                                        -Maharashtra.</span></li>
 
 
 
@@ -544,34 +458,7 @@
 
 
 
-                    <section class="content">
-                        <div class="callout callout-info">
-                            <h4>Tip!</h4>
-
-                            <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used
-                                with a
-                                sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and
-                                use regular
-                                links instead.</p>
-                        </div>
-                        <div class="callout callout-danger">
-                            <h4>Warning!</h4>
-
-                            <p>The construction of this layout differs from the normal one. In other words, the HTML markup of
-                                the navbar
-                                and the content will slightly differ than that of the normal layout.</p>
-                        </div>
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Blank Box</h3>
-                            </div>
-                            <div class="box-body">
-                                The great content goes here
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
-                    </section>
+                 
                     <!-- /.content -->
                 </div>
                 <!-- /.container -->
