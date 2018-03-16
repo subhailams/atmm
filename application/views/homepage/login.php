@@ -176,7 +176,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div></form>
+                                </div>
                                 <!-- /.box-body -->
                                <div class="box-footer">
                                     <button type="submit"
@@ -185,6 +185,7 @@
                                        class="btn btn-info"><b><?= $this->lang->line('signup') ?></b></a>
                                     <a href="<?= base_url('index.php/homepage/forgotpassword') ?>" class="btn btn-danger">I forgot my password</a>
                                 </div>
+                            </form>
 
                         </div>
                         <!-- /.box -->
