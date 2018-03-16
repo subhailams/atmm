@@ -23,7 +23,7 @@ class User extends MY_Controller {
         $this->render("newuser", get_defined_vars());
     }
 
-    public function updateprofile() {
+     public function updateprofile() {
         $this->render("updateprofile", get_defined_vars());
     }
 
