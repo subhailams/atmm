@@ -4,17 +4,32 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Administrator extends MY_Controller {
+class Administrator extends MY_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
+        $FunctionS = array("");
+        if (!in_array($this->router->fetch_method(), $FunctionS)):
+            if (strtolower($_SESSION["UserRoleName"]) != strtolower(__CLASS__)) {
+                $this->Inti(__CLASS__);
+            }
+        endif;
+        $userNameCnd = array("username" => $this->session->userdata("UserName"));
+        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
+        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
+        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));
     }
 
-    public function index() {
+    public function index()
+    {
+
         $this->render("dashboard", get_defined_vars());
     }
 
-    public function logs($options = null, $id = null) {
+    public function logs($options = null, $id = null)
+    {
         $render = "";
         switch (strtolower($options)) {
             case "notices";
@@ -44,7 +59,8 @@ class Administrator extends MY_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function ajax_list($options = null) {
+    public function logs_ajax_list($options = null)
+    {
         switch (strtolower($options)) {
             case "notices":
                 $Condition = array("errtype" => "Notice");
@@ -52,7 +68,6 @@ class Administrator extends MY_Controller {
                 $ColumnOrder = array('errstr', 'errfile', 'errline', 'time');
                 $ColumnSearch = array('errstr', 'errfile', 'errline', 'time');
                 $OrderBy = array('id' => 'desc');
-
                 break;
             case "warnings":
                 $Condition = array("errtype" => "Warning");
@@ -75,19 +90,10 @@ class Administrator extends MY_Controller {
                 $ColumnSearch = array('errstr', 'errfile', 'errline', 'time');
                 $OrderBy = array('id' => 'desc');
                 break;
-            case "cases":
-                $Condition = array();
-                $TableListname = "case";
-                $ColumnOrder = array('victimname', 'offendername', 'createdat', 'victimmobile', 'casestatus');
-                $ColumnSearch = array('victimname', 'victimmobile', 'casestatus');
-                $OrderBy = array('caseid' => 'desc');
-                break;
             default:
                 $Condition = array();
                 break;
         }
-
-
 
         $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $data = array();
@@ -95,19 +101,12 @@ class Administrator extends MY_Controller {
         foreach ($list as $logNotice) {
             $no++;
             $row = array();
-            $row[] = $logNotice->victimname;
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->createdat;
-            $row[] = $logNotice->victimmobile;
-            $row[] = $logNotice->casestatus;
+            $row[] = $logNotice->errstr;
+            $row[] = $logNotice->errfile;
+            $row[] = $logNotice->errline;
+            $row[] = $logNotice->time;
             //add html for action
-            if (strtolower($options) == "cases"):
-                $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-            else:
-                $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/logs/shownotice/' . $logNotice->id) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-
-            endif;
-
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/logs/shownotice/' . $logNotice->id) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
@@ -121,39 +120,88 @@ class Administrator extends MY_Controller {
         echo json_encode($output);
     }
 
-    protected function shownotice($id) {
-        $condition = array("id" => $id);
-        $select = "errstr as ErrorString, errfile as ErrorFilename, errline as ErrorLine,time as Time";
-        return $this->Adminmodel->CSearch($condition, $select, "log", "", "", "", "", "", "", "");
+    public function cases_ajax_list($options = null)
+    {
+        switch (strtolower($options)) {
+            case "cases":
+                $Condition = array();
+                $TableListname = "case";
+                $ColumnOrder = array('victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
+                $ColumnSearch = array('victimname', 'victimmobile', 'casestatus');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            default:
+                $Condition = array();
+                break;
+        }
+
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $logNotice) {
+            $no++;
+            $row = array();
+            $row[] = $logNotice->victimname;
+            $row[] = $logNotice->victimmobile;
+            $row[] = $logNotice->offendername;
+            $row[] = $logNotice->createdat;
+            $row[] = $logNotice->casestatus;
+            //add html for action
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
     }
 
-    protected function getlogs_notices() {
+
+    protected function shownotice($id)
+    {
+        $condition = array("id" => $id);
+        $select = "errstr as ErrorString, errfile as ErrorFilename, errline as ErrorLine,time as Time";
+       
+        return $this->Adminmodel->CSearch($condition, $select, "log", "", "", "", "", "", "", "");
+    }
+    
+
+    protected function getlogs_notices()
+    {
         $condition = array("errtype" => "Notice");
         $select = "id as ID, errstr as ErrorString, time as Time";
         return $this->Adminmodel->CSearch($condition, $select, "log", "Y", "Y", "", "", "", "", "");
     }
 
-    protected function getlogs_warning() {
+    protected function getlogs_warning()
+    {
         $condition = array("errtype" => "Warning");
         $select = "id as ID, errstr as ErrorString, time as Time";
         return $this->Adminmodel->CSearch($condition, $select, "log", "Y", "Y", "", "", "", "", "");
     }
 
-    protected function getlogs_error() {
+    protected function getlogs_error()
+    {
         $condition = array("errtype" => "Error");
         $select = "id as ID, errstr as ErrorString, time as Time";
         return $this->Adminmodel->CSearch($condition, $select, "log", "Y", "Y", "", "", "", "", "");
     }
 
-    protected function getlogs_all() {
+    protected function getlogs_all()
+    {
         $condition = array("");
         $select = "id as ID, errstr as ErrorString, time as Time";
         return $this->Adminmodel->CSearch($condition, $select, "log", "Y", "Y", "", "", "", "", "");
     }
-    
 
 
-    public function caseregisterSave() {
+    public function caseregisterSave()
+    {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             //add to database
@@ -164,13 +212,13 @@ class Administrator extends MY_Controller {
                 "victimname" => $postData['victimname'],
                 "victimaddress" => $postData['victimaddress'],
                 "vicitmdob" => $postData['victimdob'],
-                "victimgender" => $postData['gender'],
+                "victimgender" => $postData['victimgender'],
                 "victimmobile" => $postData['victimmobile'],
                 "victimemail" => $postData['victimemail'],
                 "victimaadhar" => $postData['victimaadhar'],
                 "offendername" => $postData['offendername'],
                 "offenderaddress" => $postData['offenderaddress'],
-                "offendergender" => $postData['gender'],
+                "offendergender" => $postData['offendergender'],
                 "offendermobile" => $postData['offendermobile'],
                 "offendermail" => $postData['offenderemail'],
                 "casedescription" => $postData['casedescription'],

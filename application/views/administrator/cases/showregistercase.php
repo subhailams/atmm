@@ -36,7 +36,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="gender"><?= $this->lang->line('gender') ?></label>
-                                        <select class="form-control" id="gender" name="gender" placeholder="Select Gender">
+                                        <select class="form-control" id="gender" name="victimgender" placeholder="Select Gender">
                                             <option>Select Gender</option>
                                             <?php foreach ($this->db->where(array("gender_display" => "Y"))->order_by("gender_name", "asc")->get('gender')->result() as $detail) { ?>
                                                 <option value="<?= $detail->gender_id ?>"> <?= strtoupper($detail->gender_name) ?> </option>
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?><span style="color: red ">*</span></label>
+                                        <label for="aadhar"><?= $this->lang->line('aadhaar_number') ?></label>
                                         <input type="text" class="form-control" id="aadhar" name="victimaadhar"
                                                placeholder="Enter Aadhaar No">
                                     </div>
@@ -118,7 +118,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="gender"><?= $this->lang->line('gender') ?></label>
-                                        <select class="form-control" id="gender" name="gender" placeholder="Select Gender">
+                                        <select class="form-control" id="gender" name="offendergender" placeholder="Select Gender">
                                             <option>Select Gender</option>
                                             <?php foreach ($this->db->where(array("gender_display" => "Y"))->order_by("gender_name", "asc")->get('gender')->result() as $detail) { ?>
                                                 <option value="<?= $detail->gender_id ?>"> <?= strtoupper($detail->gender_name) ?> </option>
