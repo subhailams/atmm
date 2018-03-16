@@ -167,8 +167,6 @@
             <li>
                 <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logout") ?>">
                     <i class="fa fa-power-off"></i> <span>Logout</span>
-                    <span class="pull-right-container">
-                    </span>
                 </a>
             </li>
             <li class="header">Change Language</li>
