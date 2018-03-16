@@ -151,9 +151,9 @@
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
                                     class="fa fa-circle-o"></i> Show all Cases</a></li>
-                    <li>
+<!--                    <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/casehistory/show") ?>"><i
-                                    class="fa fa-circle-o"></i> Case History</a></li>
+                                    class="fa fa-circle-o"></i> Case History</a></li>-->
                 </ul>
             </li>
 
