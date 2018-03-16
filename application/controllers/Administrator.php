@@ -166,8 +166,10 @@ class Administrator extends MY_Controller
     {
         $condition = array("id" => $id);
         $select = "errstr as ErrorString, errfile as ErrorFilename, errline as ErrorLine,time as Time";
+       
         return $this->Adminmodel->CSearch($condition, $select, "log", "", "", "", "", "", "", "");
     }
+    
 
     protected function getlogs_notices()
     {
@@ -210,13 +212,13 @@ class Administrator extends MY_Controller
                 "victimname" => $postData['victimname'],
                 "victimaddress" => $postData['victimaddress'],
                 "vicitmdob" => $postData['victimdob'],
-                "victimgender" => $postData['gender'],
+                "victimgender" => $postData['victimgender'],
                 "victimmobile" => $postData['victimmobile'],
                 "victimemail" => $postData['victimemail'],
                 "victimaadhar" => $postData['victimaadhar'],
                 "offendername" => $postData['offendername'],
                 "offenderaddress" => $postData['offenderaddress'],
-                "offendergender" => $postData['gender'],
+                "offendergender" => $postData['offendergender'],
                 "offendermobile" => $postData['offendermobile'],
                 "offendermail" => $postData['offenderemail'],
                 "casedescription" => $postData['casedescription'],

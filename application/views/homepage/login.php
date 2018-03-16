@@ -113,7 +113,8 @@
         <nav class="navbar navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="<?= base_url('index.php/homepage/index')?>" class="navbar-brand">Atrocity Case Management</a>
+                    <a href="<?= base_url('index.php/homepage/index') ?>" class="navbar-brand">Atrocity Case
+                        Management</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#navbar-collapse">
                         <i class="fa fa-bars"></i>
@@ -157,7 +158,6 @@
                                 <p><?=
                                     $_SESSION['formError'];
                                     $_SESSION['formError'] = null;
-
                                     ?></p>
                             <?php endif; ?>
                             <form role="form" method="post" action="<?= base_url('index.php/administrator/index') ?>"
@@ -187,9 +187,13 @@
                                 <div class="box-footer">
                                     <button type="submit"
                                             class="btn btn-primary"><?= $this->lang->line('login') ?></button>
+                                    <a href="userregister"
+                                       class="btn btn-info"><b><?= $this->lang->line('signup') ?></b></a>
+                                    <a href="forgotpassword" class="btn btn-danger">I forgot my password</a>
                                 </div>
-                                <!-- /.box -->
                         </div>
+                        <!-- /.box -->
+
                         <!--/.col (left) -->
                     </div>
                     <!-- /.row -->

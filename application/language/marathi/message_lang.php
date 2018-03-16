@@ -3,7 +3,7 @@
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
 $lang['login']= 'लॉगइन';
-
+$lang['signup'] = 'साइनअप';
 $lang['select'] = 'निवडा';
 $lang['name'] = 'नाव';
 $lang['select'] = 'निवडा';
@@ -66,7 +66,7 @@ $lang['victimdob']='जन्म तारीख';
 /* case history starts here */
  $lang['post']='पोस्ट';
  $lang['casehistory']='प्रकरण इतिहास';
- $lang['postedby']='द्वारा पोस्ट केलेले';
+ $lang['postedcomments']='टिप्पण्या';
  $lang['commenthere']='येथे टिप्पणी';
  $lang['typeyourcommenthere']='येथे आपली टिप्पणी टाइप करा';
  

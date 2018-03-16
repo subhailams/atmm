@@ -50,7 +50,7 @@ class Adminmodel extends CI_Model
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll = null, $JoinRequired = null, $Distinct = null, $Omit = null, $LeftJoin = null, $GroupBY = null, $JoinType = null)
+    public function CSearch($Condition, $Select, $TableName, $SelectAll = "N", $JoinRequired = null, $Distinct = null, $Omit = null, $LeftJoin = null, $GroupBY = null, $JoinType = null)
     {
         if (!empty($Select)) {
             $this->db->select($Select, FALSE);

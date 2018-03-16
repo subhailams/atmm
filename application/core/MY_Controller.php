@@ -211,11 +211,11 @@ class MY_Controller extends CI_Controller
                     array('field' => 'ifothers', 'label' => 'If Others', 'rules' => 'max_length[100]'),
                     array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
                     array('field' => 'offencedate', 'label' => 'Offence Date', 'rules' => 'required'),
-                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                    array('field' => 'victimgender', 'label' => 'Gender', 'rules' => 'required'),
                     array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|min_length[10]|max_length[400]'),
                     array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                    array('field' => 'gender', 'label' => 'Gender', 'rules' => 'required'),
+                    array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
                 );
                 break;
         }
@@ -229,6 +229,7 @@ class MY_Controller extends CI_Controller
 
     /* Form Validation Ends Here */
 
+//
     public function addtoDB()
     {
         $postData = $this->input->post();
@@ -239,16 +240,27 @@ class MY_Controller extends CI_Controller
         endif;
     }
 
-    public function casehistorysave()
+    public function casehistorysave($id)
+    {
+        $condition = array("caseid" => $id);
+        $select = "caseid as CaseID,victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , casedescription as CaseDescription ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
+    }
+
+    public function casehistorycomments($id)
+    {
+        $condition = array("caseid" => $id);
+        $select = "casehistorydesc as CaseHistoryDesc";
+        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", "", "", "", "", "", "");
+    }
+
+    public function casehistoryval()
     {
         $postData = $this->input->post();
-
         if ($this->form_validation("casehistory")):
-            echo "<pre>";
-            print_r($postData);
-            exit();
-        else:
-            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+            $condition = array("casehistoryid" => "", "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
+            $DBData = array("casehistorydesc" => $postData['casehistory']);
+            $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -359,45 +371,12 @@ class MY_Controller extends CI_Controller
     public function casehistory($options = null, $id = null)
     {
         $render = "";
+
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
-
-                /*$postData = $this->input->post();
-                 if ($this->form_validation("casehistory")):
-                     //add to database
-                     $condition = array("casehistoryid"=>"");
-                     $select = "casehistoryid as casehisid";
-                     $result = $this->Adminmodel->CSearch($condition, $select, "casehis", "", "", "", "", "", "", "");
-                     echo "<pre>";
-                     print_r(get_defined_vars($result));
-                     exit();
-
-                     if (!empty($result)):
-                         $condition = array("casehistoryid" => "");
-                         $DBData = array("password" => $postData['newPassword']);
-
-                     else:
-
-                     endif;
-
-                     $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
-                     if (!empty($response)):
-                         $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
-                         $Subject = "Atrocity Case Management - Your password has been updated.";
-                         $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
-                         $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
-                     else:
-                         $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
-                     endif;
-                 else:
-                     $_SESSION['formError'] = validation_errors();
-                     $this->session->set_flashdata('ME_FORM', "ERROR");
-                 endif;
-                 $this->load->view('administrator/casehistory/casehistory');
-                 */
-
-
+                $casedatabase = $this->casehistorysave($id);
+                $casecomments = $this->casehistorycomments($id);
                 break;
             default:
                 $caseregister = $this->getcase_register();

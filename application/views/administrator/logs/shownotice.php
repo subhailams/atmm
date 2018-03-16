@@ -39,15 +39,15 @@
                             </tr>
                             <tr>
                                 <td width="20%" style="line-height: 40px"><b>Time</b></td>
-                                <td width="80%"
-                                    style="line-height: 40px"> <?= time_elapsed_string($noticeinformation['Time']) ?></td>
+                                <td width="80%" style="line-height: 40px"> <?= time_elapsed_string($noticeinformation['Time']) ?></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>                                    
+
         <!-- /.box-body -->
 </div>
 <!-- /.row -->

@@ -24,7 +24,7 @@ $lang['personal_information'] = 'Personal Information';
 $lang['confirmation_password'] = 'Confirmation Password';
 $lang['register'] = 'Register';
 $lang['update_profile'] = 'Update Profile';
-
+$lang['signup'] = 'SignUp';
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
 $lang['registeration_form']='Registration Form';
@@ -60,7 +60,7 @@ $lang['notice'] = 'Notice';
 /* case history starts here */
  $lang['post']='Post';
  $lang['casehistory']='Case History';
- $lang['postedby']='Posted by';
+ $lang['postedcomments']='Posted Comments';
  $lang['commenthere']='Please enter your comment here';
  $lang['typeyourcommenthere']='Type your comment here';
  
