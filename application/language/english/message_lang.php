@@ -28,6 +28,7 @@ $lang['signup'] = 'SignUp';
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
 $lang['registeration_form']='Registration Form';
+$lang['fir_no']='FIR Number';
 $lang['victim_details']='Victim Details';
 $lang['offender_details']='Offender Details';
 $lang['case_details']='Case Details';

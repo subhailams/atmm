@@ -200,7 +200,7 @@ class Administrator extends MY_Controller
     }
 
 
-    public function caseregisterSave()
+    public function CaseRegisterSave()
     {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):

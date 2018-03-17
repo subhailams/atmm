@@ -153,7 +153,7 @@
                             <?php if($_SESSION['formError']!=null): ?>
                                 <p><?= $_SESSION['formError']; $_SESSION['formError'] = null?></p>
                             <?php endif; ?>
-                            <form role="form" method="post" action="<?= base_url('index.php/homepage/register') ?>">
+                            <form role="form" method="post" action="<?= base_url('index.php/homepage/UserRegisterSave') ?>">
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="col-md-6">

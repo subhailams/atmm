@@ -205,6 +205,8 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
+                    array('field' => 'fir_no', 'label' => 'FIR Number', 'rules' => 'required'),
+
                 );
                 break;
         }
@@ -228,19 +230,19 @@ class MY_Controller extends CI_Controller {
         endif;
     }
 
-    public function casehistorysave($id) {
+    public function CaseHistoryShow($id) {
         $condition = array("caseid" => $id);
         $select = "caseid as CaseID,victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , casedescription as CaseDescription ";
         return $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
     }
 
-    public function casehistorycomments($id) {
+    public function CaseHistoryComments($id) {
         $condition = array("caseid" => $id);
         $select = "casehistorydesc as CaseHistoryDesc";
         return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", "", "", "", "", "", "");
     }
 
-    public function casehistoryval() {
+    public function CaseHistorySave() {
         $postData = $this->input->post();
         if ($this->form_validation("casehistory")):
             $condition = array("casehistoryid"=>"");
@@ -251,17 +253,7 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function casessave() {
-        $postData = $this->input->post();
-        if ($this->form_validation("cases")):
-            echo "<pre>";
-            print_r($postData);
-            exit();
-        else:
-            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
-        endif;
-        redirect($_SERVER['HTTP_REFERER']);
-    }
+    
 
     public function passwordchange() {
         $postData = $this->input->post();
@@ -352,8 +344,8 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
-                $casedatabase = $this->casehistorysave($id);
-                $casecomments = $this->casehistorycomments($id);
+                $casedatabase = $this->CaseHistoryShow($id);
+                $casecomments = $this->CaseHistoryComments($id);
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -424,7 +416,7 @@ class MY_Controller extends CI_Controller {
         echo json_encode($output);
     }
 
-    public function caseregisterSave() {
+    public function CaseRegisterSave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             //add to database

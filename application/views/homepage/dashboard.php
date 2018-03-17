@@ -121,7 +121,7 @@
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="<?= base_url('index.php/homepage/index') ?>">Home</a></li>
                                 <li><a href="#">Offences and Punishments</a></li>
-                                <li><a href="<?= base_url('index.php/administrator') ?>">Login</a></li>
+                                <li><a href="<?= base_url('index.php/homepage/login') ?>">Login</a></li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -135,41 +135,41 @@
                     <!-- Main content -->
 
 
-                   
-              
-                        <input type="hidden" name="dd" id="dd" value="11">
-                      
-                        <div class="row">
-                            <div class="col-md-12">
-						
-                                <img title="Government of India" alt="Government of India" src="assets/img/credit/LOGOO.png" align="right" width="100%" height="180">
-                                </div>
-                       
+
+
+                    <!--<input type="hidden" name="dd" id="dd" value="11">-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <img title="Government of India" alt="Government of India" src="assets/img/credit/LOGOO.png" align="right" width="100%" height="150">
+                        </div>
+
+                    </div>
+                    <br>    
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;height:"600" ; margin:="" auto="" float:left="" border:="" 3px="" solid="" #1aa1f0="">
+
+                        <div class="carousel-inner" role="listbox">
+
+
+
+                            <div class="item">        <img src="assets/img/credit/gateway-of-india.jpg" alt="" align="middle" style="height: 300px;" align="left" width="100%" height="400">
+
                             </div>
-                        <br>    
-                  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;height:"600" ; margin:="" auto="" float:left="" border:="" 3px="" solid="" #1aa1f0="">
+                            <div class="item">        <img src="assets/img/credit/sjsa.png" style="background-color: black;" col alt="" style="height: 300px;" width="100%" height="400">
 
- <div class="carousel-inner" role="listbox">
-     
-    
+                            </div>
 
-      <div class="item">        <img src="assets/img/credit/gateway-of-india.jpg" alt="" align="middle" style="height: 180px;" align="left" width="100%" height="400">
-         
-      </div>
-      <div class="item">        <img src="assets/img/credit/sjsa.png" alt="" style="height: 180px;" width="100%" height="400">
-         
-      </div>
+                            <div class="item active">        <img src="assets/img/credit/sjsa2.jpg" alt="" style="height: 300px;" width="100%" height="400">
 
-      <div class="item active">        <img src="assets/img/credit/sjsa2.jpg" alt="" style="height: 180px;" width="100%" height="400">
-         
-      </div>
-     
+                            </div>
 
-     
-     
-          </div>
-                  </div> 
-                        
+
+
+
+                        </div>
+                    </div> 
+
                     <section class="content">
 
                         <div class="row">
@@ -393,60 +393,60 @@
 
                             </div>
                         </div>
-                            <br>
+                        <br>
 
-                            <div class="row">
-
-
-                                <div class='col-md-12'>
-                                    <div class="bg-light-blue-active color-palette"><span  style="font-size: 20px " >Case Alerts</span></div>
-                                    <div class="pageColumns three">
-                                        <div class="column feature">
-                                            <div class="columnContent">
-                                                <div class="unlimitedAccess">
+                        <div class="row">
 
 
-                                                    <div class="box box-primary">
+                            <div class='col-md-12'>
+                                <div class="bg-light-blue-active color-palette"><span  style="font-size: 20px " >Case Alerts</span></div>
+                                <div class="pageColumns three">
+                                    <div class="column feature">
+                                        <div class="columnContent">
+                                            <div class="unlimitedAccess">
 
 
-                                                        <div class="vticker" style="position: relative; height: 196px; overflow: hidden;">
-                                                            <ul style="margin: 0px; position: absolute; top: 0px;">		
-                                                                <br>
-                                                                <li style="margin: 0px;"><span class="blueSpan">1. Sir, Accused Kumar in FIR No 20/2018 under P.S.(ammapet) not yet arrested. Kindly direct the concerned officials to arrest them.SJSA
-                                                                        -Maharashtra.</span></li>
-
-                                                                <li style="margin: 0px;"><span class="blueSpan">2. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
-                                                                        -Maharashtra.</span></li>
-
-                                                                <li style="margin: 0px;"><span class="blueSpan">3. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
-                                                                        -Maharashtra.</span></li>
-
-                                                                <li style="margin: 0px;"><span class="blueSpan">4. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
-                                                                        -Maharashtra.</span></li>
-
-                                                                <li style="margin: 0px;"><span class="blueSpan">5. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
-                                                                        -Maharashtra.</span></li>
+                                                <div class="box box-primary">
 
 
+                                                    <div class="vticker" style="position: relative; height: 196px; overflow: hidden;">
+                                                        <ul style="margin: 0px; position: absolute; top: 0px;">		
+                                                            <br>
+                                                            <li style="margin: 0px;"><span class="blueSpan">1. Sir, Accused Kumar in FIR No 20/2018 under P.S.(ammapet) not yet arrested. Kindly direct the concerned officials to arrest them.SJSA
+                                                                    -Maharashtra.</span></li>
+
+                                                            <li style="margin: 0px;"><span class="blueSpan">2. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
+                                                                    -Maharashtra.</span></li>
+
+                                                            <li style="margin: 0px;"><span class="blueSpan">3. Sir, Spot Inspection report under Rule (6) (1) of PoA Rules in FIR No 20/2018 registered at P.S.(ammapet) on 17-01-2018 not submitted to the state government. Request you to expedite the same.SJSA
+                                                                    -Maharashtra.</span></li>
+
+                                                            <li style="margin: 0px;"><span class="blueSpan">4. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
+                                                                    -Maharashtra.</span></li>
+
+                                                            <li style="margin: 0px;"><span class="blueSpan">5. Sir, Request you to conduct spot Inspection in FIR No 20/2018 registered under P.S.(ammapet) in atrocity case.SJSA
+                                                                    -Maharashtra.</span></li>
 
 
-                                                            </span></span></div>
-                                                    </div>
+
+
+                                                        </span></span></div>
                                                 </div>
                                             </div>
-                                        </div>                                        
-
-
-                                    </div>
-
-
+                                        </div>
+                                    </div>                                        
 
 
                                 </div>
 
 
+
+
                             </div>
-                     
+
+
+                        </div>
+
 
                     </section>
 
@@ -458,7 +458,7 @@
 
 
 
-                 
+
                     <!-- /.content -->
                 </div>
                 <!-- /.container -->

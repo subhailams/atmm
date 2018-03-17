@@ -156,7 +156,7 @@
                                             $_SESSION['formError'] = null
                                             ?></p>
                                     <?php endif; ?>
-                                    <form role="form" method="post" action="<?= base_url('index.php/homepage/forgotpasswordsave') ?>">
+                                    <form role="form" method="post" action="<?= base_url('index.php/homepage/ForgotPasswordSave') ?>">
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-6">

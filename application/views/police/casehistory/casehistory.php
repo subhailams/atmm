@@ -141,7 +141,7 @@
                     </div>
                     <!-- /.comment body -->
                     <form method="post"
-                          action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/casehistoryval") ?> ">
+                          action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseHistorySave") ?> ">
                         <input type="hidden" name="caseid" value="<?= $casedatabase['CaseID'] ?>"/>
                         <div class="box-body pad">
                                     <textarea class="textarea"
