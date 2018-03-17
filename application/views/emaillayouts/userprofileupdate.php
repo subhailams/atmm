@@ -70,15 +70,8 @@
 <body>
 
 <div id="container">
-    <h1>New User Account Created</h1>
+    <h1>Your Profile has been updated</h1>
 
-    <div id="body">
-        <p>Thank you for creating the account with Atrocity Case Management</p>
-        <br/><br/><br/>
-        <a href="#">Verify</a>
-        <p></p>
-
-    </div>
-
+            
 </body>
 </html>

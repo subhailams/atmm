@@ -171,15 +171,15 @@ class MY_Controller extends CI_Controller {
                 break;
             case "profile":
                 $rules = array(
-                    array('field' => 'PersonName', 'label' => 'Name', 'rules' => 'required|max_length[25]|alpha'),
+                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[25]|alpha'),
                     array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
                     array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
                     array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
-                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required|max_length[12]'),
+                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required|exact_length[12]'),
                     array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|exact_length[10]|integer'),
                     array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
                     array('field' => 'State', 'label' => 'State', 'rules' => 'required'),
-                    array('field' => 'Username', 'label' => 'User Name', 'rules' => 'required|max_length[35]'),
+                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required|max_length[35]'),
                     array('field' => 'Country', 'label' => 'Country', 'rules' => 'required'),
                     array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
                 );
