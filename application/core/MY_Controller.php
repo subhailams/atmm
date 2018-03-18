@@ -201,12 +201,11 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
                     array('field' => 'offencedate', 'label' => 'Offence Date', 'rules' => 'required'),
                     array('field' => 'victimgender', 'label' => 'Gender', 'rules' => 'required'),
-                    array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|min_length[10]|max_length[400]'),
+                    array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|max_length[400]'),
                     array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
                     array('field' => 'fir_no', 'label' => 'FIR Number', 'rules' => 'required'),
-
                 );
                 break;
         }
@@ -245,15 +244,13 @@ class MY_Controller extends CI_Controller {
     public function CaseHistorySave() {
         $postData = $this->input->post();
         if ($this->form_validation("casehistory")):
-            $condition = array("casehistoryid"=>"");
+            $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
             $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
-
-    
 
     public function passwordchange() {
         $postData = $this->input->post();
@@ -381,8 +378,8 @@ class MY_Controller extends CI_Controller {
             case "cases":
                 $Condition = array();
                 $TableListname = "case";
-                $ColumnOrder = array('victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('victimname', 'victimmobile', 'casestatus');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
+                $ColumnSearch = array('fir_no','victimname', 'victimmobile', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             default:
@@ -396,6 +393,7 @@ class MY_Controller extends CI_Controller {
         foreach ($list as $logNotice) {
             $no++;
             $row = array();
+            $row[] = $logNotice->fir_no;
             $row[] = $logNotice->victimname;
             $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->offendername;
@@ -420,10 +418,12 @@ class MY_Controller extends CI_Controller {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             //add to database
+               
             $condition = array("caseid" => "");
             $DBData = array(
                 "offid" => $postData['offenece'],
                 "userid" => "1",
+                "fir_no" => $postData['fir_no'],
                 "victimname" => $postData['victimname'],
                 "victimaddress" => $postData['victimaddress'],
                 "vicitmdob" => $postData['victimdob'],

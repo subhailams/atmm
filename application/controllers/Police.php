@@ -26,8 +26,8 @@ class Police extends MY_Controller
             case "cases":
                 $Condition = array();
                 $TableListname = "case";
-                $ColumnOrder = array('victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('victimname', 'victimmobile', 'casestatus');
+                $ColumnOrder = array('fir_no','victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
+                $ColumnSearch = array('fir_no','victimname', 'victimmobile', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             default:
@@ -41,6 +41,7 @@ class Police extends MY_Controller
         foreach ($list as $logNotice) {
             $no++;
             $row = array();
+              $row[] = $logNotice->fir_no;
             $row[] = $logNotice->victimname;
             $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->offendername;
