@@ -5,7 +5,7 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-             <li><a href="#">Cases</a></li>
+            <li><a href="#">Cases</a></li>
             <li class="active">All Cases</li>
         </ol>
     </section>
@@ -20,6 +20,7 @@
                                aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
+                                    <th> <?= $this->lang->line('fir_no') ?></th>
                                     <th> <?= $this->lang->line('victim_name') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
                                     <th> <?= $this->lang->line('offender_name') ?></th>
@@ -53,7 +54,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/'.$this->router->fetch_class().'/cases_ajax_list/cases') ?>",
+                "url": "<?= base_url('index.php/' . $this->router->fetch_class() . '/cases_ajax_list/cases') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.
