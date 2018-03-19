@@ -25,11 +25,16 @@ class Administrator extends MY_Controller
     public function index()
     {
         
-        $usercount=$this->TotalUserCount();
+      $usercount=$this->TotalUserCount();
         $casecount=$this->TotalCaseCount();
        $pendingcount=$this->PendingCaseCount();
        $solvedcount=$this->SolvedCaseCount();
        $newcase=$this->NewCaseShow();
+       $solvedcase=$this->SolvedCaseShow();
+       $pendingcase=$this->PendingCaseShow();
+//       echo "<pre>";
+//            print_r($newcase);
+//            exit();
         $this->render("dashboard", get_defined_vars());
     }
 
@@ -273,7 +278,19 @@ class Administrator extends MY_Controller
      public function NewCaseShow() {
         $condition = array("casestatus"=>'1');
         $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
+    public function SolvedCaseShow() {
+        $condition = array("casestatus"=>'2');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
+
+    
+        public function PendingCaseShow() {
+        $condition = array("casestatus"=>'3');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
     }
 
     

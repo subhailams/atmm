@@ -19,7 +19,7 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>2</h3>
+                        <h3><?= $usercount ?></h3>
 
                         <p>Total Users</p>
                     </div>
@@ -34,7 +34,8 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>4</h3>
+                        <h3><?= $casecount ?></h3>
+
                         <p>Total Cases</p>
                     </div>
                     <div class="icon">
@@ -48,8 +49,7 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px"></sup></h3>
-
+                        <h3><?= $solvedcount ?></h3>
                         <p>Solved Cases</p>
                     </div>
                     <div class="icon">
@@ -63,7 +63,7 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>65</h3>
+                        <h3><?= $pendingcount ?></h3>
 
                         <p>Pending Cases</p>
                     </div>
@@ -90,36 +90,26 @@
                             <br/>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                <tr>
-                                    <th>Case ID</th>
-                                    <th>Case Victim Name</th>
-                                    <th>Mobile Number</th>
-                                    <th>Status</th>
-                                </tr>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-info">Submitted</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-warning">Police Tracking</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-success">Solved</span></td>
-                                </tr>
+
+                                    <?php foreach ($newcase as $new): ?>
+                                       <tr>
+                                            <td><?= $new['FIR'] ?> </td>
+                                            <td><?= $new['VictimName'] ?></td>
+                                            <td><?= $new['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Filed</span></td>
+                                        </tr>
+
+                                        </div>
+                                    <?php endforeach; ?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -128,79 +118,55 @@
                             <br/>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                <tr>
-                                    <th>Case ID</th>
-                                    <th>Case Victim Name</th>
-                                    <th>Mobile Number</th>
-                                    <th>Status</th>
-                                </tr>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-info">Submitted</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-warning">Police Tracking</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-success">Solved</span></td>
-                                </tr>
+                                    <?php foreach ($pendingcase as $pending): ?>
+                                       <tr>
+                                            <td><?= $pending['FIR'] ?> </td>
+                                            <td><?= $pending['VictimName'] ?></td>
+                                            <td><?= $pending['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Police Tracking</span></td>
+                                        </tr>
+
+                                        </div>
+                                    <?php endforeach; ?>
+ 
                                 </tbody>
                             </table>
-                        </div>
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="tab_3">
-                           
                             <br/>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                <tr>
-                                    <th>Case ID</th>
-                                    <th>Case Victim Name</th>
-                                    <th>Mobile Number</th>
-                                    <th>Status</th>
-                                </tr>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-info">Submitted</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-warning">Police Tracking</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-success">Solved</span></td>
-                                </tr>
+                                    <?php foreach ($solvedcase as $solved): ?>
+                                       <tr>
+                                            <td><?= $solved['FIR'] ?> </td>
+                                            <td><?= $solved['VictimName'] ?></td>
+                                            <td><?= $solved['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Solved</span></td>
+                                        </tr>
+
+                                        </div>
+                                    <?php endforeach; ?>
+ 
+                                    
                                 </tbody>
                             </table>
-                        </div>
                         </div>
                         <!-- /.tab-pane -->
                     </div>
