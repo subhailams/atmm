@@ -127,7 +127,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="<?= base_url('index.php/homepage/index') ?>">Home</a></li>
                             <li><a href="#">Offences and Punishments</a></li>
-                            <li><a href="<?= base_url('index.php/administrator') ?>">Login</a></li>
+                            <li><a href="<?= base_url('index.php/homepage') ?>">Login</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -160,7 +160,7 @@
                                     $_SESSION['formError'] = null;
                                     ?></p>
                             <?php endif; ?>
-                            <form role="form" method="post" action="<?= base_url('index.php/administrator/index') ?>"
+                            <form role="form" method="post" action="<?= base_url('index.php/homepage/index') ?>"
                                   autocomplete="off">
                                 <div class="box-body">
                                     <div class="row">
