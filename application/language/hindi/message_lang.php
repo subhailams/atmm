@@ -37,6 +37,7 @@ $lang['personal_information'] = 'व्यक्तिगत जानकार�
 
 /* case management form */
 $lang['address'] = 'पता';
+$lang['fir_no']='एफआईआर संख्या';
 $lang['registration_form'] = 'पंजीकरण फॉर्म';
 $lang['case_details'] = 'केस विवरण';
 $lang['if_others'] = 'अगर अन्य';

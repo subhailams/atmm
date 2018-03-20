@@ -26,7 +26,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1"><?= $this->lang->line('name') ?></label>
-                                        <input type="name" class="form-control" id="PersonName" name="PersonName"  placeholder="Enter Full Name">
+                                        <input type="name" class="form-control" id="Name" name="Name"  placeholder="Enter Full Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

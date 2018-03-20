@@ -8,8 +8,13 @@ class Homepage extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+<<<<<<< HEAD
         $FunctionS = array("index","forgotpassword","userregister");
         
+=======
+        $FunctionS = array("index","forgotpassword","userregister"
+           );
+>>>>>>> e901326139598d0cef5e52d8b4714ee2f4bd9ca9
         if (!in_array($this->router->fetch_method(), $FunctionS)):
             if (strtolower($_SESSION["UserRoleName"]) != strtolower(__CLASS__)) {
                 $this->Inti(__CLASS__);
@@ -36,8 +41,9 @@ class Homepage extends MY_Controller {
         $this->load->view('homepage/userregister');
     }
 
-    public function register() {
+    public function UserRegisterSave() {
         $postData = $this->input->post();
+      
         if ($this->form_validation("userreg")):
             //add to database
             $condition = array("user_id" => "");
@@ -59,8 +65,8 @@ class Homepage extends MY_Controller {
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Account Created";
-                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
-                $this->session->set_flashdata('ME_SUCCESS', 'User Registred Successfully');
+             //   $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                $this->session->set_flashdata('ME_SUCCESS', 'User Registered Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
             endif;
@@ -71,7 +77,7 @@ class Homepage extends MY_Controller {
         $this->load->view('homepage/userregister');
     }
 
-    public function forgotpasswordsave() {
+    public function ForgotPasswordSave() {
         $postData = $this->input->post();
         if ($this->form_validation("forgot")):
             //add to database

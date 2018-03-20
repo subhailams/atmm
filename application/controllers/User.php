@@ -142,35 +142,96 @@ class User extends MY_Controller {
     public function UpdatePassword() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
-        //add to database
-        $condition = array("user_id" => "1", "password" => $postData['oldpassword']);
-        $select = "user_id as ID,email as EmailID";
-        $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-//       echo "<pre>";
-//       print_r(get_defined_vars($result));
-//       exit();
+            //add to database
+            $condition = array("user_id" => "1", "password" => $postData['oldpassword']);
+            $select = "user_id as ID,email as EmailID";
+            $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+            //echo "<pre>";
+            // print_r(get_defined_vars($result));
+            // exit();
 
-   if (!empty($result)):
+            if (!empty($result)):
+                //             echo "<pre>";
+                //  print_r(get_defined_vars($result));
+                //  exit();
+
+                $condition = array("user_id" => "1");
+                $DBData = array("password" => $postData['newpassword']);
+                $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
+
+                if (!empty($response)):
+                    $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
+                    $Subject = "Atrocity Case Management - Your password has been updated.";
+                    // $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+                    $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
+                else:
+                    $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+                endif;
+            endif;
+        else:
+
+            $this->session->set_flashdata('ME_FORM', "ERROR");
+        endif;
+        $this->load->view('homepage/dashboard');
+    }
+
+    public function Newprofilesave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("profile")):
+            //add to database
+            $condition = array("user_id" => "2",
+                "role" => $postData['Role'],
+                "name" => $postData['Name'],
+                "username" => $postData['UserName'],
+                "address1" => $postData['Address1'],
+                "address2" => $postData['Address2'],
+                "city" => $postData['City'],
+                "state" => $postData['State'],
+                "country" => $postData['Country'],
+                "mobilenumber" => $postData['MobileNumber'],
+                "aadhar" => $postData['AadhaarNumber'],
+               // "email" => $postData['EmailID']
+                );
+            $select = "user_id as ID,email as EmailID";
+            $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+              echo "<pre>";
+             print_r(get_defined_vars($result));
+             exit();
+
+            if (!empty($result)):
 //                    echo "<pre>";
 //        print_r(get_defined_vars($result));
 //        exit();
 
-        $condition = array("user_id" => "1");
-        $DBData = array("password" => $postData['newpassword']);
-        $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
+                $condition = array("user_id" => "2");
+                $DBData = array(
+                    "role" => $postData['Role'],
+                    "name" => $postData['Name'],
+                    "username" => $postData['UserName'],
+                    "password" => $postData['Password'],
+                    "address1" => $postData['Address1'],
+                    "address2" => $postData['Address2'],
+                    "city" => $postData['City'],
+                    "state" => $postData['State'],
+                    "country" => $postData['Country'],
+                    "mobilenumber" => $postData['MobileNumber'],
+                    "aadhar" => $postData['AadhaarNumber'],
+                   // "email" => $postData['EmailID']
+                );
+                $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
 
-             if (!empty($response)):
-                  $Message = $this->load->view("emaillayouts/userpasswordupdate", get_defined_vars(), true);
-                  $Subject = "Atrocity Case Management - Your password has been updated.";
-                 // $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
-                  $this->session->set_flashdata('ME_SUCCESS', 'Password Changed Successfully');
-             else:
-                  $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
-             endif;
-        endif;
+                if (!empty($response)):
+                    $Message = $this->load->view("emaillayouts/userprofileupdate", get_defined_vars(), true);
+                    $Subject = "Atrocity Case Management - Your profile has been updated.";
+                    // $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+                    $this->session->set_flashdata('ME_SUCCESS', 'Profile Changed Successfully');
+                else:
+                    $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+                endif;
+            endif;
         else:
-             
-        $this->session->set_flashdata('ME_FORM', "ERROR");
+
+            $this->session->set_flashdata('ME_FORM', "ERROR");
         endif;
         $this->load->view('homepage/dashboard');
     }

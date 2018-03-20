@@ -24,15 +24,6 @@
                     <!-- form start -->
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseRegisterSave") ?> ">
                         <div class="box-body">
-                           <div class="row">
-                                   <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="FIR Number"><?= $this->lang->line('fir_no') ?> <span style="color: red ">*</span></label>
-                                        <input class="form-control" id="FIR Number" placeholder="Enter FIR Number" type="text" name="fir_no">
-                                    </div>
-                                </div> 
-                           </div>
-                           
                             <h4><?= $this->lang->line('victim_details') ?></h4>  
                             <div class="row">
 
@@ -113,7 +104,7 @@
                                 </div>
 
                             </div>
-                            <hr>
+
 
                             <h4><?= $this->lang->line('offender_details') ?></h4>
                             <div class="row">
@@ -178,7 +169,7 @@
                                 </div>
 
                             </div>
-                            <hr>
+
 
                             <h4><?= $this->lang->line('case_details') ?><span style="color: red ">*</span></h4>
                             <div class="row">
