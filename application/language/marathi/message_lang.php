@@ -59,7 +59,7 @@ $lang['female']='महिला';
 $lang['others']='इतर';
 $lang['select_gender']='लिंग निवडा';
 $lang['victimdob']='जन्म तारीख';
-
+$lang['fir_no']='एफआयआर क्रमांक';
         
 /* case managment Ends Here */
 

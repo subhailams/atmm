@@ -92,9 +92,7 @@ class Adminmodel extends CI_Model
             case "cases":
                 $JoinTable = array(
                     "users" => "users.user_id=userid",
-                    "offences_master" => "offences_master.offid=offid",
-                    "offences_master" => "offences_master.offid=offid",
-                    "offences_master" => "offences_master.offid=offid",
+                    "offences_master" => "offences_master.offid=cases.offid",
                     "users" => "users.user_id=policeassignedto",
                     "users" => "users.user_id=organizationassignedto",
                     "gender" => "gender.gender_id=victimgender",

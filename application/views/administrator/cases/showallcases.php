@@ -20,6 +20,7 @@
                                aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
+                                      <th> <?= $this->lang->line('fir_no') ?></th>
                                     <th> <?= $this->lang->line('victim_name') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
                                     <th> <?= $this->lang->line('offender_name') ?></th>

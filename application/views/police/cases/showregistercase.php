@@ -22,7 +22,7 @@
 
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/caseregisterSave") ?> ">
+                    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseRegisterSave") ?> ">
                         <div class="box-body">
                             <h4><?= $this->lang->line('victim_details') ?></h4>  
                             <div class="row">
