@@ -257,9 +257,10 @@ class MY_Controller extends CI_Controller
     public function casehistoryval()
     {
         $postData = $this->input->post();
+         $condition = array("casehistoryid" => "");
         if ($this->form_validation("casehistory")):
-            $condition = array("casehistoryid" => "", "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
-            $DBData = array("casehistorydesc" => $postData['casehistory']);
+           
+            $DBData = array("casehistorydesc" => $postData['casehistory'],"userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
             $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
         endif;
         redirect($_SERVER['HTTP_REFERER']);
