@@ -160,7 +160,7 @@
                                     $_SESSION['formError'] = null;
                                     ?></p>
                             <?php endif; ?>
-                            <form role="form" method="post" action="<?= base_url('index.php/adminstrator/index') ?>"
+                            <form role="form" method="post" action="<?= base_url('index.php/administrator/index') ?>"
                                   autocomplete="off">
                                 <div class="box-body">
                                     <div class="row">
