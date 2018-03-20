@@ -127,11 +127,7 @@
                        <ul class="nav navbar-nav">
                             <li class="active"><a href="<?= base_url('index.php/homepage/index') ?>">Home</a></li>
                             <li><a href="#">Offences and Punishments</a></li>
-<<<<<<< HEAD
                             <li><a href="<?= base_url('index.php/homepage') ?>">Login</a></li>
-=======
-                            <li><a href="<?= base_url('index.php/homepage/login') ?>">Login</a></li>
->>>>>>> e901326139598d0cef5e52d8b4714ee2f4bd9ca9
                         </ul>
                     </ul>
                 </div>
@@ -164,7 +160,7 @@
                                     $_SESSION['formError'] = null;
                                     ?></p>
                             <?php endif; ?>
-                            <form role="form" method="post" action="<?= base_url('index.php/homepage/index') ?>"
+                            <form role="form" method="post" action="<?= base_url('index.php/adminstrator/index') ?>"
                                   autocomplete="off">
                                 <div class="box-body">
                                     <div class="row">
