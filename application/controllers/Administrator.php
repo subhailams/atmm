@@ -176,8 +176,8 @@ class Administrator extends MY_Controller {
                 $Condition = array();
                 $TableListname = "usr";
                 $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
-                $OrderBy = array('caseid' => 'desc');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $OrderBy = array('userid' => 'desc');
                 break;
             default:
                 $Condition = array();
@@ -187,17 +187,16 @@ class Administrator extends MY_Controller {
         $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $data = array();
         $no = $_POST['start'];
-        foreach ($list as $logNotice) {
+        foreach ($list as $UserNotice) {
             $no++;
             $row = array();
-            $row[] = $logNotice->fir_no;
-            $row[] = $logNotice->victimname;
-            $row[] = $logNotice->victimmobile;
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->createdat;
-            $row[] = $logNotice->casestatus;
+            $row[] = $UserNotice->name;
+            $row[] = $UserNotice->username;
+            $row[] = $UserNotice->mobilenumber;
+            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->city;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
