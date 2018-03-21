@@ -33,9 +33,9 @@ class Administrator extends MY_Controller {
     }
 
     public function demo() {
-        $condition = array("casestatus" => '1');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile,gender_name as Gender";
-        $temp = $this->Adminmodel->CSearch($condition, $select, "case", "Y", "Y", "", "", "", "", "");
+        $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
+        $Subject = "Atrocity Case Management - New Account Created";
+        $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject, "");
           
     }
 
