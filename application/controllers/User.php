@@ -38,6 +38,9 @@ class User extends MY_Controller {
     public function offencesandpunishments() {
         $this->render("offencesandpunishments", get_defined_vars());
     }
+       public function showallusers() {
+        $this->render("showallusers", get_defined_vars());
+    }
 
     public function logs($options = null) {
         $render = "";
@@ -141,14 +144,14 @@ class User extends MY_Controller {
 
     public function UpdatePassword() {
         $postData = $this->input->post();
-        if ($this->form_validation("password")):
+                if ($this->form_validation("password")):
             //add to database
             $condition = array("user_id" => "1", "password" => $postData['oldpassword']);
             $select = "user_id as ID,email as EmailID";
             $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-            //echo "<pre>";
-            // print_r(get_defined_vars($result));
-            // exit();
+//            echo "<pre>";
+//             print_r(get_defined_vars($result));
+//             exit();
 
             if (!empty($result)):
                 //             echo "<pre>";
@@ -175,35 +178,41 @@ class User extends MY_Controller {
         $this->load->view('homepage/dashboard');
     }
 
-    public function Newprofilesave() {
+    public function UpdateProfileSave() {
         $postData = $this->input->post();
+//        echo "<pre>";
+//            print_r(get_defined_vars($result));
+//             exit();
         if ($this->form_validation("profile")):
             //add to database
-            $condition = array("user_id" => "2",
-                "role" => $postData['Role'],
-                "name" => $postData['Name'],
-                "username" => $postData['UserName'],
-                "address1" => $postData['Address1'],
-                "address2" => $postData['Address2'],
-                "city" => $postData['City'],
-                "state" => $postData['State'],
-                "country" => $postData['Country'],
-                "mobilenumber" => $postData['MobileNumber'],
-                "aadhar" => $postData['AadhaarNumber'],
-               // "email" => $postData['EmailID']
-                );
-            $select = "user_id as ID,email as EmailID";
-            $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-              echo "<pre>";
-             print_r(get_defined_vars($result));
-             exit();
+//           echo "<pre>";
+//           print_r(get_defined_vars());
+//            exit();
+//            $condition = array("user_id" => "2",
+//                "role" => $postData['Role'],
+//                "name" => $postData['Name'],
+//                "username" => $postData['UserName'],
+//                "address1" => $postData['Address1'],
+//                "address2" => $postData['Address2'],
+//                "city" => $postData['City'],
+//                "state" => $postData['State'],
+//                "country" => $postData['Country'],
+//                "mobilenumber" => $postData['MobileNumber'],
+//                "aadhar" => $postData['AadhaarNumber'],
+//                "email" => $postData['EmailID']
+//                );
+//            $select = "user_id as ID,email as EmailID";
+//            $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+//              echo "<pre>";
+//             print_r(get_defined_vars($result));
+//             exit();
 
-            if (!empty($result)):
+//            if (!empty($result)):
 //                    echo "<pre>";
 //        print_r(get_defined_vars($result));
 //        exit();
 
-                $condition = array("user_id" => "2");
+                $condition = array("user_id" => "1");
                 $DBData = array(
                     "role" => $postData['Role'],
                     "name" => $postData['Name'],
@@ -216,6 +225,7 @@ class User extends MY_Controller {
                     "country" => $postData['Country'],
                     "mobilenumber" => $postData['MobileNumber'],
                     "aadhar" => $postData['AadhaarNumber'],
+                    "role" =>"4"
                    // "email" => $postData['EmailID']
                 );
                 $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
@@ -228,7 +238,7 @@ class User extends MY_Controller {
                 else:
                     $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
                 endif;
-            endif;
+            
         else:
 
             $this->session->set_flashdata('ME_FORM', "ERROR");

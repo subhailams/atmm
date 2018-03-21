@@ -44,9 +44,15 @@ class Homepage extends MY_Controller {
 
     public function UserRegisterSave() {
         $postData = $this->input->post();
-      
+      echo "<pre>";
+            print_r(get_defined_vars());
+            exit();
         if ($this->form_validation("userreg")):
             //add to database
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//            exit();
+            
             $condition = array("user_id" => "");
             $DBData = array(
                 "role" => $postData['Role'],
@@ -57,7 +63,7 @@ class Homepage extends MY_Controller {
                 "address2" => $postData['Address2'],
                 "city" => $postData['City'],
                 "state" => $postData['State'],
-                "country" => "INDIA",
+                "country" =>$postData['Country'],
                 "mobilenumber" => $postData['MobileNumber'],
                 "email" => $postData['EmailID']
             );
