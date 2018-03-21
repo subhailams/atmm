@@ -102,7 +102,7 @@ class MY_Controller extends CI_Controller {
         $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = "atrocitymgnt@gmail.com";                 // SMTP username
-        $mail->Password = "rmkenggcollege";
+        $mail->Password = "rmkenggcollegee";
         return $mail;
     }
 

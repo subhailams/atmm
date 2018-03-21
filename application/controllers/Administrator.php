@@ -23,7 +23,6 @@ class Administrator extends MY_Controller {
 
     public function index()
     {
-        
       $usercount=$this->TotalUserCount();
       $casecount=$this->TotalCaseCount();
        $pendingcount=$this->PendingCaseCount();
@@ -31,12 +30,6 @@ class Administrator extends MY_Controller {
        $newcase=$this->NewCaseShow();
        $solvedcase=$this->SolvedCaseShow();
        $pendingcase=$this->PendingCaseShow();
-//       echo "<pre>";
-//            print_r($newcase);
-//            exit();
-
-    
-
         $this->render("dashboard", get_defined_vars());
     }
 
