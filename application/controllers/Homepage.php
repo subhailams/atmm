@@ -18,9 +18,9 @@ class Homepage extends MY_Controller {
         endif;
 
         $userNameCnd = array("username" => $this->session->userdata("UserName"));
-        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
-        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
-        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));
+        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr", "", "", "", "", "", "", ""));
+        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr", "", "", "", "", "", "", ""));
+        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "Y", "Y", "", "", "", "", ""));
     }
 
     public function index() {

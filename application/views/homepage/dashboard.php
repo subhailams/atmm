@@ -133,10 +133,11 @@
                 </nav>
             </header>
             <!-- Full Width Column -->
-            <div class="content-wrapper">
-                <div class="container">
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;height:"600" ; margin:="" auto="" float:left="" border:="" 3px="" solid="" #1aa1f0="">
+            <div class="content-wrapper">
+                            <br/>   
+                <div class="container">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;height:"600" ; margin:="" auto="" float:left="" border:="" 3px="" solid="" #1aa1f0="">
 
                         <div class="carousel-inner" role="listbox">
 
@@ -175,13 +176,13 @@
                                 <div class="box-body">
                                     <div>
                                         <p>Total Cases:  <?= $casecount ?></p>
-                                 
+
 
 
                                     </div>
                                     <div>
                                         <p>Solved Cases:  <?= $solvedcount ?></p>
-                                     
+
 
 
                                     </div>
@@ -199,9 +200,9 @@
                         </div>
 
 
-                    
-                    
-                    
+
+
+
 
 
                         <div class='col-md-6'>
@@ -332,7 +333,7 @@
                 </div>
 
                 <br>
-               
+
 
 
 
