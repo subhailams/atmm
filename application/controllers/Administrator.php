@@ -35,6 +35,9 @@ class Administrator extends MY_Controller {
 //            print_r($newcase);
 //            exit();
 
+    
+
+        $this->render("dashboard", get_defined_vars());
     }
 
     public function demo() {
@@ -286,52 +289,12 @@ class Administrator extends MY_Controller {
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
     }
-<<<<<<< HEAD
+
     
  
-=======
 
-    public function TotalUserCount() {
-        $condition = array();
-        $response = $this->Adminmodel->count_all("usr", $condition);
-        return $response;
-    }
 
-    public function TotalCaseCount() {
-        $condition = array();
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
+   
 
-    public function PendingCaseCount() {
-        $condition = array("casestatus" => '3');
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function SolvedCaseCount() {
-        $condition = array("casestatus" => '2');
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function NewCaseShow() {
-        $condition = array("casestatus" => '1');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
-
-    public function SolvedCaseShow() {
-        $condition = array("casestatus" => '2');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
-
-    public function PendingCaseShow() {
-        $condition = array("casestatus" => '3');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
->>>>>>> 16658ad6aec0629b154fa9561f68e2cb2c03d513
 
 }

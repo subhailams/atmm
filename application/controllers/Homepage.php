@@ -25,7 +25,6 @@ class Homepage extends MY_Controller {
 
     public function index() {
          $casecount=$this->TotalCaseCount();
-         
          $pendingcount=$this->PendingCaseCount();
          $solvedcount=$this->SolvedCaseCount();
 //         echo "<pre>";
