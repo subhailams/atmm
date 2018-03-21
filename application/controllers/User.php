@@ -38,6 +38,9 @@ class User extends MY_Controller {
     public function offencesandpunishments() {
         $this->render("offencesandpunishments", get_defined_vars());
     }
+       public function showallusers() {
+        $this->render("showallusers", get_defined_vars());
+    }
 
     public function logs($options = null) {
         $render = "";
