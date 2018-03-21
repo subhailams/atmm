@@ -34,7 +34,7 @@ $lang['user_name'] = 'उपयोगकर्ता नाम';
 $lang['register'] = 'रजिस्टर';
 $lang['update_profile'] = 'प्रोफ़ाइल अपडेट करें';
 $lang['personal_information'] = 'व्यक्तिगत जानकारी';
-
+$lang['all_users']='सभी उपयोगकर्ताओं';
 /* case management form */
 $lang['address'] = 'पता';
 $lang['fir_no']='एफआईआर संख्या';
