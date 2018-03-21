@@ -35,6 +35,9 @@ class Administrator extends MY_Controller {
 //            print_r($newcase);
 //            exit();
 
+    
+
+        $this->render("dashboard", get_defined_vars());
     }
 
     public function demo() {
@@ -285,7 +288,5 @@ class Administrator extends MY_Controller {
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
     }
-
-   
 
 }
