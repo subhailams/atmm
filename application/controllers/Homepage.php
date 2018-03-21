@@ -10,6 +10,7 @@ class Homepage extends MY_Controller {
         parent::__construct();
         $FunctionS = array("index","forgotpassword","userregister"
            );
+
         if (!in_array($this->router->fetch_method(), $FunctionS)):
             if (strtolower($_SESSION["UserRoleName"]) != strtolower(__CLASS__)) {
                 $this->Inti(__CLASS__);

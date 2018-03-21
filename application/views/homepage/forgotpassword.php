@@ -192,6 +192,7 @@
                                             <button type="submit"
                                                     class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
                                         </div>
+                                    </form>
                                         <!-- /.box -->
                                 </div>
                                 <!--/.col (left) -->
