@@ -28,7 +28,7 @@ $lang['confirmation_password'] = 'पुष्टीकरण बदला';
 $lang['register'] = 'नोंदणी करा';
 $lang['update_profile'] = 'प्रोफाइल अद्यतनित करा';
 $lang['personal_information'] = 'वैयक्तिक माहिती';
-
+$lang['all_users']='सर्व वापरकर्ते';
 /* Log Managment Starts Here */
 $lang['log_mgnt'] = 'लॉग व्यवस्थापन';
 $lang['more_info'] = 'और जानकारी';

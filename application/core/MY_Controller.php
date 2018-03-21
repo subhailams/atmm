@@ -13,11 +13,10 @@ class MY_Controller extends CI_Controller {
         $this->UserFrom();
         $config = array("question_format" => "numeric",
             "operation" => "addition");
-        $this->mathcaptcha->init($config);
         $userNameCnd = array("username" => $this->session->userdata("UserName"));
-        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
-        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
-        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));
+        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr", "", "", "", "", "", "", ""));
+        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr", "", "", "", "", "", "", ""));
+        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "Y", "Y", "", "", "", "", ""));
         date_default_timezone_set('Asia/Kolkata');
     }
 
@@ -231,8 +230,8 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryShow($id) {
         $condition = array("caseid" => $id);
-        $select = "caseid as CaseID,victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , casedescription as CaseDescription ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
+        $select = "caseid as CaseID,victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender , casedescription as CaseDescription ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", "Y", "", "", "", "", "");
     }
 
     public function CaseHistoryComments($id) {
@@ -243,11 +242,11 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
-         $condition = array("casehistoryid" => "");
+        $condition = array("casehistoryid" => "");
         if ($this->form_validation("casehistory")):
 
-           
-            $DBData = array("casehistorydesc" => $postData['casehistory'],"userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
+
+            $DBData = array("casehistorydesc" => $postData['casehistory'], "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
 
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
@@ -385,7 +384,7 @@ class MY_Controller extends CI_Controller {
                 $Condition = array();
                 $TableListname = "case";
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('fir_no','victimname', 'victimmobile', 'casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             default:
@@ -424,7 +423,7 @@ class MY_Controller extends CI_Controller {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
             //add to database
-               
+
             $condition = array("caseid" => "");
             $DBData = array(
                 "offid" => $postData['offenece'],
