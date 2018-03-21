@@ -24,7 +24,13 @@ class Homepage extends MY_Controller {
     }
 
     public function index() {
-        $this->load->view('homepage/dashboard');
+         $casecount=$this->TotalCaseCount();
+         
+         $pendingcount=$this->PendingCaseCount();
+         $solvedcount=$this->SolvedCaseCount();
+//         echo "<pre>";
+//         print_r(get_defined_vars());exit();
+          $this->load->view('homepage/dashboard', get_defined_vars());
     }
 
     public function email() {

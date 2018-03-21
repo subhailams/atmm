@@ -20,16 +20,21 @@ class Administrator extends MY_Controller {
         $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "Y", "Y", "", "", "", "", ""));
     }
 
-    public function index() {
 
-        $usercount = $this->TotalUserCount();
-        $casecount = $this->TotalCaseCount();
-        $pendingcount = $this->PendingCaseCount();
-        $solvedcount = $this->SolvedCaseCount();
-        $newcase = $this->NewCaseShow();
-        $solvedcase = $this->SolvedCaseShow();
-        $pendingcase = $this->PendingCaseShow();
-        $this->render("dashboard", get_defined_vars());
+    public function index()
+    {
+        
+      $usercount=$this->TotalUserCount();
+      $casecount=$this->TotalCaseCount();
+       $pendingcount=$this->PendingCaseCount();
+       $solvedcount=$this->SolvedCaseCount();
+       $newcase=$this->NewCaseShow();
+       $solvedcase=$this->SolvedCaseShow();
+       $pendingcase=$this->PendingCaseShow();
+//       echo "<pre>";
+//            print_r($newcase);
+//            exit();
+
     }
 
     public function demo() {
@@ -280,6 +285,10 @@ class Administrator extends MY_Controller {
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
     }
+<<<<<<< HEAD
+    
+ 
+=======
 
     public function TotalUserCount() {
         $condition = array();
@@ -322,5 +331,6 @@ class Administrator extends MY_Controller {
         $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
         return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
     }
+>>>>>>> 16658ad6aec0629b154fa9561f68e2cb2c03d513
 
 }
