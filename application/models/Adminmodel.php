@@ -6,29 +6,24 @@
  * and open the template in the editor.
  */
 
-class Adminmodel extends CI_Model
-{
+class Adminmodel extends CI_Model {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases");
         $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid");
     }
 
-    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY)
-    {
+    public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
         $TableName = $this->TableList[$TableList];
         return $this->CSearch($Condition, $Select, $TableName, $SelectAll, $GroupBY, $OrderBY);
     }
 
-    public function AllInsert($condition, $dataDB, $Select, $Tble)
-    {
+    public function AllInsert($condition, $dataDB, $Select, $Tble) {
         return $this->Crud($condition, $dataDB, $Select, $Tble);
     }
 
-    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = null)
-    {
+    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = null) {
         $IPAdress = ($this->input->ip_address() === "::1") ? "127.0.0.1" : $this->input->ip_address();
         $CrudDetails = $this->CSearch($Condition, $Select, $TableList, null, null, null, null, null, null);
         $TableName = $this->TableList[$TableList];
@@ -50,8 +45,8 @@ class Adminmodel extends CI_Model
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll = "N", $JoinRequired = null, $Distinct = null, $Omit = null, $LeftJoin = null, $GroupBY = null, $JoinType = null)
-    {
+    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $Distinct, $Omit, $LeftJoin, $GroupBY, $JoinType) {
+
         if (!empty($Select)) {
             $this->db->select($Select, FALSE);
         }
@@ -73,16 +68,16 @@ class Adminmodel extends CI_Model
         }
         $this->db->order_by($this->SeqID[$TableName], "asc");
         $Result = $this->db->get($TableName);
-
+                
         if (empty($SelectAll)):
-            return (empty($Result)) ? null : (array)$Result->row();
+            return (empty($Result)) ? null : (array) $Result->row();
         else:
-            return (empty($Result)) ? null : (array)$Result->result_array();
+            return (empty($Result)) ? null : (array) $Result->result_array();
         endif;
     }
 
-    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin)
-    {
+    protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin) {
+        
         switch ($TableName) {
             case "users":
                 $JoinTable = array(
@@ -93,8 +88,6 @@ class Adminmodel extends CI_Model
                 $JoinTable = array(
                     "users" => "users.user_id=userid",
                     "offences_master" => "offences_master.offid=cases.offid",
-                    "users" => "users.user_id=policeassignedto",
-                    "users" => "users.user_id=organizationassignedto",
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
                     "case_status_master" => "case_status_master.case_status_id=casestatus",
@@ -117,22 +110,19 @@ class Adminmodel extends CI_Model
         }
     }
 
-    public function Delete($id, $idval, $table)
-    {
+    public function Delete($id, $idval, $table) {
         $this->db->where($id, $idval);
         return $this->db->delete($table);
     }
 
-    public function DropData($condition, $table)
-    {
+    public function DropData($condition, $table) {
         $TableName = $this->TableList[$table];
         $this->db->where($condition);
         $status = $this->db->delete($TableName);
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 
-    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
-    {
+    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
         $this->db->from($tableName);
         $this->db->where($Condition);
         $i = 0;
@@ -158,8 +148,7 @@ class Adminmodel extends CI_Model
         }
     }
 
-    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
-    {
+    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
         $TableName = $this->TableList[$TableList];
         $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         if ($_POST['length'] != -1)
@@ -168,16 +157,14 @@ class Adminmodel extends CI_Model
         return $query->result();
     }
 
-    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy)
-    {
+    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
         $TableName = $this->TableList[$TableList];
         $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function count_all($TableList, $Condition)
-    {
+    public function count_all($TableList, $Condition) {
         $TableName = $this->TableList[$TableList];
         $this->db->from($TableName);
         $this->db->where($Condition);

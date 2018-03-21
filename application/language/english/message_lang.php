@@ -25,6 +25,7 @@ $lang['confirmation_password'] = 'Confirmation Password';
 $lang['register'] = 'Register';
 $lang['update_profile'] = 'Update Profile';
 $lang['signup'] = 'SignUp';
+$lang['all_users']='All Users';
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
 $lang['registeration_form']='Registration Form';
