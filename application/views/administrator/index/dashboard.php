@@ -77,12 +77,12 @@
         </div>
         <!-- /.row -->
         <div class="row">
-                                                <div class="box box-info">
+            <div class="box box-info">
 
 
-            <div class="col-md-7">
+                <div class="col-md-8">
 
-                <div><div align="center" class="divC"><img width="732" height="568" border="0" src="https://www.maharashtra.gov.in:443/Images/mapMaharashtraB.jpg" usemap="#Map" alt="Maharashtra Map">     <map name="Map" id="map">
+                    <div><div align="center" class="divC"><img width="732" height="568" border="0" src="https://www.maharashtra.gov.in:443/Images/mapMaharashtraB.jpg" usemap="#Map" alt="Maharashtra Map">     <map name="Map" id="map">
                                 <area href="#" coords="165,240" alt="Maharashtra Map" shape="poly">
                                 <area href="http://www.thane.nic.in/" coords="165,237,157,228,151,221,142,209,136,209,130,211,123,217,117,224,112,224,110,220,106,225,103,236,103,232,103,236,91,237,96,240,103,242,111,247,115,256,126,259,137,256,144,255,155,250,165,238" target="_blank" alt="Thane" shape="poly">
                                 <area href="http://ahmednagar.nic.in/" coords="310,292,298,289,296,282,292,285,281,287,274,294,260,283,249,274,247,269,258,268,255,260,287,268,279,260,296,259,295,252,301,244,302,237,289,230,268,221,254,217,243,215,238,209,232,205,232,198,233,192,218,191,206,191,204,194,210,203,199,210,193,217,187,216,176,214,173,208,168,217,157,220,153,221,167,237,182,241,188,249,202,249,202,254,196,262,203,271,218,288,225,298,231,313,240,312,245,316,248,321,262,316,269,311,277,305,287,305,296,304,303,298,310,293" target="_blank" alt="Ahmadnagar" shape="poly">
@@ -123,108 +123,109 @@
                                 <area href="http://collectorpalghar.in" coords="99,172,105,169,105,178,111,183,117,182,122,182,129,185,136,188,135,196,138,204,130,207,127,209,125,213,121,213,118,218,112,221,109,219,105,221,104,228,102,232,99,235,90,234,90,227,88,219,87,212,87,203,85,197,85,191,88,189,88,184,89,174,93,173,98,173,95,171,96,172" target="_blank" alt="Palghar" shape="poly"> </map></div>
 
                     </div></div>
-                                                </div>
-            <div class="col-md-5">
+            
+            <div class="col-md-4">
                 <!-- Custom Tabs -->
-                
 
-                    <div class="nav-tabs-custom">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">New Cases</a></li>
-                            <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Pending Cases</a></li>
-                            <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Solved Cases</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab_1">
-                                <br/>
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
+
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">New Cases</a></li>
+                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Pending Cases</a></li>
+                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Solved Cases</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <br/>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php foreach ($newcase as $new): ?>
                                         <tr>
-                                            <th>FIR No</th>
-                                            <th>Case Victim Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Status</th>
+                                            <td><?= $new['FIR'] ?> </td>
+                                            <td><?= $new['VictimName'] ?></td>
+                                            <td><?= $new['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Filed</span></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
 
-                                        <?php foreach ($newcase as $new): ?>
-                                            <tr>
-                                                <td><?= $new['FIR'] ?> </td>
-                                                <td><?= $new['VictimName'] ?></td>
-                                                <td><?= $new['VictimMobile'] ?></td>
-                                                <td><span class="label label-info">Filed</span></td>
-                                            </tr>
+                                        </div>
+                                    <?php endforeach; ?>
 
-                                            </div>
-                                        <?php endforeach; ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_2">
-                                <br/>
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>FIR No</th>
-                                            <th>Case Victim Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($pendingcase as $pending): ?>
-                                            <tr>
-                                                <td><?= $pending['FIR'] ?> </td>
-                                                <td><?= $pending['VictimName'] ?></td>
-                                                <td><?= $pending['VictimMobile'] ?></td>
-                                                <td><span class="label label-info">Police Tracking</span></td>
-                                            </tr>
-
-                                            </div>
-                                        <?php endforeach; ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_3">
-                                <br/>
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>FIR No</th>
-                                            <th>Case Victim Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($solvedcase as $solved): ?>
-                                            <tr>
-                                                <td><?= $solved['FIR'] ?> </td>
-                                                <td><?= $solved['VictimName'] ?></td>
-                                                <td><?= $solved['VictimMobile'] ?></td>
-                                                <td><span class="label label-info">Solved</span></td>
-                                            </tr>
-
-                                            </div>
-                                        <?php endforeach; ?>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.tab-pane -->
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- /.tab-content -->
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2">
+                            <br/>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($pendingcase as $pending): ?>
+                                        <tr>
+                                            <td><?= $pending['FIR'] ?> </td>
+                                            <td><?= $pending['VictimName'] ?></td>
+                                            <td><?= $pending['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Police Tracking</span></td>
+                                        </tr>
+
+                                        </div>
+                                    <?php endforeach; ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_3">
+                            <br/>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($solvedcase as $solved): ?>
+                                        <tr>
+                                            <td><?= $solved['FIR'] ?> </td>
+                                            <td><?= $solved['VictimName'] ?></td>
+                                            <td><?= $solved['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Solved</span></td>
+                                        </tr>
+
+                                        </div>
+                                    <?php endforeach; ?>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.tab-pane -->
                     </div>
-                
+                    <!-- /.tab-content -->
+                </div>
+
 
                 <!-- nav-tabs-custom -->
             </div>
+</div>
             <!-- /.col -->
         </div>
     </section>
