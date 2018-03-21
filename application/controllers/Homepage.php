@@ -18,13 +18,18 @@ class Homepage extends MY_Controller {
         endif;
 
         $userNameCnd = array("username" => $this->session->userdata("UserName"));
-        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
-        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
-        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));
+        $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr", "", "", "", "", "", "", ""));
+        $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr", "", "", "", "", "", "", ""));
+        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "Y", "Y", "", "", "", "", ""));
     }
 
     public function index() {
-        $this->load->view('homepage/dashboard');
+         $casecount=$this->TotalCaseCount();
+         $pendingcount=$this->PendingCaseCount();
+         $solvedcount=$this->SolvedCaseCount();
+//         echo "<pre>";
+//         print_r(get_defined_vars());exit();
+          $this->load->view('homepage/dashboard', get_defined_vars());
     }
 
     public function email() {
@@ -39,9 +44,15 @@ class Homepage extends MY_Controller {
 
     public function UserRegisterSave() {
         $postData = $this->input->post();
-      
+      echo "<pre>";
+            print_r(get_defined_vars());
+            exit();
         if ($this->form_validation("userreg")):
             //add to database
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//            exit();
+            
             $condition = array("user_id" => "");
             $DBData = array(
                 "role" => $postData['Role'],
@@ -52,7 +63,7 @@ class Homepage extends MY_Controller {
                 "address2" => $postData['Address2'],
                 "city" => $postData['City'],
                 "state" => $postData['State'],
-                "country" => "INDIA",
+                "country" =>$postData['Country'],
                 "mobilenumber" => $postData['MobileNumber'],
                 "email" => $postData['EmailID']
             );

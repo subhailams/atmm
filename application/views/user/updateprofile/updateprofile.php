@@ -20,7 +20,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/UpdateProfileSave") ?> ">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -122,6 +122,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- /.box-body -->
 
                         <div class="box-footer">
@@ -132,6 +133,7 @@
 
 
                         </div>
+                    </form>
                         <!-- /.box -->
                 </div>
                 <!--/.col (left) -->

@@ -20,22 +20,30 @@ class Administrator extends MY_Controller {
         $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "Y", "Y", "", "", "", "", ""));
     }
 
-    public function index() {
 
-        $usercount = $this->TotalUserCount();
-        $casecount = $this->TotalCaseCount();
-        $pendingcount = $this->PendingCaseCount();
-        $solvedcount = $this->SolvedCaseCount();
-        $newcase = $this->NewCaseShow();
-        $solvedcase = $this->SolvedCaseShow();
-        $pendingcase = $this->PendingCaseShow();
+    public function index()
+    {
+        
+      $usercount=$this->TotalUserCount();
+      $casecount=$this->TotalCaseCount();
+       $pendingcount=$this->PendingCaseCount();
+       $solvedcount=$this->SolvedCaseCount();
+       $newcase=$this->NewCaseShow();
+       $solvedcase=$this->SolvedCaseShow();
+       $pendingcase=$this->PendingCaseShow();
+//       echo "<pre>";
+//            print_r($newcase);
+//            exit();
+
+    
+
         $this->render("dashboard", get_defined_vars());
     }
 
     public function demo() {
-        $condition = array("casestatus" => '1');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile,gender_name as Gender";
-        $temp = $this->Adminmodel->CSearch($condition, $select, "case", "Y", "Y", "", "", "", "", "");
+        $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
+        $Subject = "Atrocity Case Management - New Account Created";
+        $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject, "");
           
     }
 
@@ -176,8 +184,8 @@ class Administrator extends MY_Controller {
                 $Condition = array();
                 $TableListname = "usr";
                 $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
-                $OrderBy = array('caseid' => 'desc');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $OrderBy = array('userid' => 'desc');
                 break;
             default:
                 $Condition = array();
@@ -187,17 +195,16 @@ class Administrator extends MY_Controller {
         $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $data = array();
         $no = $_POST['start'];
-        foreach ($list as $logNotice) {
+        foreach ($list as $UserNotice) {
             $no++;
             $row = array();
-            $row[] = $logNotice->fir_no;
-            $row[] = $logNotice->victimname;
-            $row[] = $logNotice->victimmobile;
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->createdat;
-            $row[] = $logNotice->casestatus;
+            $row[] = $UserNotice->name;
+            $row[] = $UserNotice->username;
+            $row[] = $UserNotice->mobilenumber;
+            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->city;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
@@ -280,48 +287,6 @@ class Administrator extends MY_Controller {
             $this->session->set_flashdata('ME_FORM', "ERROR");
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
-    }
-
-    public function TotalUserCount() {
-        $condition = array();
-        $response = $this->Adminmodel->count_all("usr", $condition);
-        return $response;
-    }
-
-    public function TotalCaseCount() {
-        $condition = array();
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function PendingCaseCount() {
-        $condition = array("casestatus" => '3');
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function SolvedCaseCount() {
-        $condition = array("casestatus" => '2');
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function NewCaseShow() {
-        $condition = array("casestatus" => '1');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
-
-    public function SolvedCaseShow() {
-        $condition = array("casestatus" => '2');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
-
-    public function PendingCaseShow() {
-        $condition = array("casestatus" => '3');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
     }
 
 }

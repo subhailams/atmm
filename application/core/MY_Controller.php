@@ -170,22 +170,22 @@ class MY_Controller extends CI_Controller {
                 break;
             case "profile":
                 $rules = array(
-                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[25]|alpha'),
-                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
-                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
-                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
-                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required|exact_length[12]'),
-                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|exact_length[10]|integer'),
-                    array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
-                    array('field' => 'State', 'label' => 'State', 'rules' => 'required'),
-                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required|max_length[35]'),
-                    array('field' => 'Country', 'label' => 'Country', 'rules' => 'required'),
-                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'max_length[25]'),
+                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
+                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => ''),
+                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
+                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => ''),
+                    array('field' => 'City', 'label' => 'city', 'rules' => ''),
+                    array('field' => 'State', 'label' => 'State', 'rules' => ''),
+                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => ''),
+                    array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
+                    array('field' => 'Role', 'label' => 'Role', 'rules' => '')
                 );
                 break;
             case "cases":
                 $rules = array(
-                    array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required|alpha'),
+                    array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'victimaddress', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'victimaadhaar', 'label' => 'Aadhaar Number', 'rules' => ''),
@@ -459,5 +459,54 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
     }
+   public function TotalUserCount() {
+        $condition=array();
+         $response = $this->Adminmodel->count_all("usr", $condition);
+        return $response;
+    }
+    public function TotalCaseCount() {
+        $condition=array();
+         $response= $this->Adminmodel->count_all("case", $condition);
+        return $response;
+    }
+    
+    public function PendingCaseCount() {
+        $condition=array("casestatus"=>'3');
+         $response = $this->Adminmodel->count_all("case", $condition);
+        return $response;
+    }
+    
+    public function SolvedCaseCount() {
+        $condition=array("casestatus"=>'2');
+         $response = $this->Adminmodel->count_all("case", $condition);
+        return $response;
+    }
+    
+     public function NewCaseShow() {
+        $condition = array("casestatus"=>'1');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
+    public function SolvedCaseShow() {
+        $condition = array("casestatus"=>'2');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
 
+    
+        public function PendingCaseShow() {
+        $condition = array("casestatus"=>'3');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
+
+    
+      
+   
+    
+     
+    
+   
+
+    
 }
