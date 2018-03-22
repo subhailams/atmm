@@ -20,16 +20,14 @@ class Administrator extends MY_Controller {
         $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "Y", "Y", "", "", "", "", ""));
     }
 
-
-    public function index()
-    {
-      $usercount=$this->TotalUserCount();
-      $casecount=$this->TotalCaseCount();
-       $pendingcount=$this->PendingCaseCount();
-       $solvedcount=$this->SolvedCaseCount();
-       $newcase=$this->NewCaseShow();
-       $solvedcase=$this->SolvedCaseShow();
-       $pendingcase=$this->PendingCaseShow();
+    public function index() {
+        $usercount = $this->TotalUserCount();
+        $casecount = $this->TotalCaseCount();
+        $pendingcount = $this->PendingCaseCount();
+        $solvedcount = $this->SolvedCaseCount();
+        $newcase = $this->NewCaseShow();
+        $solvedcase = $this->SolvedCaseShow();
+        $pendingcase = $this->PendingCaseShow();
         $this->render("dashboard", get_defined_vars());
     }
 
@@ -37,7 +35,6 @@ class Administrator extends MY_Controller {
         $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
         $Subject = "Atrocity Case Management - New Account Created";
         $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject, "");
-          
     }
 
     public function logs($options = null, $id = null) {
@@ -134,7 +131,17 @@ class Administrator extends MY_Controller {
         switch (strtolower($options)) {
             case "cases":
                 $Condition = array();
+
                 $TableListname = "case";
+
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            case "solvedcases":
+                $Condition = array("casestatus" => '2');
+                $TableListname = "case";
+
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
@@ -197,7 +204,7 @@ class Administrator extends MY_Controller {
             $row[] = $UserNotice->email;
             $row[] = $UserNotice->city;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/showallusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
@@ -209,6 +216,10 @@ class Administrator extends MY_Controller {
         );
         //output to json format
         echo json_encode($output);
+    }
+
+    public function showallusers() {
+        $this->render("showallusers", get_defined_vars());
     }
 
     protected function shownotice($id) {

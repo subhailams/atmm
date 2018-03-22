@@ -60,6 +60,7 @@ $lang['male'] = 'नर';
 $lang['female'] = 'महिला';
 $lang['others'] = 'अन्य लोग';
 $lang['select_gender'] = 'लिंग चुनें';
+$lang['all_solvedcases']='सभी हल मामलों';
 
 
 /* case managment Ends Here */

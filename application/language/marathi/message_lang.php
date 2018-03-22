@@ -60,6 +60,7 @@ $lang['others']='इतर';
 $lang['select_gender']='लिंग निवडा';
 $lang['victimdob']='जन्म तारीख';
 $lang['fir_no']='एफआयआर क्रमांक';
+$lang['all_solvedcases']='सर्व निराकरण प्रकरणी';
         
 /* case managment Ends Here */
 

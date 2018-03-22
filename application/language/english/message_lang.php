@@ -49,7 +49,7 @@ $lang['male']='Male';
 $lang['female']='Female';
 $lang['others']='Others';
 $lang['select_gender']='Select gender';
-
+$lang['all_solvedcases']='All Solved Cases';
         
 /*Case Management Ends Here*/
 

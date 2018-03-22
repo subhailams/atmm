@@ -38,6 +38,10 @@ class MY_Controller extends CI_Controller {
         $this->load->view($Layout, $RenderData);
     }
 
+    public function showallusers() {
+        $this->render("showallusers", get_defined_vars());
+    }
+
     public function Inti($Class) {
         $ClassNo = array(array("register"), "homepage" => array("forgotpwd"));
         if (!(in_array($this->router->fetch_method(), $ClassNo[$Class]))) {
@@ -230,8 +234,8 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryShow($id) {
         $condition = array("caseid" => $id);
-        $select = "caseid as CaseID,victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender , casedescription as CaseDescription ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "", "Y", "", "", "", "", "");
+        $select = "caseid as CaseID,victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail  , offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender , casedescription as CaseDescription ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", "", "", "", "", "", "");
     }
 
     public function CaseHistoryComments($id) {
@@ -327,6 +331,10 @@ class MY_Controller extends CI_Controller {
             case "allcases";
                 $render = "showallcases";
                 break;
+            case "allsolvedcases";
+                $render = "showallsolvedcases";
+                break;
+
             case "casehistory";
                 $render = "showcasehistory";
                 break;
@@ -378,14 +386,15 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function cases_ajax_list($options = null) {
+   
+    public function users_ajax_list($options = null) {
         switch (strtolower($options)) {
-            case "cases":
+            case "users":
                 $Condition = array();
-                $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
-                $OrderBy = array('caseid' => 'desc');
+                $TableListname = "usr";
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $OrderBy = array('userid' => 'desc');
                 break;
             default:
                 $Condition = array();
@@ -395,17 +404,16 @@ class MY_Controller extends CI_Controller {
         $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
         $data = array();
         $no = $_POST['start'];
-        foreach ($list as $logNotice) {
+        foreach ($list as $UserNotice) {
             $no++;
             $row = array();
-            $row[] = $logNotice->fir_no;
-            $row[] = $logNotice->victimname;
-            $row[] = $logNotice->victimmobile;
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->createdat;
-            $row[] = $logNotice->casestatus;
+            $row[] = $UserNotice->name;
+            $row[] = $UserNotice->username;
+            $row[] = $UserNotice->mobilenumber;
+            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->city;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/showallusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
@@ -459,54 +467,47 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
     }
-   public function TotalUserCount() {
-        $condition=array();
-         $response = $this->Adminmodel->count_all("usr", $condition);
+
+    public function TotalUserCount() {
+        $condition = array();
+        $response = $this->Adminmodel->count_all("usr", $condition);
         return $response;
     }
+
     public function TotalCaseCount() {
-        $condition=array();
-         $response= $this->Adminmodel->count_all("case", $condition);
+        $condition = array();
+        $response = $this->Adminmodel->count_all("case", $condition);
         return $response;
     }
-    
+
     public function PendingCaseCount() {
-        $condition=array("casestatus"=>'3');
-         $response = $this->Adminmodel->count_all("case", $condition);
+        $condition = array("casestatus" => '3');
+        $response = $this->Adminmodel->count_all("case", $condition);
         return $response;
     }
-    
+
     public function SolvedCaseCount() {
-        $condition=array("casestatus"=>'2');
-         $response = $this->Adminmodel->count_all("case", $condition);
+        $condition = array("casestatus" => '2');
+        $response = $this->Adminmodel->count_all("case", $condition);
         return $response;
     }
-    
-     public function NewCaseShow() {
-        $condition = array("casestatus"=>'1');
+
+    public function NewCaseShow() {
+        $condition = array("casestatus" => '1');
         $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
         return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
     }
+
     public function SolvedCaseShow() {
-        $condition = array("casestatus"=>'2');
+        $condition = array("casestatus" => '2');
         $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
         return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
     }
 
-    
-        public function PendingCaseShow() {
-        $condition = array("casestatus"=>'3');
+    public function PendingCaseShow() {
+        $condition = array("casestatus" => '3');
         $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
         return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
     }
 
-    
-      
-   
-    
-     
-    
-   
-
-    
 }
