@@ -151,7 +151,7 @@ class Administrator extends MY_Controller {
                 $TableListname = "case";
 
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile','offendername', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             
@@ -290,7 +290,7 @@ class Administrator extends MY_Controller {
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-                // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                 $this->SendEmail(trim("subhailams@gmail.com"), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -301,5 +301,5 @@ class Administrator extends MY_Controller {
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
     }
-
+ 
 }
