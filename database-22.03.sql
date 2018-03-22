@@ -110,11 +110,8 @@ CREATE TABLE `cases` (
   `victimmobile` varchar(45) NOT NULL,
   `victimemail` varchar(45) NOT NULL,
   `victimaadhar` varchar(45) DEFAULT NULL,
-  `offendername` varchar(45) NOT NULL,
-  `offenderaddress` varchar(45) NOT NULL,
-  `offendergender` int(11) DEFAULT NULL,
-  `offendermobile` int(11) DEFAULT NULL,
-  `offendermail` varchar(45) DEFAULT NULL,
+  `offenderid` int(11) NOT NULL,
+  `fir_no` varchar(25) NOT NULL,
   `casedescription` varchar(255) NOT NULL,
   `caseimage` varchar(45) DEFAULT NULL,
   `casestatus` int(11) NOT NULL,
@@ -129,20 +126,19 @@ CREATE TABLE `cases` (
   `deletedby` varchar(45) DEFAULT NULL,
   `deletedat` timestamp NULL DEFAULT NULL,
   `deletedip` varchar(45) DEFAULT NULL,
-  `fir_no` varchar(25) NOT NULL,
   PRIMARY KEY (`caseid`),
   KEY `user_ref_idx` (`userid`,`victimgender`),
   KEY `gender_ref_idx` (`victimgender`),
   KEY `cases_status_ref_idx` (`casestatus`),
   KEY `ploice_assigned_rf_idx` (`policeassignedto`),
   KEY `organization_assigned_rf_idx` (`organizationassignedto`),
-  KEY `offender_gender_ref_idx` (`offendergender`),
   KEY `off_ref_idx` (`offid`),
+  KEY `offender_ref_idx` (`offenderid`),
   CONSTRAINT `case_user_ref` FOREIGN KEY (`userid`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `cases_status_ref` FOREIGN KEY (`casestatus`) REFERENCES `case_status_master` (`case_status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `gender_ref` FOREIGN KEY (`victimgender`) REFERENCES `gender` (`gender_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `off_ref` FOREIGN KEY (`offid`) REFERENCES `offences_master` (`offid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `offender_gender_ref` FOREIGN KEY (`offendergender`) REFERENCES `gender` (`gender_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `offences_ref` FOREIGN KEY (`offid`) REFERENCES `offences_master` (`offid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `offender_master_ref` FOREIGN KEY (`offenderid`) REFERENCES `offender_master` (`offid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `organization_assigned_rf` FOREIGN KEY (`organizationassignedto`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `ploice_assigned_rf` FOREIGN KEY (`policeassignedto`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COMMENT='Which contains all case details';
@@ -154,7 +150,7 @@ CREATE TABLE `cases` (
 
 LOCK TABLES `cases` WRITE;
 /*!40000 ALTER TABLE `cases` DISABLE KEYS */;
-INSERT INTO `cases` VALUES (6,1,1,NULL,NULL,'subha','no.59,street','2018-03-14',2,'34426517','subha@gmail.com','123456789001','narmadha','n0.87,street.',2,1906543214,'narmu@gmail.com','Denying access to irrigation facilities or forest rights',NULL,1,'Y','',NULL,'2018-03-14 09:59:59.00','2130706433',NULL,'2018-03-21 04:09:07',NULL,NULL,'2018-03-14 09:59:59',NULL,'1/2018'),(7,1,1,NULL,NULL,'subha','no.59,street','2018-03-14',2,'34426517','subha@gmail.com','123456789001','narmadha','n0.87,street.',2,1906543214,'narmu@gmail.com','Denying access to irrigation facilities or forest rights',NULL,1,'Y','',NULL,'2018-03-14 10:00:23.00','2130706433',NULL,'2018-03-21 04:08:34',NULL,NULL,'2018-03-14 10:00:23',NULL,'2/2018'),(8,1,1,NULL,NULL,'ramiya','aHSGayihvxiYQX','2018-03-14',2,'1234569870','rami@gmail.com','123654789032','subha','sfgegteasvvgaf',2,2147483647,'subha@gmail.com','this is case',NULL,1,'Y','','Subha I','2018-03-17 11:13:21.00','2130706433',NULL,'2018-03-18 07:39:10',NULL,NULL,NULL,NULL,'3/2018'),(9,1,1,NULL,NULL,'asfd','abcdefgh','2018-02-26',2,'1234569870','ss@gmail.com','123654789032','rr','mnoq',2,2147483647,'rr@gmail.com','asbgukolwbob',NULL,1,'Y','','Subha I','2018-03-18 07:47:49.00','2130706433',NULL,'2018-03-18 07:47:49',NULL,NULL,NULL,NULL,'4/2018');
+INSERT INTO `cases` VALUES (6,1,1,NULL,NULL,'subha','no.59,street','2018-03-14',2,'34426517','subha@gmail.com','123456789001',1,'1/2018','Denying access to irrigation facilities or forest rights',NULL,1,'Y','',NULL,'2018-03-14 09:59:59.00','2130706433',NULL,'2018-03-22 15:41:37',NULL,NULL,'2018-03-14 09:59:59',NULL),(7,1,1,NULL,NULL,'subha','no.59,street','2018-03-14',2,'34426517','subha@gmail.com','123456789001',1,'2/2018','Denying access to irrigation facilities or forest rights',NULL,1,'Y','',NULL,'2018-03-14 10:00:23.00','2130706433',NULL,'2018-03-22 15:41:37',NULL,NULL,'2018-03-14 10:00:23',NULL),(8,1,1,NULL,NULL,'ramiya','aHSGayihvxiYQX','2018-03-14',2,'1234569870','rami@gmail.com','123654789032',1,'3/2018','this is case',NULL,1,'Y','','Subha I','2018-03-17 11:13:21.00','2130706433',NULL,'2018-03-22 15:41:37',NULL,NULL,NULL,NULL),(9,1,1,NULL,NULL,'asfd','abcdefgh','2018-02-26',2,'1234569870','ss@gmail.com','123654789032',1,'4/2018','asbgukolwbob',NULL,1,'Y','','Subha I','2018-03-18 07:47:49.00','2130706433',NULL,'2018-03-22 15:41:37',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `cases` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,6 +346,55 @@ INSERT INTO `offences_master` VALUES (1,'Putting any inedible or obnoxious subst
 UNLOCK TABLES;
 
 --
+-- Table structure for table `offender_master`
+--
+
+DROP TABLE IF EXISTS `offender_master`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `offender_master` (
+  `offid` int(11) NOT NULL AUTO_INCREMENT,
+  `offendername` varchar(95) NOT NULL,
+  `offenderage` int(11) NOT NULL,
+  `offenderaddress` varchar(205) NOT NULL,
+  `offendergender` int(11) NOT NULL,
+  `offenderstate` int(11) NOT NULL,
+  `offendercity` int(11) NOT NULL,
+  `offenderdistrict` int(11) NOT NULL,
+  `offendermobile` varchar(45) NOT NULL,
+  `offendershow` varchar(1) NOT NULL DEFAULT 'Y',
+  `createdby` varchar(45) DEFAULT NULL,
+  `createdat` timestamp NULL DEFAULT NULL,
+  `createdip` varchar(45) DEFAULT NULL,
+  `updatedby` varchar(45) DEFAULT NULL,
+  `updatedip` varchar(15) DEFAULT NULL,
+  `updatedat` timestamp NULL DEFAULT NULL,
+  `deletedby` varchar(45) DEFAULT NULL,
+  `deletedat` timestamp NULL DEFAULT NULL,
+  `deletedip` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`offid`),
+  KEY `offender_gender_ref_idx` (`offendergender`),
+  KEY `offender_state_ref_idx` (`offenderstate`),
+  KEY `offender_city_ref_idx` (`offendercity`),
+  KEY `offender_district_ref_idx` (`offenderdistrict`),
+  CONSTRAINT `offender_city_reference` FOREIGN KEY (`offendercity`) REFERENCES `cities` (`cityid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `offender_district_reference` FOREIGN KEY (`offenderdistrict`) REFERENCES `district` (`dist_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `offender_gender_reference` FOREIGN KEY (`offendergender`) REFERENCES `gender` (`gender_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `offender_state_reference` FOREIGN KEY (`offenderstate`) REFERENCES `states` (`stateid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Offender Master Details';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `offender_master`
+--
+
+LOCK TABLES `offender_master` WRITE;
+/*!40000 ALTER TABLE `offender_master` DISABLE KEYS */;
+INSERT INTO `offender_master` VALUES (1,'DEMO',22,'DEMO ADDRESS',1,1,1,1,'994444444','Y',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `offender_master` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `privatemessages`
 --
 
@@ -508,4 +553,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-22 20:33:46
+-- Dump completed on 2018-03-22 21:14:01
