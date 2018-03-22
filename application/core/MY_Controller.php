@@ -246,11 +246,11 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
-        $condition = array("casehistoryid" => "");
+//        $condition = array("casehistoryid" => "");
         if ($this->form_validation("casehistory")):
 
 
-            $DBData = array("casehistorydesc" => $postData['casehistory'], "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
+            //$DBData = array("casehistorydesc" => $postData['casehistory'], "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
 
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
@@ -334,9 +334,29 @@ class MY_Controller extends CI_Controller {
             case "allsolvedcases";
                 $render = "showallsolvedcases";
                 break;
+            case "allpendingcases";
+                $render = "showallpendingcases";
+                break;
+
 
             case "casehistory";
                 $render = "showcasehistory";
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
+
+    public function user($options = null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "allusers";
+                $render = "showallusers";
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -386,7 +406,6 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-   
     public function users_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "users":

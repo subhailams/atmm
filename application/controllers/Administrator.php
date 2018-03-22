@@ -146,6 +146,15 @@ class Administrator extends MY_Controller {
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
                 $OrderBy = array('caseid' => 'desc');
                 break;
+            case "pendingcases":
+                $Condition = array("casestatus" => '3');
+                $TableListname = "case";
+
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            
             default:
                 $Condition = array();
                 break;
@@ -204,7 +213,7 @@ class Administrator extends MY_Controller {
             $row[] = $UserNotice->email;
             $row[] = $UserNotice->city;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/showallusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . 'user/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
@@ -218,9 +227,9 @@ class Administrator extends MY_Controller {
         echo json_encode($output);
     }
 
-    public function showallusers() {
-        $this->render("showallusers", get_defined_vars());
-    }
+//    public function showallusers() {
+//        $this->render("showallusers", get_defined_vars());
+//    }
 
     protected function shownotice($id) {
         $condition = array("id" => $id);

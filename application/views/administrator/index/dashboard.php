@@ -26,7 +26,7 @@
                         <i class="ion ion-person-add"></i>
                     </div>
 
-                    <a href="showallusers" class="small-box-footer"><?= $this->lang->line('more_info') ?> <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="user/allusers" class="small-box-footer"><?= $this->lang->line('more_info') ?> <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -72,7 +72,7 @@
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="#" class="small-box-footer"><?= $this->lang->line('more_info') ?><i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="cases/allpendingcases" class="small-box-footer"><?= $this->lang->line('more_info') ?><i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
