@@ -246,17 +246,27 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
-//        $condition = array("casehistoryid" => "");
+
         if ($this->form_validation("casehistory")):
-
-
-            //$DBData = array("casehistorydesc" => $postData['casehistory'], "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
 
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
 
             $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+            
+            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+            if (!empty($response)):
+                $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
+                $Subject = "Atrocity Case Management - New Comment Updated";
+                $this->SendEmail(trim($postData['rukhmanivenkatesan@gmail.com']), $Message, "N", $Subject, "");
+                $this->session->set_flashdata('ME_SUCCESS', 'Comment updated successfully');
+            else:
+                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+            endif;
+        else:
+            $_SESSION['formError'] = validation_errors();
+            $this->session->set_flashdata('ME_FORM', "ERROR");
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
