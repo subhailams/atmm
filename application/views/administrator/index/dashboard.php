@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Dashboard
-            <small>Control panel</small>
+            <th> <?= $this->lang->line('dashboard') ?></th>
+            <small> <?= $this->lang->line('control_panel') ?></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,12 +20,16 @@
                 <div class="small-box bg-yellow">
                     <div class="inner">
                         <h3><?= $usercount ?></h3>
-                        <p>Total Users</p>
+                        <p><?= $this->lang->line('total_users') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
+<<<<<<< HEAD
                     <a href="showallusers" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+=======
+                    <a href="#" class="small-box-footer"><?= $this->lang->line('more_info') ?><i class="fa fa-arrow-circle-right"></i></a>
+>>>>>>> 5d93e10ed8701491fda9a4228f26fda03778d7c7
                 </div>
             </div>
             <!-- ./col -->
@@ -34,12 +38,14 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3><?= $casecount ?></h3>
-                        <p>Total Cases</p>
+                        <p><?= $this->lang->line('total_cases') ?></p>          
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="cases/allcases" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+
+                    <a href="cases/allcases" class="small-box-footer"><?= $this->lang->line('more_info') ?> <i class="fa fa-arrow-circle-right"></i></a>
+
                 </div>
             </div>
             <!-- ./col -->
@@ -48,12 +54,13 @@
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3><?= $solvedcount ?></h3>
-                        <p>Solved Cases</p>
+                        <p><?= $this->lang->line('solved_cases') ?></p>                   
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="cases/allsolvedcases" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="cases/allsolvedcases" class="small-box-footer"> <?= $this->lang->line('more_info') ?><i class="fa fa-arrow-circle-right"></i></a>
+
                 </div>
             </div>
             <!-- ./col -->
@@ -63,22 +70,22 @@
                     <div class="inner">
                         <h3><?= $pendingcount ?></h3>
 
-                        <p>Pending Cases</p>
+                        <p><?= $this->lang->line('pending_cases') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer"><?= $this->lang->line('more_info') ?><i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="box box-info">
                     <div align="center" class="divC"><img width="730" height="600" border="0"
-                                                          src="https://www.maharashtra.gov.in:443/Images/mapMaharashtraB.jpg"
+                                                          src="<?= $this->lang->line('map') ?>"
                                                           usemap="#Map" alt="Maharashtra Map">
                         <map name="Map" id="map">
                             <area href="#" coords="165,240" alt="Maharashtra Map" shape="poly">
@@ -121,7 +128,7 @@
                                   target="_blank" alt="Sindhudurg" shape="poly">
                             <area href="http://nandurbar.nic.in/"
                                   coords="220,27,213,30,211,34,206,34,200,34,191,35,184,38,173,39,176,43,179,47,180,52,180,57,172,56,175,60,177,66,185,64,196,61,202,62,209,61,213,64,211,68,202,70,193,71,187,73,185,81,181,86,175,87,173,93,165,95,158,94,168,100,175,101,179,107,187,101,189,98,189,93,195,92,207,92,220,91,218,86,217,84,220,79,228,75,234,76,239,76,243,71,245,65,245,61,238,59,232,58,227,58,231,56,222,51,225,43,225,35,221,27"
-                                  target="_blank" alt="Nandurbar" shape="poly">
+                                  target="_blank" alt="Ndurbar" shape="poly">
                             <area href="http://dhule.nic.in/"
                                   coords="249,60,247,66,244,73,240,79,233,78,229,77,222,80,219,84,222,88,223,91,217,93,202,94,193,94,191,99,187,104,180,109,180,113,181,116,182,119,184,123,191,121,200,121,211,122,217,124,221,126,225,125,231,126,235,128,238,132,239,135,244,136,249,138,252,137,258,135,261,130,260,123,256,117,255,111,254,104,256,99,261,94,267,89,273,86,274,82,274,78,275,76,270,71,268,66,261,62,255,60,249,59"
                                   target="_blank" alt="Dhule" shape="poly">
@@ -193,8 +200,12 @@
                                   target="_blank" alt="Palghar" shape="poly">
                         </map>
                     </div>
+                    
                 </div>
             </div>
+        </div>
+        <div class="row">
+
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
@@ -208,94 +219,94 @@
                             <br/>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                <tr>
-                                    <th>FIR No</th>
-                                    <th>Case Victim Name</th>
-                                    <th>Mobile Number</th>
-                                    <th>Status</th>
-                                </tr>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
 
-                                <?php foreach ($newcase as $new): ?>
-                                <tr>
-                                    <td><?= $new['FIR'] ?> </td>
-                                    <td><?= $new['VictimName'] ?></td>
-                                    <td><?= $new['VictimMobile'] ?></td>
-                                    <td><span class="label label-info">Filed</span></td>
-                                </tr>
+                                    <?php foreach ($newcase as $new): ?>
+                                        <tr>
+                                            <td><?= $new['FIR'] ?> </td>
+                                            <td><?= $new['VictimName'] ?></td>
+                                            <td><?= $new['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Filed</span></td>
+                                        </tr>
 
+                                        </div>
+                                    <?php endforeach; ?>
+
+                                </tbody>
+                            </table>
                         </div>
-                        <?php endforeach; ?>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2">
+                            <br/>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($pendingcase as $pending): ?>
+                                        <tr>
+                                            <td><?= $pending['FIR'] ?> </td>
+                                            <td><?= $pending['VictimName'] ?></td>
+                                            <td><?= $pending['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Police Tracking</span></td>
+                                        </tr>
 
-                        </tbody>
-                        </table>
+                                        </div>
+                                    <?php endforeach; ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_3">
+                            <br/>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>FIR No</th>
+                                        <th>Case Victim Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($solvedcase as $solved): ?>
+                                        <tr>
+                                            <td><?= $solved['FIR'] ?> </td>
+                                            <td><?= $solved['VictimName'] ?></td>
+                                            <td><?= $solved['VictimMobile'] ?></td>
+                                            <td><span class="label label-info">Solved</span></td>
+                                        </tr>
+
+                                        </div>
+                                    <?php endforeach; ?>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.tab-pane -->
                     </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="tab_2">
-                        <br/>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>FIR No</th>
-                                <th>Case Victim Name</th>
-                                <th>Mobile Number</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($pendingcase as $pending): ?>
-                            <tr>
-                                <td><?= $pending['FIR'] ?> </td>
-                                <td><?= $pending['VictimName'] ?></td>
-                                <td><?= $pending['VictimMobile'] ?></td>
-                                <td><span class="label label-info">Police Tracking</span></td>
-                            </tr>
-
-                    </div>
-                    <?php endforeach; ?>
-
-                    </tbody>
-                    </table>
+                    <!-- /.tab-content -->
                 </div>
-                <!-- /.tab-pane -->
-                <div class="tab-pane" id="tab_3">
-                    <br/>
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>FIR No</th>
-                            <th>Case Victim Name</th>
-                            <th>Mobile Number</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($solvedcase as $solved): ?>
-                        <tr>
-                            <td><?= $solved['FIR'] ?> </td>
-                            <td><?= $solved['VictimName'] ?></td>
-                            <td><?= $solved['VictimMobile'] ?></td>
-                            <td><span class="label label-info">Solved</span></td>
-                        </tr>
-
-                </div>
-                <?php endforeach; ?>
 
 
-                </tbody>
-                </table>
+                <!-- nav-tabs-custom -->
             </div>
-            <!-- /.tab-pane -->
         </div>
-        <!-- /.tab-content -->
-</div>
-
-
-<!-- nav-tabs-custom -->
-</div>
-</div>
-<!-- /.col -->
+        <!-- /.col -->
 </div>
 </section>
 <!-- /.content -->
