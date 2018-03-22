@@ -72,3 +72,12 @@ $lang['fir_no']='एफआयआर क्रमांक';
  
  /* case history ends here */
  
+ /* Dashboard Starts Here */
+$lang['dashboard'] = 'डॅशबोर्ड';
+$lang['control_panel'] = 'नियंत्रण पॅनेल';
+$lang['total_users'] = 'एकूण वापरकर्ते';
+$lang['total_cases'] = 'एकूण प्रकरणे';
+$lang['solved_cases'] = 'निराकरण प्रकरणी';
+$lang['pending_cases'] = 'प्रलंबित प्रकरणे';
+$lang['more_info'] = 'अधिक माहिती';
+$lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';

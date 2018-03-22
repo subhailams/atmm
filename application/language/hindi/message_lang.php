@@ -78,3 +78,13 @@ $lang['commenthere'] = 'यहां टिप्पणी करें';
 $lang['typeyourcommenthere'] = 'अपनी टिप्पणी यहां टाइप करें';
 
 /* case history ends here */
+/* Dashboard Starts Here */
+
+$lang['dashboard'] = 'डैशबोर्ड';
+$lang['control_panel'] = 'कंट्रोल पैनल';
+$lang['total_users'] = 'कुल उपयोगकर्ता';
+$lang['total_cases'] = 'कुल मामलों';
+$lang['solved_cases'] = 'हल मामलों';
+$lang['pending_cases'] = 'लंबित मामलों';
+$lang['more_info'] = 'और जानकारी';
+

@@ -67,3 +67,13 @@ $lang['notice'] = 'Notice';
  $lang['typeyourcommenthere']='Type your comment here';
  
  /* case history ends here */
+ 
+ /* Dashboard Starts Here */
+$lang['dashboard'] = 'Dashboard';
+$lang['control_panel'] = 'Control Panel';
+$lang['total_users'] = 'Total Users';
+$lang['total_cases'] = 'Total Cases';
+$lang['solved_cases'] = 'Solved Cases';
+$lang['pending_cases'] = 'Pending Cases';
+
+$lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraB.jpg';
