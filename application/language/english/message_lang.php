@@ -50,7 +50,8 @@ $lang['female']='Female';
 $lang['others']='Others';
 $lang['select_gender']='Select gender';
 $lang['all_solvedcases']='All Solved Cases';
-$lang['all_pendingcases']='All Pending Cases';        
+$lang['all_pendingcases']='All Pending Cases';    
+$lang['district']='District';
 /*Case Management Ends Here*/
 
 /* Log Managment Starts Here */

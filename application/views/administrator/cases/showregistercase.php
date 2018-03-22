@@ -105,9 +105,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="State"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="State" name="victimstate"
-                                               placeholder="Enter State" required="true">
+                                        <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="district" name="victimdistrict"
+                                               placeholder="Enter district" required="true">
 
                                     </div>
                                 </div>
@@ -170,9 +170,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="State"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="State" name="offenderstate"
-                                               placeholder="Enter State" required="true">
+                                        <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
+                                        <input type="text" class="form-control" id="district" name="offenderdistrict"
+                                               placeholder="Enter district" required="true">
 
                                     </div>
                                 </div>

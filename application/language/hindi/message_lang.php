@@ -63,6 +63,7 @@ $lang['select_gender'] = 'लिंग चुनें';
 $lang['all_solvedcases']='सभी हल मामलों';
 $lang['all_pendingcases']='सभी लंबित मामले';     
 
+$lang['district']='जिला';
 
 /* case managment Ends Here */
 
