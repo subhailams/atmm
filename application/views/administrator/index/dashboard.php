@@ -25,11 +25,8 @@
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-<<<<<<< HEAD
-                    <a href="showallusers" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-=======
-                    <a href="#" class="small-box-footer"><?= $this->lang->line('more_info') ?><i class="fa fa-arrow-circle-right"></i></a>
->>>>>>> 5d93e10ed8701491fda9a4228f26fda03778d7c7
+
+                    <a href="showallusers" class="small-box-footer"><?= $this->lang->line('more_info') ?> <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
