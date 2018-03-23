@@ -3,10 +3,9 @@
     <section class="content-header">
         <h1><?= $this->lang->line('case_management') ?></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Cases</a></li>
-            <li class="active">New Case</li>
+                        <li class="active">New Case</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -95,22 +94,32 @@
 
 
 
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="City"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="City" name="victimcity"
-                                               placeholder="Enter City" required="true">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
+                                      <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="district" name="victimdistrict"
-                                               placeholder="Enter district" required="true">
+                                        <select class="form-control" id="district" name="victimdistrict" placeholder="Select District" required="true">
+                                            <option>Select District</option>
+                                            <?php foreach ($this->db->where(array("districtshow" => "Y"))->order_by("districtname", "asc")->get('district')->result() as $detail) { ?>
+                                                <option value="<?= $detail->dist_id ?>"> <?= strtoupper($detail->districtname) ?> </option>
+                                            <?php } ?>                         
+
+                                        </select>
 
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="city"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="city" name="victimcity" placeholder="Select City" required="true">
+                                            <option>Select City</option>
+                                            <?php foreach ($this->db->where(array("cityshow" => "Y"))->order_by("cityname", "asc")->get('cities')->result() as $detail) { ?>
+                                                <option value="<?= $detail->cityid ?>"> <?= strtoupper($detail->cityname) ?> </option>
+                                            <?php } ?>                         
+
+                                        </select>
+                                    </div>
+                                </div>
+                            
 
                             </div>
                             <hr>
@@ -160,21 +169,31 @@
                                                placeholder="Enter Address" required="true">
                                     </div>
                                 </div>
-
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="City"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="City" name="offendercity"
-                                               placeholder="Enter City" required="true">
+                                <div class="form-group">
+                                        <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="district" name="victimdistrict" placeholder="Select District" required="true">
+                                            <option>Select District</option>
+                                            <?php foreach ($this->db->where(array("districtshow" => "Y"))->order_by("districtname", "asc")->get('district')->result() as $detail) { ?>
+                                                <option value="<?= $detail->dist_id ?>"> <?= strtoupper($detail->districtname) ?> </option>
+                                            <?php } ?>                         
+
+                                        </select>
+
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="district" name="offenderdistrict"
-                                               placeholder="Enter district" required="true">
+                                    <div class="col-md-3">
+                                   <div class="form-group">
+                                        <label for="city"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="city" name="victimcity" placeholder="Select City" required="true">
+                                            <option>Select City</option>
+                                            <?php foreach ($this->db->where(array("cityshow" => "Y"))->order_by("cityname", "asc")->get('cities')->result() as $detail) { ?>
+                                                <option value="<?= $detail->cityid ?>"> <?= strtoupper($detail->cityname) ?> </option>
+                                            <?php } ?>                         
 
+                                        </select>
                                     </div>
+
                                 </div>
 
                             </div>
