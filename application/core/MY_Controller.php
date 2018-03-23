@@ -254,7 +254,7 @@ class MY_Controller extends CI_Controller {
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
 
             $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
-            
+
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
@@ -423,7 +423,7 @@ class MY_Controller extends CI_Controller {
                 $TableListname = "usr";
                 $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
                 $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $OrderBy = array('userid' => 'desc');
+                $OrderBy = array('user_id' => 'desc');
                 break;
             default:
                 $Condition = array();
@@ -581,5 +581,25 @@ class MY_Controller extends CI_Controller {
         //output to json format
         echo json_encode($output);
     }
+
+    public function profileshow($id) {
+        $condition = array("user_id" => $id);
+        $select = "name as Name ,role as Role ,username as Username , email as EmailID ,address1 as Address1,address2 as Address2,city as City,state as State,country as Country,mobilenumber as Mobilenumber,aadhar as Aadhaarnumber";
+        return $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+          
+            
+            
+        
+    }
+
+//    public function updateprofile1( $id = '1') {
+//        $render = "";
+//// echo "hello";
+////  
+//        $userdatabase = $this->profileshow($id);
+////             echo "hello";
+////            
+//        $this->render($render, get_defined_vars());
+//    }
 
 }
