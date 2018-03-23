@@ -95,6 +95,12 @@
                                 <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
                                 <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
                             </tr>
+                             <tr>
+                                <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('fir_no') ?></b></td>
+                                <td width="50%" style="line-height: 10px"> <?= $casedatabase['FirNumber'] ?></td>
+                            </tr>
+                            
+                            
                             </tbody>
                         </table>
                     </div>

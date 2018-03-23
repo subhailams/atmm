@@ -61,7 +61,10 @@ $lang['select_gender']='लिंग निवडा';
 $lang['victimdob']='जन्म तारीख';
 $lang['fir_no']='एफआयआर क्रमांक';
 $lang['all_solvedcases']='सर्व निराकरण प्रकरणी';
-        
+ $lang['all_pendingcases']='सर्व प्रलंबित प्रकरण';     
+ 
+$lang['district']='जिल्हा';
+       
 /* case managment Ends Here */
 
 /* case history starts here */

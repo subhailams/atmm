@@ -5,7 +5,7 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Users</a></li>
+             <li><a href="#">Users</a></li>
             <li class="active">All Users</li>
         </ol>
     </section>
@@ -20,11 +20,12 @@
                                aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
-                                    <th> <?= $this->lang->line('name') ?></th>
-                                    <th> <?= $this->lang->line('user_name') ?></th>
+                                      <th> <?= $this->lang->line('name') ?></th>
+                                    <th> <?= $this->lang->line('email') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
-                                    <th> <?= $this->lang->line('email_id') ?></th>
-                                    <th> <?= $this->lang->line('city') ?></th>
+                                    <th> <?= $this->lang->line('address1') ?></th>
+                                    <th> <?= $this->lang->line('username') ?></th>
+                                    
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -35,8 +36,8 @@
         </div>
 
     </section>
-</div>
 <!-- /.row -->
+</div>
 
 <!-- /.content -->
 

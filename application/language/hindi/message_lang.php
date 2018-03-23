@@ -61,7 +61,9 @@ $lang['female'] = 'महिला';
 $lang['others'] = 'अन्य लोग';
 $lang['select_gender'] = 'लिंग चुनें';
 $lang['all_solvedcases']='सभी हल मामलों';
+$lang['all_pendingcases']='सभी लंबित मामले';     
 
+$lang['district']='जिला';
 
 /* case managment Ends Here */
 
@@ -88,4 +90,4 @@ $lang['total_cases'] = 'कुल मामलों';
 $lang['solved_cases'] = 'हल मामलों';
 $lang['pending_cases'] = 'लंबित मामलों';
 $lang['more_info'] = 'और जानकारी';
-
+$lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';
