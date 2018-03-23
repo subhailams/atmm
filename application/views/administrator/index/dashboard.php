@@ -89,7 +89,7 @@
                                                           usemap="#Map" alt="Maharashtra Map">
                         <map name="Map" id="map">
                             <area href="#" coords="165,240" alt="Maharashtra Map" shape="poly">
-                            <area href="http://www.thane.nic.in/"
+                            <area href="/index.php/administrator/cases/alldistrictcases" 
                                   coords="165,237,157,228,151,221,142,209,136,209,130,211,123,217,117,224,112,224,110,220,106,225,103,236,103,232,103,236,91,237,96,240,103,242,111,247,115,256,126,259,137,256,144,255,155,250,165,238"
                                   target="_blank" alt="Thane" shape="poly">
                             <area href="http://ahmednagar.nic.in/"
@@ -237,7 +237,7 @@
                         </tbody>
                         </table>
                     </div>
-                    <!-- /.tab-pane -->
+                      
                     <div class="tab-pane" id="tab_2">
                         <br/>
                         <table id="example1" class="table table-bordered table-striped">
@@ -262,7 +262,7 @@
                     </tbody>
                     </table>
                 </div>
-                <!-- /.tab-pane -->
+                 
                 <div class="tab-pane" id="tab_3">
                     <br/>
                     <table id="example1" class="table table-bordered table-striped">
@@ -287,11 +287,11 @@
                 </tbody>
                 </table>
             </div>
-            <!-- /.tab-pane -->
+              
         </div>
-        <!-- /.tab-content -->
+         
 </div>
-<!-- nav-tabs-custom -->
+ 
 </div>
 </div>
 <!-- /.col -->

@@ -91,6 +91,7 @@ class Adminmodel extends CI_Model {
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
                     "case_status_master" => "case_status_master.case_status_id=casestatus",
+                    "district" => "district.dist_id=districtid",
                 );
                 break;
             case "casehistory":

@@ -337,7 +337,9 @@ class MY_Controller extends CI_Controller {
             case "allpendingcases";
                 $render = "showallpendingcases";
                 break;
-
+            case "alldistrictcases";
+                $render = "districtcases";
+                break;
 
             case "alloffenders";
                 $render = "showalloffenders";

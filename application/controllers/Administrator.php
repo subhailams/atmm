@@ -226,6 +226,62 @@ class Administrator extends MY_Controller {
         //output to json format
         echo json_encode($output);
     }
+     public function map_ajax_list($options = null) {
+        switch (strtolower($options)) {
+            case "cases":
+                $Condition = array("casestatus" => '1');
+
+                $TableListname = "case";
+
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            case "solvedcases":
+                $Condition = array("casestatus" => '2');
+                $TableListname = "case";
+
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            case "pendingcases":
+                $Condition = array("casestatus" => '3');
+                $TableListname = "case";
+
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile','casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            
+            default:
+                $Condition = array();
+                break;
+        }
+
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $logNotice) {
+            $no++;
+            $row = array();
+            $row[] = $logNotice->fir_no;
+            $row[] = $logNotice->victimname;
+            $row[] = $logNotice->victimmobile;
+           //add html for action
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
 
 //    public function showallusers() {
 //        $this->render("showallusers", get_defined_vars());
