@@ -246,12 +246,8 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
-        $condition = array("casehistoryid" => "");
+     
         if ($this->form_validation("casehistory")):
-
-
-            $DBData = array("casehistorydesc" => $postData['casehistory'], "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
-
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
