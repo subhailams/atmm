@@ -347,11 +347,10 @@ class MY_Controller extends CI_Controller {
             case "allpendingcases";
                 $render = "showallpendingcases";
                 break;
-
-
             case "alloffenders";
                 $render = "showalloffenders";
                 break;
+           
             default:
                 $caseregister = $this->getcase_register();
                 $caseallcases = $this->getcase_allcases();
@@ -361,7 +360,21 @@ class MY_Controller extends CI_Controller {
         }
         $this->render($render, get_defined_vars());
     }
-
+    public function offenders($options = null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "alloffences";
+                $render = "offender_offences";
+                break;
+             default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
     public function user($options = null) {
         $render = "";
         switch (strtolower($options)) {
@@ -546,9 +559,9 @@ class MY_Controller extends CI_Controller {
 
                 $TableListname = "case";
 
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
-                $OrderBy = array('caseid' => 'desc');
+                $ColumnOrder = array('offendername', 'offenderage', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
+                $ColumnSearch = array('offendername', 'offenderage', 'offendermobile', 'offendergender','offendercity',);
+                $OrderBy = array('offender_id' => 'desc');
                 break;
             default:
                 $Condition = array();
@@ -561,14 +574,14 @@ class MY_Controller extends CI_Controller {
         foreach ($list as $logNotice) {
             $no++;
             $row = array();
-            $row[] = $logNotice->fir_no;
-            $row[] = $logNotice->victimname;
-            $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->offendername;
-            $row[] = $logNotice->createdat;
-            $row[] = $logNotice->casestatus;
+            $row[] = $logNotice->offenderage;
+            $row[] = $logNotice->offendergender;
+            $row[] = $logNotice->offendermobile;
+            $row[] = $logNotice->offendercity;
+            $row[] = $logNotice->offenderdistrict;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/offenders//' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
