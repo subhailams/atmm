@@ -195,13 +195,13 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimaadhaar', 'label' => 'Aadhaar Number', 'rules' => ''),
                     array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
                     array('field' => 'victimcity', 'label' => 'City', 'City' => 'required'),
-                    array('field' => 'victimstate', 'label' => 'State', 'State' => 'required'),
+                    array('field' => 'victimdistrict', 'label' => 'Victim District', 'rules' => 'required'),
                     array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required|alpha'),
                     array('field' => 'offenderaddress', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'offendermobile', 'label' => 'Mobile Number', 'rules' => 'integer'),
                     array('field' => 'offendercity', 'label' => 'City', 'rules' => 'required'),
                     array('field' => 'ifothers', 'label' => 'If Others', 'rules' => 'max_length[100]'),
-                    array('field' => 'offenderstate', 'label' => 'State', 'rules' => 'required'),
+                    array('field' => 'offenderdistrict', 'label' => 'Offender District', 'rules' => 'required'),
                     array('field' => 'offencedate', 'label' => 'Offence Date', 'rules' => 'required'),
                     array('field' => 'victimgender', 'label' => 'Gender', 'rules' => 'required'),
                     array('field' => 'casedescription', 'label' => 'Case Description', 'rules' => 'required|max_length[400]'),
@@ -458,13 +458,18 @@ class MY_Controller extends CI_Controller {
 
     public function CaseRegisterSave() {
         $postData = $this->input->post();
+//         echo "<pre>";
+//            print_r(get_defined_vars());
+//             exit();
         if ($this->form_validation("cases")):
             //add to database
-
-            $condition = array("caseid" => "");
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//             exit();
+          
+                $condition = array("caseid" => "");
             $DBData = array(
-                "offid" => $postData['offenece'],
-                "userid" => "1",
+                "offid" => $postData['offenece'],  "userid" => "1",
                 "fir_no" => $postData['fir_no'],
                 "victimname" => $postData['victimname'],
                 "victimaddress" => $postData['victimaddress'],
@@ -473,19 +478,28 @@ class MY_Controller extends CI_Controller {
                 "victimmobile" => $postData['victimmobile'],
                 "victimemail" => $postData['victimemail'],
                 "victimaadhar" => $postData['victimaadhar'],
+                "victimcity" => $postData['victimcity'],
+                 "victimdistrict" => $postData['victimdistrict'],
+                 //"victimstate" => $postData['victimstate'],
                 "offendername" => $postData['offendername'],
                 "offenderaddress" => $postData['offenderaddress'],
                 "offendergender" => $postData['offendergender'],
                 "offendermobile" => $postData['offendermobile'],
-                "offendermail" => $postData['offenderemail'],
+                "offenderemail" => $postData['offenderemail'],
                 "casedescription" => $postData['casedescription'],
-                "casestatus" => "1"
+                "offendercity" => $postData['offendercity'],
+                 "offenderdistrict" => $postData['offenderdistrict'],
+                 //"offenderstate" => $postData['offenderstate'],
+                 "casestatus" => "1"
             );
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//             exit();
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-                // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                 $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -496,7 +510,6 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
     }
-
     public function TotalUserCount() {
         $condition = array();
         $response = $this->Adminmodel->count_all("usr", $condition);
@@ -591,15 +604,5 @@ class MY_Controller extends CI_Controller {
             
         
     }
-
-//    public function updateprofile1( $id = '1') {
-//        $render = "";
-//// echo "hello";
-////  
-//        $userdatabase = $this->profileshow($id);
-////             echo "hello";
-////            
-//        $this->render($render, get_defined_vars());
-//    }
 
 }
