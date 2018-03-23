@@ -23,7 +23,13 @@ class User extends MY_Controller {
         $this->render("newuser", get_defined_vars());
     }
 
-    public function updateprofile() {
+    public function updateprofile( $id = '1') {
+     //   $render = "";
+// echo "hello";
+//  
+        $userdatabase = $this->profileshow($id);
+//             echo "hello";
+//            
         $this->render("updateprofile", get_defined_vars());
     }
 
@@ -186,9 +192,7 @@ class User extends MY_Controller {
 //             exit();
         if ($this->form_validation("profile")):
             //add to database
-//           echo "<pre>";
-//           print_r(get_defined_vars());
-//            exit();
+          
 //            $condition = array("user_id" => "2",
 //                "role" => $postData['Role'],
 //                "name" => $postData['Name'],
@@ -228,6 +232,9 @@ class User extends MY_Controller {
                 "role" => "4"
                     // "email" => $postData['EmailID']
             );
+            echo "<pre>";
+            print_r(get_defined_vars());
+            exit();
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
 
             if (!empty($response)):

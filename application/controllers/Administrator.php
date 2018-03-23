@@ -134,24 +134,24 @@ class Administrator extends MY_Controller {
 
                 $TableListname = "case";
 
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "solvedcases":
                 $Condition = array("casestatus" => '2');
                 $TableListname = "case";
 
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "pendingcases":
                 $Condition = array("casestatus" => '3');
                 $TableListname = "case";
 
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'createdat', 'casestatus');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile','offendername', 'casestatus');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile','offendername', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             
@@ -170,7 +170,7 @@ class Administrator extends MY_Controller {
             $row[] = $logNotice->victimname;
             $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->offendername;
-            $row[] = $logNotice->createdat;
+            $row[] = $logNotice->offdate;
             $row[] = $logNotice->casestatus;
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
@@ -318,44 +318,53 @@ class Administrator extends MY_Controller {
         return $this->Adminmodel->CSearch($condition, $select, "log", "Y", "Y", "", "", "", "", "");
     }
 
-    public function CaseRegisterSave() {
-        $postData = $this->input->post();
-        if ($this->form_validation("cases")):
-            //add to database
-            $condition = array("caseid" => "");
-            $DBData = array(
-                "offid" => $postData['offenece'],
-                "userid" => "1",
-                "fir_no" => $postData['fir_no'],
-                "victimname" => $postData['victimname'],
-                "victimaddress" => $postData['victimaddress'],
-                "vicitmdob" => $postData['victimdob'],
-                "victimgender" => $postData['victimgender'],
-                "victimmobile" => $postData['victimmobile'],
-                "victimemail" => $postData['victimemail'],
-                "victimaadhar" => $postData['victimaadhar'],
-                "offendername" => $postData['offendername'],
-                "offenderaddress" => $postData['offenderaddress'],
-                "offendergender" => $postData['offendergender'],
-                "offendermobile" => $postData['offendermobile'],
-                "offendermail" => $postData['offenderemail'],
-                "casedescription" => $postData['casedescription'],
-                "casestatus" => "1"
-            );
-            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
-            if (!empty($response)):
-                $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
-                $Subject = "Atrocity Case Management - New Case Registered";
-                 $this->SendEmail(trim("subhailams@gmail.com"), $Message, "N", $Subject, "");
-                $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
-            else:
-                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
-            endif;
-        else:
-            $_SESSION['formError'] = validation_errors();
-            $this->session->set_flashdata('ME_FORM', "ERROR");
-        endif;
-        redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
-    }
+//    public function CaseRegisterSave() {
+//        $postData = $this->input->post();
+////        echo "<pre>";
+////        print_r(get_defined_vars());
+////        exit();
+//        if ($this->form_validation("cases")):
+//            //add to database
+//            echo "<pre>";
+//        print_r(get_defined_vars());
+//        exit();
+//            $condition = array("caseid" => "");
+//            $DBData = array(
+//                "offid" => $postData['offenece'],
+//                "userid" => "1",
+//                "fir_no" => $postData['fir_no'],
+//                "victimname" => $postData['victimname'],
+//                "victimaddress" => $postData['victimaddress'],
+//                "vicitmdob" => $postData['victimdob'],
+//                "victimgender" => $postData['victimgender'],
+//                "victimmobile" => $postData['victimmobile'],
+//                "victimemail" => $postData['victimemail'],
+//                "victimaadhar" => $postData['victimaadhar'],
+//                "offendername" => $postData['offendername'],
+//                "offenderaddress" => $postData['offenderaddress'],
+//                "offendergender" => $postData['offendergender'],
+//                "offendermobile" => $postData['offendermobile'],
+//                "offendermail" => $postData['offenderemail'],
+//                "casedescription" => $postData['casedescription'],
+//                "casestatus" => "1"
+//            );
+////            echo "<pre>";
+////        print_r(get_defined_vars());
+////        exit();
+//            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
+//            if (!empty($response)):
+//                $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
+//                $Subject = "Atrocity Case Management - New Case Registered";
+//                 $this->SendEmail(trim("subhailams@gmail.com"), $Message, "N", $Subject, "");
+//                $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
+//            else:
+//                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+//            endif;
+//        else:
+//            $_SESSION['formError'] = validation_errors();
+//            $this->session->set_flashdata('ME_FORM', "ERROR");
+//        endif;
+//        redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
+//    }
  
 }

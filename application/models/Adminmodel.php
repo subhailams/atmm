@@ -10,8 +10,8 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases");
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases", "off_mst" => "offender_master");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offenderid");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
@@ -68,7 +68,7 @@ class Adminmodel extends CI_Model {
         }
         $this->db->order_by($this->SeqID[$TableName], "asc");
         $Result = $this->db->get($TableName);
-                
+
         if (empty($SelectAll)):
             return (empty($Result)) ? null : (array) $Result->row();
         else:
@@ -77,7 +77,7 @@ class Adminmodel extends CI_Model {
     }
 
     protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin) {
-        
+
         switch ($TableName) {
             case "users":
                 $JoinTable = array(
@@ -86,8 +86,9 @@ class Adminmodel extends CI_Model {
                 break;
             case "cases":
                 $JoinTable = array(
-                    "users" => "users.user_id=userid",
+                    "users" => "users.user_id=cases.userid",
                     "offences_master" => "offences_master.offid=cases.offid",
+
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
                     "case_status_master" => "case_status_master.case_status_id=casestatus",
@@ -98,6 +99,14 @@ class Adminmodel extends CI_Model {
                 $JoinTable = array(
                     "cases" => "cases.caseid=caseid",
                     "users" => "users.user_id=userid",
+                );
+                break;
+            case "offender_master":
+                $JoinTable = array(
+                    "gender" => "gender.gender_id=offendergender",
+                    "states" => "states.stateid=offenderstate",
+                    "cities" => "cities.cityid=offendercity",
+                    "district" => "district.dist_id=offenderdistrict"
                 );
                 break;
         }
