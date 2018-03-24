@@ -226,14 +226,14 @@ class Administrator extends MY_Controller {
             case "cases":
                 $Condition = array("casestatus" => '1');
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile','casestatus');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "solvedcases":
                 $Condition = array("casestatus" => '2');
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile','casestatus');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
                 break;

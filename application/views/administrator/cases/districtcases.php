@@ -34,7 +34,7 @@
                                         <th>FIR No</th>
                                         <th>Case Victim Name</th>
                                         <th>Mobile Number</th>
-                                        <th>Status</th>
+<!--                                        <th>Status</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,8 +43,9 @@
                                             <td><?= $new['FIR'] ?> </td>
                                             <td><?= $new['VictimName'] ?></td>
                                             <td><?= $new['VictimMobile'] ?></td>
+<!--                                            <td><?= $new['CaseStatus'] ?></td>-->
 
-                                            <td><span class="label label-info">Filed</span></td>
+    <!--                                            <td><span class="label label-info">Filed</span></td>-->
                                         </tr>
                                         </div>
                                     <?php endforeach; ?>
@@ -60,7 +61,7 @@
                                         <th>FIR No</th>
                                         <th>Case Victim Name</th>
                                         <th>Mobile Number</th>
-                                        <th>Status</th>
+                                        <!--<th>Status</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
