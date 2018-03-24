@@ -142,11 +142,11 @@
                 <div class="item"><img src="<?= base_url('assets/img/credit/gateway-of-india.jpg') ?>" alt=""
                                        align="middle" style="height: 236px;" align="left" width="100%" height="400">
                 </div>
-                <div class="item"><img src="<?= base_url('assets/img/credit/sjsa.png') ?>"
+                <div class="item"><img src="<?= base_url('assets/img/credit/sjsa.png') ?>"  align="middle"
                                        style="background-color: black;" col alt="" style="height: 600px;" width="100%"
                                        height="400">
                 </div>
-                <div class="item active"><img src="<?= base_url('assets/img/credit/sjsa2.jpg') ?>" alt=""
+                 <div class="item active"><img src="<?= base_url('assets/img/credit/sjsa2.jpg') ?>" alt="" align="middle"
                                               style="height: 236px;" width="100%" height="400">
                 </div>
             </div>
@@ -221,13 +221,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Select State</label>
+                                <label>Select District</label>
                                 <select class="form-control">
                                     <option value="">Select district</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Select State</label>
+                                <label>Select Atrocity Type  </label>
                                 <select class="form-control">
                                     <option value="">Select atrocity type</option>
                                     <option value="50">Abuses by caste name in any place within public view</option>

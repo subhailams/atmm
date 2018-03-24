@@ -2,12 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <th> <?= $this->lang->line('dashboard') ?></th>
-            <small> <?= $this->lang->line('control_panel') ?></small>
+            <th> <?= $this->lang->line('cases') ?></th>
+<!--            <small> <?= $this->lang->line('control_panel') ?></small>-->
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">District Cases</li>
+            <li class="active">Cases</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -20,10 +20,9 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">New Cases</a>
-                        </li>
-                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Pending Cases</a></li>
-                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Solved Cases</a></li>
+                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><?= $this->lang->line('new_cases') ?></a></li>
+                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false"><?= $this->lang->line('pending_cases') ?></a></li>
+                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false"><?= $this->lang->line('solved_cases') ?></a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
@@ -31,10 +30,10 @@
                             <table id="examples1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>FIR No</th>
-                                        <th>Case Victim Name</th>
-                                        <th>Mobile Number</th>
-<!--                                        <th>Status</th>-->
+                                        <th> <?= $this->lang->line('fir_no') ?></th>
+                                        <th> <?= $this->lang->line('victim_name') ?></th>
+                                        <th> <?= $this->lang->line('mobile_number') ?></th>
+    <!--                                        <th>Status</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,9 +42,9 @@
                                             <td><?= $new['FIR'] ?> </td>
                                             <td><?= $new['VictimName'] ?></td>
                                             <td><?= $new['VictimMobile'] ?></td>
-<!--                                            <td><?= $new['CaseStatus'] ?></td>-->
+    <!--                                            <td><?= $new['CaseStatus'] ?></td>-->
 
-    <!--                                            <td><span class="label label-info">Filed</span></td>-->
+        <!--                                            <td><span class="label label-info">Filed</span></td>-->
                                         </tr>
                                         </div>
                                     <?php endforeach; ?>
@@ -58,9 +57,9 @@
                             <table id="examples3" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>FIR No</th>
-                                        <th>Case Victim Name</th>
-                                        <th>Mobile Number</th>
+                                        <th> <?= $this->lang->line('fir_no') ?></th>
+                                        <th> <?= $this->lang->line('victim_name') ?></th>
+                                        <th> <?= $this->lang->line('mobile_number') ?></th>
                                         <!--<th>Status</th>-->
                                     </tr>
                                 </thead>
@@ -84,10 +83,10 @@
                             <table id="examples2" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>FIR No</th>
-                                        <th>Case Victim Name</th>
-                                        <th>Mobile Number</th>
-                                        <th>Status</th>
+                                         <th> <?= $this->lang->line('fir_no') ?></th>
+                                        <th> <?= $this->lang->line('victim_name') ?></th>
+                                        <th> <?= $this->lang->line('mobile_number') ?></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
