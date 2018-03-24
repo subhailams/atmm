@@ -44,7 +44,7 @@ class Homepage extends MY_Controller {
 
     public function UserRegisterSave() {
         $postData = $this->input->post();
-      echo "<pre>";
+          echo "<pre>";
             print_r(get_defined_vars());
             exit();
         if ($this->form_validation("userreg")):

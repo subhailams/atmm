@@ -3,9 +3,8 @@
     <section class="content-header">
         <h1><?= $this->lang->line('case_management') ?></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Cases</a></li>
             <li class="active">New Case</li>
         </ol>
     </section>
@@ -24,15 +23,15 @@
                     <!-- form start -->
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseRegisterSave") ?> ">
                         <div class="box-body">
-                           <div class="row">
-                                   <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="FIR Number"><?= $this->lang->line('fir_no') ?> <span style="color: red ">*</span></label>
                                         <input class="form-control" id="FIR Number" placeholder="Enter FIR Number" type="text" name="fir_no" required="true">
                                     </div>
                                 </div> 
-                           </div>
-                           
+                            </div>
+
                             <h4><?= $this->lang->line('victim_details') ?></h4>  
                             <div class="row">
 
@@ -95,26 +94,29 @@
 
 
 
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="City"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="City" name="victimcity"
-                                               placeholder="Enter City" required="true">
-                                    </div>
-                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="district" name="victimdistrict"
-                                               placeholder="Enter district" required="true">
+                                        <select class="form-control" id="district" name="victimdistrict" placeholder="Select District" required="true">
+                                            <option>Select District</option>
+                                            <?php foreach ($this->db->where(array("districtshow" => "Y"))->order_by("districtname", "asc")->get('district')->result() as $detail) { ?>
+                                                <option value="<?= $detail->dist_id ?>"> <?= strtoupper($detail->districtname) ?> </option>
+                                            <?php } ?>                         
+
+                                        </select>
 
                                     </div>
                                 </div>
-
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="city"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="city" name="victimcity" placeholder="Select City" required="true">
+                                            <option>Select City</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <hr>
-
                             <h4><?= $this->lang->line('offender_details') ?></h4>
                             <div class="row">
                                 <div class="col-md-3">
@@ -160,26 +162,29 @@
                                                placeholder="Enter Address" required="true">
                                     </div>
                                 </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="City"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="City" name="offendercity"
-                                               placeholder="Enter City" required="true">
-                                    </div>
-                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="district" name="offenderdistrict"
-                                               placeholder="Enter district" required="true">
+                                        <select class="form-control" id="district" name="victimdistrict" placeholder="Select District" required="true">
+                                            <option>Select District</option>
+                                            <?php foreach ($this->db->where(array("districtshow" => "Y"))->order_by("districtname", "asc")->get('district')->result() as $detail) { ?>
+                                                <option value="<?= $detail->dist_id ?>"> <?= strtoupper($detail->districtname) ?> </option>
+                                            <?php } ?>                         
+
+                                        </select>
 
                                     </div>
                                 </div>
-
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="city"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="city" name="victimcity" placeholder="Select City" required="true">
+                                            <option>Select City</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <hr>
-
                             <h4><?= $this->lang->line('case_details') ?><span style="color: red ">*</span></h4>
                             <div class="row">
                                 <div class="col-md-8">
@@ -193,8 +198,6 @@
                                         </select>
                                         <span class="select2 select2-container select2-container--default select2-container--above" dir="ltr" style="width: 100%;">
                                             <span class="selection">
-
-
                                                 <span class="select2-selection__arrow" role="presentation">
                                                     <b role="presentation"></b>
                                                 </span>
@@ -256,3 +259,11 @@
     </section>
     <!-- /.content -->
 </div>
+
+<script type="text/javascript">
+    $("#district").on("change", function (event, r) {
+        LastUrl = "";
+        AjaxCall("index.php/" + role + "/FetchCities", "id=" + $(this).val(), "city", "id");
+    });
+
+</script>
