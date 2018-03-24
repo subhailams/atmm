@@ -4,7 +4,7 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Logs</li>
+            <li class="active">Messages</li>
         </ol>
     </section>
     
@@ -15,12 +15,14 @@
               <h3 class="box-title">Compose New Message</h3>
             </div>
             <!-- /.box-header -->
+    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/EmailSave") ?> ">
+
             <div class="box-body">
               <div class="form-group">
-                <input class="form-control" placeholder="To:">
+                <input class="form-control" placeholder="To:" name="emailto">
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Subject:">
+                <input class="form-control" placeholder="Subject:" name="subject">
               </div>
               <div class="form-group">
                     <ul class="wysihtml5-toolbar" style=""><li class="dropdown">
@@ -144,14 +146,14 @@
                       
                     </div>
                     <!-- /.comment body -->
-                    <form>
+                    <!--<form>-->
                         <div class="box-body pad">
-                            <textarea class="textarea" placeholder="Type your email here"
+                            <textarea class="textarea" placeholder="Type your email here" name="emaildetail"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                         </div>
                         
-                    </form>
+<!--                    </form>-->
                 </div>
 
               </div>
@@ -163,6 +165,7 @@
                 <p class="help-block">Max. 32MB</p>
               </div>
             </div>
+          </form>
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">
