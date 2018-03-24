@@ -116,14 +116,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+<!--                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
                                         <select class="form-control" id="vstate" name="victimstate" placeholder="Select state" required="true">
                                             <option>Select State</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <hr>
                             <h4><?= $this->lang->line('offender_details') ?></h4>
@@ -196,13 +196,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+<!--                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
                                        <input type="text" class="form-control" id="Address" name="offenderstate"
                                                placeholder="Enter State" required="true">
                                     </div>
-                                </div>
+                                </div>-->
 
                             </div>
                             <hr>
