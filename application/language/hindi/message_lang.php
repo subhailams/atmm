@@ -35,6 +35,11 @@ $lang['register'] = 'रजिस्टर';
 $lang['update_profile'] = 'प्रोफ़ाइल अपडेट करें';
 $lang['personal_information'] = 'व्यक्तिगत जानकारी';
 $lang['all_users']='सभी उपयोगकर्ताओं';
+$lang['cases']='मामलों';
+$lang['new_cases']='नए मामले';
+$lang['pending_cases']='लंबित मामलों';
+$lang['solved_cases']='हल मामलों';
+
 /* case management form */
 $lang['address'] = 'पता';
 $lang['fir_no']='एफआईआर संख्या';
@@ -64,6 +69,10 @@ $lang['all_solvedcases']='सभी हल मामलों';
 $lang['all_pendingcases']='सभी लंबित मामले';     
 
 $lang['district']='जिला';
+$lang['show']='प्रदर्शन';
+$lang['entries']='प्रविष्टियों';
+$lang['search']='खोज';
+
 
 /* case managment Ends Here */
 
