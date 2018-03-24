@@ -475,14 +475,14 @@ class MY_Controller extends CI_Controller {
 //        print_r(get_defined_vars());
 //           exit();
             //verify offender in offender master
-            $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
+            $condition = array("offendername" => postData['offendername'],"offendermobile"=>postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
-            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "", "", "", "", "", "");
+            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
 //                    echo "<pre>";
-//                    print_r(get_defined_vars());
-//                     exit();
+//                     print_r(get_defined_vars());
+//                    exit();
             if (empty($response)) {
-                $condition = array("offenderid" => "");
+                $condition1 = array("offenderid" => "");
                 $DBData = array(
                     "offenderaddress" => $postData['offenderaddress'],
                     "offendergender" => $postData['offendergender'],
@@ -492,18 +492,12 @@ class MY_Controller extends CI_Controller {
                     "offenderdistrict" => $postData['offenderdistrict'],
                     "offenderstate" => $postData['offenderstate'],
                 );
-              $response1=$this->Adminmodel->AllInsert($condition, $DBData, "", "off_mst");
-               echo "<pre>";      
-               print_r(get_defined_vars());
+              $response1=$this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
+              echo "<pre>";      
+              print_r(get_defined_vars());
             exit();
             }
-
-
-
-//            echo "<pre>";
-//            print_r(get_defined_vars());
-////            exit();
-
+            
             $condition = array("caseid" => "");
             $DBData = array(
                 "offid" => $postData['offenece'], "userid" => "1",
@@ -517,6 +511,7 @@ class MY_Controller extends CI_Controller {
                 "victimaadhar" => $postData['victimaadhar'],
                 "victimcity" => $postData['victimcity'],
                 "victimdistrict" => $postData['victimdistrict'],
+               
                 //"victimstate" => $postData['victimstate'],
                 // "offenderid" => "1",
 //                "offenderaddress" => $postData['offenderaddress'],
