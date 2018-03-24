@@ -21,7 +21,7 @@
                             <thead>
                                 <tr role="row">
                                     <th> <?= $this->lang->line('offender_name') ?></th>
-                                    <th> <?= $this->lang->line('offender_age') ?></th>
+                                    <!--<th> <?= $this->lang->line('offender_age') ?></th>-->
                                     <th> <?= $this->lang->line('gender') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
                                     <th> <?= $this->lang->line('city') ?></th>

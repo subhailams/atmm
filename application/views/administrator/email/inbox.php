@@ -5,14 +5,14 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Logs</li>
+            <li class="active">Messages</li>
         </ol>
     </section>
     <section class="content">
         <section class="content">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
+                    <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/email/composemail") ?>" class="btn btn-primary btn-block margin-bottom">Compose</a>
 
                     <div class="box box-solid">
                         <div class="box-header with-border">

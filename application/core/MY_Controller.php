@@ -187,6 +187,13 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'Role', 'label' => 'Role', 'rules' => '')
                 );
                 break;
+            case "email":
+                $rules = array(
+                    array('field' => 'emailto', 'label' => 'Email To', 'rules' => 'required' | 'valid_email'),
+                    array('field' => 'subject', 'label' => 'Subject', 'rules' => ''),
+                    array('field' => 'emaildetail', 'label' => 'Email Detail', 'rules' => ''),
+                );
+                break;
             case "cases":
                 $rules = array(
                     array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
@@ -196,7 +203,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
                     array('field' => 'victimcity', 'label' => 'City', 'City' => 'required'),
                     array('field' => 'victimdistrict', 'label' => 'Victim District', 'rules' => 'required'),
-                    array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
+                    //    array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
                     array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required|alpha'),
                     array('field' => 'offenderaddress', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'offendermobile', 'label' => 'Mobile Number', 'rules' => 'integer'),
@@ -320,6 +327,21 @@ class MY_Controller extends CI_Controller {
             echo "<pre>";
             print_r($postData);
             exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function EmailSave() {
+        $postData = $this->input->post();
+        echo "<pre>";
+        print_r(get_defined_vars());
+        exit();
+        if ($this->form_validation("email")):
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//            exit();
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
@@ -477,7 +499,7 @@ class MY_Controller extends CI_Controller {
 //        print_r(get_defined_vars());
 //           exit();
             //verify offender in offender master
-            $condition = array("offendername" => postData['offendername'], "offendermobile" => postData['offendermobile']);
+            $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
 //                    echo "<pre>";
@@ -486,19 +508,20 @@ class MY_Controller extends CI_Controller {
             if (empty($response)) {
                 $condition1 = array("offenderid" => "");
                 $DBData = array(
+                    "offendername" => $postData['offendername'],
                     "offenderaddress" => $postData['offenderaddress'],
                     "offendergender" => $postData['offendergender'],
                     "offendermobile" => $postData['offendermobile'],
                     "offenderemail" => $postData['offenderemail'],
                     "offendercity" => $postData['offendercity'],
                     "offenderdistrict" => $postData['offenderdistrict'],
-                    "offenderstate" => $postData['offenderstate'],
                     "offenderage" => $postData['offenderage'],
+                    "offenderstate" => "1"
                 );
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
-                echo "<pre>";
-                print_r(get_defined_vars());
-                exit();
+//                echo "<pre>";
+//                print_r(get_defined_vars());
+//                exit();
             }
 
             $condition = array("caseid" => "");
@@ -597,8 +620,8 @@ class MY_Controller extends CI_Controller {
 
                 $TableListname = "case";
 
-                $ColumnOrder = array('offendername', 'offenderage', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
-                $ColumnSearch = array('offendername', 'offenderage', 'offendermobile', 'offendergender', 'offendercity',);
+                $ColumnOrder = array('offendername', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
+                $ColumnSearch = array('offendername', 'offendermobile', 'offendergender', 'offendercity',);
                 $OrderBy = array('offender_id' => 'desc');
                 break;
             default:
@@ -613,7 +636,7 @@ class MY_Controller extends CI_Controller {
             $no++;
             $row = array();
             $row[] = $logNotice->offendername;
-            $row[] = $logNotice->offenderage;
+//            $row[] = $logNotice->offenderage;
             $row[] = $logNotice->offendergender;
             $row[] = $logNotice->offendermobile;
             $row[] = $logNotice->offendercity;

@@ -111,9 +111,8 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="city"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
-                                        <select class="form-control" id="ocity" name="victimcity" placeholder="Select City" required="true">
+                                        <select class="form-control" id="vcity" name="victimcity" placeholder="Select City" required="true">
                                             <option>Select City</option>
-                                        </select>
                                         </select>
                                     </div>
                                 </div>
@@ -147,14 +146,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                 <div class="col-md-3">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="age"><?= $this->lang->line('age') ?><span style="color: red ">*</span></label>
                                         <input type="text" class="form-control" id="Address" name="offenderage"
                                                placeholder="Enter Age" required="true">
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="mobile no"><?= $this->lang->line('mobile_number') ?></label>
