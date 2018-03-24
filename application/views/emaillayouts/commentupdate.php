@@ -75,9 +75,9 @@
     <div id="body">
         <p>Thank you for your comment</p>
        
+         <br/><br/><br/>
+        <a href="#">Verify</a>
         
-        
-
     </div>
 
 </body>

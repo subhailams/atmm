@@ -90,14 +90,19 @@ class Adminmodel extends CI_Model {
                     "offences_master" => "offences_master.offid=cases.offid",
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
-                    "case_status_master" => "case_status_master.case_status_id=casestatus",
+                    "case_status_master" => "case_status_master.case_status_id=cases.casestatus",
                     "district" => "district.dist_id=districtid",
+                    "offender_master"=>"offender_master.offenderid=cases.offenderid"
                 );
                 break;
             case "casehistory":
                 $JoinTable = array(
                     "cases" => "cases.caseid=caseid",
                     "users" => "users.user_id=userid",
+                    "gender" => "gender.gender_id=victimgender",
+                    "gender" => "gender.gender_id=offendergender",
+                    "district" => "district.dist_id=districtid",
+                   // "offender_master"=>"offenderid=cases.offenderid"
                 );
                 break;
             case "offender_master":
