@@ -196,7 +196,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
                     array('field' => 'victimcity', 'label' => 'City', 'City' => 'required'),
                     array('field' => 'victimdistrict', 'label' => 'Victim District', 'rules' => 'required'),
-                     array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
+                    array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
                     array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required|alpha'),
                     array('field' => 'offenderaddress', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'offendermobile', 'label' => 'Mobile Number', 'rules' => 'integer'),
@@ -209,7 +209,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimdob', 'label' => 'Date Of Birth', 'rules' => 'required'),
                     array('field' => 'victimemail', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
-                      array('field' => 'offenderstate', 'label' => 'Offender State', 'rules' => ''),
+                    array('field' => 'offenderstate', 'label' => 'Offender State', 'rules' => ''),
                     array('field' => 'fir_no', 'label' => 'FIR Number', 'rules' => 'required'),
                 );
                 break;
@@ -239,7 +239,7 @@ class MY_Controller extends CI_Controller {
     public function CaseHistorySave() {
         $postData = $this->input->post();
 
-     
+
         if ($this->form_validation("casehistory")):
 
             $condition = array("casehistoryid" => "");
@@ -476,7 +476,7 @@ class MY_Controller extends CI_Controller {
 //        print_r(get_defined_vars());
 //           exit();
             //verify offender in offender master
-            $condition = array("offendername" => postData['offendername'],"offendermobile"=>postData['offendermobile']);
+            $condition = array("offendername" => postData['offendername'], "offendermobile" => postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
 //                    echo "<pre>";
@@ -493,12 +493,12 @@ class MY_Controller extends CI_Controller {
                     "offenderdistrict" => $postData['offenderdistrict'],
                     "offenderstate" => $postData['offenderstate'],
                 );
-              $response1=$this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
-              echo "<pre>";      
-              print_r(get_defined_vars());
-            exit();
+                $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
+                echo "<pre>";
+                print_r(get_defined_vars());
+                exit();
             }
-            
+
             $condition = array("caseid" => "");
             $DBData = array(
                 "offid" => $postData['offenece'], "userid" => "1",
@@ -512,7 +512,6 @@ class MY_Controller extends CI_Controller {
                 "victimaadhar" => $postData['victimaadhar'],
                 "victimcity" => $postData['victimcity'],
                 "victimdistrict" => $postData['victimdistrict'],
-               
                 //"victimstate" => $postData['victimstate'],
                 // "offenderid" => "1",
 //                "offenderaddress" => $postData['offenderaddress'],

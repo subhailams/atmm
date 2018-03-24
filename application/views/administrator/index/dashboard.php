@@ -93,17 +93,17 @@
                         <map name="Map" id="map">
                             <area href="#" coords="165,240" alt="Maharashtra Map" shape="poly">
                             <area  
-                                   href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alldistrictcases") ?>"
-                                  coords="165,237,157,228,151,221,142,209,136,209,130,211,123,217,117,224,112,224,110,220,106,225,103,236,103,232,103,236,91,237,96,240,103,242,111,247,115,256,126,259,137,256,144,255,155,250,165,238"
-                                  target="_blank" alt="Thane" shape="poly">
+                                href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alldistrictcases") ?>"
+                                coords="165,237,157,228,151,221,142,209,136,209,130,211,123,217,117,224,112,224,110,220,106,225,103,236,103,232,103,236,91,237,96,240,103,242,111,247,115,256,126,259,137,256,144,255,155,250,165,238"
+                                target="_blank" alt="Thane" shape="poly">
                             <area 
-                                   href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alldistrictcases") ?>"
-                                  coords="310,292,298,289,296,282,292,285,281,287,274,294,260,283,249,274,247,269,258,268,255,260,287,268,279,260,296,259,295,252,301,244,302,237,289,230,268,221,254,217,243,215,238,209,232,205,232,198,233,192,218,191,206,191,204,194,210,203,199,210,193,217,187,216,176,214,173,208,168,217,157,220,153,221,167,237,182,241,188,249,202,249,202,254,196,262,203,271,218,288,225,298,231,313,240,312,245,316,248,321,262,316,269,311,277,305,287,305,296,304,303,298,310,293"
-                                  target="_blank" alt="Ahmadnagar" shape="poly">
+                                href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alldistrictcases") ?>"
+                                coords="310,292,298,289,296,282,292,285,281,287,274,294,260,283,249,274,247,269,258,268,255,260,287,268,279,260,296,259,295,252,301,244,302,237,289,230,268,221,254,217,243,215,238,209,232,205,232,198,233,192,218,191,206,191,204,194,210,203,199,210,193,217,187,216,176,214,173,208,168,217,157,220,153,221,167,237,182,241,188,249,202,249,202,254,196,262,203,271,218,288,225,298,231,313,240,312,245,316,248,321,262,316,269,311,277,305,287,305,296,304,303,298,310,293"
+                                target="_blank" alt="Ahmadnagar" shape="poly">
                             <area 
-                                  href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alldistrictcases") ?>"
-                                  coords="261,352,268,344,268,338,264,333,253,329,246,327,246,322,242,317,237,314,232,316,225,300,219,298,216,289,205,276,197,265,197,258,199,251,187,250,181,244,174,240,168,241,160,248,151,255,145,260,137,273,131,287,129,297,130,304,135,310,138,321,147,330,154,334,152,342,162,344,171,340,174,332,186,335,202,339,222,343,237,345,251,351,261,352"
-                                  target="_blank" alt="Pune" shape="poly">
+                                href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alldistrictcases") ?>"
+                                coords="261,352,268,344,268,338,264,333,253,329,246,327,246,322,242,317,237,314,232,316,225,300,219,298,216,289,205,276,197,265,197,258,199,251,187,250,181,244,174,240,168,241,160,248,151,255,145,260,137,273,131,287,129,297,130,304,135,310,138,321,147,330,154,334,152,342,162,344,171,340,174,332,186,335,202,339,222,343,237,345,251,351,261,352"
+                                target="_blank" alt="Pune" shape="poly">
                             <area href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alldistrictcases") ?>"
                                   coords="251,379,249,369,241,367,235,362,230,361,229,357,232,351,235,347,219,344,203,341,188,338,179,335,174,337,170,345,162,345,153,345,147,352,147,359,145,368,156,375,157,381,157,388,160,392,156,395,153,403,156,407,159,404,164,407,170,412,179,417,185,419,192,418,198,415,200,408,202,402,201,397,201,393,207,394,219,396,224,393,228,391,233,392,235,386,243,388,249,387,251,380"
                                   target="_blank" alt="Satara" shape="poly">
@@ -210,98 +210,98 @@
             </div>
         </div>
         <div class="row">
-<!--            <div class="col-md-12">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">New Cases</a>
-                        </li>
-                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Pending Cases</a></li>
-                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Solved Cases</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_1">
-                            <br/>
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>FIR No</th>
-                                        <th>Case Victim Name</th>
-                                        <th>Mobile Number</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($newcase as $new): ?>
-                                        <tr>
-                                            <td><?= $new['FIR'] ?> </td>
-                                            <td><?= $new['VictimName'] ?></td>
-                                            <td><?= $new['VictimMobile'] ?></td>
-                                            <td><span class="label label-info">Filed</span></td>
-                                        </tr>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+            <!--            <div class="col-md-12">
+                            <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">New Cases</a>
+                                    </li>
+                                    <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Pending Cases</a></li>
+                                    <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Solved Cases</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1">
+                                        <br/>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>FIR No</th>
+                                                    <th>Case Victim Name</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+            <?php foreach ($newcase as $new): ?>
+                                                        <tr>
+                                                            <td><?= $new['FIR'] ?> </td>
+                                                            <td><?= $new['VictimName'] ?></td>
+                                                            <td><?= $new['VictimMobile'] ?></td>
+                                                            <td><span class="label label-info">Filed</span></td>
+                                                        </tr>
+                                                        </div>
+            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+            
+                                    <div class="tab-pane" id="tab_2">
+                                        <br/>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>FIR No</th>
+                                                    <th>Case Victim Name</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+            <?php foreach ($pendingcase as $pending): ?>
+                                                        <tr>
+                                                            <td><?= $pending['FIR'] ?> </td>
+                                                            <td><?= $pending['VictimName'] ?></td>
+                                                            <td><?= $pending['VictimMobile'] ?></td>
+                                                            <td><span class="label label-info">Police Tracking</span></td>
+                                                        </tr>
+                                                        </div>
+            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+            
+                                    <div class="tab-pane" id="tab_3">
+                                        <br/>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>FIR No</th>
+                                                    <th>Case Victim Name</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+            <?php foreach ($solvedcase as $solved): ?>
+                                                        <tr>
+                                                            <td><?= $solved['FIR'] ?> </td>
+                                                            <td><?= $solved['VictimName'] ?></td>
+                                                            <td><?= $solved['VictimMobile'] ?></td>
+                                                            <td><span class="label label-info">Solved</span></td>
+                                                        </tr>
+                                                        </div>
+            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+            
+                                </div>
+            
+                            </div>
+            
                         </div>
-
-                        <div class="tab-pane" id="tab_2">
-                            <br/>
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>FIR No</th>
-                                        <th>Case Victim Name</th>
-                                        <th>Mobile Number</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($pendingcase as $pending): ?>
-                                        <tr>
-                                            <td><?= $pending['FIR'] ?> </td>
-                                            <td><?= $pending['VictimName'] ?></td>
-                                            <td><?= $pending['VictimMobile'] ?></td>
-                                            <td><span class="label label-info">Police Tracking</span></td>
-                                        </tr>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="tab-pane" id="tab_3">
-                            <br/>
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>FIR No</th>
-                                        <th>Case Victim Name</th>
-                                        <th>Mobile Number</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($solvedcase as $solved): ?>
-                                        <tr>
-                                            <td><?= $solved['FIR'] ?> </td>
-                                            <td><?= $solved['VictimName'] ?></td>
-                                            <td><?= $solved['VictimMobile'] ?></td>
-                                            <td><span class="label label-info">Solved</span></td>
-                                        </tr>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-
                     </div>
-
-                </div>
-
-            </div>
+                     /.col -->
         </div>
-         /.col -->
-</div>
-</section>
-<!-- /.content -->
+    </section>
+    <!-- /.content -->
 </div>
