@@ -89,7 +89,7 @@
                                     <div class="form-group">
                                         <label for="State"><?= $this->lang->line('state') ?></label>
                                         <input type="text" class="form-control" id="State" name="State"
-                                               placeholder="Enter State">
+                                               placeholder="Enter State" value="tamilnadu">
 
                                     </div>
                                 </div>
