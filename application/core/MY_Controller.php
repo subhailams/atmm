@@ -158,8 +158,8 @@ class MY_Controller extends CI_Controller {
                 $rules = array(
                     array('field' => 'PersonName', 'label' => 'Person Name', 'rules' => 'required|max_length[30]|alpha'),
                     array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
-                    array('field' => 'Password', 'label' => 'Password', 'rules' => 'required|max_length[5]'),
-                    array('feild' => 'ConfirmationPassword', 'label' => 'Confirmation Password', 'rules' => 'requird|match[Password]'),
+                    array('field' => 'Password', 'label' => 'Password', 'rules' => 'required|max_length[10]'),
+//                    array('feild' => 'ConfirmationPassword', 'label' => 'Confirmation Password', 'rules' => 'requird|match[Password]'),
                     array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
                     array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
                     array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required|exact_length[12]'),
@@ -236,14 +236,10 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
-<<<<<<< HEAD
+
      
         if ($this->form_validation("casehistory")):
-=======
 
-        if ($this->form_validation("casehistory")):
-
->>>>>>> f63ed6e824998eebd6a4bd7b682c9888ad60eb6f
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
