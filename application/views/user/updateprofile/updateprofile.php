@@ -26,13 +26,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1"><?= $this->lang->line('name') ?></label>
-                                        <input type="name" class="form-control" id="Name" name="Name"  placeholder="Enter Full Name">
+                                        <input type="name" class="form-control" id="Name" name="Name"  placeholder="" value="<?php echo $userdatabase['Name']; ?>"
+                                        
                                     </div>
                                 </div>
+                            </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputRole"><?= $this->lang->line('select') ?></label>
-                                        <select class="form-control" id="Role" name="Role" placeholder="Select Role">
+                                        <select class="form-control" id="Role" name="Role" placeholder="Select Role" >
                                             <option>Select Role</option>
                                             <option>Police</option>
                                             <option>Victim</option>
@@ -48,14 +50,14 @@
                                     <div class="form-group">
                                         <label for="User Name"><?= $this->lang->line('user_name') ?></label>
                                         <input type="text" class="form-control" id="UserName" name="UserName"
-                                               placeholder="Enter User Name">
+                                               placeholder="" value="<?php echo $userdatabase['Username']; ?>" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Email ID"><?= $this->lang->line('email_id') ?></label>
                                         <input type="text" class="form-control" id="Email ID" name="EmailID" data-rule-required="true"
-                                               data-rule-email="true" placeholder="Enter Email Id">
+                                               data-rule-email="true" placeholder="" value="<?php echo $userdatabase['EmailID']; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -66,14 +68,14 @@
                                     <div class="form-group">
                                         <label for="Address1"><?= $this->lang->line('address1') ?></label>
                                         <input type="text" class="form-control" id="Address1" name="Address1"
-                                               placeholder="Enter Address1">
+                                               placeholder="" value="<?php echo $userdatabase['Address1']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Address2"><?= $this->lang->line('address2') ?></label>
                                         <input type="text" class="form-control" id="Address2" name="Address2"
-                                               placeholder="Enter Address2">
+                                               placeholder="" value="<?php echo $userdatabase['Address2']; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -82,14 +84,18 @@
                                     <div class="form-group">
                                         <label for="City"><?= $this->lang->line('city') ?></label>
                                         <input type="text" class="form-control" id="City" name="City"
-                                               placeholder="Enter City">
+                                               placeholder="" value="<?php echo $userdatabase['City']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="State"><?= $this->lang->line('state') ?></label>
                                         <input type="text" class="form-control" id="State" name="State"
-                                               placeholder="Enter State" value="tamilnadu">
+
+                                               
+
+                                               placeholder="" value="<?php echo $userdatabase['State']; ?>">
+
 
                                     </div>
                                 </div>
@@ -97,7 +103,7 @@
                                     <div class="form-group">
                                         <label for="Country"><?= $this->lang->line('country') ?></label>
                                         <input type="text" class="form-control" id="Country" name="Country"
-                                               placeholder="Enter Country">
+                                               placeholder="" value="<?php echo $userdatabase['Country']; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -110,14 +116,14 @@
 
 
                                         <input type="number" class="form-control" id="Mobile Number"
-                                               name="MobileNumber" placeholder="Enter Mobile Number">
+                                               name="MobileNumber" placeholder="" value="<?php echo $userdatabase['Mobilenumber']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="Aadhaar Number"><?= $this->lang->line('aadhaar_number') ?></label>
                                         <input type="number" class="form-control" id="Aadhaar Number"
-                                               name="AadhaarNumber" placeholder="Enter Aadhaar Number ">
+                                               name="AadhaarNumber" placeholder="" value="<?php echo $userdatabase['Aadhaarnumber']; ?>">
                                     </div>
                                 </div>
                             </div>
