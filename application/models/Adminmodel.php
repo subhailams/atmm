@@ -11,7 +11,7 @@ class Adminmodel extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases", "off_mst" => "offender_master", "sts" => "states", "dist" => "district", "city" => "cities");
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offenderid", "states" => "stateid", "district" => "dist_id", "cities" => "cityid");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offid", "states" => "stateid", "district" => "dist_id", "cities" => "cityid");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
@@ -93,12 +93,14 @@ class Adminmodel extends CI_Model {
                     "case_status_master" => "case_status_master.case_status_id=cases.casestatus",
                     "district" => "district.dist_id=victimdistrict",
                     "offender_master"=>"offender_master.offenderid=cases.offenderid"
+
                 );
                 break;
             case "casehistory":
                 $JoinTable = array(
                     "cases" => "cases.caseid=caseid",
                     "users" => "users.user_id=userid",
+
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
                     "district" => "district.dist_id=victimdistrict",
