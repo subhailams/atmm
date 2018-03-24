@@ -46,6 +46,7 @@ $lang['gender']='Gender';
 $lang['offence_date']='Offence Date';
 $lang['victim_name']='Victim Name';
 $lang['victimdob']='Date Of Birth';
+$lang['age']='Age';
 $lang['offender_name']='Offender Name';
 $lang['status']='Status';
 $lang['actions']='Actions';

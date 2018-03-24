@@ -211,6 +211,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
                     array('field' => 'offenderstate', 'label' => 'Offender State', 'rules' => ''),
                     array('field' => 'fir_no', 'label' => 'FIR Number', 'rules' => 'required'),
+                    array('field' => 'offenderage', 'label' => 'Age', 'rules' => 'required'),
                 );
                 break;
         }
@@ -492,6 +493,7 @@ class MY_Controller extends CI_Controller {
                     "offendercity" => $postData['offendercity'],
                     "offenderdistrict" => $postData['offenderdistrict'],
                     "offenderstate" => $postData['offenderstate'],
+                    "offenderage" => $postData['offenderage'],
                 );
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
                 echo "<pre>";
