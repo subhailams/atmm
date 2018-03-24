@@ -131,9 +131,7 @@ class Administrator extends MY_Controller {
         switch (strtolower($options)) {
             case "cases":
                 $Condition = array();
-
                 $TableListname = "case";
-
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
@@ -141,7 +139,6 @@ class Administrator extends MY_Controller {
             case "solvedcases":
                 $Condition = array("casestatus" => '2');
                 $TableListname = "case";
-
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
@@ -149,12 +146,10 @@ class Administrator extends MY_Controller {
             case "pendingcases":
                 $Condition = array("casestatus" => '3');
                 $TableListname = "case";
-
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile','offendername', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
-            
             default:
                 $Condition = array();
                 break;
@@ -230,9 +225,7 @@ class Administrator extends MY_Controller {
         switch (strtolower($options)) {
             case "cases":
                 $Condition = array("casestatus" => '1');
-
                 $TableListname = "case";
-
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
@@ -240,7 +233,6 @@ class Administrator extends MY_Controller {
             case "solvedcases":
                 $Condition = array("casestatus" => '2');
                 $TableListname = "case";
-
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
@@ -248,7 +240,6 @@ class Administrator extends MY_Controller {
             case "pendingcases":
                 $Condition = array("casestatus" => '3');
                 $TableListname = "case";
-
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile','casestatus');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
