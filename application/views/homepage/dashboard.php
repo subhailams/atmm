@@ -135,19 +135,19 @@
     <div class="content-wrapper">
         <br/>
         <div class="container">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;height:" 600
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%;height:" 400
             " ; margin:="" auto="" float:left="" border:="" 3px="" solid="" #1aa1f0="">
 
             <div class="carousel-inner" role="listbox">
                 <div class="item"><img src="<?= base_url('assets/img/credit/gateway-of-india.jpg') ?>" alt=""
-                                       align="middle" style="height: 300px;" align="left" width="100%" height="400">
+                                       align="middle" style="height: 235px;" align="left" width="100%" height="400">
                 </div>
                 <div class="item"><img src="<?= base_url('assets/img/credit/sjsa.png') ?>"
-                                       style="background-color: black;" col alt="" style="height: 300px;" width="100%"
-                                       height="400">
+                                       style="background-color: black;" col alt="" style="height: 800px;" width="100%"
+                                       height="700">
                 </div>
                 <div class="item active"><img src="<?= base_url('assets/img/credit/sjsa2.jpg') ?>" alt=""
-                                              style="height: 300px;" width="100%" height="400">
+                                              style="height: 235px;" width="100%" height="400">
                 </div>
             </div>
         </div>
