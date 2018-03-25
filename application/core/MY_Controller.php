@@ -38,11 +38,7 @@ class MY_Controller extends CI_Controller {
         $this->load->view($Layout, $RenderData);
     }
 
-    public function showallusers() {
-        $this->render("showallusers", get_defined_vars());
-    }
-
-    public function Inti($Class) {
+  public function Inti($Class) {
         $ClassNo = array(array("register"), "homepage" => array("forgotpwd"));
         if (!(in_array($this->router->fetch_method(), $ClassNo[$Class]))) {
             if (empty($_SESSION["UserId"])) {
@@ -232,6 +228,77 @@ class MY_Controller extends CI_Controller {
 
     /* Form Validation Ends Here */
 
+    /* Function for saving Cases in Database Starts here */
+
+    public function CaseRegisterSave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("cases")):
+            //verify offender in offender master
+            $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
+            $select = "offendername as OffenderName , offendermobile as OffenderMobile";
+            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
+//                    echo "<pre>";
+//                     print_r(get_defined_vars());
+//                    exit();
+            if (empty($response)) {
+                $condition1 = array("offenderid" => "");
+                $DBData = array(
+                    "offendername" => $postData['offendername'],
+                    "offenderaddress" => $postData['offenderaddress'],
+                    "offendergender" => $postData['offendergender'],
+                    "offendermobile" => $postData['offendermobile'],
+                    "offenderemail" => $postData['offenderemail'],
+                    "offendercity" => $postData['offendercity'],
+                    "offenderdistrict" => $postData['offenderdistrict'],
+                    "offenderage" => $postData['offenderage'],
+                    "offenderstate" => $postData['offenderstate'],
+                );
+                
+//                 echo "<pre>";
+//                     print_r(get_defined_vars());
+//                    exit();
+                $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "off_mst");
+                echo "<pre>";
+                print_r(get_defined_vars()
+                );
+                exit();
+            }
+            $condition = array("caseid" => "");
+            $DBData = array(
+                "offid" => $postData['offenece'], "userid" => "1",
+                "fir_no" => $postData['fir_no'],
+                "victimname" => $postData['victimname'],
+                "victimaddress" => $postData['victimaddress'],
+                "vicitmdob" => $postData['victimdob'],
+                "victimgender" => $postData['victimgender'],
+                "victimmobile" => $postData['victimmobile'],
+                "victimemail" => $postData['victimemail'],
+                "victimaadhar" => $postData['victimaadhar'],
+                "victimcity" => $postData['victimcity'],
+                "victimdistrict" => $postData['victimdistrict'],
+                "casestatus" => "1"
+            );
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//             exit();
+            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
+            if (!empty($response)):
+                $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
+                $Subject = "Atrocity Case Management - New Case Registered";
+                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
+            else:
+                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+            endif;
+        else:
+            $_SESSION['formError'] = validation_errors();
+            $this->session->set_flashdata('ME_FORM', "ERROR");
+        endif;
+        redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
+    }
+
+    /* Function for saving Cases in Database Ends here */
+
     public function CaseHistoryShow($id) {
         $condition = array("caseid" => $id);
         $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,victimcity as VictimCity,victimdistrict as VictimDistrict,victimstate as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription ";
@@ -243,6 +310,8 @@ class MY_Controller extends CI_Controller {
         $select = "casehistorydesc as CaseHistoryDesc";
         return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", "", "", "", "", "", "");
     }
+    
+    /* Function for saving Case History in Database Starts here */
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
@@ -266,8 +335,288 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
+    /* Function for saving Case History in Database Ends here */
 
-    public function passwordchange() {
+    
+
+    /* Function for fetching cases files from  views starts here */
+
+    public function cases($options = null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "newcase";
+                $render = "showregistercase";
+                break;
+            case "allcases";
+                $render = "showallcases";
+                break;
+            case "allsolvedcases";
+                $render = "showallsolvedcases";
+                break;
+            case "allpendingcases";
+                $render = "showallpendingcases";
+                break;
+            case "alldistrictcases";
+                $render = "districtcases";
+                break;
+            case "alloffenders";
+                $render = "showalloffenders";
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
+
+    /* Function for fetching cases files from  views ends here */
+
+    /* Function for fetching  offender's offences file from  views starts here */
+
+    public function offenders($options = null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "alloffences";
+                $render = "offender_offences";
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
+
+    /* Function for fetching  offender's offences file from  views ends here */
+
+    /* Function for fetching  allusers file from  views starts here */
+
+    public function user($options = null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "allusers";
+                $render = "showallusers";
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
+
+    /* Function for fetching  allusers file from  views ends here */
+
+    /* Function for fetching  casehistory file from  views starts here */
+
+    public function casehistory($options = null, $id = null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "show";
+                $render = "casehistory";
+                $casedatabase = $this->CaseHistoryShow($id);
+                $casecomments = $this->CaseHistoryComments($id);
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
+
+    /* Function for fetching  casehistory file from  views ends here */
+
+    /* Function for fetching  email files from  views starts here */
+
+    public function email($options = null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "show";
+                $render = "inbox";
+                break;
+            case "composemail";
+                $render = "compose";
+                break;
+            default:
+                $caseregister = $this->getcase_register();
+                $caseallcases = $this->getcase_allcases();
+                $casehistory = $this->getcase_casehistory();
+                $render = "cases";
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
+
+    /* Function for fetching  email files from  views ends here */
+
+    /* Ajax Function for fetching offenders starts here */
+
+    public function offenders_ajax_list($options = null) {
+        switch (strtolower($options)) {
+            case "offenders":
+                $Condition = array();
+
+                $TableListname = "case";
+
+                $ColumnOrder = array('offendername', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
+                $ColumnSearch = array('offendername', 'offendermobile', 'offendergender', 'offendercity',);
+                $OrderBy = array('offender_id' => 'desc');
+                break;
+            default:
+                $Condition = array();
+                break;
+        }
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $logNotice) {
+            $no++;
+            $row = array();
+            $row[] = $logNotice->offendername;
+            $row[] = $logNotice->offenderage;
+            $row[] = $logNotice->offendergender;
+            $row[] = $logNotice->offendermobile;
+            $row[] = $logNotice->offendercity;
+            $row[] = $logNotice->offenderdistrict;
+            //add html for action
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/offenders//' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
+    public function profileshow($id) {
+        $condition = array("user_id" => $id);
+        $select = "name as Name ,role as Role ,username as Username , email as EmailID ,address1 as Address1,address2 as Address2,city as City,state as State,country as Country,mobilenumber as Mobilenumber,aadhar as Aadhaarnumber";
+        return $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+    }
+
+    /* Ajax Function for fetching offenders ends here */
+
+
+    /* Ajax Function for fetching users starts here */
+
+    public function users_ajax_list($options = null) {
+        switch (strtolower($options)) {
+            case "users":
+                $Condition = array();
+                $TableListname = "usr";
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $OrderBy = array('user_id' => 'desc');
+                break;
+            default:
+                $Condition = array();
+                break;
+        }
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $UserNotice) {
+            $no++;
+            $row = array();
+            $row[] = $UserNotice->name;
+            $row[] = $UserNotice->username;
+            $row[] = $UserNotice->mobilenumber;
+            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->city;
+            //add html for action
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
+    /* Ajax Function for fetching users ends here */
+
+    /* Ajax function for fetching Cities from District Starts Here */
+
+    public function FetchCities() { // Ajaxcall Fetch Board
+        $DistrictID = $this->input->post('id', TRUE);
+        $condition = array("districtref" => $DistrictID);
+        $select = "cityid as CityID ,cityname as Cityname";
+        $CityDetails = $this->Adminmodel->CSearch($condition, $select, "city", "Y", "", "", "", "", "", "");
+        $output = "<option value=''>Select City</option>";
+        foreach ($CityDetails as $row) {
+            $output .= "<option value='" . $row['CityID'] . "'>" . strtoupper($row['Cityname']) . "</option>";
+        }
+        echo $output;
+    }
+
+    /* Ajax function for fetching Cities from District Ends Here */
+
+    /*  Function for count of Users,Cases Starts Here */
+
+    public function TotalUserCount() {
+        $condition = array();
+        $response = $this->Adminmodel->count_all("usr", $condition);
+        return $response;
+    }
+
+    public function TotalCaseCount() {
+        $condition = array();
+        $response = $this->Adminmodel->count_all("case", $condition);
+        return $response;
+    }
+
+    public function PendingCaseCount() {
+        $condition = array("casestatus" => '3');
+        $response = $this->Adminmodel->count_all("case", $condition);
+        return $response;
+    }
+
+    public function SolvedCaseCount() {
+        $condition = array("casestatus" => '2');
+        $response = $this->Adminmodel->count_all("case", $condition);
+        return $response;
+    }
+
+    /*  Function for count of Users,Cases Ends Here */
+
+    public function NewCaseShow() {
+        $condition = array("casestatus" => '1');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
+
+    public function SolvedCaseShow() {
+        $condition = array("casestatus" => '2');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
+
+    public function PendingCaseShow() {
+        $condition = array("casestatus" => '3');
+        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
+    }
+public function passwordchange() {
         $postData = $this->input->post();
         if ($this->form_validation("password")):
             echo "<pre>";
@@ -341,328 +690,7 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
-
-    public function cases($options = null) {
-        $render = "";
-        switch (strtolower($options)) {
-            case "newcase";
-                $render = "showregistercase";
-                break;
-            case "allcases";
-                $render = "showallcases";
-                break;
-            case "allsolvedcases";
-                $render = "showallsolvedcases";
-                break;
-            case "allpendingcases";
-                $render = "showallpendingcases";
-                break;
-            case "alldistrictcases";
-                $render = "districtcases";
-                break;
-            case "alloffenders";
-                $render = "showalloffenders";
-                break;
-            default:
-                $caseregister = $this->getcase_register();
-                $caseallcases = $this->getcase_allcases();
-                $casehistory = $this->getcase_casehistory();
-                $render = "cases";
-                break;
-        }
-        $this->render($render, get_defined_vars());
+    public function showallusers() {
+        $this->render("showallusers", get_defined_vars());
     }
-
-    public function offenders($options = null) {
-        $render = "";
-        switch (strtolower($options)) {
-            case "alloffences";
-                $render = "offender_offences";
-                break;
-            default:
-                $caseregister = $this->getcase_register();
-                $caseallcases = $this->getcase_allcases();
-                $casehistory = $this->getcase_casehistory();
-                $render = "cases";
-                break;
-        }
-        $this->render($render, get_defined_vars());
-    }
-
-    public function user($options = null) {
-        $render = "";
-        switch (strtolower($options)) {
-            case "allusers";
-                $render = "showallusers";
-                break;
-            default:
-                $caseregister = $this->getcase_register();
-                $caseallcases = $this->getcase_allcases();
-                $casehistory = $this->getcase_casehistory();
-                $render = "cases";
-                break;
-        }
-        $this->render($render, get_defined_vars());
-    }
-
-    public function casehistory($options = null, $id = null) {
-        $render = "";
-        switch (strtolower($options)) {
-            case "show";
-                $render = "casehistory";
-                $casedatabase = $this->CaseHistoryShow($id);
-                $casecomments = $this->CaseHistoryComments($id);
-                break;
-            default:
-                $caseregister = $this->getcase_register();
-                $caseallcases = $this->getcase_allcases();
-                $casehistory = $this->getcase_casehistory();
-                $render = "cases";
-                break;
-        }
-        $this->render($render, get_defined_vars());
-    }
-
-    public function email($options = null) {
-        $render = "";
-        switch (strtolower($options)) {
-            case "show";
-                $render = "inbox";
-                break;
-            case "composemail";
-                $render = "compose";
-                break;
-            default:
-                $caseregister = $this->getcase_register();
-                $caseallcases = $this->getcase_allcases();
-                $casehistory = $this->getcase_casehistory();
-                $render = "cases";
-                break;
-        }
-        $this->render($render, get_defined_vars());
-    }
-
-    public function users_ajax_list($options = null) {
-        switch (strtolower($options)) {
-            case "users":
-                $Condition = array();
-                $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $OrderBy = array('user_id' => 'desc');
-                break;
-            default:
-                $Condition = array();
-                break;
-        }
-
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $UserNotice) {
-            $no++;
-            $row = array();
-            $row[] = $UserNotice->name;
-            $row[] = $UserNotice->username;
-            $row[] = $UserNotice->mobilenumber;
-            $row[] = $UserNotice->email;
-            $row[] = $UserNotice->city;
-            //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
-            "data" => $data,
-        );
-        //output to json format
-        echo json_encode($output);
-    }
-
-    public function CaseRegisterSave() {
-        $postData = $this->input->post();
-        if ($this->form_validation("cases")):
-            //verify offender in offender master
-            $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
-            $select = "offendername as OffenderName , offendermobile as OffenderMobile";
-            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
-//                    echo "<pre>";
-//                     print_r(get_defined_vars());
-//                    exit();
-            if (empty($response)) {
-                $condition1 = array("offenderid" => "");
-                $DBData = array(
-                    "offendername" => $postData['offendername'],
-                    "offenderaddress" => $postData['offenderaddress'],
-                    "offendergender" => $postData['offendergender'],
-                    "offendermobile" => $postData['offendermobile'],
-                    "offenderemail" => $postData['offenderemail'],
-                    "offendercity" => $postData['offendercity'],
-                    "offenderdistrict" => $postData['offenderdistrict'],
-                    "offenderage" => $postData['offenderage'],
-                    "offenderstate" => "1"
-                );
-                $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
-                echo "<pre>";
-                print_r(get_defined_vars());
-                exit();
-            }
-
-            $condition = array("caseid" => "");
-            $DBData = array(
-                "offid" => $postData['offenece'], "userid" => "1",
-                "fir_no" => $postData['fir_no'],
-                "victimname" => $postData['victimname'],
-                "victimaddress" => $postData['victimaddress'],
-                "vicitmdob" => $postData['victimdob'],
-                "victimgender" => $postData['victimgender'],
-                "victimmobile" => $postData['victimmobile'],
-                "victimemail" => $postData['victimemail'],
-                "victimaadhar" => $postData['victimaadhar'],
-                "victimcity" => $postData['victimcity'],
-                "victimdistrict" => $postData['victimdistrict'],
-//                "caseid" => $postData[''],
-                //"victimstate" => $postData['victimstate'],
-                // "offenderid" => "1",
-//                "offenderaddress" => $postData['offenderaddress'],
-//                "offendergender" => $postData['offendergender'],
-//                "offendermobile" => $postData['offendermobile'],
-//                "offenderemail" => $postData['offenderemail'],
-//                "casedescription" => $postData['casedescription'],
-//                "offendercity" => $postData['offendercity'],
-//                "offenderdistrict" => $postData['offenderdistrict'],
-                //"offenderstate" => $postData['offenderstate'],
-                "casestatus" => "1"
-            );
-//            echo "<pre>";
-//            print_r(get_defined_vars());
-//             exit();
-            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
-            echo "<pre>";
-            print_r($response);
-            exit();
-            if (!empty($response)):
-                $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
-                $Subject = "Atrocity Case Management - New Case Registered";
-                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
-                $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
-            else:
-                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
-            endif;
-        else:
-            $_SESSION['formError'] = validation_errors();
-            $this->session->set_flashdata('ME_FORM', "ERROR");
-        endif;
-        redirect('index.php/' . strtolower($this->router->fetch_class()) . '/cases/allcases');
-    }
-
-    public function TotalUserCount() {
-        $condition = array();
-        $response = $this->Adminmodel->count_all("usr", $condition);
-        return $response;
-    }
-
-    public function TotalCaseCount() {
-        $condition = array();
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function PendingCaseCount() {
-        $condition = array("casestatus" => '3');
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function SolvedCaseCount() {
-        $condition = array("casestatus" => '2');
-        $response = $this->Adminmodel->count_all("case", $condition);
-        return $response;
-    }
-
-    public function NewCaseShow() {
-        $condition = array("casestatus" => '1');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
-
-    public function SolvedCaseShow() {
-        $condition = array("casestatus" => '2');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
-
-    public function PendingCaseShow() {
-        $condition = array("casestatus" => '3');
-        $select = "fir_no as FIR,victimname as VictimName , victimmobile as VictimMobile ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", "", "", "", "", "", "");
-    }
-
-    public function offenders_ajax_list($options = null) {
-        switch (strtolower($options)) {
-            case "offenders":
-                $Condition = array();
-
-                $TableListname = "case";
-
-                $ColumnOrder = array('offendername', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
-                $ColumnSearch = array('offendername', 'offendermobile', 'offendergender', 'offendercity',);
-                $OrderBy = array('offender_id' => 'desc');
-                break;
-            default:
-                $Condition = array();
-                break;
-        }
-
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $logNotice) {
-            $no++;
-            $row = array();
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->offenderage;
-            $row[] = $logNotice->offendergender;
-            $row[] = $logNotice->offendermobile;
-            $row[] = $logNotice->offendercity;
-            $row[] = $logNotice->offenderdistrict;
-            //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/offenders//' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
-            "data" => $data,
-        );
-        //output to json format
-        echo json_encode($output);
-    }
-
-    public function profileshow($id) {
-        $condition = array("user_id" => $id);
-        $select = "name as Name ,role as Role ,username as Username , email as EmailID ,address1 as Address1,address2 as Address2,city as City,state as State,country as Country,mobilenumber as Mobilenumber,aadhar as Aadhaarnumber";
-        return $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-    }
-
-    /* Ajax function for fetching Cities from District Starts Here */
-
-    public function FetchCities() { // Ajaxcall Fetch Board
-        $DistrictID = $this->input->post('id', TRUE);
-        $condition = array("districtref" => $DistrictID);
-        $select = "cityid as CityID ,cityname as Cityname";
-        $CityDetails = $this->Adminmodel->CSearch($condition, $select, "city", "Y", "", "", "", "", "", "");
-        $output = "<option value=''>Select City</option>";
-        foreach ($CityDetails as $row) {
-            $output .= "<option value='" . $row['CityID'] . "'>" . strtoupper($row['Cityname']) . "</option>";
-        }
-        echo $output;
-    }
-
-    /* Ajax function for fetching Cities from District Ends Here */
 }
