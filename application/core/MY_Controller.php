@@ -329,20 +329,14 @@ class MY_Controller extends CI_Controller {
 
     public function EmailSave() {
         $postData = $this->input->post();
-        echo "<pre>";
-        print_r(get_defined_vars());
-        exit();
         if ($this->form_validation("email")):
-//            echo "<pre>";
-//            print_r(get_defined_vars());
-//            exit();
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function cases($options = null) {
+    public function cases($options = null, $id = "") {
         $render = "";
         switch (strtolower($options)) {
             case "newcase";
@@ -357,8 +351,9 @@ class MY_Controller extends CI_Controller {
             case "allpendingcases";
                 $render = "showallpendingcases";
                 break;
-            case "alldistrictcases";
+            case "districtcases";
                 $render = "districtcases";
+                $districtID = $id;
                 break;
             case "alloffenders";
                 $render = "showalloffenders";

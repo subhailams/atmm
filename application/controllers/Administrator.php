@@ -102,7 +102,7 @@ class Administrator extends MY_Controller {
                 break;
         }
 
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,false);
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $logNotice) {
@@ -120,7 +120,7 @@ class Administrator extends MY_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,false),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
             "data" => $data,
         );
         //output to json format
@@ -147,7 +147,7 @@ class Administrator extends MY_Controller {
                 $Condition = array("casestatus" => '3');
                 $TableListname = "case";
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile','offendername', 'case_status_name');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             default:
@@ -155,8 +155,8 @@ class Administrator extends MY_Controller {
                 break;
         }
 
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,true);
-        
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
+
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $logNotice) {
@@ -167,7 +167,7 @@ class Administrator extends MY_Controller {
             $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->offendername;
             $row[] = $logNotice->offdate;
-            $row[] = $logNotice->case_status_name ;
+            $row[] = $logNotice->case_status_name;
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
@@ -176,7 +176,7 @@ class Administrator extends MY_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,false),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
             "data" => $data,
         );
         //output to json format
@@ -197,7 +197,7 @@ class Administrator extends MY_Controller {
                 break;
         }
 
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,false);
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $UserNotice) {
@@ -216,42 +216,42 @@ class Administrator extends MY_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,"N"),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, "N"),
             "data" => $data,
         );
         //output to json format
         echo json_encode($output);
     }
-     public function map_ajax_list($options = null) {
+
+    public function map_ajax_list($options = "", $id = "") {
         switch (strtolower($options)) {
             case "cases":
-                $Condition = array("casestatus" => '1');
+                $Condition = array("casestatus" => '1', "victimdistrict" => $id);
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile','casestatus');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "solvedcases":
-                $Condition = array("casestatus" => '2');
+                $Condition = array("casestatus" => '2', "victimdistrict" => $id);
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile','casestatus');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "pendingcases":
-                $Condition = array("casestatus" => '3');
+                $Condition = array("casestatus" => '3', "victimdistrict" => $id);
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile','casestatus');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
                 break;
-            
             default:
                 $Condition = array();
                 break;
         }
 
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,false);
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $logNotice) {
@@ -260,20 +260,19 @@ class Administrator extends MY_Controller {
             $row[] = $logNotice->fir_no;
             $row[] = $logNotice->victimname;
             $row[] = $logNotice->victimmobile;
-           //add html for action
+            //add html for action
             $data[] = $row;
         }
 
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy,"N"),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, "N"),
             "data" => $data,
         );
         //output to json format
         echo json_encode($output);
     }
-
 
 //    public function showallusers() {
 //        $this->render("showallusers", get_defined_vars());
@@ -311,5 +310,4 @@ class Administrator extends MY_Controller {
     }
 
 //   
- 
 }

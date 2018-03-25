@@ -33,7 +33,6 @@
                                         <th> <?= $this->lang->line('fir_no') ?></th>
                                         <th> <?= $this->lang->line('victim_name') ?></th>
                                         <th> <?= $this->lang->line('mobile_number') ?></th>
-    <!--                                        <th>Status</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,9 +41,6 @@
                                             <td><?= $new['FIR'] ?> </td>
                                             <td><?= $new['VictimName'] ?></td>
                                             <td><?= $new['VictimMobile'] ?></td>
-    <!--                                            <td><?= $new['CaseStatus'] ?></td>-->
-
-        <!--                                            <td><span class="label label-info">Filed</span></td>-->
                                         </tr>
                                         </div>
                                     <?php endforeach; ?>
@@ -83,10 +79,10 @@
                             <table id="examples2" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                         <th> <?= $this->lang->line('fir_no') ?></th>
+                                        <th> <?= $this->lang->line('fir_no') ?></th>
                                         <th> <?= $this->lang->line('victim_name') ?></th>
                                         <th> <?= $this->lang->line('mobile_number') ?></th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -125,7 +121,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/administrator/map_ajax_list/cases') ?>",
+                "url": "<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . '/map_ajax_list/cases/' . $districtID) ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.
@@ -149,7 +145,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/administrator/map_ajax_list/solvedcases') ?>",
+                "url": "<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . '/map_ajax_list/solvedcases/' . $districtID) ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.
@@ -173,7 +169,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/administrator/map_ajax_list/pendingcases') ?>",
+                "url": "<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . '/map_ajax_list/pendingcases/' . $districtID) ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.

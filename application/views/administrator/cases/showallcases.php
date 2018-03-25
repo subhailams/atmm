@@ -20,7 +20,7 @@
                                aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
-                                      <th> <?= $this->lang->line('fir_no') ?></th>
+                                    <th> <?= $this->lang->line('fir_no') ?></th>
                                     <th> <?= $this->lang->line('victim_name') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
                                     <th> <?= $this->lang->line('offender_name') ?></th>
@@ -60,7 +60,7 @@
             //Set column definition initialisation properties.
             "columnDefs": [
                 {
-                    "targets": [-1], //last column
+                    "targets": [-1, -2, -3, -4], //last column
                     "orderable": false, //set not orderable
                 },
             ],
