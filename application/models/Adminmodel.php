@@ -92,7 +92,7 @@ class Adminmodel extends CI_Model {
                     "gender" => "gender.gender_id=offendergender",
                     "case_status_master" => "case_status_master.case_status_id=cases.casestatus",
                     "district" => "district.dist_id=victimdistrict",
-                    "offender_master" => "offender_master.offenderid=cases.offenderid"
+                    "offender_master" => "offender_master.offenderid=cases.offenderref"
                 );
                 break;
             case "casehistory":
@@ -102,7 +102,7 @@ class Adminmodel extends CI_Model {
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
                     "district" => "district.dist_id=victimdistrict",
-                        // "offender_master"=>"offenderid=cases.offenderid"
+                    "offender_master" => "offender_master.offenderid=cases.offenderref"
                 );
                 break;
             case "offender_master":
@@ -162,18 +162,21 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
+    function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired) {
         $TableName = $this->TableList[$TableList];
-        $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired);
         if ($_POST['length'] != -1)
             $this->db->limit($_POST['length'], $_POST['start']);
+        if ($JoinRequired) {
+            $this->JoinData($TableName, null, null, null);
+        }
         $query = $this->db->get();
         return $query->result();
     }
 
-    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
+    function count_filtered($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired) {
         $TableName = $this->TableList[$TableList];
-        $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired);
         $query = $this->db->get();
         return $query->num_rows();
     }
