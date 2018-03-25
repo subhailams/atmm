@@ -156,35 +156,35 @@ class MY_Controller extends CI_Controller {
                 break;
             case "userreg":
                 $rules = array(
-                    array('field' => 'PersonName', 'label' => 'Person Name', 'rules' => 'required|max_length[30]|alpha'),
-                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
+                    array('field' => 'PersonName', 'label' => 'Person Name', 'rules' => 'required|max_length[30]'),
+                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'Password', 'label' => 'Password', 'rules' => 'required|max_length[10]'),
-//                    array('feild' => 'ConfirmationPassword', 'label' => 'Confirmation Password', 'rules' => 'requird|match[Password]'),
+                    array('feild' => 'ConfirmationPassword', 'label' => 'Confirmation Password', 'rules' => 'required'),
                     array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
-                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
-                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required|exact_length[12]'),
-                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer|exact_length[10]'),
+                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
+                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
                     array('field' => 'City', 'label' => 'Name', 'City' => 'required'),
-                    array('field' => 'State', 'label' => 'Name', 'State' => 'required'),
+                    array('field' => 'State', 'label' => 'Name', 'State' => ''),
                     array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required|max_length[35]'),
-                    array('field' => 'Country', 'label' => 'Country', 'rules' => 'required'),
+                    array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
                     array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
                 );
 
                 break;
             case "profile":
                 $rules = array(
-                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'max_length[25]'),
+                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
                     array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => ''),
+                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
                     array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
                     array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
-                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => ''),
-                    array('field' => 'City', 'label' => 'city', 'rules' => ''),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
+                    array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
                     array('field' => 'State', 'label' => 'State', 'rules' => ''),
-                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => ''),
+                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
                     array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
-                    array('field' => 'Role', 'label' => 'Role', 'rules' => '')
+                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
                 );
                 break;
             case "cases":
