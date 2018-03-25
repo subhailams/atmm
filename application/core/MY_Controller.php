@@ -238,16 +238,11 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
-
-
         if ($this->form_validation("casehistory")):
-
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
-
             $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
-
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
@@ -278,7 +273,6 @@ class MY_Controller extends CI_Controller {
 
     public function forgotsave() {
         $postData = $this->input->post();
-
         if ($this->form_validation("forgot")):
             echo "<pre>";
             print_r($postData);
@@ -467,18 +461,11 @@ class MY_Controller extends CI_Controller {
 
     public function CaseRegisterSave() {
         $postData = $this->input->post();
-//        echo "<pre>";      
-//        print_r($postData['offendername']);
-//           exit();
         if ($this->form_validation("cases")):
-            //add to database
-//            echo "<pre>";      
-//        print_r(get_defined_vars());
-//           exit();
             //verify offender in offender master
             $condition = array("offendername" => postData['offendername'], "offendermobile" => postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
-            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
+            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
 //                    echo "<pre>";
 //                     print_r(get_defined_vars());
 //                    exit();

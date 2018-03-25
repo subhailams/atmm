@@ -232,13 +232,13 @@
                                             </thead>
                                             <tbody>
             <?php foreach ($newcase as $new): ?>
-                                                        <tr>
-                                                            <td><?= $new['FIR'] ?> </td>
-                                                            <td><?= $new['VictimName'] ?></td>
-                                                            <td><?= $new['VictimMobile'] ?></td>
-                                                            <td><span class="label label-info">Filed</span></td>
-                                                        </tr>
-                                                        </div>
+                                                            <tr>
+                                                                <td><?= $new['FIR'] ?> </td>
+                                                                <td><?= $new['VictimName'] ?></td>
+                                                                <td><?= $new['VictimMobile'] ?></td>
+                                                                <td><span class="label label-info">Filed</span></td>
+                                                            </tr>
+                                                            </div>
             <?php endforeach; ?>
                                             </tbody>
                                         </table>
@@ -257,13 +257,13 @@
                                             </thead>
                                             <tbody>
             <?php foreach ($pendingcase as $pending): ?>
-                                                        <tr>
-                                                            <td><?= $pending['FIR'] ?> </td>
-                                                            <td><?= $pending['VictimName'] ?></td>
-                                                            <td><?= $pending['VictimMobile'] ?></td>
-                                                            <td><span class="label label-info">Police Tracking</span></td>
-                                                        </tr>
-                                                        </div>
+                                                            <tr>
+                                                                <td><?= $pending['FIR'] ?> </td>
+                                                                <td><?= $pending['VictimName'] ?></td>
+                                                                <td><?= $pending['VictimMobile'] ?></td>
+                                                                <td><span class="label label-info">Police Tracking</span></td>
+                                                            </tr>
+                                                            </div>
             <?php endforeach; ?>
                                             </tbody>
                                         </table>
@@ -282,13 +282,13 @@
                                             </thead>
                                             <tbody>
             <?php foreach ($solvedcase as $solved): ?>
-                                                        <tr>
-                                                            <td><?= $solved['FIR'] ?> </td>
-                                                            <td><?= $solved['VictimName'] ?></td>
-                                                            <td><?= $solved['VictimMobile'] ?></td>
-                                                            <td><span class="label label-info">Solved</span></td>
-                                                        </tr>
-                                                        </div>
+                                                            <tr>
+                                                                <td><?= $solved['FIR'] ?> </td>
+                                                                <td><?= $solved['VictimName'] ?></td>
+                                                                <td><?= $solved['VictimMobile'] ?></td>
+                                                                <td><span class="label label-info">Solved</span></td>
+                                                            </tr>
+                                                            </div>
             <?php endforeach; ?>
                                             </tbody>
                                         </table>
