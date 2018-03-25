@@ -117,10 +117,16 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
+                                     <div class="form-group">
                                         <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="Address" name="victimstate"
-                                               placeholder="Enter State" required="true">
+                                        <select class="form-control" id="state" name="victimstate" placeholder="Select State" required="true">
+                                            <option>Select State</option>
+                                            <?php foreach ($this->db->where(array("show" => "Y"))->order_by("statename", "asc")->get('states')->result() as $detail) { ?>
+                                                <option value="<?= $detail->stateid ?>"> <?= strtoupper($detail->statename) ?> </option>
+                                            <?php } ?>                         
+
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
@@ -204,10 +210,16 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
+                                     <div class="form-group">
                                         <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
-                                        <input type="text" class="form-control" id="Address" name="offenderstate"
-                                               placeholder="Enter State" required="true">
+                                        <select class="form-control" id="state" name="offenderstate" placeholder="Select State" required="true">
+                                            <option>Select State</option>
+                                            <?php foreach ($this->db->where(array("show" => "Y"))->order_by("statename", "asc")->get('states')->result() as $detail) { ?>
+                                                <option value="<?= $detail->stateid ?>"> <?= strtoupper($detail->statename) ?> </option>
+                                            <?php } ?>                         
+
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>

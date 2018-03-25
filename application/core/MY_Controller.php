@@ -203,7 +203,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
                     array('field' => 'victimcity', 'label' => 'City', 'City' => 'required'),
                     array('field' => 'victimdistrict', 'label' => 'Victim District', 'rules' => 'required'),
-                    //    array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
+                    array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
                     array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required|alpha'),
                     array('field' => 'offenderaddress', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'offendermobile', 'label' => 'Mobile Number', 'rules' => 'integer'),
@@ -506,9 +506,9 @@ class MY_Controller extends CI_Controller {
                     "offenderstate" => "1"
                 );
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
-//                echo "<pre>";
-//                print_r(get_defined_vars());
-//                exit();
+                echo "<pre>";
+                print_r(get_defined_vars());
+                exit();
             }
 
             $condition = array("caseid" => "");
@@ -524,6 +524,7 @@ class MY_Controller extends CI_Controller {
                 "victimaadhar" => $postData['victimaadhar'],
                 "victimcity" => $postData['victimcity'],
                 "victimdistrict" => $postData['victimdistrict'],
+//                "caseid" => $postData[''],
                 //"victimstate" => $postData['victimstate'],
                 // "offenderid" => "1",
 //                "offenderaddress" => $postData['offenderaddress'],
@@ -623,7 +624,7 @@ class MY_Controller extends CI_Controller {
             $no++;
             $row = array();
             $row[] = $logNotice->offendername;
-//            $row[] = $logNotice->offenderage;
+            $row[] = $logNotice->offenderage;
             $row[] = $logNotice->offendergender;
             $row[] = $logNotice->offendermobile;
             $row[] = $logNotice->offendercity;
