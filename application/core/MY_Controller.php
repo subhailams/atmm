@@ -340,8 +340,7 @@ class MY_Controller extends CI_Controller {
     
 
     /* Function for fetching cases files from  views starts here */
-
-    public function cases($options = null) {
+ public function cases($options = null, $id = "") {
         $render = "";
         switch (strtolower($options)) {
             case "newcase";
@@ -356,8 +355,9 @@ class MY_Controller extends CI_Controller {
             case "allpendingcases";
                 $render = "showallpendingcases";
                 break;
-            case "alldistrictcases";
+            case "districtcases";
                 $render = "districtcases";
+                $districtID = $id;
                 break;
             case "alloffenders";
                 $render = "showalloffenders";

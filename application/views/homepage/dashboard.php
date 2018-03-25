@@ -141,6 +141,7 @@
             <div class="carousel-inner" role="listbox">
                 <div class="item"><img src="<?= base_url('assets/img/credit/gateway-of-india.jpg') ?>" alt=""
 align="middle" style="height: 235px;" align="left" width="100%" height="400">
+
                 </div>
                 <div class="item"><img src="<?= base_url('assets/img/credit/sjsa.png') ?>"
                                        style="background-color: black;" col alt="" style="height: 800px;" width="100%"
