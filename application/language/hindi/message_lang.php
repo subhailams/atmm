@@ -55,7 +55,7 @@ $lang['offender_details'] = 'अपराधी विवरण';
 $lang['offender_address'] = 'पता';
 $lang['victim_address'] = 'पता';
 $lang['victimdob'] = 'जन्म की तारीख';
-
+$lang['age'] = 'आयु';
 $lang['gender'] = 'लिंग';
 $lang['offence_date'] = 'अपराध की तारीख';
 $lang['status'] = 'स्थिति';

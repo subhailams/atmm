@@ -151,14 +151,14 @@
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
                                     class="fa fa-circle-o"></i> Show all Cases</a></li>
-<!--                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/casehistory/show") ?>"><i
-                                    class="fa fa-circle-o"></i> Case History</a></li>-->
+                  <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alloffenders") ?>"><i
+                                    class="fa fa-circle-o"></i> Show all Offenders</a></li>
                 </ul>
             </li>
 
             <li>
-                <a href="pages/widgets.html">
+                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/email/show") ?>">
                     <i class="fa fa-medium"></i> <span>Messages</span>
                     <span class="pull-right-container">
                     </span>

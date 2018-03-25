@@ -187,6 +187,13 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
                 );
                 break;
+            case "email":
+                $rules = array(
+                    array('field' => 'emailto', 'label' => 'Email To', 'rules' => 'required' | 'valid_email'),
+                    array('field' => 'subject', 'label' => 'Subject', 'rules' => ''),
+                    array('field' => 'emaildetail', 'label' => 'Email Detail', 'rules' => ''),
+                );
+                break;
             case "cases":
                 $rules = array(
                     array('field' => 'victimname', 'label' => 'Name', 'rules' => 'required'),
@@ -211,6 +218,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'offendergender', 'label' => 'Gender', 'rules' => 'required'),
                     array('field' => 'offenderstate', 'label' => 'Offender State', 'rules' => ''),
                     array('field' => 'fir_no', 'label' => 'FIR Number', 'rules' => 'required'),
+                    array('field' => 'offenderage', 'label' => 'Age', 'rules' => 'required'),
                 );
                 break;
         }
@@ -238,16 +246,11 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
-
-
         if ($this->form_validation("casehistory")):
-
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
-
             $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
-
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
@@ -278,7 +281,6 @@ class MY_Controller extends CI_Controller {
 
     public function forgotsave() {
         $postData = $this->input->post();
-
         if ($this->form_validation("forgot")):
             echo "<pre>";
             print_r($postData);
@@ -319,6 +321,21 @@ class MY_Controller extends CI_Controller {
             echo "<pre>";
             print_r($postData);
             exit();
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function EmailSave() {
+        $postData = $this->input->post();
+        echo "<pre>";
+        print_r(get_defined_vars());
+        exit();
+        if ($this->form_validation("email")):
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//            exit();
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
@@ -439,7 +456,7 @@ class MY_Controller extends CI_Controller {
                 break;
         }
 
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $UserNotice) {
@@ -458,7 +475,7 @@ class MY_Controller extends CI_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
             "data" => $data,
         );
         //output to json format
@@ -467,31 +484,26 @@ class MY_Controller extends CI_Controller {
 
     public function CaseRegisterSave() {
         $postData = $this->input->post();
-//        echo "<pre>";      
-//        print_r($postData['offendername']);
-//           exit();
         if ($this->form_validation("cases")):
-            //add to database
-//            echo "<pre>";      
-//        print_r(get_defined_vars());
-//           exit();
             //verify offender in offender master
-            $condition = array("offendername" => postData['offendername'], "offendermobile" => postData['offendermobile']);
+            $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
-            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
+            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
 //                    echo "<pre>";
 //                     print_r(get_defined_vars());
 //                    exit();
             if (empty($response)) {
                 $condition1 = array("offenderid" => "");
                 $DBData = array(
+                    "offendername" => $postData['offendername'],
                     "offenderaddress" => $postData['offenderaddress'],
                     "offendergender" => $postData['offendergender'],
                     "offendermobile" => $postData['offendermobile'],
                     "offenderemail" => $postData['offenderemail'],
                     "offendercity" => $postData['offendercity'],
                     "offenderdistrict" => $postData['offenderdistrict'],
-                    "offenderstate" => $postData['offenderstate'],
+                    "offenderage" => $postData['offenderage'],
+                    "offenderstate" => "1"
                 );
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
                 echo "<pre>";
@@ -512,6 +524,7 @@ class MY_Controller extends CI_Controller {
                 "victimaadhar" => $postData['victimaadhar'],
                 "victimcity" => $postData['victimcity'],
                 "victimdistrict" => $postData['victimdistrict'],
+//                "caseid" => $postData[''],
                 //"victimstate" => $postData['victimstate'],
                 // "offenderid" => "1",
 //                "offenderaddress" => $postData['offenderaddress'],
@@ -595,8 +608,8 @@ class MY_Controller extends CI_Controller {
 
                 $TableListname = "case";
 
-                $ColumnOrder = array('offendername', 'offenderage', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
-                $ColumnSearch = array('offendername', 'offenderage', 'offendermobile', 'offendergender', 'offendercity',);
+                $ColumnOrder = array('offendername', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
+                $ColumnSearch = array('offendername', 'offendermobile', 'offendergender', 'offendercity',);
                 $OrderBy = array('offender_id' => 'desc');
                 break;
             default:
@@ -604,7 +617,7 @@ class MY_Controller extends CI_Controller {
                 break;
         }
 
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $logNotice) {
@@ -624,7 +637,7 @@ class MY_Controller extends CI_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
             "data" => $data,
         );
         //output to json format
