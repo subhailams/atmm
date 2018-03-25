@@ -140,7 +140,6 @@ class Adminmodel extends CI_Model {
         if ($JoinRequired) {
             $this->JoinData($tableName, null, null, null);
         }
-
         $this->db->from($tableName);
         $this->db->where($Condition);
         $i = 0;
