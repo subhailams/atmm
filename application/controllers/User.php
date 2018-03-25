@@ -23,7 +23,13 @@ class User extends MY_Controller {
         $this->render("newuser", get_defined_vars());
     }
 
-    public function updateprofile() {
+    public function updateprofile($id = '1') {
+        //   $render = "";
+// echo "hello";
+//  
+        $userdatabase = $this->profileshow($id);
+//             echo "hello";
+//            
         $this->render("updateprofile", get_defined_vars());
     }
 
@@ -37,6 +43,10 @@ class User extends MY_Controller {
 
     public function offencesandpunishments() {
         $this->render("offencesandpunishments", get_defined_vars());
+    }
+
+    public function showallusers() {
+        $this->render("showallusers", get_defined_vars());
     }
 
 //       public function showallusers() {
@@ -182,66 +192,44 @@ class User extends MY_Controller {
     public function UpdateProfileSave() {
         $postData = $this->input->post();
 //        echo "<pre>";
-//            print_r(get_defined_vars($result));
-//             exit();
-        if ($this->form_validation("profile")):
-            //add to database
-//           echo "<pre>";
-//           print_r(get_defined_vars());
-//            exit();
-//            $condition = array("user_id" => "2",
-//                "role" => $postData['Role'],
-//                "name" => $postData['Name'],
-//                "username" => $postData['UserName'],
-//                "address1" => $postData['Address1'],
-//                "address2" => $postData['Address2'],
-//                "city" => $postData['City'],
-//                "state" => $postData['State'],
-//                "country" => $postData['Country'],
-//                "mobilenumber" => $postData['MobileNumber'],
-//                "aadhar" => $postData['AadhaarNumber'],
-//                "email" => $postData['EmailID']
-//                );
-//            $select = "user_id as ID,email as EmailID";
-//            $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-//              echo "<pre>";
-//             print_r(get_defined_vars($result));
-//             exit();
-//            if (!empty($result)):
-//                    echo "<pre>";
 //        print_r(get_defined_vars($result));
 //        exit();
+        if (true):
+        //add to database
+//          
+        $condition = array("user_id" => "1");
+        $DBData = array(
+        "name" => $postData['Name'],
+        "username" => $postData['UserName'],
+        "address1" => $postData['Address1'],
+        "address2" => $postData['Address2'],
+        "city" => $postData['City'],
+        "state" => $postData['State'],
+        "country" => $postData['Country'],
+        "mobilenumber" => $postData['MobileNumber'],
+        "aadhar" => $postData['AadhaarNumber'],
+        "email" => $postData['EmailID'] );
+       
+//        $select = "user_id as ID,email as EmailID";
+//        $result = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+//        echo "<pre>";
+//        print_r(($result));
+//        exit();
+        
+        $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
 
-            $condition = array("user_id" => "1");
-            $DBData = array(
-                "role" => $postData['Role'],
-                "name" => $postData['Name'],
-                "username" => $postData['UserName'],
-                "password" => $postData['Password'],
-                "address1" => $postData['Address1'],
-                "address2" => $postData['Address2'],
-                "city" => $postData['City'],
-                "state" => $postData['State'],
-                "country" => $postData['Country'],
-                "mobilenumber" => $postData['MobileNumber'],
-                "aadhar" => $postData['AadhaarNumber'],
-                "role" => "4"
-                    // "email" => $postData['EmailID']
-            );
-            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
-
-            if (!empty($response)):
-                $Message = $this->load->view("emaillayouts/userprofileupdate", get_defined_vars(), true);
-                $Subject = "Atrocity Case Management - Your profile has been updated.";
-                // $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
-                $this->session->set_flashdata('ME_SUCCESS', 'Profile Changed Successfully');
-            else:
-                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
-            endif;
+        if (!empty($response)):
+        $Message = $this->load->view("emaillayouts/userprofileupdate", get_defined_vars(), true);
+        $Subject = "Atrocity Case Management - Your profile has been updated.";
+        // $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+        $this->session->set_flashdata('ME_SUCCESS', 'Profile Changed Successfully');
+        else:
+        $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+        endif;
 
         else:
-
-            $this->session->set_flashdata('ME_FORM', "ERROR");
+        $SESSION['formError'] = validation_errors();
+        $this->session->set_flashdata('ME_FORM', "ERROR");
         endif;
         $this->load->view('homepage/dashboard');
     }

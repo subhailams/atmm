@@ -127,7 +127,7 @@
                        <ul class="nav navbar-nav">
                             <li class="active"><a href="<?= base_url('index.php/homepage/index') ?>">Home</a></li>
                             <li><a href="#">Offences and Punishments</a></li>
-                            <li><a href="<?= base_url('index.php/homepage') ?>">Login</a></li>
+                            <li><a href="<?= base_url('index.php/homepage/login') ?>">Login</a></li>
                         </ul>
                     </ul>
                 </div>

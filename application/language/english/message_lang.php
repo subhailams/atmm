@@ -26,6 +26,11 @@ $lang['register'] = 'Register';
 $lang['update_profile'] = 'Update Profile';
 $lang['signup'] = 'SignUp';
 $lang['all_users']='All Users';
+$lang['cases']='Cases';
+$lang['new_cases']='New Cases';
+$lang['pending_cases']='Pending Cases';
+$lang['solved_cases']='Solved Cases';
+
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
 $lang['registeration_form']='Registration Form';
@@ -41,6 +46,7 @@ $lang['gender']='Gender';
 $lang['offence_date']='Offence Date';
 $lang['victim_name']='Victim Name';
 $lang['victimdob']='Date Of Birth';
+$lang['age']='Age';
 $lang['offender_name']='Offender Name';
 $lang['status']='Status';
 $lang['actions']='Actions';
@@ -52,6 +58,9 @@ $lang['select_gender']='Select gender';
 $lang['all_solvedcases']='All Solved Cases';
 $lang['all_pendingcases']='All Pending Cases';    
 $lang['district']='District';
+$lang['show']='Show';
+$lang['entries']='entries';
+$lang['search']='Search';
 /*Case Management Ends Here*/
 
 /* Log Managment Starts Here */

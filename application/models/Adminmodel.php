@@ -10,8 +10,8 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases");
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases", "off_mst" => "offender_master", "sts" => "states", "dist" => "district", "city" => "cities", "ca_st" => "case_status_master", "notf" => "notifications", "of_mst" => "offences_master", "pm" => "privatemessages");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offenderid", "states" => "stateid", "district" => "dist_id", "cities" => "cityid", "case_status_master" => "case_status_id", "notifications" => "noty_id", "offences_master" => "offid", "privatemessages" => "msgid");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
@@ -68,7 +68,7 @@ class Adminmodel extends CI_Model {
         }
         $this->db->order_by($this->SeqID[$TableName], "asc");
         $Result = $this->db->get($TableName);
-                
+
         if (empty($SelectAll)):
             return (empty($Result)) ? null : (array) $Result->row();
         else:
@@ -77,7 +77,7 @@ class Adminmodel extends CI_Model {
     }
 
     protected function JoinData($TableName, $JoinType, $Omit, $LeftJoin) {
-        
+
         switch ($TableName) {
             case "users":
                 $JoinTable = array(
@@ -86,17 +86,31 @@ class Adminmodel extends CI_Model {
                 break;
             case "cases":
                 $JoinTable = array(
-                    "users" => "users.user_id=userid",
+                    "users" => "users.user_id=cases.userid",
                     "offences_master" => "offences_master.offid=cases.offid",
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
-                    "case_status_master" => "case_status_master.case_status_id=casestatus",
+                    "case_status_master" => "case_status_master.case_status_id=cases.casestatus",
+                    "district" => "district.dist_id=victimdistrict",
+                    "offender_master" => "offender_master.offenderid=cases.offenderid"
                 );
                 break;
             case "casehistory":
                 $JoinTable = array(
                     "cases" => "cases.caseid=caseid",
                     "users" => "users.user_id=userid",
+                    "gender" => "gender.gender_id=victimgender",
+                    "gender" => "gender.gender_id=offendergender",
+                    "district" => "district.dist_id=victimdistrict",
+                        // "offender_master"=>"offenderid=cases.offenderid"
+                );
+                break;
+            case "offender_master":
+                $JoinTable = array(
+                    "gender" => "gender.gender_id=offendergender",
+                    "states" => "states.stateid=offenderstate",
+                    "cities" => "cities.cityid=offendercity",
+                    "district" => "district.dist_id=offenderdistrict"
                 );
                 break;
         }

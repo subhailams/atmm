@@ -8,8 +8,8 @@ class Homepage extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $FunctionS = array("index","forgotpassword","userregister"
-           );
+        $FunctionS = array("index", "forgotpassword", "userregister"
+        );
 
         if (!in_array($this->router->fetch_method(), $FunctionS)):
             if (strtolower($_SESSION["UserRoleName"]) != strtolower(__CLASS__)) {
@@ -24,12 +24,12 @@ class Homepage extends MY_Controller {
     }
 
     public function index() {
-         $casecount=$this->TotalCaseCount();
-         $pendingcount=$this->PendingCaseCount();
-         $solvedcount=$this->SolvedCaseCount();
+        $casecount = $this->TotalCaseCount();
+        $pendingcount = $this->PendingCaseCount();
+        $solvedcount = $this->SolvedCaseCount();
 //         echo "<pre>";
 //         print_r(get_defined_vars());exit();
-          $this->load->view('homepage/dashboard', get_defined_vars());
+        $this->load->view('homepage/dashboard', get_defined_vars());
     }
 
     public function email() {
@@ -44,35 +44,36 @@ class Homepage extends MY_Controller {
 
     public function UserRegisterSave() {
         $postData = $this->input->post();
-      echo "<pre>";
-            print_r(get_defined_vars());
-            exit();
-        if ($this->form_validation("userreg")):
+//        echo "<pre>";
+//        print_r(get_defined_vars());
+//        exit();
+        if (true):
             //add to database
 //            echo "<pre>";
 //            print_r(get_defined_vars());
 //            exit();
-            
+
             $condition = array("user_id" => "");
             $DBData = array(
-                "role" => $postData['Role'],
-                "name" => $postData['PersonName'],
-                "username" => $postData['UserName'],
-                "password" => $postData['Password'],
-                "address1" => $postData['Address1'],
-                "address2" => $postData['Address2'],
-                "city" => $postData['City'],
-                "state" => $postData['State'],
-                "country" =>$postData['Country'],
-                "mobilenumber" => $postData['MobileNumber'],
-                "email" => $postData['EmailID']
+            "role" => $postData['Role'],
+            "name" => $postData['PersonName'],
+            "username" => $postData['UserName'],
+            "password" => $postData['Password'],
+            "address1" => $postData['Address1'],
+            "address2" => $postData['Address2'],
+            "city" => $postData['City'],
+            "state" => $postData['State'],
+            "country" => $postData['Country'],
+            "mobilenumber" => $postData['MobileNumber'],
+            "email" => $postData['EmailID'],
+            "aadhar" => $postData['AadhaarNumber'],
             );
 
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Account Created";
-             //   $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                //   $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'User Registered Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
