@@ -140,7 +140,7 @@
 
             <div class="carousel-inner" role="listbox">
                 <div class="item"><img src="<?= base_url('assets/img/credit/gateway-of-india.jpg') ?>" alt=""
-<<<<<<< HEAD
+
                                        align="middle" style="height: 235px;" align="left" width="100%" height="400">
                 </div>
                 <div class="item"><img src="<?= base_url('assets/img/credit/sjsa.png') ?>"
@@ -149,17 +149,17 @@
                 </div>
                 <div class="item active"><img src="<?= base_url('assets/img/credit/sjsa2.jpg') ?>" alt=""
                                               style="height: 235px;" width="100%" height="400">
-=======
-                                       align="middle" style="height: 236px;" align="left" width="100%" height="400">
+
+                                       
                 </div>
                 <div class="item"><img src="<?= base_url('assets/img/credit/sjsa.png') ?>"  align="middle"
                                        style="background-color: black;" col alt="" style="height: 600px;" width="100%"
                                        height="400">
                 </div>
-                 <div class="item active"><img src="<?= base_url('assets/img/credit/sjsa2.jpg') ?>" alt="" align="middle"
+<!--                 <div class="item active"><img src="<?= base_url('assets/img/credit/sjsa2.jpg') ?>" alt="" align="middle"
                                               style="height: 236px;" width="100%" height="400">
->>>>>>> dad613a9cdb840af00428bdafa1386092ddc0691
-                </div>
+
+                </div>-->
             </div>
         </div>
         <br>
