@@ -55,6 +55,7 @@ $lang['gender']='लिंग';
 $lang['offence_date']='गुन्हा तारीख';
 $lang['victim_name']='बळी चे नाव';
 $lang['offender_name']='अपराधाचे नाव';
+$lang['age']='वय';
 $lang['status']='स्थिती';
 $lang['actions']='क्रिया';
 $lang['all_cases']='सर्व प्रकरणांमध्ये';
