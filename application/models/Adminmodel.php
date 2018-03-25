@@ -136,7 +136,11 @@ class Adminmodel extends CI_Model {
         return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
     }
 
-    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy) {
+    private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired) {
+        if ($JoinRequired) {
+            $this->JoinData($tableName, null, null, null);
+        }
+
         $this->db->from($tableName);
         $this->db->where($Condition);
         $i = 0;
@@ -165,10 +169,8 @@ class Adminmodel extends CI_Model {
     function get_datatables($TableList, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired) {
         $TableName = $this->TableList[$TableList];
         $this->_get_datatables_query($TableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired);
-        if ($_POST['length'] != -1)
+        if ($_POST['length'] != -1) {
             $this->db->limit($_POST['length'], $_POST['start']);
-        if ($JoinRequired) {
-            $this->JoinData($TableName, null, null, null);
         }
         $query = $this->db->get();
         return $query->result();
