@@ -254,9 +254,9 @@ class MY_Controller extends CI_Controller {
                     "offenderstate" => $postData['offenderstate'],
                 );
                 
-//                 echo "<pre>";
-//                     print_r(get_defined_vars());
-//                    exit();
+                 echo "<pre>";
+                     print_r(get_defined_vars());
+                    exit();
                 $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "off_mst");
                 echo "<pre>";
                 print_r(get_defined_vars()
