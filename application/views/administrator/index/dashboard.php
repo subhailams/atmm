@@ -85,7 +85,7 @@
             <div class="col-md-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Offence Report</h3>
+                        <h3 class="box-title"><b>Offence Report</b></h3>
                     </div>
                     <div align="center" class="divC"><img width="732" height="568" border="0"
                                                           src="<?= $this->lang->line('map') ?>"

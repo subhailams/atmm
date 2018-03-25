@@ -158,15 +158,15 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1"><?= $this->lang->line('name') ?></label>
+                                                <label for="exampleInputEmail1"><?= $this->lang->line('name') ?> <span style="color: red ">*</span></label>
                                                 <input type="name" class="form-control" id="PersonName"
                                                        name="PersonName"
-                                                       placeholder="Enter Full Name">
+                                                       placeholder="Enter Full Name" required="true" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputRole"><?= $this->lang->line('select') ?></label>
+                                                <label for="exampleInputRole"><?= $this->lang->line('select') ?><span style="color: red ">*</span></label>
                                                 <select class="form-control" id="Role" name="Role"
                                                         placeholder="Select Role">
                                                     <option value="">Select Role</option>
@@ -181,16 +181,16 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo form_error('UserName'); ?>
-                                                <label for="User Name"><?= $this->lang->line('user_name') ?></label>
+                                                <label for="User Name"><?= $this->lang->line('user_name') ?><span style="color: red ">*</span></label>
                                                 <input type="text" class="form-control" id="UserName" name="UserName"
-                                                       placeholder="Enter User Name" value="<?php echo set_value('UserName'); ?>" >
+                                                       placeholder="Enter User Name" value="<?php echo set_value('UserName'); ?>" required="true" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="Email ID"><?= $this->lang->line('email_id') ?></label>
+                                                <label for="Email ID"><?= $this->lang->line('email_id') ?><span style="color: red ">*</span></label>
                                                 <input type="text" class="form-control" id="EmailID" name="EmailID"
-                                                       placeholder="Enter Email Id">
+                                                       placeholder="Enter Email Id" required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -198,14 +198,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo form_error('Password'); ?>
-                                                <label for="Password"><?= $this->lang->line('password') ?></label>
+                                                <label for="Password"><?= $this->lang->line('password') ?><span style="color: red ">*</span></label>
                                                 <input type="password" class="form-control" name="Password"
-                                                       placeholder="Enter Password" value="<?php echo set_value('password'); ?>">
+                                                       placeholder="Enter Password" value="<?php echo set_value('password'); ?>" required="`    ">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="Confirmation Password"><?= $this->lang->line('confirmation_password') ?></label>
+                                                <label for="Confirmation Password"><?= $this->lang->line('confirmation_password') ?><span style="color: red ">*</span></label>
                                                 <input type="password" class="form-control" name="ConfirmationPassword"
                                                        placeholder="Enter Confirmation Password">
                                             </div>
@@ -216,7 +216,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="Address1"><?= $this->lang->line('address1') ?></label>
+                                                <label for="Address1"><?= $this->lang->line('address1') ?><span style="color: red ">*</span></label>
                                                 <input type="text" class="form-control" id="Address1" name="Address1"
                                                        placeholder="Enter Address1">
                                             </div>
@@ -232,14 +232,14 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="City"><?= $this->lang->line('city') ?></label>
+                                                <label for="City"><?= $this->lang->line('city') ?><span style="color: red ">*</span></label>
                                                 <input type="text" class="form-control" id="City" name="City"
                                                        placeholder="Enter City">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="State"><?= $this->lang->line('state') ?></label>
+                                                <label for="State"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
                                                 <input type="text" class="form-control" id="State" name="State"
                                                        placeholder="Enter State">
 
@@ -257,7 +257,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
 
-                                                <label for="Mobile Number"><?= $this->lang->line('mobile_number') ?></label>
+                                                <label for="Mobile Number"><?= $this->lang->line('mobile_number') ?><span style="color: red ">*</span></label>
 
 
                                                 <input type="number" class="form-control" id="Mobile Number"

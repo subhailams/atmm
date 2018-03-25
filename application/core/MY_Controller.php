@@ -152,35 +152,35 @@ class MY_Controller extends CI_Controller {
                 break;
             case "userreg":
                 $rules = array(
-                    array('field' => 'PersonName', 'label' => 'Person Name', 'rules' => 'required|max_length[30]|alpha'),
-                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'required|valid_email'),
+                    array('field' => 'PersonName', 'label' => 'Person Name', 'rules' => 'required|max_length[30]'),
+                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
                     array('field' => 'Password', 'label' => 'Password', 'rules' => 'required|max_length[10]'),
-//                    array('feild' => 'ConfirmationPassword', 'label' => 'Confirmation Password', 'rules' => 'requird|match[Password]'),
+                    array('feild' => 'ConfirmationPassword', 'label' => 'Confirmation Password', 'rules' => 'required'),
                     array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
-                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => 'requird'),
-                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => 'required|exact_length[12]'),
-                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer|exact_length[10]'),
+                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
+                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
                     array('field' => 'City', 'label' => 'Name', 'City' => 'required'),
-                    array('field' => 'State', 'label' => 'Name', 'State' => 'required'),
+                    array('field' => 'State', 'label' => 'Name', 'State' => ''),
                     array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required|max_length[35]'),
-                    array('field' => 'Country', 'label' => 'Country', 'rules' => 'required'),
+                    array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
                     array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
                 );
 
                 break;
             case "profile":
                 $rules = array(
-                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'max_length[25]'),
+                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
                     array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => ''),
+                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
                     array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
                     array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
-                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => ''),
-                    array('field' => 'City', 'label' => 'city', 'rules' => ''),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
+                    array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
                     array('field' => 'State', 'label' => 'State', 'rules' => ''),
-                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => ''),
+                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
                     array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
-                    array('field' => 'Role', 'label' => 'Role', 'rules' => '')
+                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
                 );
                 break;
             case "email":
@@ -459,49 +459,8 @@ class MY_Controller extends CI_Controller {
 
     /* Function for fetching  email files from  views ends here */
 
-    /* Ajax Function for fetching offenders starts here */
 
-    public function offenders_ajax_list($options = null) {
-        switch (strtolower($options)) {
-            case "offenders":
-                $Condition = array();
-
-                $TableListname = "case";
-
-                $ColumnOrder = array('offendername', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
-                $ColumnSearch = array('offendername', 'offendermobile', 'offendergender', 'offendercity',);
-                $OrderBy = array('offender_id' => 'desc');
-                break;
-            default:
-                $Condition = array();
-                break;
-        }
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $logNotice) {
-            $no++;
-            $row = array();
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->offenderage;
-            $row[] = $logNotice->offendergender;
-            $row[] = $logNotice->offendermobile;
-            $row[] = $logNotice->offendercity;
-            $row[] = $logNotice->offenderdistrict;
-            //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/offenders//' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
-            "data" => $data,
-        );
-        //output to json format
-        echo json_encode($output);
-    }
+   
 
     public function profileshow($id) {
         $condition = array("user_id" => $id);
@@ -509,7 +468,6 @@ class MY_Controller extends CI_Controller {
         return $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
     }
 
-    /* Ajax Function for fetching offenders ends here */
 
 
     /* Ajax Function for fetching users starts here */
@@ -527,7 +485,8 @@ class MY_Controller extends CI_Controller {
                 $Condition = array();
                 break;
         }
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy);
+
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $UserNotice) {
@@ -546,7 +505,7 @@ class MY_Controller extends CI_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
             "data" => $data,
         );
         //output to json format
@@ -628,6 +587,7 @@ public function passwordchange() {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+
     public function forgotsave() {
         $postData = $this->input->post();
         if ($this->form_validation("forgot")):
@@ -639,6 +599,52 @@ public function passwordchange() {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
+    
+        /* Ajax Function for fetching offenders starts here */
+
+    public function offenders_ajax_list($options = null) {
+        switch (strtolower($options)) {
+            case "offenders":
+                $Condition = array();
+
+                $TableListname = "case";
+
+                $ColumnOrder = array('offendername', 'offendergender', 'offendermobile', 'offendercity', 'offenderdistrict');
+                $ColumnSearch = array('offendername', 'offendermobile', 'offendergender', 'offendercity',);
+                $OrderBy = array('offender_id' => 'desc');
+                break;
+            default:
+                $Condition = array();
+                break;
+        }
+
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $logNotice) {
+            $no++;
+            $row = array();
+            $row[] = $logNotice->offendername;
+            $row[] = $logNotice->offenderage;
+            $row[] = $logNotice->offendergender;
+            $row[] = $logNotice->offendermobile;
+            $row[] = $logNotice->offendercity;
+            $row[] = $logNotice->offenderdistrict;
+            //add html for action
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/offenders//' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+    /* Ajax Function for fetching offenders ends here */
 
     public function loginsave() {
         $postData = $this->input->post();
