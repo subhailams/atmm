@@ -1,14 +1,13 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1><?= $this->lang->line('all_offenders') ?></h1>
+        <h1><?= $this->lang->line('alloffenders') ?></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-             <li><a href="#">Cases</a></li>
-            <li class="active">All offenders</li>
+            <li class="active">All Offenders</li>
         </ol>
-    </section>
+    </section>  
     <!-- Main content -->
     <section class="content">
         <div class="box">
@@ -20,13 +19,9 @@
                                aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
-                                      <th> <?= $this->lang->line('offence') ?></th>
-                                    <th> <?= $this->lang->line('gender') ?></th>
-                                    <th> <?= $this->lang->line('mobile_number') ?></th>
-                                    <th> <?= $this->lang->line('city') ?></th>
-                                    <th> <?= $this->lang->line('district') ?></th>
-                                  
-                                    <th> <?= $this->lang->line('actions') ?></th>
+                                      <th> <?= $this->lang->line('offencename') ?></th>
+                                      <th> <?= $this->lang->line('offence_date') ?></th>
+                                      <th> <?= $this->lang->line('actions') ?></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -54,7 +49,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/administrator/offences_ajax_list/offences') ?>",
+                "url": "<?= base_url('index.php/administrator/offences_ajax_list/offender_offences') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.

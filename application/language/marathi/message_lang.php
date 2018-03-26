@@ -67,7 +67,8 @@ $lang['victimdob']='जन्म तारीख';
 $lang['fir_no']='एफआयआर क्रमांक';
 $lang['all_solvedcases']='सर्व निराकरण प्रकरणी';
  $lang['all_pendingcases']='सर्व प्रलंबित प्रकरण';     
- 
+ $lang['offencename']='गुन्हा नाव';
+$lang['alloffenders']='सर्व गुन्हेगार';
 $lang['district']='जिल्हा';
 $lang['show']='शो';
 $lang['entries']='नोंदी';

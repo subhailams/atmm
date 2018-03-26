@@ -132,21 +132,21 @@ class Administrator extends MY_Controller {
             case "cases":
                 $Condition = array();
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "solvedcases":
                 $Condition = array("casestatus" => '2');
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "pendingcases":
                 $Condition = array("casestatus" => '3');
                 $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offdate', 'case_status_name');
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
                 $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
@@ -166,7 +166,7 @@ class Administrator extends MY_Controller {
             $row[] = $logNotice->victimname;
             $row[] = $logNotice->victimmobile;
             $row[] = $logNotice->offendername;
-            $row[] = $logNotice->offdate;
+            $row[] = $logNotice->offencedate;
             $row[] = $logNotice->case_status_name;
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
@@ -176,7 +176,7 @@ class Administrator extends MY_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
             "data" => $data,
         );
         //output to json format

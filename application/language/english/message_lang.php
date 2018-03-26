@@ -51,6 +51,9 @@ $lang['offender_name']='Offender Name';
 $lang['status']='Status';
 $lang['actions']='Actions';
 $lang['all_cases']='All Cases';
+$lang['offencename']='Offence Name';
+$lang['alloffenders']='All Offenders';
+
 $lang['male']='Male';
 $lang['female']='Female';
 $lang['others']='Others';

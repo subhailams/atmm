@@ -67,7 +67,8 @@ $lang['others'] = 'अन्य लोग';
 $lang['select_gender'] = 'लिंग चुनें';
 $lang['all_solvedcases']='सभी हल मामलों';
 $lang['all_pendingcases']='सभी लंबित मामले';     
-
+$lang['offencename']='अपराध नाम';
+$lang['alloffenders']='सभी अपराधियों';
 $lang['district']='जिला';
 $lang['show']='प्रदर्शन';
 $lang['entries']='प्रविष्टियों';

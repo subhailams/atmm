@@ -200,7 +200,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimcity', 'label' => 'City', 'City' => 'required'),
                     array('field' => 'victimdistrict', 'label' => 'Victim District', 'rules' => 'required'),
                     array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
-                    array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required|alpha'),
+                    array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required'),
                     array('field' => 'offenderaddress', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'offendermobile', 'label' => 'Mobile Number', 'rules' => 'integer'),
                     array('field' => 'offendercity', 'label' => 'City', 'rules' => 'required'),
@@ -232,14 +232,15 @@ class MY_Controller extends CI_Controller {
 
     public function CaseRegisterSave() {
         $postData = $this->input->post();
+//        echo "<pre>";
+//                     print_r(get_defined_vars());
+//                    exit();
         if ($this->form_validation("cases")):
             //verify offender in offender master
             $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
-//                    echo "<pre>";
-//                     print_r(get_defined_vars());
-//                    exit();
+                  
             if (empty($response)) {
                 $condition1 = array("offenderid" => "");
                 $DBData = array(
@@ -253,19 +254,22 @@ class MY_Controller extends CI_Controller {
                     "offenderage" => $postData['offenderage'],
                     "offenderstate" => $postData['offenderstate'],
                 );
-
-                echo "<pre>";
-                print_r(get_defined_vars());
-                exit();
+          
                 $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "off_mst");
-                echo "<pre>";
-                print_r(get_defined_vars()
-                );
-                exit();
+                
             }
+           $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
+            $select = "offenderid as OffenderId";
+            $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
+//                               echo "<pre>";
+//                     print_r($response);
+//                    exit();
             $condition = array("caseid" => "");
+            
             $DBData = array(
-                "offid" => $postData['offenece'], "userid" => "1",
+                "offenderid"=> $response['OffenderId'],
+                "offid" => $postData['offenece'],
+                "userid" => "1",
                 "fir_no" => $postData['fir_no'],
                 "victimname" => $postData['victimname'],
                 "victimaddress" => $postData['victimaddress'],
@@ -276,16 +280,20 @@ class MY_Controller extends CI_Controller {
                 "victimaadhar" => $postData['victimaadhar'],
                 "victimcity" => $postData['victimcity'],
                 "victimdistrict" => $postData['victimdistrict'],
+                "victimstate" => $postData['victimstate'],
+                "casedescription" => $postData['casedescription'],
+                "offencedate" => $postData['offencedate'],
                 "casestatus" => "1"
+                
             );
+            $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
 //            echo "<pre>";
-//            print_r(get_defined_vars());
-//             exit();
-            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
-            if (!empty($response)):
+//                     print_r(get_defined_vars());
+//                    exit();
+            if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+               // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -608,6 +616,13 @@ class MY_Controller extends CI_Controller {
                 $ColumnSearch = array('offendername');
                 $OrderBy = array('offenderid' => 'desc');
                 break;
+             case "offender_offences":
+                $Condition = array();
+                $TableListname = "case";
+                $ColumnOrder = array('offenece', 'offdate');
+                $ColumnSearch = array('offdate');
+                $OrderBy = array('offenderid' => 'desc');
+                break;
             default:
                 $Condition = array();
                 break;
@@ -625,7 +640,7 @@ class MY_Controller extends CI_Controller {
             $row[] = $logNotice->cityname;
             $row[] = $logNotice->districtname;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/offenders/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/offenders/alloffences' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 
