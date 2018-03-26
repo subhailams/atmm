@@ -1,15 +1,13 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1><?= $this->lang->line('all_offenders') ?></h1>
+        <h1><?= $this->lang->line('alloffenders') ?></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Cases</a></li>
-            <li class="active">All offenders</li>
+            <li class="active">All Offenders</li>
         </ol>
-    </section>
-    <!-- Main content -->
+    </section>    <!-- Main content -->
     <section class="content">
         <div class="box">
             <!-- /.box-header -->
