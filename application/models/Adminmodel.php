@@ -102,15 +102,15 @@ class Adminmodel extends CI_Model {
                     "gender" => "gender.gender_id=victimgender",
                     "gender" => "gender.gender_id=offendergender",
                     "district" => "district.dist_id=victimdistrict",
-                    "offender_master" => "offender_master.offenderid=cases.offenderref"
+                    "offender_master" => "offender_master.offenderid=cases.offenderref",
                 );
                 break;
             case "offender_master":
                 $JoinTable = array(
-                    "gender" => "gender.gender_id=offendergender",
-                    "states" => "states.stateid=offenderstate",
-                    "cities" => "cities.cityid=offendercity",
-                    "district" => "district.dist_id=offenderdistrict"
+                    "gender" => "gender.gender_id=offender_master.offendergender",
+                    "states" => "states.stateid=offender_master.offenderstate",
+                    "cities" => "cities.cityid=offender_master.offendercity",
+                    "district" => "district.dist_id=offender_master.offenderdistrict",
                 );
                 break;
         }
