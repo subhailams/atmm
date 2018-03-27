@@ -4,9 +4,9 @@
         <h1><?= $this->lang->line('all_users') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                        class="fa fa-dashboard"></i> Home</a></li>
-             <li><a href="#">Users</a></li>
-            <li class="active">All Users</li>
+                        class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+             <li><a href="#"><?= $this->lang->line('users') ?></a></li>
+            <li class="active"><?= $this->lang->line('all_users') ?></li>
         </ol>
     </section>
     <!-- Main content -->

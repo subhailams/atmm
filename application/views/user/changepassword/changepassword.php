@@ -8,9 +8,9 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Users</a></li>
-            <li class="active">Mobile Number</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+            <li><a href="#"><?= $this->lang->line('users') ?></a></li>
+            <li class="active"><?= $this->lang->line('mobile_number') ?></li>
         </ol>
 
     </section>

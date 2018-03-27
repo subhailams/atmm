@@ -4,9 +4,9 @@
         <h1><?= $this->lang->line('all_cases') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                        class="fa fa-dashboard"></i> Home</a></li>
+                        class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
              <!--<li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>">Cases</a></li>-->
-            <li class="active">All Cases</li>
+            <li class="active"><?= $this->lang->line('all_cases') ?></li>
         </ol>
     </section>
     <!-- Main content -->

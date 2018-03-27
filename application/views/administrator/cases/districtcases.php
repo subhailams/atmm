@@ -6,8 +6,8 @@
 <!--            <small> <?= $this->lang->line('control_panel') ?></small>-->
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Cases</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+            <li class="active"><?= $this->lang->line('cases') ?></li>
         </ol>
     </section>
     <!-- Main content -->

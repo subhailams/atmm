@@ -4,8 +4,8 @@
         <h1><?= $this->lang->line('log_mgnt') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                            class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Logs</li>
+                            class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+            <li class="active"><?= $this->lang->line('logs') ?></li>
         </ol>
     </section>
     <!-- Main content -->

@@ -4,10 +4,10 @@
         <h1>Log Management - Show Notice</h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                            class="fa fa-dashboard"></i> Home</a></li>
+                            class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
             <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>">
-                    Logs</a></li>
-            <li class="active">Show Notice</li>
+                    <?= $this->lang->line('logs') ?></a></li>
+            <li class="active"><?= $this->lang->line('show_notices') ?></li>
         </ol>
     </section>
     <!-- Main content -->

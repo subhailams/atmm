@@ -123,3 +123,26 @@ $lang['send_to_sjsa'] = 'Send to Social Justice And Special Assitance';
 
 /* fir format ends here */
 
+/* bread crumb  */
+ 
+$lang['home'] = 'Home';
+$lang['dashboard'] = 'Dashboard';
+$lang['cases'] = 'Cases';
+$lang['new_cases'] = 'New Cases';
+$lang['all_cases'] = 'All Cases';
+$lang['all_offenders'] = 'All Offenders';
+$lang['all_pending_cases'] = 'All Pending Cases';
+$lang['all_solved_cases'] = 'All Solved Cases';
+$lang['logs'] = 'Logs';
+$lang['all'] = 'All';
+$lang['errors'] = 'Errors';
+$lang['notices'] = 'Notices';
+$lang['warnings'] = 'Warnings';
+$lang['show_notices'] = 'Show Notices';
+$lang['all_offences'] = 'All Offences';
+$lang['users'] = 'Users';
+$lang['all_users'] = 'All Users';
+$lang['mobile_number'] = 'Mobile Number';
+
+
+ 

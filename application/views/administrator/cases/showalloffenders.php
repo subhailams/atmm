@@ -4,8 +4,8 @@
         <h1><?= $this->lang->line('alloffenders') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                        class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">All Offenders</li>
+                        class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+            <li class="active"><?= $this->lang->line('all_offenders') ?></li>
         </ol>
     </section>    <!-- Main content -->
     <section class="content">
