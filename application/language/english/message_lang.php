@@ -90,3 +90,34 @@ $lang['solved_cases'] = 'Solved Cases';
 $lang['pending_cases'] = 'Pending Cases';
 
 $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraB.jpg';
+
+
+/*Fir Format starts here */
+
+$lang['fir_no'] = 'Fir No.';
+$lang['police_station'] = 'Police Station';
+$lang['year'] = 'Year';
+$lang['date'] = 'Date';
+$lang['act1'] = 'Act1';
+$lang['section1'] = 'Section1';
+$lang['act2'] = 'Act2';
+$lang['section2'] = 'Section2';
+$lang['offence_day'] = 'Offence Day';
+$lang['date_from'] = 'Date From';
+$lang['date_to'] = 'Date To';
+$lang['time_from'] = 'Time From';
+$lang['time_to'] = 'Time To';
+$lang['information_received_at_police_station'] = 'Information Received At Police Station';
+$lang['time'] = 'Time';
+$lang['type_of_information'] = 'Type Of Information';
+$lang['place_of_occurrence'] = 'Place Of Occurrence';
+$lang['complianant/informant'] = 'Complianant/Informant';
+$lang['complianantname'] = 'Complianant Name';
+$lang['complianantdob'] = 'Complianant DOB';
+$lang['nationality'] = 'Nationality';
+$lang['occupation'] = 'Occupation';
+$lang['address'] = 'Address';
+$lang['suspectparticulars'] = 'Suspect Particulars';
+
+/* fir format ends here */
+

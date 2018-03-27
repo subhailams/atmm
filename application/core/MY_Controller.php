@@ -197,7 +197,7 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'victimaddress', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'victimaadhaar', 'label' => 'Aadhaar Number', 'rules' => ''),
                     array('field' => 'victimmobile', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
-                    array('field' => 'victimcity', 'label' => 'City', 'City' => 'required'),
+                    array('field' => 'victimcity', 'label' => 'City', 'rules' => 'required'),
                     array('field' => 'victimdistrict', 'label' => 'Victim District', 'rules' => 'required'),
                     array('field' => 'victimstate', 'label' => 'Victim State', 'rules' => ''),
                     array('field' => 'offendername', 'label' => 'Name', 'rules' => 'required'),
@@ -215,6 +215,34 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'offenderstate', 'label' => 'Offender State', 'rules' => ''),
                     array('field' => 'fir_no', 'label' => 'FIR Number', 'rules' => 'required'),
                     array('field' => 'offenderage', 'label' => 'Age', 'rules' => 'required'),
+                );
+                break;
+            case "fir":
+                $rules = array(
+                    array('field' => 'fir_no', 'label' => 'FIR No', 'rules' => 'required'),
+                    array('field' => 'police_station', 'label' => 'Police Station', 'rules' => 'required'),
+                    array('field' => 'district', 'label' => 'District', 'rules' => 'required'),
+                    array('field' => 'year', 'label' => 'Year', 'rules' => 'required'),
+                    array('field' => 'date', 'label' => 'Date', 'rules' => 'required'),
+                    array('field' => 'act1', 'label' => 'Act 1', 'rules' => 'required'),
+                    array('field' => 'section1', 'label' => 'Section1', 'rules' => 'required'),
+                    array('field' => 'act2', 'label' => 'Act 2', 'rules' => ''),
+                    array('field' => 'section2', 'label' => 'Section2', 'rules' => ''),
+                    array('field' => 'offence_day', 'label' => 'Offence Day', 'rules' => 'required'),
+                    array('field' => 'date_from', 'label' => 'Date From', 'rules' => 'required'),
+                    array('field' => 'date_to', 'label' => 'Date To', 'rules' => 'required'),
+                    array('field' => 'time_from', 'label' => 'Time From', 'rules' => ''),
+                    array('field' => 'time_to', 'label' => 'Time To', 'rules' => ''),
+                    array('field' => 'receiveddate', 'label' => 'Received Date', 'rules' => 'required'),
+                    array('field' => 'time', 'label' => 'Time', 'rules' => 'required'),
+                    array('field' => 'place_of_occurrence', 'label' => 'Place Of Occurrence', 'rules' => 'required'),
+                    array('field' => 'type_of_information', 'label' => 'Type Of Information', 'rules' => 'required'),
+                    array('field' => 'complianantname', 'label' => 'Complianant name', 'rules' => 'required'),
+                    array('field' => 'complianantdob', 'label' => 'Complianant Dob ', 'rules' => 'required'),
+                    array('field' => 'nationality', 'label' => 'Nationality', 'rules' => 'required'),
+                    array('field' => 'occupation', 'label' => 'Occupation', 'rules' => ''),
+                    array('field' => 'address', 'label' => 'Address', 'rules' => 'required'),
+                    array('field' => 'suspectparticulars', 'label' => 'Suspect Particulars', 'rules' => 'required'),
                 );
                 break;
         }
@@ -240,7 +268,7 @@ class MY_Controller extends CI_Controller {
             $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
-                  
+
             if (empty($response)) {
                 $condition1 = array("offenderid" => "");
                 $DBData = array(
@@ -254,20 +282,19 @@ class MY_Controller extends CI_Controller {
                     "offenderage" => $postData['offenderage'],
                     "offenderstate" => $postData['offenderstate'],
                 );
-          
+
                 $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "off_mst");
-                
             }
-           $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
+            $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offenderid as OffenderId";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
 //                               echo "<pre>";
 //                     print_r($response);
 //                    exit();
             $condition = array("caseid" => "");
-            
+
             $DBData = array(
-                "offenderid"=> $response['OffenderId'],
+                "offenderid" => $response['OffenderId'],
                 "offid" => $postData['offenece'],
                 "userid" => "1",
                 "fir_no" => $postData['fir_no'],
@@ -284,7 +311,6 @@ class MY_Controller extends CI_Controller {
                 "casedescription" => $postData['casedescription'],
                 "offencedate" => $postData['offencedate'],
                 "casestatus" => "1"
-                
             );
             $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
 //            echo "<pre>";
@@ -293,7 +319,7 @@ class MY_Controller extends CI_Controller {
             if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-               // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -371,6 +397,9 @@ class MY_Controller extends CI_Controller {
                 break;
             case "alloffenders";
                 $render = "showalloffenders";
+                break;
+            case "firshow";
+                $render = "fir";
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -616,7 +645,7 @@ class MY_Controller extends CI_Controller {
                 $ColumnSearch = array('offendername');
                 $OrderBy = array('offenderid' => 'desc');
                 break;
-             case "offender_offences":
+            case "offender_offences":
                 $Condition = array();
                 $TableListname = "case";
                 $ColumnOrder = array('offenece', 'offdate');
@@ -700,17 +729,17 @@ class MY_Controller extends CI_Controller {
         if ($this->form_validation("email")):
             $condition = array("msgid" => "");
             $email = $postData['emailto'];
-           $user = $this->ion_auth->where('user', $email)->user()->row();
+            $user = $this->ion_auth->where('user', $email)->user()->row();
             $id = $user->user_id;
-           // $id = $this->ion_auth->get_user_id();
+            // $id = $this->ion_auth->get_user_id();
             $DBData = array("msgdetails" => $postData['emaildetail'],
                 "msgto" => $id,
                 "subject" => $postData['subject'],
                 "msgfrom" => $_SESSION['UserId']);
             $this->Adminmodel->AllInsert($condition, $DBData, "", "pm");
             echo "<pre>";
-        print_r(get_defined_vars());
-        exit();
+            print_r(get_defined_vars());
+            exit();
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
 
         else:
@@ -721,6 +750,49 @@ class MY_Controller extends CI_Controller {
 
     public function showallusers() {
         $this->render("showallusers", get_defined_vars());
+    }
+
+    public function FirRegisterSave() {
+        $postData = $this->input->post();
+//        echo "<pre>";
+//                     print_r(get_defined_vars());
+//                    exit();
+        if ($this->form_validation("fir")):
+//            echo "<pre>";
+//            print_r(get_defined_vars());
+//            exit();
+
+            $condition = array("fir_id" => "");
+            $DBData = array(
+                "district" => $postData['district'],
+                "policestation" => $postData['police_station'],
+                "year" => $postData['year'],
+                "date" => $postData['date'],
+                "firno" => $postData['fir_no'],
+                "act1" => $postData['act1'],
+                "act2" => $postData['act2'],
+                "section1" => $postData['section1'],
+                "section2" => $postData['section2'],
+                "offenceday" => $postData['offence_day'],
+                "offencedatefrom" => $postData['date_from'],
+                "offencedateto" => $postData['date_to'],
+                "timefrom" => $postData['time_from'],
+                "timeto" => $postData['time_to'],
+                "inforecvddate" => $postData['receiveddate'],
+                "infoerecvdtime" => $postData['time'],
+                "infotype" => $postData['type_of_information'],
+                "offenceplace" => $postData['place_of_occurrence'],
+                "complianantname" => $postData['complianantname'],
+                "complianantdob" => $postData['complianantdob'],
+                "nationality" => $postData['nationality'],
+                "occupation" => $postData['occupation'],
+                "address" => $postData['address'],
+                "suspectparticulars" => $postData['suspectparticulars'],
+            );
+            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "fir");
+            
+
+        endif;
     }
 
 }

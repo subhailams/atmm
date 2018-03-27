@@ -94,3 +94,34 @@ $lang['solved_cases'] = 'निराकरण प्रकरणी';
 $lang['pending_cases'] = 'प्रलंबित प्रकरणे';
 $lang['more_info'] = 'अधिक माहिती';
 $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';
+
+/*district ends here */
+
+/*Fir Format starts here */
+
+$lang['fir_no'] = '';
+$lang['police_station'] = '';
+$lang['year'] = '';
+$lang['date'] = '';
+$lang['act1'] = '';
+$lang['section1'] = '';
+$lang['act2'] = '';
+$lang['section2'] = '';
+$lang['offence_day'] = '';
+$lang['date_from'] = '';
+$lang['date_to'] = '';
+$lang['time_from'] = '';
+$lang['time_to'] = '';
+$lang['information_received_at_police_station'] = '';
+$lang['time'] = '';
+$lang['type_of_information'] = '';
+$lang['place_of_occurrence'] = '';
+$lang['complianant/informant'] = '';
+$lang['complianantname'] = '';
+$lang['complianantdob'] = '';
+$lang['nationality'] = '';
+$lang['occupation'] = 'Occupation';
+$lang['address'] = 'Address';
+$lang['suspectparticulars'] = '';
+
+/* fir format ends here */
