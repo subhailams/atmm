@@ -249,7 +249,7 @@
                                 </div>
                             <div class="row">
                                 <center><div class="form-group">
-                                            <input    type="checkbox" name="send_to_sjsa" >  Send to Social Justice and Special Assistance
+                                            <input    type="checkbox" name="send_to_sjsa" > <?= $this->lang->line('send_to_sjsa') ?>
 
                                         </div>
                                 </center>

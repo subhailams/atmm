@@ -118,6 +118,8 @@ $lang['nationality'] = 'Nationality';
 $lang['occupation'] = 'Occupation';
 $lang['address'] = 'Address';
 $lang['suspectparticulars'] = 'Suspect Particulars';
+$lang['send_to_sjsa'] = 'Send to Social Justice And Special Assitance';
+
 
 /* fir format ends here */
 

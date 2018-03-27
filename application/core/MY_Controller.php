@@ -729,7 +729,7 @@ class MY_Controller extends CI_Controller {
 //             echo "<pre>";
 //        print_r(get_defined_vars());
 //        exit();
-<<<<<<< HEAD
+
             $condition = array("email" => $postData['emailto']);
             $select = "email as Email , user_id as EmailTo";
             $response = $this->Adminmodel->CSearch($condition, $select, "usr", "Y", "Y", "", "", "", "", "");
@@ -744,22 +744,7 @@ class MY_Controller extends CI_Controller {
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
                 
             }
-=======
-        if ($this->form_validation("email")):
-            $condition = array("msgid" => "");
-            $email = $postData['emailto'];
-            $user = $this->ion_auth->where('user', $email)->user()->row();
-            $id = $user->user_id;
-            // $id = $this->ion_auth->get_user_id();
-            $DBData = array("msgdetails" => $postData['emaildetail'],
-                "msgto" => $id,
-                "subject" => $postData['subject'],
-                "msgfrom" => $_SESSION['UserId']);
-            $this->Adminmodel->AllInsert($condition, $DBData, "", "pm");
-            echo "<pre>";
-            print_r(get_defined_vars());
-            exit();
->>>>>>> 09591b55c75a87fbe975fcd556e510542692cd9c
+
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
@@ -776,7 +761,7 @@ class MY_Controller extends CI_Controller {
         $this->render("showallusers", get_defined_vars());
     }
 
-<<<<<<< HEAD
+
     public function users($options = null, $id = "") {
         $render = "";
         switch (strtolower($options)) {
@@ -797,8 +782,9 @@ class MY_Controller extends CI_Controller {
 
                 break;
         }
+        
         $this->render($render, get_defined_vars());
-=======
+        }
     public function FirRegisterSave() {
         $postData = $this->input->post();
 //        echo "<pre>";
@@ -840,7 +826,7 @@ class MY_Controller extends CI_Controller {
             
 
         endif;
->>>>>>> 09591b55c75a87fbe975fcd556e510542692cd9c
+
     }
 
 }

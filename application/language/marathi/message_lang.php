@@ -123,5 +123,5 @@ $lang['nationality'] = '';
 $lang['occupation'] = 'Occupation';
 $lang['address'] = 'Address';
 $lang['suspectparticulars'] = '';
-
+$lang['send_to_sjsa'] = 'सामाजिक न्याय आणि विशेष मदत पाठवा';
 /* fir format ends here */
