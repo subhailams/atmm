@@ -106,7 +106,7 @@ $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';
 /* dashboard ends here */
 
 /*Fir Format starts here */
-
+$lang['fir_form'] = 'एफ आई आर प्रपत्र';
 $lang['fir_no'] = '';
 $lang['police_station'] = '';
 $lang['year'] = '';

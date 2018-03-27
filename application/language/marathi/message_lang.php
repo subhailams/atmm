@@ -99,29 +99,30 @@ $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';
 
 /*Fir Format starts here */
 
-$lang['fir_no'] = '';
-$lang['police_station'] = '';
-$lang['year'] = '';
-$lang['date'] = '';
-$lang['act1'] = '';
-$lang['section1'] = '';
-$lang['act2'] = '';
-$lang['section2'] = '';
-$lang['offence_day'] = '';
-$lang['date_from'] = '';
-$lang['date_to'] = '';
-$lang['time_from'] = '';
-$lang['time_to'] = '';
-$lang['information_received_at_police_station'] = '';
-$lang['time'] = '';
-$lang['type_of_information'] = '';
-$lang['place_of_occurrence'] = '';
-$lang['complianant/informant'] = '';
-$lang['complianantname'] = '';
-$lang['complianantdob'] = '';
-$lang['nationality'] = '';
-$lang['occupation'] = 'Occupation';
-$lang['address'] = 'Address';
-$lang['suspectparticulars'] = '';
+$lang['fir_no'] = 'एफ आय आर संख्या';
+$lang['fir_form'] = 'एफ आय आर फॉर्म';
+$lang['police_station'] = 'पोलीस चौकी';
+$lang['year'] = 'वर्ष';
+$lang['date'] = 'तारीख';
+$lang['act1'] = 'कृत्य1';
+$lang['section1'] = 'विभाग1';
+$lang['act2'] = 'कृत्य2';
+$lang['section2'] = 'विभाग2';
+$lang['offence_day'] = 'गुन्हा दिवस';
+$lang['date_from'] = 'पासून तारीख';
+$lang['date_to'] = 'तारीख ते';
+$lang['time_from'] = 'पासून वेळ';
+$lang['time_to'] = 'वेळ ते';
+$lang['information_received_at_police_station'] = 'पोलीस ठाण्यात मिळालेली माहिती';
+$lang['time'] = 'वेळ';
+$lang['type_of_information'] = 'माहितीचा प्रकार';
+$lang['place_of_occurrence'] = 'घटनेची जागा';
+$lang['complianant/informant'] = 'तक्रार करणारा';
+$lang['complianantname'] = 'अनुपालनदार नाव';
+$lang['complianantdob'] = 'तक्रार करणारा जन्म';
+$lang['nationality'] = 'राष्ट्रीयत्व';
+$lang['occupation'] = 'व्यवसाय';
+$lang['address'] = 'पत्ता';
+$lang['suspectparticulars'] = 'संशय तपशील';
 
 /* fir format ends here */

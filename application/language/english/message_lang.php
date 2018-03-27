@@ -93,7 +93,7 @@ $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraB.jpg';
 
 
 /*Fir Format starts here */
-
+$lang['fir_form'] = 'FIR Form';
 $lang['fir_no'] = 'Fir No.';
 $lang['police_station'] = 'Police Station';
 $lang['year'] = 'Year';
