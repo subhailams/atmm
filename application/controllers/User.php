@@ -19,40 +19,7 @@ class User extends MY_Controller {
         $this->render("dashboard", get_defined_vars());
     }
 
-    public function users() {
-        $this->render("newuser", get_defined_vars());
-    }
-
-    public function updateprofile($id = '1') {
-        //   $render = "";
-// echo "hello";
-//  
-        $userdatabase = $this->profileshow($id);
-//             echo "hello";
-//            
-        $this->render("updateprofile", get_defined_vars());
-    }
-
-    public function changepassword() {
-        $this->render("changepassword", get_defined_vars());
-    }
-
-    public function importantcontacts() {
-        $this->render("importantcontacts", get_defined_vars());
-    }
-
-    public function offencesandpunishments() {
-        $this->render("offencesandpunishments", get_defined_vars());
-    }
-
-    public function showallusers() {
-        $this->render("showallusers", get_defined_vars());
-    }
-
-//       public function showallusers() {
-//        $this->render("showallusers", get_defined_vars());
-//    }
-
+    
     public function logs($options = null) {
         $render = "";
         switch (strtolower($options)) {

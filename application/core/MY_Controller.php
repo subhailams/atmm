@@ -240,7 +240,7 @@ class MY_Controller extends CI_Controller {
             $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
-                  
+
             if (empty($response)) {
                 $condition1 = array("offenderid" => "");
                 $DBData = array(
@@ -254,20 +254,19 @@ class MY_Controller extends CI_Controller {
                     "offenderage" => $postData['offenderage'],
                     "offenderstate" => $postData['offenderstate'],
                 );
-          
-                $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "off_mst");
-                
+
+                $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
             }
-           $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
+            $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offenderid as OffenderId";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
 //                               echo "<pre>";
 //                     print_r($response);
 //                    exit();
             $condition = array("caseid" => "");
-            
+
             $DBData = array(
-                "offenderid"=> $response['OffenderId'],
+                "offenderid" => $response['OffenderId'],
                 "offid" => $postData['offenece'],
                 "userid" => "1",
                 "fir_no" => $postData['fir_no'],
@@ -284,7 +283,6 @@ class MY_Controller extends CI_Controller {
                 "casedescription" => $postData['casedescription'],
                 "offencedate" => $postData['offencedate'],
                 "casestatus" => "1"
-                
             );
             $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
 //            echo "<pre>";
@@ -293,7 +291,7 @@ class MY_Controller extends CI_Controller {
             if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-               // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -453,6 +451,7 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "inbox";
+                $email=$this->EmailShow();
                 break;
             case "composemail";
                 $render = "compose";
@@ -616,7 +615,7 @@ class MY_Controller extends CI_Controller {
                 $ColumnSearch = array('offendername');
                 $OrderBy = array('offenderid' => 'desc');
                 break;
-             case "offender_offences":
+            case "offender_offences":
                 $Condition = array();
                 $TableListname = "case";
                 $ColumnOrder = array('offenece', 'offdate');
@@ -694,33 +693,61 @@ class MY_Controller extends CI_Controller {
 
     public function EmailSave() {
         $postData = $this->input->post();
-//        echo "<pre>";
+        if ($this->form_validation("email")):
+//             echo "<pre>";
 //        print_r(get_defined_vars());
 //        exit();
-        if ($this->form_validation("email")):
-            $condition = array("msgid" => "");
-            $email = $postData['emailto'];
-           $user = $this->ion_auth->where('user', $email)->user()->row();
-            $id = $user->user_id;
-           // $id = $this->ion_auth->get_user_id();
-            $DBData = array("msgdetails" => $postData['emaildetail'],
-                "msgto" => $id,
-                "subject" => $postData['subject'],
-                "msgfrom" => $_SESSION['UserId']);
-            $this->Adminmodel->AllInsert($condition, $DBData, "", "pm");
-            echo "<pre>";
-        print_r(get_defined_vars());
-        exit();
+            $condition = array("email" => $postData['emailto']);
+            $select = "email as Email , user_id as EmailTo";
+            $response = $this->Adminmodel->CSearch($condition, $select, "usr", "Y", "Y", "", "", "", "", "");
+            if (!empty($response)) {
+                $condition1 = array("msgid" => "");
+                $DBData = array(
+                    "msgfrom" => $_SESSION['UserId'],
+                    "msgto" => $response[0]['EmailTo'],
+                    "msgdetails" => $postData['emaildetail'],
+                        //   "subject" => $postData['subject'],
+                );
+                $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
+                
+            }
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
-
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
-
+    public function EmailShow() {
+         $condition = array( "msgto" => $_SESSION['UserId'],);
+            $select = "msgto as Msgto , msgdetails as Emaildetails";
+        return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
+             
+    }        
     public function showallusers() {
         $this->render("showallusers", get_defined_vars());
+    }
+
+    public function users($options = null, $id = "") {
+        $render = "";
+        switch (strtolower($options)) {
+            case "importantcontacts" :
+                $render = "importantcontacts";
+                break;
+            case "offencesandpunishments":
+                $render = "offencesandpunishments";
+                break;
+            case "changepassword":
+                $render = "changepassword";
+                break;
+            case "updateprofile":
+                $userdatabase = $this->profileshow($id);
+                $render = "updateprofile";
+                break;
+            default:
+
+                break;
+        }
+        $this->render($render, get_defined_vars());
     }
 
 }

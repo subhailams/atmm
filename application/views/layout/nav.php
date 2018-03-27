@@ -94,16 +94,16 @@
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/updateprofile") ?>"><i
                                         class="fa fa-circle-o"></i> Update Profile</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/changepassword") ?>"><i
                                         class="fa fa-circle-o"></i> Change Password</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/importantcontacts") ?>"><i
                                         class="fa fa-circle-o"></i> Important Contacts</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "users/offencesandpunishments") ?>"><i
                                         class="fa fa-circle-o"></i>Offences and Punishments</a></li>
                     </ul>
                 </li>
