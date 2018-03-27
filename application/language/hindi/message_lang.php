@@ -107,6 +107,7 @@ $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';
 
 /*Fir Format starts here */
 
+
 $lang['fir_no'] = 'एफ आई आर संख्या';
 $lang['police_station'] = 'पुलिस स्टेशन ';
 $lang['year'] = 'साल';
@@ -132,6 +133,9 @@ $lang['occupation'] = 'कब्जे';
 $lang['address'] = 'पता';
 $lang['suspectparticulars'] = 'संदेह विवरण';
 $lang['send_to_sjsa'] = 'सामाजिक न्याय और विशेष सहायता भेजें';
+
+
+$lang['fir_form'] = 'एफ आई आर प्रपत्र';
 
 
 /* fir format ends here */
