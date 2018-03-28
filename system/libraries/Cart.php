@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -237,7 +237,7 @@ class CI_Cart {
 
 		// We now need to create a unique identifier for the item being inserted into the cart.
 		// Every time something is added to the cart it is stored in the master cart array.
-		// Each row in the cart array, however, must have a unique logs that identifies not only
+		// Each row in the cart array, however, must have a unique index that identifies not only
 		// a particular product, but makes it possible to store identical products with different options.
 		// For example, what if someone buys two identical t-shirts (same product ID), but in
 		// different sizes?  The product ID (and other attributes, like the name) will be identical for
@@ -263,7 +263,7 @@ class CI_Cart {
 		// grab quantity if it's already there and add it on
 		$old_quantity = isset($this->_cart_contents[$rowid]['qty']) ? (int) $this->_cart_contents[$rowid]['qty'] : 0;
 
-		// Re-create the entry, just to make sure our logs contains only the data from this submission
+		// Re-create the entry, just to make sure our index contains only the data from this submission
 		$items['rowid'] = $rowid;
 		$items['qty'] += $old_quantity;
 		$this->_cart_contents[$rowid] = $items;

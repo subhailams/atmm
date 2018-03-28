@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 3.0.0
@@ -94,7 +94,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 		}
 		elseif (preg_match('#(?:tcp://)?([^:?]+)(?:\:(\d+))?(\?.+)?#', $this->_config['save_path'], $matches))
 		{
-			isset($matches[3]) OR $matches[3] = ''; // Just to avoid undefined logs notices below
+			isset($matches[3]) OR $matches[3] = ''; // Just to avoid undefined index notices below
 			$this->_config['save_path'] = array(
 				'host' => $matches[1],
 				'port' => empty($matches[2]) ? NULL : $matches[2],
@@ -145,7 +145,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 		}
 		elseif (isset($this->_config['save_path']['database']) && ! $redis->select($this->_config['save_path']['database']))
 		{
-			log_message('error', 'Session: Unable to select Redis database with logs '.$this->_config['save_path']['database']);
+			log_message('error', 'Session: Unable to select Redis database with index '.$this->_config['save_path']['database']);
 		}
 		else
 		{

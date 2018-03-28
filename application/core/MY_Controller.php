@@ -50,7 +50,7 @@ class MY_Controller extends CI_Controller {
             }
         }
         $CtrlRole = $this->db->where(array("user_id" => $_SESSION["UserId"]))->join("roles", "roleid=role")->get("users")->row_array();
-        if ((!empty($CtrlRole)) && (strtoupper($CtrlRole['rolename']) == strtoupper($Class))) {
+        if ((!empty($CtrlRole)) && ($CtrlRole['rolename'] == strtoupper($Class))) {
             if (strtoupper($_SESSION["UserRole"]) == strtoupper($Class)) {
                 return true;
             } else {
@@ -60,7 +60,7 @@ class MY_Controller extends CI_Controller {
             if (!empty($CtrlRole['rolename'])) {
                 redirect("/index.php/" . strtolower($CtrlRole['rolename']) . "/index");
             } else {
-                redirect("/error/logs/InitiThrought");
+                redirect("/error/index/InitiThrought");
             }
         }
     }
@@ -284,7 +284,6 @@ class MY_Controller extends CI_Controller {
                 );
 
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
-
             }
             $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offenderid as OffenderId";
@@ -483,7 +482,7 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "inbox";
-                $email=$this->EmailShow();
+                $email = $this->EmailShow();
                 break;
             case "composemail";
                 $render = "compose";
@@ -742,7 +741,6 @@ class MY_Controller extends CI_Controller {
                         //   "subject" => $postData['subject'],
                 );
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
-                
             }
 
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
@@ -751,16 +749,16 @@ class MY_Controller extends CI_Controller {
         endif;
         redirect($_SERVER['HTTP_REFERER']);
     }
+
     public function EmailShow() {
-         $condition = array( "msgto" => $_SESSION['UserId'],);
-            $select = "msgto as Msgto , msgdetails as Emaildetails";
+        $condition = array("msgto" => $_SESSION['UserId'],);
+        $select = "msgto as Msgto , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
-             
-    }        
+    }
+
     public function showallusers() {
         $this->render("showallusers", get_defined_vars());
     }
-
 
     public function users($options = null, $id = "") {
         $render = "";
@@ -782,9 +780,10 @@ class MY_Controller extends CI_Controller {
 
                 break;
         }
-        
+
         $this->render($render, get_defined_vars());
-        }
+    }
+
     public function FirRegisterSave() {
         $postData = $this->input->post();
 //        echo "<pre>";
@@ -823,10 +822,9 @@ class MY_Controller extends CI_Controller {
                 "suspectparticulars" => $postData['suspectparticulars'],
             );
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "fir");
-            
+
 
         endif;
-
     }
 
 }

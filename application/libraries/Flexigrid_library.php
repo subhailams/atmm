@@ -266,7 +266,7 @@ class Flexigrid_library
 		{
 			$this->json_build .= "{";
 			
-			//First array logs is the ID
+			//First array index is the ID
 			$this->json_build .= "id:'".$item_data[0]."',cell:[";
 			
 			foreach ($item_data as $key => $value) {
