@@ -518,19 +518,17 @@ class MY_Controller extends CI_Controller {
 
     /* Function for fetching  Messages files from  views starts here */
 
-    public function messages($options = null) {
+    public function messages($options = null, $id="") {
         $render = "";
         switch (strtolower($options)) {
             case "show";
                 $render = "inbox";
                 $email = $this->EmailShow();
                 break;
-            case "sent";
-                $render = "inbox";
-                $email = $this->EmailSent();
-                break;
+           
             case "composemail";
                 $render = "compose";
+                
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -681,7 +679,6 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Ajax Function for fetching offenders starts here */
-
     public function offenders_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "offenders":

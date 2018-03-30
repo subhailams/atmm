@@ -154,3 +154,4 @@ $lang['mobile_number'] = 'Mobile Number';
 
 
  /* bread crumbs ends here */
+$lang['to'] = 'ते:';

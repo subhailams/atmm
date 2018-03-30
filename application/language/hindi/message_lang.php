@@ -158,6 +158,7 @@ $lang['all_offences'] = 'All Offences';
 $lang['users'] = 'Users';
 $lang['all_users'] = 'All Users';
 $lang['mobile_number'] = 'Mobile Number';
+$lang['to'] = 'सेवा मेरे:';
 
 
  /* bread crumb ends here */
