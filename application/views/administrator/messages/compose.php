@@ -1,6 +1,6 @@
 <div class="content-wrapper"> 
     <section class="content-header">
-        <h1>Mail box</h1>
+        <h1><?= $this->lang->line('mail_box') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
@@ -94,12 +94,7 @@
                                         <!-- /.comment body -->
                                         <!--<form>-->
                                         <div class="box-body pad">
-<<<<<<< HEAD
 
-                                            <label for="Email Detail"></label>
-
-=======
->>>>>>> 614690610717b9dd4f5395dc6f3776048d007484
                                             <textarea class="textarea" placeholder="Type your email here" name="emaildetail"
                                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
