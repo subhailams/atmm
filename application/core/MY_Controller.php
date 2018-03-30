@@ -277,6 +277,7 @@ class MY_Controller extends CI_Controller {
                     "offenderdistrict" => $postData['offenderdistrict'],
                     "offenderage" => $postData['offenderage'],
                     "offenderstate" => $postData['offenderstate'],
+                    
                 );
 
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "off_mst");
@@ -303,8 +304,12 @@ class MY_Controller extends CI_Controller {
                 "victimstate" => $postData['victimstate'],
                 "casedescription" => $postData['casedescription'],
                 "offencedate" => $postData['offencedate'],
-                "casestatus" => "1"
+                "casestatus" => "1",
+                "policeassignedto" =>$_SESSION['UserId'],
+                "organizationassignedto" =>"3"
+                
             );
+            
             $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
             if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
