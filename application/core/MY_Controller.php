@@ -185,7 +185,6 @@ class MY_Controller extends CI_Controller {
                 break;
             case "email":
                 $rules = array(
-                    array('field' => 'emailto', 'label' => 'Email To', 'rules' => 'required|valid_email'),
                     array('field' => 'subject', 'label' => 'Subject', 'rules' => 'required|max_length[45]'),
                     array('field' => 'emaildetail', 'label' => 'Email Detail', 'rules' => 'required|max_length[400]'),
                 );
@@ -329,7 +328,8 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryShow($id) {
         $condition = array("cases.caseid" => $id);
-        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,cityname as OffenderCity,districtname as OffenderDistrict,statename as OffenderState,casedescription as CaseDescription ";
+        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,victimdistrict as districtname,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription,casestatus as CaseStatus";
+
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
 
@@ -468,9 +468,7 @@ class MY_Controller extends CI_Controller {
                 $render = "offender_offences";
                 $OffenderDetails = $this->OffenderDetail($id);
                 $OffenderCaseDetails = $this->OffenderCaseDetail($id);
-//                echo "<pre>";
-//                print_r(get_defined_vars());
-//                exit();
+
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -486,7 +484,7 @@ class MY_Controller extends CI_Controller {
 
     private function OffenderDetail($id) {
         $condition = array("cases.offenderid" => $id);
-        $select = "offendername as OffenderName,offendermobile as OffenderMobile,case_status_name as CaseStatus ";
+        $select = "offendername as OffenderName,offendermobile as OffenderMobile,case_status_name as CaseStatus,offenderage as OffenderAge,cityname as City,districtname as District,statename as State,gender_name as GenderName";
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true, "", "", "", "", "");
     }
 
@@ -526,6 +524,7 @@ class MY_Controller extends CI_Controller {
                 $casedatabase = $this->CaseHistoryShow($id);
                 $casecomments = $this->CaseHistoryComments($id);
                 break;
+
             default:
                 $caseregister = $this->getcase_register();
                 $caseallcases = $this->getcase_allcases();
@@ -545,7 +544,7 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "inbox";
-                $email = $this->EmailShow();
+                $inboxMessages = $this->EmailShow();
                 break;
             case "composemail";
                 $render = "compose";
@@ -553,7 +552,7 @@ class MY_Controller extends CI_Controller {
                 break;
             case "sent";
                 $render = "sent";
-                $email = $this->EmailShow();
+                $SentMessages = $this->EmailShow();
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -580,8 +579,8 @@ class MY_Controller extends CI_Controller {
             case "users":
                 $Condition = array();
                 $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1', 'city');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1', 'city');
                 $OrderBy = array('user_id' => 'desc');
                 break;
             default:
@@ -598,7 +597,7 @@ class MY_Controller extends CI_Controller {
             $row[] = $UserNotice->name;
             $row[] = $UserNotice->username;
             $row[] = $UserNotice->mobilenumber;
-            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->address1;
             $row[] = $UserNotice->city;
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
@@ -748,45 +747,6 @@ class MY_Controller extends CI_Controller {
 
     /* Ajax Function for fetching offenders ends here */
 
-//    public function offences_ajax_list($options = null) {
-//        switch (strtolower($options)) {
-//
-//            case "offender_offences":
-//                $Condition = array();
-//                $TableListname = "case";
-//                $ColumnOrder = array('offenece', 'offdate');
-//                $ColumnSearch = array('offdate');
-//                $OrderBy = array('offenderid' => 'desc');
-//                break;
-//            default:
-//                $Condition = array();
-//                break;
-//        }
-//
-//        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
-//        $data = array();
-//        $no = $_POST['start'];
-//        foreach ($list as $logNotice) {
-//            $no++;
-//            $row = array();
-//            $row[] = $logNotice->offenece;
-//            $row[] = $logNotice->offdate;
-//
-//            //add html for action
-//            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-//            $data[] = $row;
-//        }
-//
-//        $output = array(
-//            "draw" => $_POST['draw'],
-//            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-//            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
-//            "data" => $data,
-//        );
-//        //output to json format
-//        echo json_encode($output);
-//    }
-
     public function loginsave() {
         $postData = $this->input->post();
         if ($this->form_validation("login")):
@@ -827,21 +787,18 @@ class MY_Controller extends CI_Controller {
         $postData = $this->input->post();
         if ($this->form_validation("email")):
 
-            $condition = array("email" => $postData['emailto']);
-            $select = "email as Email , user_id as EmailTo";
-            $response = $this->Adminmodel->CSearch($condition, $select, "usr", "Y", "Y", "", "", "", "", "");
-            if (!empty($response)) {
-                $condition1 = array("msgid" => "");
-                $DBData = array(
-                    "msgfrom" => $_SESSION['UserId'],
-                    "msgto" => $response[0]['EmailTo'],
-                    "msgdetails" => $postData['emaildetail'],
-                        //   "subject" => $postData['subject'],
-                );
-                $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
-            }
+            $condition1 = array("msgid" => "");
+            $DBData = array(
+                "msgfrom" => $_SESSION['UserId'],
+                "msgto" => $postData['emailto'],
+                "msgdetails" => $postData['emaildetail'],
+                    //   "subject" => $postData['subject'],
+            );
+            $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
+
 
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
+
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
@@ -849,8 +806,14 @@ class MY_Controller extends CI_Controller {
     }
 
     public function EmailShow() {
-        $condition = array("msgto" => $_SESSION['UserId'],);
-        $select = "msgto as Msgto , msgdetails as Emaildetails";
+        $condition = array("msgfrom" => $_SESSION['UserId'],);
+        $select = "name as SenderName,msgfrom as MessageFrom,msgto as MessageTo,msgsubject as MessageSubject,msgdetails as Messagedetails,privatemessages.createdat as CreatedOn";
+        return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", true);
+    }
+
+    public function EmailSent() {
+        $condition = array("msgfrom" => $_SESSION['UserId'],);
+        $select = "msgfrom as Msgfrom , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
 
@@ -860,7 +823,6 @@ class MY_Controller extends CI_Controller {
 
     public function updateprofile() {
         $render = "";
-
         $userdatabase = $this->profileshow($_SESSION['UserId']);
         $render = "updateprofile";
         $this->render($render, get_defined_vars());
@@ -868,7 +830,6 @@ class MY_Controller extends CI_Controller {
 
     public function offencesandpunishments() {
         $render = "";
-
         $userdatabase = $this->profileshow($id);
         $render = "offencesandpunishments";
         $this->render($render, get_defined_vars());
@@ -884,7 +845,6 @@ class MY_Controller extends CI_Controller {
 
     public function importantcontacts() {
         $render = "";
-
         $userdatabase = $this->profileshow($id);
         $render = "importantcontacts";
         $this->render($render, get_defined_vars());
@@ -892,14 +852,7 @@ class MY_Controller extends CI_Controller {
 
     public function FirRegisterSave() {
         $postData = $this->input->post();
-//        echo "<pre>";
-//                     print_r(get_defined_vars());
-//                    exit();
         if ($this->form_validation("fir")):
-//            echo "<pre>";
-//            print_r(get_defined_vars());
-//            exit();
-
             $condition = array("fir_id" => "");
             $DBData = array(
                 "district" => $postData['district'],
@@ -988,6 +941,22 @@ class MY_Controller extends CI_Controller {
         );
         //output to json format
         echo json_encode($output);
+    }
+
+    public function upload($option, $filename) {
+        $config['allowed_types'] = 'jpg|jpeg';
+        $config['file_name'] = $filename;
+        $config['max_size'] = '1024';
+        $config['encrypt_name'] = FALSE;
+        $config['overwrite'] = true;
+        $config['upload_path'] = './assets/img/' . strtolower($option) . '/';
+
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload("file")):
+            return false;
+        else:
+            return true;
+        endif;
     }
 
 }

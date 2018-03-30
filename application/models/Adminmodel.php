@@ -96,7 +96,7 @@ class Adminmodel extends CI_Model {
                     "district" => "district.dist_id=cases.victimdistrict",
                     "cities" => "cities.cityid=cases.victimcity",
                     "states" => "states.stateid=cases.victimstate",
-                    "offender_master" => "offender_master.offenderid=cases.offenderid",                   
+                    "offender_master" => "offender_master.offenderid=cases.offenderid",
                 );
                 break;
             case "casehistory":
@@ -112,6 +112,12 @@ class Adminmodel extends CI_Model {
                     "states" => "states.stateid=offender_master.offenderstate",
                     "cities" => "cities.cityid=offender_master.offendercity",
                     "district" => "district.dist_id=offender_master.offenderdistrict",
+                );
+                break;
+            case "privatemessages":
+                $JoinTable = array(
+                    "users" => "users.user_id=privatemessages.msgfrom",
+                    "users" => "users.user_id=privatemessages.msgto",
                 );
                 break;
         }
