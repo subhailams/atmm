@@ -185,7 +185,6 @@ class MY_Controller extends CI_Controller {
                 break;
             case "email":
                 $rules = array(
-                    array('field' => 'emailto', 'label' => 'Email To', 'rules' => 'required|valid_email'),
                     array('field' => 'subject', 'label' => 'Subject', 'rules' => 'required|max_length[45]'),
                     array('field' => 'emaildetail', 'label' => 'Email Detail', 'rules' => 'required|max_length[400]'),
                 );
@@ -827,21 +826,18 @@ class MY_Controller extends CI_Controller {
 
     public function EmailSave() {
         $postData = $this->input->post();
+       
         if ($this->form_validation("email")):
 
-            $condition = array("email" => $postData['emailto']);
-            $select = "email as Email , user_id as EmailTo";
-            $response = $this->Adminmodel->CSearch($condition, $select, "usr", "Y", "Y", "", "", "", "", "");
-            if (!empty($response)) {
                 $condition1 = array("msgid" => "");
                 $DBData = array(
                     "msgfrom" => $_SESSION['UserId'],
-                    "msgto" => $response[0]['EmailTo'],
+                    "msgto" => $postData['emailto'],
                     "msgdetails" => $postData['emaildetail'],
                         //   "subject" => $postData['subject'],
                 );
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
-            }
+            
 
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
         else:
