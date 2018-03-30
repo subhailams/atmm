@@ -21,7 +21,7 @@
                 <div class="box-body">
                     <div class="form-group">
 
-                        <input class="form-control" placeholder="To:" name="emailto">
+                        <input class="form-control" onkeyup="msgtolivesearch" placeholder="To:" name="emailto">
                     </div>
                     <div class="form-group">
 
