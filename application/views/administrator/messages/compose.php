@@ -22,8 +22,8 @@
                         <div class="box-body">
                             <div class="form-group">
 
-                                <label for="To"><?= $this->lang->line('to') ?></label>
-                                <select class="form-control" id="email" name="email" placeholder="Select Mail ID" required="true">
+                                <label for="Email To"><?= $this->lang->line('to') ?></label>
+                                <select class="form-control" id="email" name="emailto" placeholder="Select Mail ID" required="true">
                                     <option>Select Mail ID</option>
                                     <?php foreach ($this->db->where(array("isactive" => "Y"))->order_by("email", "asc")->get('users')->result() as $detail) { ?>
                                         <option value="<?= $detail->user_id ?>"> <?= $detail->email ?> </option>

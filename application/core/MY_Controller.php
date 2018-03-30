@@ -185,7 +185,6 @@ class MY_Controller extends CI_Controller {
                 break;
             case "email":
                 $rules = array(
-                    array('field' => 'emailto', 'label' => 'Email To', 'rules' => 'required|valid_email'),
                     array('field' => 'subject', 'label' => 'Subject', 'rules' => 'required|max_length[45]'),
                     array('field' => 'emaildetail', 'label' => 'Email Detail', 'rules' => 'required|max_length[400]'),
                 );
@@ -331,7 +330,8 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryShow($id) {
         $condition = array("cases.caseid" => $id);
-        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,cityname as OffenderCity,districtname as OffenderDistrict,statename as OffenderState,casedescription as CaseDescription ";
+        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,victimdistrict as districtname,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription,casestatus as CaseStatus";
+
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
 
@@ -524,6 +524,7 @@ class MY_Controller extends CI_Controller {
                 $casedatabase = $this->CaseHistoryShow($id);
                 $casecomments = $this->CaseHistoryComments($id);
                 break;
+           
             default:
                 $caseregister = $this->getcase_register();
                 $caseallcases = $this->getcase_allcases();
@@ -784,21 +785,18 @@ class MY_Controller extends CI_Controller {
 
     public function EmailSave() {
         $postData = $this->input->post();
+       
         if ($this->form_validation("email")):
 
-            $condition = array("email" => $postData['emailto']);
-            $select = "email as Email , user_id as EmailTo";
-            $response = $this->Adminmodel->CSearch($condition, $select, "usr", "Y", "Y", "", "", "", "", "");
-            if (!empty($response)) {
                 $condition1 = array("msgid" => "");
                 $DBData = array(
                     "msgfrom" => $_SESSION['UserId'],
-                    "msgto" => $response[0]['EmailTo'],
+                    "msgto" => $postData['emailto'],
                     "msgdetails" => $postData['emaildetail'],
                         //   "subject" => $postData['subject'],
                 );
                 $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
-            }
+            
 
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
         else:
@@ -810,6 +808,13 @@ class MY_Controller extends CI_Controller {
     public function EmailShow() {
         $condition = array("msgto" => $_SESSION['UserId'],);
         $select = "msgto as Msgto , msgdetails as Emaildetails";
+        return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
+    }
+
+
+    public function EmailSent() {
+        $condition = array("msgfrom" => $_SESSION['UserId'],);
+        $select = "msgfrom as Msgfrom , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
 
