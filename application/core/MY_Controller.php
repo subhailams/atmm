@@ -530,19 +530,16 @@ class MY_Controller extends CI_Controller {
 
     /* Function for fetching  Messages files from  views starts here */
 
-    public function messages($options = null) {
+    public function messages($options = null, $id="") {
         $render = "";
         switch (strtolower($options)) {
             case "show";
                 $render = "inbox";
                 $email = $this->EmailShow();
                 break;
-//            case "sent";
-//                $render = "inbox";
-//                $email = $this->EmailSent();
-//                break;
             case "composemail";
                 $render = "compose";
+                
                 break;
             case "sent";
                 $render = "sent";
@@ -697,7 +694,6 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Ajax Function for fetching offenders starts here */
-
     public function offenders_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "offenders":
@@ -844,12 +840,6 @@ class MY_Controller extends CI_Controller {
     public function EmailShow() {
         $condition = array("msgto" => $_SESSION['UserId'],);
         $select = "msgto as Msgto , msgdetails as Emaildetails";
-        return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
-    }
-
-    public function EmailSent() {
-        $condition = array("msgfrom" => $_SESSION['UserId'],);
-        $select = "msgfrom as Msgfrom , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
 
