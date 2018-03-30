@@ -810,30 +810,58 @@ class MY_Controller extends CI_Controller {
         $this->render("showallusers", get_defined_vars());
     }
 
-    public function users($options = null, $id = "") {
+//    public function users($options = null, $id = "") {
+//        $render = "";
+//        switch (strtolower($options)) {
+//            case "importantcontacts" :
+//                $render = "importantcontacts";
+//                break;
+//            case "offencesandpunishments":
+//                $render = "offencesandpunishments";
+//                break;
+//            case "changepassword":
+//                $render = "changepassword";
+//                break;
+//            case "updateprofile":
+//                $userdatabase = $this->profileshow($id);
+//                $render = "updateprofile";
+//                break;
+//            default:
+//
+//                break;
+//        }
+//
+//        $this->render($render, get_defined_vars());
+//    }
+            
+     public function updateprofile() {
         $render = "";
-        switch (strtolower($options)) {
-            case "importantcontacts" :
-                $render = "importantcontacts";
-                break;
-            case "offencesandpunishments":
-                $render = "offencesandpunishments";
-                break;
-            case "changepassword":
-                $render = "changepassword";
-                break;
-            case "updateprofile":
-                $userdatabase = $this->profileshow($id);
+        
+                $userdatabase = $this->profileshow($_SESSION['UserId']);
                 $render = "updateprofile";
-                break;
-            default:
-
-                break;
-        }
-
-        $this->render($render, get_defined_vars());
+                 $this->render($render, get_defined_vars());
     }
-
+    public function  offencesandpunishments() {
+        $render = "";
+        
+                $userdatabase = $this->profileshow($id);
+                $render = "offencesandpunishments";
+                 $this->render($render, get_defined_vars());
+    }
+        public function  changepassword() {
+        $render = "";
+        
+                $userdatabase = $this->profileshow($id);
+                $render = "changepassword";
+                 $this->render($render, get_defined_vars());
+    }
+            public function  importantcontacts() {
+        $render = "";
+        
+                $userdatabase = $this->profileshow($id);
+                $render = "importantcontacts";
+                 $this->render($render, get_defined_vars());
+    }
     public function FirRegisterSave() {
         $postData = $this->input->post();
 //        echo "<pre>";

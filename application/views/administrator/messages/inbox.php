@@ -11,7 +11,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-3">
-                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/email/composemail") ?>" class="btn btn-primary btn-block margin-bottom">Compose</a>
+                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/messages/composemail") ?>" class="btn btn-primary btn-block margin-bottom">Compose</a>
 
                 <div class="box box-solid">
                     <div class="box-header with-border">

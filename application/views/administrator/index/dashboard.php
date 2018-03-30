@@ -25,7 +25,7 @@
                         <i class="ion ion-person-add"></i>
                     </div>
 
-                    <a href="user/allusers" class="small-box-footer"><?= $this->lang->line('more_info') ?> <i
+                    <a href="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/showallusers") ?>" class="small-box-footer"><?= $this->lang->line('more_info') ?> <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>

@@ -188,9 +188,9 @@ class Administrator extends MY_Controller {
             case "users":
                 $Condition = array();
                 $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $OrderBy = array('userid' => 'desc');
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1', 'city');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1', 'city');
+                $OrderBy = array('user_id' => 'desc');
                 break;
             default:
                 $Condition = array();
@@ -206,7 +206,7 @@ class Administrator extends MY_Controller {
             $row[] = $UserNotice->name;
             $row[] = $UserNotice->username;
             $row[] = $UserNotice->mobilenumber;
-            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->address1;
             $row[] = $UserNotice->city;
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . 'user/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
