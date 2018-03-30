@@ -150,14 +150,18 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        
+            <div class="row">
+                <?php 
+        if( $casedatabase['CaseStatus'] == 1 || $casedatabase['CaseStatus'] == 3 || $casedatabase['CaseStatus'] == 4 ) :?>
+       
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title"> <?= $this->lang->line('commenthere') ?>
                         </h3>
                     </div>
-                    <!-- /.comment body -->
+                    
                     <form method="post"
                           action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseHistorySave") ?> ">
                         <input type="hidden" name="caseid" value="<?= $casedatabase['CaseID'] ?>"/>
@@ -168,19 +172,20 @@
                                       style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                         </div>
                         <div class="box-footer">
-                            <!-- submit button -->
+                          
                             <div class="pull-right">
 
                                 <button type="submit"
                                         class="btn btn-lg  btn-primary"><?= $this->lang->line('post') ?></button>
                             </div>
-                            <!-- /. submit button -->
+                          
                         </div>
                     </form> 
                 </div>
             </div>
-            <!-- /.col-->
+            
         </div>
+       <?php endif; ?>
 
     </section>
 </div>
