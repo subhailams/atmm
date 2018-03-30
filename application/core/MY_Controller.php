@@ -577,8 +577,8 @@ class MY_Controller extends CI_Controller {
             case "users":
                 $Condition = array();
                 $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1', 'city');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1', 'city');
                 $OrderBy = array('user_id' => 'desc');
                 break;
             default:
@@ -595,7 +595,7 @@ class MY_Controller extends CI_Controller {
             $row[] = $UserNotice->name;
             $row[] = $UserNotice->username;
             $row[] = $UserNotice->mobilenumber;
-            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->address1;
             $row[] = $UserNotice->city;
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
@@ -939,6 +939,22 @@ class MY_Controller extends CI_Controller {
         );
         //output to json format
         echo json_encode($output);
+    }
+
+    public function upload($option, $filename) {
+        $config['allowed_types'] = 'jpg|jpeg';
+        $config['file_name'] = $filename;
+        $config['max_size'] = '1024';
+        $config['encrypt_name'] = FALSE;
+        $config['overwrite'] = true;
+        $config['upload_path'] = './assets/img/' . strtolower($option) . '/';
+
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload("file")):
+            return false;
+        else:
+            return true;
+        endif;
     }
 
 }
