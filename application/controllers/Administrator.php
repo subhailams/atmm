@@ -127,61 +127,7 @@ class Administrator extends MY_Controller {
         echo json_encode($output);
     }
 
-    public function cases_ajax_list($options = null) {
-        switch (strtolower($options)) {
-            case "cases":
-                $Condition = array();
-                $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
-                $OrderBy = array('caseid' => 'desc');
-                break;
-            case "solvedcases":
-                $Condition = array("casestatus" => '2');
-                $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
-                $OrderBy = array('caseid' => 'desc');
-                break;
-            case "pendingcases":
-                $Condition = array("casestatus" => '3');
-                $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'case_status_name');
-                $OrderBy = array('caseid' => 'desc');
-                break;
-            default:
-                $Condition = array();
-                break;
-        }
-
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
-
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $logNotice) {
-            $no++;
-            $row = array();
-            $row[] = $logNotice->fir_no;
-            $row[] = $logNotice->victimname;
-            $row[] = $logNotice->victimmobile;
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->offencedate;
-            $row[] = $logNotice->case_status_name;
-            //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
-            "data" => $data,
-        );
-        //output to json format
-        echo json_encode($output);
-    }
+  
 
     public function users_ajax_list($options = null) {
         switch (strtolower($options)) {
