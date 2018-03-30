@@ -5,62 +5,91 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
-            <li class="active"><?= $this->lang->line('all_offences') ?></li>
+            <li class="active"><?= $this->lang->line('all_offenders') ?></li>
         </ol>
-    </section>  
+    </section>
     <!-- Main content -->
     <section class="content">
-        <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table id="offenderoffences" class="table table-bordered table-striped dataTable" role="grid"
-                               aria-describedby="example1_info">
-                            <thead>
-                                <tr role="row">
-                                      <th> <?= $this->lang->line('offencename') ?></th>
-                                      <th> <?= $this->lang->line('offence_date') ?></th>
-                                      <th> <?= $this->lang->line('actions') ?></th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="row">
+            <div class="col-md-3">
 
+                <!-- Profile Image -->
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <h3 class="profile-username text-center"><?= $OffenderDetails['OffenderName'] ?></h3>
+                        <p class="text-muted text-center"> <?= $OffenderDetails['OffenderMobile'] ?></p>
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>No of Offences</b> <a class="pull-right"></a> <br/>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Offender Age</b> <div class="pull-right"><?= $OffenderDetails['OffenderAge'] ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Offender Gender</b> <div class="pull-right"><?= $OffenderDetails['GenderName'] ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Offender State</b> <div class="pull-right"><?= $OffenderDetails['State'] ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Offender District</b> <div class="pull-right"><?= $OffenderDetails['District'] ?></div>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Offender City</b> <div class="pull-right"><?= $OffenderDetails['City'] ?></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Offence History of <?= $OffenderDetails['OffenderName'] ?></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="activity">
+                            <!-- Post -->
+                            <div class="post">
+                                <table id="offenderoffences1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example1_info">
+                                    <thead>
+                                        <tr>
+                                            <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('offencename') ?></b></td>
+
+
+                                            <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('offence_date') ?></b></td>
+                                            <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('status') ?></b></td>
+                                            <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('actions') ?></b></td>
+                                        </tr>
+                                        <?php foreach ($OffenderCaseDetails as $case): ?>
+                                            <tr>
+                                                <td width="80%" style="line-height: 10px"><?= $case['OffenceName'] ?></td>
+                                                <td width="80%" style="line-height: 10px"><?= $case['OffenceDate'] ?></td>
+                                                <td width="80%" style="line-height: 10px"><?= $case['CaseStatus'] ?></td>
+
+                                                <td> <a class="btn btn-xs btn-primary"  href="<?= base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $case['CaseId']) ?>" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a> </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <!-- /.post -->
+
+                        </div>
+                        <!-- /.tab-pane -->
+
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
     </section>
 </div>
 <!-- /.row -->
-
-<!-- /.content -->
-
-
-<script type="text/javascript">
-    var table;
-    var base_url = '<?php echo base_url(); ?>';
-    $(document).ready(function () {
-        //datatables
-        table = $('#offenderoffences').DataTable({
-            "processing": true, //Feature control the processing indicator.
-            "serverSide": true, //Feature control DataTables' server-side processing mode.
-            "order": [], //Initial no order.
-            // Load data for the table's content from an Ajax source
-            "ajax": {
-                "url": "<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . '/offences_ajax_list/offender_offences') ?>",
-                "type": "POST"
-            },
-            //Set column definition initialisation properties.
-            "columnDefs": [
-                {
-                    "targets": [-1], //last column
-                    "orderable": false, //set not orderable
-                },
-            ],
-        });
-    });
-</script>
-
-
