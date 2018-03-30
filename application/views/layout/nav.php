@@ -149,6 +149,9 @@
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
                                 class="fa fa-circle-o"></i> Register New Case</a></li>
+                          <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/firshow") ?>"><i
+                                class="fa fa-circle-o"></i> Register FIR</a></li>      
                     <?php endif; ?>
                                 <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
