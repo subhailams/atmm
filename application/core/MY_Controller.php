@@ -537,6 +537,10 @@ class MY_Controller extends CI_Controller {
             case "composemail";
                 $render = "compose";
                 break;
+            case "sent";
+                $render = "sent";
+                $email = $this->EmailShow();
+                break;
             default:
                 $caseregister = $this->getcase_register();
                 $caseallcases = $this->getcase_allcases();
