@@ -140,52 +140,59 @@
                                             <div class="timeline-body">
                                                 <?= $comments ['CaseHistoryDesc'] ?>
                                             </div>
+                                            <?php if ($comments['Attachment'] != null || (!empty($comments['Attachment']))): ?>
+                                                <div class="timeline-footer">
+                                                    <a class="btn btn-info btn-xs" href="<?= base_url('/assets/attachment/' . $comments['Attachment']) ?>" target="_blank">Attachment</a>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </li>
                                     <!-- END timeline item -->
                                 <?php endforeach; ?>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-            <div class="row">
-                <?php 
-        if( $casedatabase['CaseStatus'] == 1 || $casedatabase['CaseStatus'] == 3 || $casedatabase['CaseStatus'] == 4 ) :?>
-       
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title"> <?= $this->lang->line('commenthere') ?>
-                        </h3>
-                    </div>
-                    
-                    <form method="post"
-                          action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseHistorySave") ?> ">
-                        <input type="hidden" name="caseid" value="<?= $casedatabase['CaseID'] ?>"/>
-                        <div class="box-body pad">
-                            <textarea class="textarea"
-                                      placeholder="<?= $this->lang->line('typeyourcommenthere') ?>"
-                                      name="casehistory"
-                                      style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                        </div>
-                        <div class="box-footer">
-                          
-                            <div class="pull-right">
 
-                                <button type="submit"
-                                        class="btn btn-lg  btn-primary"><?= $this->lang->line('post') ?></button>
-                            </div>
-                          
                         </div>
-                    </form> 
+                    </div>
                 </div>
             </div>
-            
         </div>
-       <?php endif; ?>
+
+        <div class="row">
+            <?php if ($casedatabase['CaseStatus'] != 2): ?>
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title"> <?= $this->lang->line('commenthere') ?>
+                            </h3>
+                        </div>
+                        <form method="post"
+                              action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseHistorySave") ?> " autocomplete="off" enctype="multipart/form-data">
+                            <input type="hidden" name="caseid" value="<?= $casedatabase['CaseID'] ?>"/>
+                            <div class="box-body pad">
+                                <textarea class="textarea"
+                                          placeholder="<?= $this->lang->line('typeyourcommenthere') ?>"
+                                          name="casehistory"
+                                          style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            </div>
+                            <div class="box-footer">
+                                <div class="pull-left">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Image</label>
+                                        <input type="file" id="exampleInputFile" name="file" accept="image/x-jpg,image/jpeg">
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="submit"
+                                            class="btn btn-md  btn-primary"><?= $this->lang->line('post') ?></button>
+                                </div>
+
+                            </div>
+                        </form> 
+                    </div>
+                </div>
+
+            </div>
+        <?php endif; ?>
 
     </section>
 </div>

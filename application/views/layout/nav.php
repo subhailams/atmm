@@ -38,7 +38,12 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= base_url("assets/img/user2-160x160.jpg") ?>" class="img-circle"
+                            <?php
+                            if ($profileurl == null):
+                                $profileurl = 'user2-160x160.jpg';
+                            endif;
+                            ?>
+                            <img src="<?= base_url("assets/img/" . $profileurl) ?>" class="img-circle"
                                  alt="User Image">
                             <p>
                                 <?= $_SESSION['UserFullName'] ?>
@@ -50,7 +55,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="<?= base_url('index.php/'.$this->router->fetch_class().'/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="<?= base_url('index.php/' . $this->router->fetch_class() . '/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
@@ -66,7 +71,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src=<?= base_url("assets/img/user2-160x160.jpg") ?> class="img-circle" alt="User Image">
+                <img src="<?= base_url("assets/img/" . $profileurl) ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p><?= $_SESSION['UserFullName'] ?></p>
@@ -83,30 +88,31 @@
                     </span>
                 </a>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>User Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
+                                class="fa fa-circle-o"></i> Update Profile</a></li>
+                    <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
+                                class="fa fa-circle-o"></i> Change Password</a></li>
+                    <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
+                                class="fa fa-circle-o"></i> Important Contacts</a></li>
+                    <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
+                                class="fa fa-circle-o"></i>Offences and Punishments</a></li>
+                </ul>
+            </li>
             <?php if (strtoupper($_SESSION['UserRoleName']) == "ADMINISTRATOR"): ?>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-user"></i>
-                        <span>User Management</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
-                                    class="fa fa-circle-o"></i> Update Profile</a></li>
-                        <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
-                                    class="fa fa-circle-o"></i> Change Password</a></li>
-                        <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
-                                    class="fa fa-circle-o"></i> Important Contacts</a></li>
-                        <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
-                                    class="fa fa-circle-o"></i>Offences and Punishments</a></li>
-                    </ul>
-                </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-black-tie"></i>
@@ -131,12 +137,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <?php if(strtolower($_SESSION['UserRoleName'])!="organization"):?>
+                    <?php if (strtolower($_SESSION['UserRoleName']) != "organization"): ?>
+                        <li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
+                                    class="fa fa-circle-o"></i> Register New Case</a></li>      
+                        <?php endif; ?>
                     <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
-                                class="fa fa-circle-o"></i> Register New Case</a></li>      
-                    <?php endif; ?>
-                                <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
                                 class="fa fa-circle-o"></i> Show all Cases</a></li>
                     <li>
