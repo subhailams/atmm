@@ -11,7 +11,7 @@ class Administrator extends MY_Controller {
         $FunctionS = array("");
         if (!in_array($this->router->fetch_method(), $FunctionS)):
             if (strtolower($_SESSION["UserRoleName"]) != strtolower(__CLASS__)) {
-                $this->Inti(__CLASS__);                   
+                $this->Inti(__CLASS__);
             }
         endif;
         $userNameCnd = array("username" => $this->session->userdata("UserName"));
@@ -30,13 +30,7 @@ class Administrator extends MY_Controller {
         $pendingcase = $this->PendingCaseShow();
         $this->render("dashboard", get_defined_vars());
     }
-
-    public function demo() {
-        $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
-        $Subject = "Atrocity Case Management - New Account Created";
-        $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject, "");
-    }
-
+    
     public function logs($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
@@ -127,70 +121,14 @@ class Administrator extends MY_Controller {
         echo json_encode($output);
     }
 
-    public function cases_ajax_list($options = null) {
-        switch (strtolower($options)) {
-            case "cases":
-                $Condition = array();
-                $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
-                $OrderBy = array('caseid' => 'desc');
-                break;
-            case "solvedcases":
-                $Condition = array("casestatus" => '2');
-                $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
-                $OrderBy = array('caseid' => 'desc');
-                break;
-            case "pendingcases":
-                $Condition = array("casestatus" => '3');
-                $TableListname = "case";
-                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'case_status_name');
-                $OrderBy = array('caseid' => 'desc');
-                break;
-            default:
-                $Condition = array();
-                break;
-        }
-
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
-
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $logNotice) {
-            $no++;
-            $row = array();
-            $row[] = $logNotice->fir_no;
-            $row[] = $logNotice->victimname;
-            $row[] = $logNotice->victimmobile;
-            $row[] = $logNotice->offendername;
-            $row[] = $logNotice->offencedate;
-            $row[] = $logNotice->case_status_name;
-            //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
-            "data" => $data,
-        );
-        //output to json format
-        echo json_encode($output);
-    }
-
     public function users_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "users":
                 $Condition = array();
                 $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'email', 'city');
-                $OrderBy = array('userid' => 'desc');
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1', 'city');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1', 'city');
+                $OrderBy = array('user_id' => 'desc');
                 break;
             default:
                 $Condition = array();
@@ -206,7 +144,7 @@ class Administrator extends MY_Controller {
             $row[] = $UserNotice->name;
             $row[] = $UserNotice->username;
             $row[] = $UserNotice->mobilenumber;
-            $row[] = $UserNotice->email;
+            $row[] = $UserNotice->address1;
             $row[] = $UserNotice->city;
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . 'user/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
@@ -222,6 +160,7 @@ class Administrator extends MY_Controller {
         //output to json format
         echo json_encode($output);
     }
+
     protected function shownotice($id) {
         $condition = array("id" => $id);
         $select = "errstr as ErrorString, errfile as ErrorFilename, errline as ErrorLine,time as Time";

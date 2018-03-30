@@ -10,8 +10,8 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases", "off_mst" => "offender_master", "sts" => "states", "dist" => "district", "city" => "cities", "ca_st" => "case_status_master", "notf" => "notifications", "of_mst" => "offences_master", "pm" => "privatemessages","fir" => "fir");
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offenderid", "states" => "stateid", "district" => "dist_id", "cities" => "cityid", "case_status_master" => "case_status_id", "notifications" => "noty_id", "offences_master" => "offid", "privatemessages" => "msgid","fir" => "fir_id");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases", "off_mst" => "offender_master", "sts" => "states", "dist" => "district", "city" => "cities", "ca_st" => "case_status_master", "notf" => "notifications", "of_mst" => "offences_master", "pm" => "privatemessages", "fir" => "fir");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offenderid", "states" => "stateid", "district" => "dist_id", "cities" => "cityid", "case_status_master" => "case_status_id", "notifications" => "noty_id", "offences_master" => "offid", "privatemessages" => "msgid", "fir" => "fir_id");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
@@ -23,34 +23,34 @@ class Adminmodel extends CI_Model {
         return $this->Crud($condition, $dataDB, $Select, $Tble);
     }
 
-    public function Crud($Condition, $DBdata, $Select, $TableList, $JoinRequired = null) {
+    public function Crud($Condition, $DBdata, $Select, $TableList) {
         $IPAdress = ($this->input->ip_address() === "::1") ? "127.0.0.1" : $this->input->ip_address();
-        $CrudDetails = $this->CSearch($Condition, $Select, $TableList, null, null, null, null, null, null);
         $TableName = $this->TableList[$TableList];
+        $CrudDetails = $this->CSearch($Condition, $Select, $TableName, null, False);
         $this->db->set($DBdata);
         if (!(empty($CrudDetails))) {
             $this->db->where($Condition);
-            $this->db->set("updatedby", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
-            $this->db->set("updatedat", "CURRENT_TIMESTAMP", false);
-            $this->db->set("updatedip", ip2long($IPAdress), false);
+            $this->db->set("updatedBy", $_SESSION["UserFullName"]);
+            $this->db->set("updatedAt", "CURRENT_TIMESTAMP", false);
+            $this->db->set("updatedIP", ip2long($IPAdress), false);
             $this->db->update($TableName);
             return $CrudDetails[$this->SeqID[$TableName]];
         } else {
             $this->db->set($Condition);
-            $this->db->set("createdby", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
-            $this->db->set("createdat", "CURRENT_TIMESTAMP", false);
-            $this->db->set("createdip", ip2long($IPAdress), false);
+            $this->db->set("createdBy", empty($_SESSION["UserFullName"]) ? NULL : $_SESSION["UserFullName"]);
+            $this->db->set("createdAt", "CURRENT_TIMESTAMP", false);
+            $this->db->set("createdIP", ip2long($IPAdress), false);
             $this->db->insert($TableName);
             return $this->db->insert_id();
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $Distinct, $Omit, $LeftJoin, $GroupBY, $JoinType) {
-
+    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY) {
+        $JoinType = NULL;
+        $_TableName = $this->TableList[$TableName];
         if (!empty($Select)) {
             $this->db->select($Select, FALSE);
         }
-        $TableName = $this->TableList[$TableName];
         if (!empty($_TableName)) {
             $TableName = $_TableName;
         }
@@ -60,13 +60,16 @@ class Adminmodel extends CI_Model {
         if ($Distinct) {
             $this->db->distinct();
         }
+        if ($Condition) {
+            $this->db->distinct($Condition);
+        }
         if (!empty($Condition)) {
             $this->db->where($Condition);
         }
         if (!empty($GroupBY)) {
             $this->db->group_by($GroupBY);
         }
-        $this->db->order_by($this->SeqID[$TableName], "asc");
+        $this->db->order_by($this->SeqId[$TableName], "asc");
         $Result = $this->db->get($TableName);
 
         if (empty($SelectAll)):
@@ -88,19 +91,16 @@ class Adminmodel extends CI_Model {
                 $JoinTable = array(
                     "users" => "users.user_id=cases.userid",
                     "offences_master" => "offences_master.offid=cases.offid",
-                    "gender" => "gender.gender_id=victimgender",
-                    "gender" => "gender.gender_id=offendergender",
-                    "case_status_master" => "case_status_master.case_status_id=cases.casestatus",
+                    "gender" => "gender.gender_id=cases.victimgender",
+                    "case_status_master" => "case_status_id=cases.casestatus",
                     "district" => "district.dist_id=victimdistrict",
-                    "offender_master" => "offender_master.offenderid=cases.offenderid"
+                    "offender_master" => "offender_master.offenderid=cases.offenderid",
                 );
                 break;
             case "casehistory":
                 $JoinTable = array(
                     "cases" => "cases.caseid=caseid",
                     "users" => "users.user_id=userid",
-                    "gender" => "gender.gender_id=victimgender",
-                    "gender" => "gender.gender_id=offendergender",
                     "district" => "district.dist_id=victimdistrict",
                     "offender_master" => "offender_master.offenderid=cases.offenderref",
                 );
@@ -114,6 +114,7 @@ class Adminmodel extends CI_Model {
                 );
                 break;
         }
+
         if (!empty($JoinTable)) {
             foreach ($JoinTable as $key => $val) {
                 if (!in_array($key, $Omit)) {
@@ -138,7 +139,7 @@ class Adminmodel extends CI_Model {
 
     private function _get_datatables_query($tableName, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, $JoinRequired) {
         if ($JoinRequired) {
-            $this->JoinData($tableName, null, null, null);
+            $this->JoinData($tableName, 'LEFT', '', '');
         }
         $this->db->from($tableName);
         $this->db->where($Condition);
