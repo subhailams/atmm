@@ -537,14 +537,6 @@ class MY_Controller extends CI_Controller {
                 $render = "inbox";
                 $email = $this->EmailShow();
                 break;
-<<<<<<< HEAD
-           
-=======
-//            case "sent";
-//                $render = "inbox";
-//                $email = $this->EmailSent();
-//                break;
->>>>>>> cc45b72e656d4420e7f31fdb6d313755da185c2f
             case "composemail";
                 $render = "compose";
                 
@@ -850,11 +842,7 @@ class MY_Controller extends CI_Controller {
         $select = "msgto as Msgto , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
-     public function EmailSent() {
-        $condition = array("msgfrom" => $_SESSION['UserId'],);
-        $select = "msgfrom as Msgfrom , msgdetails as Emaildetails";
-        return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
-    }
+     
 
     public function showallusers() {
         $this->render("showallusers", get_defined_vars());
