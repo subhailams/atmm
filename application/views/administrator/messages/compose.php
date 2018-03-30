@@ -22,9 +22,8 @@
                         <div class="box-body">
                             <div class="form-group">
 
-                                <label for="To"><?= $this->lang->line('to') ?></label>
-                                <select class="form-control" id="email" name="email" placeholder="Select Mail ID" required="true">
-                                    <option>Select Mail ID</option>
+                                <label for="Email To"><?= $this->lang->line('to') ?></label>
+                                <select class="form-control" id="email" name="emailto" placeholder="Select Mail ID" required="true">
                                     <?php foreach ($this->db->where(array("isactive" => "Y"))->order_by("email", "asc")->get('users')->result() as $detail) { ?>
                                         <option value="<?= $detail->user_id ?>"> <?= $detail->email ?> </option>
                                     <?php } ?>                         
@@ -32,11 +31,11 @@
                                 </select>
                             </div>
                             <div class="form-group">
-
+                                <label for="Subject"></label>
                                 <input class="form-control" placeholder="Subject:" name="subject">
                             </div>
                             <div class="form-group">
-                                <ul class="wysihtml5-toolbar" style=""><li class="dropdown">
+                                <ul class="wysihtml5-toolbar" style=""></ul><li class="dropdown">
                                         <a class="btn btn-default dropdown-toggle " data-toggle="dropdown">
 
                                             <span class="glyphicon glyphicon-font"></span>
@@ -160,6 +159,7 @@
                                         <!--<form>-->
                                         <div class="box-body pad">
 
+                                            <label for="Email Detail"></label>
 
                                             <textarea class="textarea" placeholder="Type your email here" name="emaildetail"
                                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>

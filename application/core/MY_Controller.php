@@ -185,7 +185,6 @@ class MY_Controller extends CI_Controller {
                 break;
             case "email":
                 $rules = array(
-                    array('field' => 'emailto', 'label' => 'Email To', 'rules' => 'required|valid_email'),
                     array('field' => 'subject', 'label' => 'Subject', 'rules' => 'required|max_length[45]'),
                     array('field' => 'emaildetail', 'label' => 'Email Detail', 'rules' => 'required|max_length[400]'),
                 );
@@ -530,7 +529,7 @@ class MY_Controller extends CI_Controller {
 
     /* Function for fetching  Messages files from  views starts here */
 
-    public function messages($options = null, $id="") {
+    public function messages($options = null, $id = "") {
         $render = "";
         switch (strtolower($options)) {
             case "show";
@@ -539,7 +538,7 @@ class MY_Controller extends CI_Controller {
                 break;
             case "composemail";
                 $render = "compose";
-                
+
                 break;
             case "sent";
                 $render = "sent";
@@ -694,6 +693,7 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Ajax Function for fetching offenders starts here */
+
     public function offenders_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "offenders":
@@ -814,23 +814,25 @@ class MY_Controller extends CI_Controller {
 
     public function EmailSave() {
         $postData = $this->input->post();
-        if ($this->form_validation("email")):
 
-            $condition = array("email" => $postData['emailto']);
-            $select = "email as Email , user_id as EmailTo";
-            $response = $this->Adminmodel->CSearch($condition, $select, "usr", "Y", "Y", "", "", "", "", "");
-            if (!empty($response)) {
-                $condition1 = array("msgid" => "");
+        if ($this->form_validation("email")):
+       
+            
+                $condition = array("msgid" => "");
                 $DBData = array(
                     "msgfrom" => $_SESSION['UserId'],
-                    "msgto" => $response[0]['EmailTo'],
+                    "msgto" => $postData['emailto'],
                     "msgdetails" => $postData['emaildetail'],
                         //   "subject" => $postData['subject'],
                 );
-                $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
-            }
+        
+                $response = $this->Adminmodel->AllInsert($condition,$DBData, "", "pm");
+//                 echo "<pre>";
+//            print_r($response);
+//            exit();
 
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
+
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
@@ -842,7 +844,6 @@ class MY_Controller extends CI_Controller {
         $select = "msgto as Msgto , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
-     
 
     public function showallusers() {
         $this->render("showallusers", get_defined_vars());
