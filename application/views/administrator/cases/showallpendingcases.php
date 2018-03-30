@@ -54,7 +54,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/administrator/cases_ajax_list/pendingcases') ?>",
+                "url": "<?= base_url('index.php/' . strtolower($this->router->fetch_class()) .' /cases_ajax_list/pendingcases') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.

@@ -53,7 +53,7 @@
             "order": [], //Initial no order.
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?= base_url('index.php/'. strtolower($this->router->fetch_class()) . '/users_ajax_list/users') ?>",
+                "url": "<?= base_url('index.php/'. strtolower($this->router->fetch_class()) .'/users_ajax_list/users') ?>",
                 "type": "POST"
             },
             //Set column definition initialisation properties.
