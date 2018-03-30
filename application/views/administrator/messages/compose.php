@@ -94,12 +94,7 @@
                                         <!-- /.comment body -->
                                         <!--<form>-->
                                         <div class="box-body pad">
-<<<<<<< HEAD
 
-                                            <label for="Email Detail"></label>
-
-=======
->>>>>>> 614690610717b9dd4f5395dc6f3776048d007484
                                             <textarea class="textarea" placeholder="Type your email here" name="emaildetail"
                                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
