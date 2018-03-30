@@ -133,7 +133,7 @@ class Administrator extends MY_Controller {
                 $Condition = array();
                 $TableListname = "case";
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             case "solvedcases":
