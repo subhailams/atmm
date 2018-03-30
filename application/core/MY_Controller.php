@@ -325,14 +325,14 @@ class MY_Controller extends CI_Controller {
     /* Function for saving Cases in Database Ends here */
 
     public function CaseHistoryShow($id) {
-        $condition = array("caseid" => $id);
-        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,victimcity as VictimCity,victimdistrict as VictimDistrict,victimstate as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "", "Y", "", "", "", "", "");
+        $condition = array("cases.caseid" => $id);
+        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,victimdistrict as districtname,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
 
     public function CaseHistoryComments($id) {
-        $condition = array("caseid" => $id);
-        $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,casehistory.createdby as CreatedBy";
+        $condition = array("casehistory.caseid" => $id);
+        $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,users.name as CreatedBy,rolename as RoleName";
         return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true);
     }
 

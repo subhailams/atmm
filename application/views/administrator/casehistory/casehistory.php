@@ -29,7 +29,7 @@
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('gender') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= ($casedatabase['VictimGender'] == 1) ? "Male" : "Female" ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimGender'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px">
@@ -53,14 +53,20 @@
                                         <b><?= $this->lang->line('victim_address') ?></b></td>
                                     <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimAddress'] ?></td>
                                 </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimCity'] ?></td>
-                                </tr>
+
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
                                     <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimState'] ?></td>
                                 </tr>
+                                <tr>
+                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('district') ?></b></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimDistrict'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimCity'] ?></td>
+                                </tr>
+
                         </table>
                     </div>
                     </centre>
@@ -79,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('gender') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= ($casedatabase['OffenderGender'] == 1) ? "Male" : "Female" ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderGender'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px">
@@ -130,7 +136,7 @@
                                         <i class="fa fa-envelope bg-blue"></i>
                                         <div class="timeline-item">
                                             <span class="time"><i class="fa fa-clock-o"></i> <?= time_elapsed_string($comments['CreatedOn']) ?></span>
-                                            <h3 class="timeline-header"><a href="#"><?= $comments['CreatedBy'] ?></a> posted a comment</h3>
+                                            <h3 class="timeline-header"><a href="#"><?= $comments['CreatedBy'] . " ( " . $comments['RoleName'] . " ) " ?></a> posted a comment</h3>
                                             <div class="timeline-body">
                                                 <?= $comments ['CaseHistoryDesc'] ?>
                                             </div>
