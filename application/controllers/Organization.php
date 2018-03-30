@@ -32,6 +32,7 @@ class Organization extends MY_Controller {
         $newcase = $this->NewCaseShow();
         $solvedcase = $this->SolvedCaseShow();
         $pendingcase = $this->PendingCaseShow();
+        $profileurl = $this->ShowProfileImage($_SESSION['UserId']);
         $this->render("dashboard", get_defined_vars());
     }
 

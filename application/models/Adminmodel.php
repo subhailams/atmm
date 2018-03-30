@@ -69,7 +69,7 @@ class Adminmodel extends CI_Model {
         if (!empty($GroupBY)) {
             $this->db->group_by($GroupBY);
         }
-        $this->db->order_by($this->SeqId[$TableName], "asc");
+        $this->db->order_by($this->SeqId[$TableName], "desc");
         $Result = $this->db->get($TableName);
 
         if (empty($SelectAll)):

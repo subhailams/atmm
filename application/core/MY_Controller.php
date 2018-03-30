@@ -17,6 +17,7 @@ class MY_Controller extends CI_Controller {
         $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr", "", "", "", "", "", "", ""));
         $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr", "", "", "", "", "", "", ""));
         $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "Y", "Y", "", "", "", "", ""));
+        $profileurl = $this->ShowProfileImage($_SESSION['UserId']);
         date_default_timezone_set('Asia/Kolkata');
     }
 
@@ -335,7 +336,7 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryComments($id) {
         $condition = array("casehistory.caseid" => $id);
-        $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,users.name as CreatedBy,rolename as RoleName";
+        $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,users.name as CreatedBy,users.imageurl as ImageURL,rolename as RoleName,casehistory.imageurl as Attachment";
         return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true);
     }
 
@@ -398,11 +399,30 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistorySave() {
         $postData = $this->input->post();
+        $condition = array("casehistoryid" => "");
         if ($this->form_validation("casehistory")):
-            $condition = array("casehistoryid" => "");
-            $DBData = array("casehistorydesc" => $postData['casehistory'],
-                "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
-            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+            if (($_FILES['file']['name']) != null):
+                $imageName = "attachment_" . rand(1000, 99999999999) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+                if ($this->uploadAttachment($imageName) == false):
+                    $this->session->set_flashdata('ME_ERROR', 'File Upload Failed');
+                else:
+                    $DBData = array(
+                        "casehistorydesc" => $postData['casehistory'],
+                        "userid" => $_SESSION['UserId'],
+                        "caseid" => $postData['caseid'],
+                        "imageurl" => $imageName
+                    );
+                    $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+                endif;
+            else:
+                $DBData = array(
+                    "casehistorydesc" => $postData['casehistory'],
+                    "userid" => $_SESSION['UserId'],
+                    "caseid" => $postData['caseid'],
+                );
+                $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+            endif;
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Comment Updated";
@@ -784,7 +804,6 @@ class MY_Controller extends CI_Controller {
     public function EmailSave() {
         $postData = $this->input->post();
         if ($this->form_validation("email")):
-
             $condition1 = array("msgid" => "");
             $DBData = array(
                 "msgfrom" => $_SESSION['UserId'],
@@ -793,10 +812,7 @@ class MY_Controller extends CI_Controller {
                     //   "subject" => $postData['subject'],
             );
             $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
-
-
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
-
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
@@ -835,7 +851,6 @@ class MY_Controller extends CI_Controller {
 
     public function changepassword() {
         $render = "";
-
         $userdatabase = $this->profileshow($id);
         $render = "changepassword";
         $this->render($render, get_defined_vars());
@@ -941,14 +956,13 @@ class MY_Controller extends CI_Controller {
         echo json_encode($output);
     }
 
-    public function upload($option, $filename) {
+    public function upload($filename) {
         $config['allowed_types'] = 'jpg|jpeg';
         $config['file_name'] = $filename;
         $config['max_size'] = '1024';
         $config['encrypt_name'] = FALSE;
         $config['overwrite'] = true;
-        $config['upload_path'] = './assets/img/' . strtolower($option) . '/';
-
+        $config['upload_path'] = './assets/img/';
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload("file")):
             return false;
@@ -957,4 +971,72 @@ class MY_Controller extends CI_Controller {
         endif;
     }
 
+    public function uploadAttachment($filename) {
+        $config['allowed_types'] = 'pdf|jpg|jpeg';
+        $config['file_name'] = $filename;
+        $config['max_size'] = '1024';
+        $config['encrypt_name'] = FALSE;
+        $config['overwrite'] = true;
+        $config['upload_path'] = './assets/attachment/';
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload("file")):
+            return false;
+        else:
+            return true;
+        endif;
+    }
+
+    public function UpdateProfileSave() {
+        $postData = $this->input->post();
+        $Condition = array("user_id" => $_SESSION['UserId']);
+        $imagename = current($this->Adminmodel->CSearch($Condition, "imageurl as imagename", "usr", "", TRUE));
+        if ($imagename == null):
+            $imageName = "profile_" . rand(1000, 99999999999) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+        else:
+            $imageName = $imagename;
+        endif;
+        if ($this->upload($imageName) == false):
+            $this->session->set_flashdata('ME_ERROR', 'File Upload Failed');
+        else:
+            $condition = array("user_id" => $_SESSION['UserId']);
+            $DBData = array(
+                "name" => $postData['Name'],
+                "username" => $postData['UserName'],
+                "address1" => $postData['Address1'],
+                "address2" => $postData['Address2'],
+                "city" => $postData['City'],
+                "state" => $postData['State'],
+                "country" => $postData['Country'],
+                "mobilenumber" => $postData['MobileNumber'],
+                "aadhar" => $postData['AadhaarNumber'],
+                "email" => $postData['EmailID'],
+                "imageurl" => $imageName);
+            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
+
+            if (!empty($response)):
+                $Message = $this->load->view("emaillayouts/userprofileupdate", get_defined_vars(), true);
+                $Subject = "Atrocity Case Management - Your profile has been updated.";
+                // $this->SendEmail(trim($result['EmailID']), $Message, "N", $Subject, "");
+                $this->session->set_flashdata('ME_SUCCESS', 'Profile Changed Successfully');
+            else:
+                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+            endif;
+        endif;
+        $this->load->view('homepage/dashboard');
+    }
+
+    /* function to show profile Image starts here */
+
+    public function ShowProfileImage($id) {
+        $condition = array("user_id" => $id);
+        $select = "imageurl as ImageURL";
+        $url = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
+        if ($url == null):
+            return $url['ImageURL'];
+        else:
+            return 'user2-160x160.jpg';
+        endif;
+    }
+
+    /* function to show profile Image ends here */
 }

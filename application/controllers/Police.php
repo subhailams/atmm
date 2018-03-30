@@ -22,7 +22,7 @@ class Police extends MY_Controller {
         $userNameCnd = array("username" => $this->session->userdata("UserName"));
         $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
         $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
-        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));
+        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));        
     }
 
     public function index() {
@@ -36,7 +36,5 @@ class Police extends MY_Controller {
         $pendingcase = $this->PendingCaseShow();
         $this->render("dashboard", get_defined_vars());
     }
-
- 
 
 }

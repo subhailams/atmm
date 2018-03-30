@@ -28,9 +28,10 @@ class Administrator extends MY_Controller {
         $newcase = $this->NewCaseShow();
         $solvedcase = $this->SolvedCaseShow();
         $pendingcase = $this->PendingCaseShow();
-        $this->render("dashboard", get_defined_vars());
+        $profileurl = $this->ShowProfileImage($_SESSION['UserId']);
+        $profileimage = $this->render("dashboard", get_defined_vars());
     }
-    
+
     public function logs($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
