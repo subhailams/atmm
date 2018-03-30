@@ -139,18 +139,18 @@ $lang['cases'] = 'प्रकरणे';
 $lang['new_cases'] = 'नवीन प्रकरण';
 $lang['all_cases'] = 'सर्व प्रकरणांमध्ये';
 $lang['all_offenders'] = 'सर्व गुन्हेगार';
-$lang['all_pending_cases'] = '';
-$lang['all_solved_cases'] = '';
-$lang['logs'] = '';
-$lang['all'] = '';
-$lang['errors'] = '';
-$lang['notices'] = '';
-$lang['warnings'] = '';
-$lang['show_notices'] = '';
-$lang['all_offences'] = '';
-$lang['users'] = '';
-$lang['all_users'] = '';
-$lang['mobile_number'] = '';
+$lang['all_pending_cases'] = 'सर्व प्रलंबित प्रकरणे';
+$lang['all_solved_cases'] = 'सर्व निराकरण प्रकरणी';
+$lang['logs'] = 'नोंदी';
+$lang['all'] = 'सर्व';
+$lang['errors'] = 'त्रुटी';
+$lang['notices'] = 'सूचना';
+$lang['warnings'] = 'इशारे';
+$lang['show_notices'] = 'नोटीस दाखवा';
+$lang['all_offences'] = 'सर्व अपराध';
+$lang['users'] = 'वापरकर्ते';
+$lang['all_users'] = 'सर्व वापरकर्ते';
+$lang['mobile_number'] = 'मोबाइल नंबर';
 
 
  /* bread crumbs ends here */

@@ -140,24 +140,24 @@ $lang['fir_form'] = 'एफ आई आर प्रपत्र';
 
 /* fir format ends here */
 /* bread crumb start */
-$lang['home'] = '';
-$lang['dashboard'] = '';
-$lang['cases'] = '';
-$lang['new_cases'] = '';
-$lang['all_cases'] = '';
-$lang['all_offenders'] = '';
-$lang['all_pending_cases'] = ' ';
-$lang['all_solved_cases'] = '';
-$lang['logs'] = '';
-$lang['all'] = '';
-$lang['errors'] = '';
-$lang['notices'] = '';
-$lang['warnings'] = '';
-$lang['show_notices'] = '';
-$lang['all_offences'] = '';
-$lang['users'] = '';
-$lang['all_users'] = '';
-$lang['mobile_number'] = '';
+$lang['home'] = 'होम';
+$lang['dashboard'] = 'डैशबोर्ड';
+$lang['cases'] = 'मामलों';
+$lang['new_cases'] = 'नए मामले';
+$lang['all_cases'] = 'सभी मामलों';
+$lang['all_offenders'] = 'सभी अपराधियों';
+$lang['all_pending_cases'] = 'सभी लंबित मामलों';
+$lang['all_solved_cases'] = 'सभी हल मामलों';
+$lang['logs'] = 'लॉग';
+$lang['all'] = 'सब';
+$lang['errors'] = 'त्रुटियों';
+$lang['notices'] = 'नोटिस';
+$lang['warnings'] = 'चेतावनी';
+$lang['show_notices'] = 'नोटिस दिखाएं';
+$lang['all_offences'] = 'सभी अपराध';
+$lang['users'] = 'उपयोगकर्ताओं';
+$lang['all_users'] = 'सभी उपयोगकर्ताओं';
+$lang['mobile_number'] = 'मोबाइल नंबर';
 
 
  /* bread crumb ends here */
