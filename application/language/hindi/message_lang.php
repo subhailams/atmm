@@ -140,24 +140,24 @@ $lang['fir_form'] = 'एफ आई आर प्रपत्र';
 
 /* fir format ends here */
 /* bread crumb start */
-$lang['home'] = 'Home';
-$lang['dashboard'] = 'Dashboard';
-$lang['cases'] = 'Cases';
-$lang['new_cases'] = 'New Cases';
-$lang['all_cases'] = 'All Cases';
-$lang['all_offenders'] = 'All Offenders';
-$lang['all_pending_cases'] = 'All Pending Cases';
-$lang['all_solved_cases'] = 'All Solved Cases';
-$lang['logs'] = 'Logs';
-$lang['all'] = 'All';
-$lang['errors'] = 'Errors';
-$lang['notices'] = 'Notices';
-$lang['warnings'] = 'Warnings';
-$lang['show_notices'] = 'Show Notices';
-$lang['all_offences'] = 'All Offences';
-$lang['users'] = 'Users';
-$lang['all_users'] = 'All Users';
-$lang['mobile_number'] = 'Mobile Number';
+$lang['home'] = '';
+$lang['dashboard'] = '';
+$lang['cases'] = '';
+$lang['new_cases'] = '';
+$lang['all_cases'] = '';
+$lang['all_offenders'] = '';
+$lang['all_pending_cases'] = ' ';
+$lang['all_solved_cases'] = '';
+$lang['logs'] = '';
+$lang['all'] = '';
+$lang['errors'] = '';
+$lang['notices'] = '';
+$lang['warnings'] = '';
+$lang['show_notices'] = '';
+$lang['all_offences'] = '';
+$lang['users'] = '';
+$lang['all_users'] = '';
+$lang['mobile_number'] = '';
 
 
  /* bread crumb ends here */

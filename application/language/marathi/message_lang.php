@@ -133,24 +133,24 @@ $lang['suspectparticulars'] = 'संशय तपशील';
 
 
 /* bread crumbs starts */
-$lang['home'] = 'Home';
-$lang['dashboard'] = 'Dashboard';
-$lang['cases'] = 'Cases';
-$lang['new_cases'] = 'New Cases';
-$lang['all_cases'] = 'All Cases';
-$lang['all_offenders'] = 'All Offenders';
-$lang['all_pending_cases'] = 'All Pending Cases';
-$lang['all_solved_cases'] = 'All Solved Cases';
-$lang['logs'] = 'Logs';
-$lang['all'] = 'All';
-$lang['errors'] = 'Errors';
-$lang['notices'] = 'Notices';
-$lang['warnings'] = 'Warnings';
-$lang['show_notices'] = 'Show Notices';
-$lang['all_offences'] = 'All Offences';
-$lang['users'] = 'Users';
-$lang['all_users'] = 'All Users';
-$lang['mobile_number'] = 'Mobile Number';
+$lang['home'] = 'घर';
+$lang['dashboard'] = 'डॅशबोर्ड';
+$lang['cases'] = 'प्रकरणे';
+$lang['new_cases'] = 'नवीन प्रकरण';
+$lang['all_cases'] = 'सर्व प्रकरणांमध्ये';
+$lang['all_offenders'] = 'सर्व गुन्हेगार';
+$lang['all_pending_cases'] = '';
+$lang['all_solved_cases'] = '';
+$lang['logs'] = '';
+$lang['all'] = '';
+$lang['errors'] = '';
+$lang['notices'] = '';
+$lang['warnings'] = '';
+$lang['show_notices'] = '';
+$lang['all_offences'] = '';
+$lang['users'] = '';
+$lang['all_users'] = '';
+$lang['mobile_number'] = '';
 
 
  /* bread crumbs ends here */
