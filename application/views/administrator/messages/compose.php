@@ -19,6 +19,8 @@
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/EmailSave") ?> ">
                         <div class="box-body">
                             <div class="form-group">
+
+                                
                                 <label for="Email To"><?= $this->lang->line('to') ?></label>
                                 <select class="form-control" id="email" name="emailto" placeholder="Select Mail ID" required="true">
                                     <option>Select User Name</option>
@@ -29,11 +31,11 @@
                                 </select>
                             </div>
                             <div class="form-group">
-
+                                <label for="Subject"></label>
                                 <input class="form-control" placeholder="Subject:" name="subject">
                             </div>
                             <div class="form-group">
-                                <ul class="wysihtml5-toolbar" style=""><li class="dropdown">
+                                <ul class="wysihtml5-toolbar" style=""></ul><li class="dropdown">
                                         <a class="btn btn-default dropdown-toggle " data-toggle="dropdown">
 
                                             <span class="glyphicon glyphicon-font"></span>
@@ -92,6 +94,12 @@
                                         <!-- /.comment body -->
                                         <!--<form>-->
                                         <div class="box-body pad">
+<<<<<<< HEAD
+
+                                            <label for="Email Detail"></label>
+
+=======
+>>>>>>> 614690610717b9dd4f5395dc6f3776048d007484
                                             <textarea class="textarea" placeholder="Type your email here" name="emaildetail"
                                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 

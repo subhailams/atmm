@@ -783,7 +783,6 @@ class MY_Controller extends CI_Controller {
 
     public function EmailSave() {
         $postData = $this->input->post();
-
         if ($this->form_validation("email")):
 
             $condition1 = array("msgid" => "");
@@ -797,6 +796,7 @@ class MY_Controller extends CI_Controller {
 
 
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
+
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
