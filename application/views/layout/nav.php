@@ -121,20 +121,6 @@
                         <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> All Roles</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-gears"></i>
-                        <span>Admin Management</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
-                                    class="fa fa-circle-o"></i> Show Logs</a></li>
-                    </ul>
-                </li>
             <?php endif; ?>
             <li class="treeview">
                 <a href="#">
@@ -148,10 +134,7 @@
                     <?php if(strtolower($_SESSION['UserRoleName'])!="organization"):?>
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
-                                class="fa fa-circle-o"></i> Register New Case</a></li>
-                          <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/firshow") ?>"><i
-                                class="fa fa-circle-o"></i> Register FIR</a></li>      
+                                class="fa fa-circle-o"></i> Register New Case</a></li>      
                     <?php endif; ?>
                                 <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i

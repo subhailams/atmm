@@ -34,33 +34,3 @@
     </section>
 </div>
 <!-- /.row -->
-
-<!-- /.content -->
-
-
-<script type="text/javascript">
-    var table;
-    var base_url = '<?php echo base_url(); ?>';
-    $(document).ready(function () {
-        //datatables
-        table = $('#offenderoffences').DataTable({
-            "processing": true, //Feature control the processing indicator.
-            "serverSide": true, //Feature control DataTables' server-side processing mode.
-            "order": [], //Initial no order.
-            // Load data for the table's content from an Ajax source
-            "ajax": {
-                "url": "<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . '/offences_ajax_list/offender_offences') ?>",
-                "type": "POST"
-            },
-            //Set column definition initialisation properties.
-            "columnDefs": [
-                {
-                    "targets": [-1], //last column
-                    "orderable": false, //set not orderable
-                },
-            ],
-        });
-    });
-</script>
-
-
