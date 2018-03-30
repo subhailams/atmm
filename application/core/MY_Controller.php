@@ -334,7 +334,7 @@ class MY_Controller extends CI_Controller {
     }
 
     public function CaseHistoryOffenderShow($id) {
-        $condition = array("cases.caseid"=>$id);
+        $condition = array("cases.caseid" => $id);
         $select = "offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,cityname as OffenderCity,districtname as OffenderDistrict,statename as OffenderState";
 
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
@@ -343,7 +343,7 @@ class MY_Controller extends CI_Controller {
     public function CaseHistoryComments($id) {
         $condition = array("casehistory.caseid" => $id);
         $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,users.name as CreatedBy,users.imageurl as ImageURL,rolename as RoleName,casehistory.imageurl as Attachment";
-        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true);
+        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true,"","","","","","casehistoryid");
     }
 
     /* Maps Ajax Cases list statrs from here */
@@ -409,7 +409,6 @@ class MY_Controller extends CI_Controller {
         if ($this->form_validation("casehistory")):
             if (($_FILES['file']['name']) != null):
                 $imageName = "attachment_" . rand(1000, 99999999999) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-
                 if ($this->uploadAttachment($imageName) == false):
                     $this->session->set_flashdata('ME_ERROR', 'File Upload Failed');
                 else:
@@ -430,9 +429,14 @@ class MY_Controller extends CI_Controller {
                 $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
             endif;
             if (!empty($response)):
+                if (strtolower($_SESSION['UserRoleName']) == 'police'):
+                    $EmailAddress = $this->fetchorganisationemail($postData['caseid']);
+                else:
+                    $EmailAddress = $this->fetchpoliceemail($postData['caseid']);
+                endif;
                 $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Comment Updated";
-                //$this->SendEmail(trim(]), $Message, "N", $Subject, "");
+                $this->SendEmail($EmailAddress['EmailId'], $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Comment updated successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -445,6 +449,33 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Function for saving Case History in Database Ends here */
+
+    private function fetchorganisationemail($caseid) {
+        $condition = array("cases.caseid" => $caseid);
+        $select = "organizationassignedto as orgid";
+        $id = $this->Adminmodel->CSearch($condition, $select, "case", "", true);
+
+        if (!empty($id)):
+            $condition = array("users.user_id" => $id['orgid']);
+            $select = "email as EmailId";
+            return $this->Adminmodel->CSearch($condition, $select, "usr", "", true);
+        else:
+            return NULL;
+        endif;
+    }
+
+    private function fetchpoliceemail() {
+        $condition = array("cases.caseid" => $caseid);
+        $select = "policeassignedto as policeid";
+        $id = $this->Adminmodel->CSearch($condition, $select, "case", "", true);
+        if (!empty($id)):
+            $condition = array("users.user_id" => $id['policeid']);
+            $select = "email as EmailId";
+            return $this->Adminmodel->CSearch($condition, $select, "usr", "", true);
+        else:
+            return NULL;
+        endif;
+    }
 
     /* Function for fetching cases files from  views starts here */
 
@@ -548,7 +579,6 @@ class MY_Controller extends CI_Controller {
                 $render = "casehistory";
                 $casevictimdatabase = $this->CaseHistoryVictimShow($id);
                 $caseoffenderdatabase = $this->CaseHistoryOffenderShow($id);
-
                 $casecomments = $this->CaseHistoryComments($id);
                 break;
 
@@ -605,8 +635,8 @@ class MY_Controller extends CI_Controller {
             case "users":
                 $Condition = array();
                 $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1','cityname');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1','cityname');
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1', 'cityname');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1', 'cityname');
                 $OrderBy = array('user_id' => 'desc');
                 break;
             default:

@@ -45,7 +45,7 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY) {
+    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY,$orderBy) {
         $JoinType = NULL;
         $_TableName = $this->TableList[$TableName];
         if (!empty($Select)) {
@@ -69,7 +69,10 @@ class Adminmodel extends CI_Model {
         if (!empty($GroupBY)) {
             $this->db->group_by($GroupBY);
         }
-        $this->db->order_by($this->SeqId[$TableName], "desc");
+        if (!empty($orderBy)) {
+            $this->db->order_by($orderBy, "desc");
+        }
+        
         $Result = $this->db->get($TableName);
 
         if (empty($SelectAll)):

@@ -25,46 +25,46 @@
                             <tbody>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('name') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimName'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimName'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('gender') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimGender'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimGender'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px">
                                         <b><?= $this->lang->line('mobile_number') ?></b></td>
                                     <td width="50%"
-                                        style="line-height: 10px"> <?= $casedatabase['VictimMobile'] ?></td>
+                                        style="line-height: 10px"> <?= $casevictimdatabase['VictimMobile'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('victimdob') ?></b>
                                     </td>
 
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimDob'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimDob'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('email_id') ?></b>
                                     </td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimEmail'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimEmail'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px">
                                         <b><?= $this->lang->line('victim_address') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimAddress'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimAddress'] ?></td>
                                 </tr>
 
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimState'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimState'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('district') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimDistrict'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimDistrict'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimCity'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimCity'] ?></td>
                                 </tr>
 
                         </table>
@@ -80,44 +80,69 @@
                             <tbody>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('name') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderName'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $caseoffenderdatabase['OffenderName'] ?></td>
 
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('gender') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderGender'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $caseoffenderdatabase['OffenderGender'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px">
                                         <b><?= $this->lang->line('offender_address') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderAddress'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $caseoffenderdatabase['OffenderAddress'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderCity'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $caseoffenderdatabase['OffenderCity'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderState'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $caseoffenderdatabase['OffenderState'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('fir_no') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['FirNumber'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['FirNumber'] ?></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-solid">
+                    <div class="col-md-6">
+                        <div class="box box-solid box-primary">
                             <div class="box-header with-border">
-                                <h3
-                                    class="box-title"><?= $this->lang->line('case_description') ?></h3>
+                                <h3 class="box-title"><?= $this->lang->line('act') ?></h3>
                             </div>
                             <div class="box-body">
                                 <blockquote class="pull-left">
-                                    <?= $casedatabase['CaseDescription'] ?>
+                                    <?= $casevictimdatabase['OffenceName'] ?>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box box-solid box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><?= $this->lang->line('compensation') ?></h3>
+                            </div>
+                            <div class="box-body">
+                                <blockquote class="pull-left text-justify">
+                                    <?= $casevictimdatabase['Compensation'] ?>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><?= $this->lang->line('case_description') ?></h3>
+                            </div>
+                            <div class="box-body">
+                                <blockquote class="pull-left">
+                                    <?= $casevictimdatabase['CaseDescription'] ?>
                                 </blockquote>
                             </div>
                         </div>
@@ -167,7 +192,7 @@
                         </div>
                         <form method="post"
                               action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseHistorySave") ?> " autocomplete="off" enctype="multipart/form-data">
-                            <input type="hidden" name="caseid" value="<?= $casedatabase['CaseID'] ?>"/>
+                            <input type="hidden" name="caseid" value="<?= $casevictimdatabase['CaseID'] ?>"/>
                             <div class="box-body pad">
                                 <textarea class="textarea"
                                           placeholder="<?= $this->lang->line('typeyourcommenthere') ?>"
