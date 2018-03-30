@@ -50,7 +50,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="<?= base_url('index.php/'.$this->router->fetch_class().'/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
@@ -94,16 +94,16 @@
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/updateprofile") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
                                     class="fa fa-circle-o"></i> Update Profile</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/changepassword") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
                                     class="fa fa-circle-o"></i> Change Password</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/importantcontacts") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
                                     class="fa fa-circle-o"></i> Important Contacts</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "users/offencesandpunishments") ?>"><i
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
                                     class="fa fa-circle-o"></i>Offences and Punishments</a></li>
                     </ul>
                 </li>
@@ -149,6 +149,9 @@
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
                                 class="fa fa-circle-o"></i> Register New Case</a></li>
+                          <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/firshow") ?>"><i
+                                class="fa fa-circle-o"></i> Register FIR</a></li>      
                     <?php endif; ?>
                                 <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
