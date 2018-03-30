@@ -21,7 +21,7 @@
                     <div class="inner">
                         <h3><?= $usercount ?></h3>
 
-                        <p>Total Users</p>
+                        <p><?= $this->lang->line('total_users') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -36,7 +36,7 @@
                     <div class="inner">
                         <h3><?= $casecount ?></h3>
 
-                        <p>Total Cases</p>
+                        <p><?= $this->lang->line('total_cases') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -50,7 +50,7 @@
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3><?= $solvedcount ?></h3>
-                        <p>Solved Cases</p>
+                        <p><?= $this->lang->line('solved_cases') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -65,7 +65,7 @@
                     <div class="inner">
                         <h3><?= $pendingcount ?></h3>
 
-                        <p>Pending Cases</p>
+                        <p><?= $this->lang->line('pending_cases') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
