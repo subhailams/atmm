@@ -149,4 +149,4 @@ $lang['to'] = 'To:';
 $lang['act'] = 'Offence Act';
 $lang['compensation'] = 'Compensation';
 
- 
+ $lang['mail_box'] = 'Mail Box';
