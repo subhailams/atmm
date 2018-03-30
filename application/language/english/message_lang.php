@@ -145,5 +145,7 @@ $lang['all_users'] = 'All Users';
 $lang['mobile_number'] = 'Mobile Number';
 
 $lang['to'] = 'To:';
-
- 
+$lang['mailbox'] = 'Mail Box';
+$lang['subject'] = 'Subject:';
+$lang['compose_new_message'] = 'Compose New Message';
+$lang['type_your_email_here'] = 'Type your email here';

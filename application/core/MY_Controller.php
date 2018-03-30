@@ -171,17 +171,18 @@ class MY_Controller extends CI_Controller {
                 break;
             case "profile":
                 $rules = array(
-                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
-                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
-                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
-                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
-                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
-                    array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
-                    array('field' => 'State', 'label' => 'State', 'rules' => ''),
-                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
-                    array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
-                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+                array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
+                array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
+                array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
+                array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
+                array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
+                array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
+                array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
+                array('field' => 'State', 'label' => 'State', 'rules' => ''),
+                array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
+                array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
+                array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+
                 );
                 break;
             case "email":
@@ -841,6 +842,7 @@ class MY_Controller extends CI_Controller {
         $render = "updateprofile";
         $this->render($render, get_defined_vars());
     }
+    
 
     public function offencesandpunishments() {
         $render = "";
@@ -988,8 +990,12 @@ class MY_Controller extends CI_Controller {
 
     public function UpdateProfileSave() {
         $postData = $this->input->post();
+       
+        if ($this->form_validation("profile")):
+              
         $Condition = array("user_id" => $_SESSION['UserId']);
         $imagename = current($this->Adminmodel->CSearch($Condition, "imageurl as imagename", "usr", "", TRUE));
+         
         if ($imagename == null):
             $imageName = "profile_" . rand(1000, 99999999999) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         else:
@@ -1010,9 +1016,12 @@ class MY_Controller extends CI_Controller {
                 "mobilenumber" => $postData['MobileNumber'],
                 "aadhar" => $postData['AadhaarNumber'],
                 "email" => $postData['EmailID'],
-                "imageurl" => $imageName);
+                "imageurl" => $imageName
+                    );
+            
+            
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
-
+        endif;
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/userprofileupdate", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - Your profile has been updated.";
