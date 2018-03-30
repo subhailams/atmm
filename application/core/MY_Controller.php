@@ -330,14 +330,14 @@ class MY_Controller extends CI_Controller {
     /* Function for saving Cases in Database Ends here */
 
     public function CaseHistoryShow($id) {
-        $condition = array("caseid" => $id);
-        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , victimgender as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,victimcity as VictimCity,victimdistrict as VictimDistrict,victimstate as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , offendergender as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription ";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "", "Y", "", "", "", "", "");
+        $condition = array("cases.caseid" => $id);
+        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,cityname as OffenderCity,districtname as OffenderDistrict,statename as OffenderState,casedescription as CaseDescription ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
 
     public function CaseHistoryComments($id) {
-        $condition = array("caseid" => $id);
-        $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,casehistory.createdby as CreatedBy";
+        $condition = array("casehistory.caseid" => $id);
+        $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,users.name as CreatedBy,rolename as RoleName";
         return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true);
     }
 
@@ -541,19 +541,20 @@ class MY_Controller extends CI_Controller {
 
     /* Function for fetching  Messages files from  views starts here */
 
-    public function messages($options = null) {
+    public function messages($options = null, $id="") {
         $render = "";
         switch (strtolower($options)) {
             case "show";
                 $render = "inbox";
                 $email = $this->EmailShow();
                 break;
-            case "sent";
-                $render = "inbox";
-                $email = $this->EmailSent();
-                break;
             case "composemail";
                 $render = "compose";
+                
+                break;
+            case "sent";
+                $render = "sent";
+                $email = $this->EmailShow();
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -704,7 +705,6 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Ajax Function for fetching offenders starts here */
-
     public function offenders_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "offenders":
@@ -851,11 +851,6 @@ class MY_Controller extends CI_Controller {
     public function EmailShow() {
         $condition = array("msgto" => $_SESSION['UserId'],);
         $select = "msgto as Msgto , msgdetails as Emaildetails";
-        return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
-    }
-     public function EmailSent() {
-        $condition = array("msgfrom" => $_SESSION['UserId'],);
-        $select = "msgfrom as Msgfrom , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
 

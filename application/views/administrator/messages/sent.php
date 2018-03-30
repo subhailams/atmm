@@ -22,8 +22,8 @@
                     </div>
                     <div class="box-body no-padding">
                         <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-                                    <span class="label label-primary pull-right"></span></a></li>
+                            <li class="active"><a href="#"><i class="fa fa-inbox"></i> Indox
+                                    <span class="label label-primary pull-right">12</span></a></li>
                             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/messages/sent") ?>"><i class="fa fa-envelope-o"></i> Sent</a></li>
                         </ul>
                     </div>
@@ -34,7 +34,7 @@
             <div class="col-md-9">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Inbox</h3>
+                        <h3 class="box-title">Sent</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
