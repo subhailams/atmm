@@ -257,6 +257,7 @@ class MY_Controller extends CI_Controller {
     /* Form Validation Ends Here */
 
     /* Function for saving Cases in Database Starts here */
+
     public function CaseRegisterSave() {
         $postData = $this->input->post();
         if ($this->form_validation("cases")):
@@ -331,8 +332,8 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryComments($id) {
         $condition = array("caseid" => $id);
-        $select = "casehistorydesc as CaseHistoryDesc,createdat as CreatedOn,createdby as CreatedBy";
-        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", "", "", "", "", "", "");
+        $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,casehistory.createdby as CreatedBy";
+        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true);
     }
 
     /* Maps Ajax Cases list statrs from here */
@@ -391,13 +392,13 @@ class MY_Controller extends CI_Controller {
     /* Maps Ajax Cases list ends from here */
 
     /* Function for saving Case History in Database Starts here */
+
     public function CaseHistorySave() {
         $postData = $this->input->post();
         if ($this->form_validation("casehistory")):
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
-
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
@@ -417,6 +418,7 @@ class MY_Controller extends CI_Controller {
     /* Function for saving Case History in Database Ends here */
 
     /* Function for fetching cases files from  views starts here */
+
     public function cases($options = null, $id = "") {
         $render = "";
         switch (strtolower($options)) {
@@ -456,11 +458,15 @@ class MY_Controller extends CI_Controller {
 
     /* Function for fetching  offender's offences file from  views starts here */
 
-    public function offenders($options = null) {
+    public function offenders($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
             case "alloffences";
                 $render = "offender_offences";
+                $OffenderDetails = $this->OffenderDetail($id);
+                echo "<pre>";
+                print_r(get_defined_vars());
+                exit();
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -473,6 +479,12 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Function for fetching  offender's offences file from  views ends here */
+
+    private function OffenderDetail($id) {
+        $condition = array("cases.offenderid" => $id);
+        $select = "offendername as OffenderName,offendermobile as OffenderMobile,case_status_name as CaseStatus";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", true, "", "", "", "", "");
+    }
 
     /* Function for fetching  allusers file from  views starts here */
 
@@ -683,11 +695,11 @@ class MY_Controller extends CI_Controller {
             case "offenders":
                 $Condition = array();
                 $TableListname = "off_mst";
-                $ColumnOrder = array('offenderid','offendername', 'gender_name', 'offendermobile', 'cityname', 'districtname');
+                $ColumnOrder = array('offenderid', 'offendername', 'gender_name', 'offendermobile', 'cityname', 'districtname');
                 $ColumnSearch = array('offendername');
                 $OrderBy = array('offenderid' => 'desc');
                 break;
-         
+
             default:
                 $Condition = array();
                 break;
@@ -723,7 +735,7 @@ class MY_Controller extends CI_Controller {
 
     public function offences_ajax_list($options = null) {
         switch (strtolower($options)) {
-           
+
             case "offender_offences":
                 $Condition = array();
                 $TableListname = "case";
@@ -744,7 +756,7 @@ class MY_Controller extends CI_Controller {
             $row = array();
             $row[] = $logNotice->offenece;
             $row[] = $logNotice->offdate;
-           
+
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
@@ -759,6 +771,7 @@ class MY_Controller extends CI_Controller {
         //output to json format
         echo json_encode($output);
     }
+
     public function loginsave() {
         $postData = $this->input->post();
         if ($this->form_validation("login")):
@@ -830,35 +843,38 @@ class MY_Controller extends CI_Controller {
         $this->render("showallusers", get_defined_vars());
     }
 
-            
-     public function updateprofile() {
+    public function updateprofile() {
         $render = "";
-        
-                $userdatabase = $this->profileshow($_SESSION['UserId']);
-                $render = "updateprofile";
-                 $this->render($render, get_defined_vars());
+
+        $userdatabase = $this->profileshow($_SESSION['UserId']);
+        $render = "updateprofile";
+        $this->render($render, get_defined_vars());
     }
-    public function  offencesandpunishments() {
+
+    public function offencesandpunishments() {
         $render = "";
-        
-                $userdatabase = $this->profileshow($id);
-                $render = "offencesandpunishments";
-                 $this->render($render, get_defined_vars());
+
+        $userdatabase = $this->profileshow($id);
+        $render = "offencesandpunishments";
+        $this->render($render, get_defined_vars());
     }
-        public function  changepassword() {
+
+    public function changepassword() {
         $render = "";
-        
-                $userdatabase = $this->profileshow($id);
-                $render = "changepassword";
-                 $this->render($render, get_defined_vars());
+
+        $userdatabase = $this->profileshow($id);
+        $render = "changepassword";
+        $this->render($render, get_defined_vars());
     }
-            public function  importantcontacts() {
+
+    public function importantcontacts() {
         $render = "";
-        
-                $userdatabase = $this->profileshow($id);
-                $render = "importantcontacts";
-                 $this->render($render, get_defined_vars());
+
+        $userdatabase = $this->profileshow($id);
+        $render = "importantcontacts";
+        $this->render($render, get_defined_vars());
     }
+
     public function FirRegisterSave() {
         $postData = $this->input->post();
 //        echo "<pre>";
@@ -901,8 +917,10 @@ class MY_Controller extends CI_Controller {
 
         endif;
     }
-    /* Ajax Function for fetching all cases*/
- public function cases_ajax_list($options = null) {
+
+    /* Ajax Function for fetching all cases */
+
+    public function cases_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "cases":
                 $Condition = array();
@@ -922,7 +940,7 @@ class MY_Controller extends CI_Controller {
                 $Condition = array("casestatus" => '3');
                 $TableListname = "case";
                 $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'offencedate', 'case_status_name');
-                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'offendername', 'case_status_name');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile', 'case_status_name');
                 $OrderBy = array('caseid' => 'desc');
                 break;
             default:
@@ -931,7 +949,6 @@ class MY_Controller extends CI_Controller {
         }
 
         $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
-
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $logNotice) {
@@ -957,4 +974,5 @@ class MY_Controller extends CI_Controller {
         //output to json format
         echo json_encode($output);
     }
+
 }

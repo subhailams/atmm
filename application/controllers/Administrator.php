@@ -11,7 +11,7 @@ class Administrator extends MY_Controller {
         $FunctionS = array("");
         if (!in_array($this->router->fetch_method(), $FunctionS)):
             if (strtolower($_SESSION["UserRoleName"]) != strtolower(__CLASS__)) {
-                $this->Inti(__CLASS__);                   
+                $this->Inti(__CLASS__);
             }
         endif;
         $userNameCnd = array("username" => $this->session->userdata("UserName"));
@@ -30,13 +30,7 @@ class Administrator extends MY_Controller {
         $pendingcase = $this->PendingCaseShow();
         $this->render("dashboard", get_defined_vars());
     }
-
-    public function demo() {
-        $Message = $this->load->view("emaillayouts/usersignup", get_defined_vars(), true);
-        $Subject = "Atrocity Case Management - New Account Created";
-        $this->SendEmail(trim("vidhyaprakash85@gmail.com"), $Message, "N", $Subject, "");
-    }
-
+    
     public function logs($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
@@ -127,8 +121,6 @@ class Administrator extends MY_Controller {
         echo json_encode($output);
     }
 
-  
-
     public function users_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "users":
@@ -168,6 +160,7 @@ class Administrator extends MY_Controller {
         //output to json format
         echo json_encode($output);
     }
+
     protected function shownotice($id) {
         $condition = array("id" => $id);
         $select = "errstr as ErrorString, errfile as ErrorFilename, errline as ErrorLine,time as Time";

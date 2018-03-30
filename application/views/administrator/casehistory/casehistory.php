@@ -29,7 +29,7 @@
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('gender') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimGender'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= ($casedatabase['VictimGender'] == 1) ? "Male" : "Female" ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px">
@@ -55,11 +55,11 @@
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimCity'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimState'] ?></td>
                                 </tr>
                         </table>
                     </div>
@@ -79,7 +79,7 @@
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('gender') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderGender'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= ($casedatabase['OffenderGender'] == 1) ? "Male" : "Female" ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px">
