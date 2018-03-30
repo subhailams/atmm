@@ -547,10 +547,6 @@ class MY_Controller extends CI_Controller {
                 break;
             case "composemail";
                 $render = "compose";
-<<<<<<< HEAD
-
-=======
->>>>>>> 614690610717b9dd4f5395dc6f3776048d007484
                 break;
             case "sent";
                 $render = "sent";
@@ -787,25 +783,6 @@ class MY_Controller extends CI_Controller {
 
     public function EmailSave() {
         $postData = $this->input->post();
-<<<<<<< HEAD
-
-        if ($this->form_validation("email")):
-       
-            
-                $condition = array("msgid" => "");
-                $DBData = array(
-                    "msgfrom" => $_SESSION['UserId'],
-                    "msgto" => $postData['emailto'],
-                    "msgdetails" => $postData['emaildetail'],
-                        //   "subject" => $postData['subject'],
-                );
-        
-                $response = $this->Adminmodel->AllInsert($condition,$DBData, "", "pm");
-//                 echo "<pre>";
-//            print_r($response);
-//            exit();
-=======
-
         if ($this->form_validation("email")):
 
             $condition1 = array("msgid" => "");
@@ -817,7 +794,6 @@ class MY_Controller extends CI_Controller {
             );
             $response1 = $this->Adminmodel->AllInsert($condition1, $DBData, "", "pm");
 
->>>>>>> 614690610717b9dd4f5395dc6f3776048d007484
 
             $this->session->set_flashdata('ME_SUCCESS', 'Form Validation Successfully');
 

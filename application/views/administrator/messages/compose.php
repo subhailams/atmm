@@ -19,19 +19,13 @@
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/EmailSave") ?> ">
                         <div class="box-body">
                             <div class="form-group">
-<<<<<<< HEAD
 
-                                <label for="Email To"><?= $this->lang->line('to') ?></label>
-                                <select class="form-control" id="email" name="emailto" placeholder="Select Mail ID" required="true">
-                                    <?php foreach ($this->db->where(array("isactive" => "Y"))->order_by("email", "asc")->get('users')->result() as $detail) { ?>
-                                        <option value="<?= $detail->user_id ?>"> <?= $detail->email ?> </option>
-=======
+                                
                                 <label for="Email To"><?= $this->lang->line('to') ?></label>
                                 <select class="form-control" id="email" name="emailto" placeholder="Select Mail ID" required="true">
                                     <option>Select User Name</option>
                                     <?php foreach ($this->db->where(array("isactive" => "Y"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
                                         <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
->>>>>>> 614690610717b9dd4f5395dc6f3776048d007484
                                     <?php } ?>                         
 
                                 </select>
