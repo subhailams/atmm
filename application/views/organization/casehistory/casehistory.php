@@ -53,20 +53,14 @@
                                         <b><?= $this->lang->line('victim_address') ?></b></td>
                                     <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimAddress'] ?></td>
                                 </tr>
-
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimState'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('district') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimDistrict'] ?></td>
-                                </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['VictimCity'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
                                 </tr>
-
+                                <tr>
+                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
+                                </tr>
                         </table>
                     </div>
                     </centre>
@@ -94,11 +88,11 @@
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderCity'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderState'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('fir_no') ?></b></td>
@@ -136,7 +130,7 @@
                                         <i class="fa fa-envelope bg-blue"></i>
                                         <div class="timeline-item">
                                             <span class="time"><i class="fa fa-clock-o"></i> <?= time_elapsed_string($comments['CreatedOn']) ?></span>
-                                            <h3 class="timeline-header"><a href="#"><?= $comments['CreatedBy'] . " ( " . $comments['RoleName'] . " ) " ?></a> posted a comment</h3>
+                                            <h3 class="timeline-header"><a href="#"><?= $comments['CreatedBy'] ?></a> posted a comment</h3>
                                             <div class="timeline-body">
                                                 <?= $comments ['CaseHistoryDesc'] ?>
                                             </div>
@@ -150,18 +144,14 @@
                 </div>
             </div>
         </div>
-        
-            <div class="row">
-                <?php 
-        if( $casedatabase['CaseStatus'] == 1 || $casedatabase['CaseStatus'] == 3 || $casedatabase['CaseStatus'] == 4 ) :?>
-       
+        <div class="row">
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title"> <?= $this->lang->line('commenthere') ?>
                         </h3>
                     </div>
-                    
+                    <!-- /.comment body -->
                     <form method="post"
                           action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseHistorySave") ?> ">
                         <input type="hidden" name="caseid" value="<?= $casedatabase['CaseID'] ?>"/>
@@ -172,20 +162,19 @@
                                       style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                         </div>
                         <div class="box-footer">
-                          
+                            <!-- submit button -->
                             <div class="pull-right">
 
                                 <button type="submit"
                                         class="btn btn-lg  btn-primary"><?= $this->lang->line('post') ?></button>
                             </div>
-                          
+                            <!-- /. submit button -->
                         </div>
                     </form> 
                 </div>
             </div>
-            
+            <!-- /.col-->
         </div>
-       <?php endif; ?>
 
     </section>
 </div>

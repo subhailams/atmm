@@ -140,6 +140,7 @@ $lang['fir_form'] = 'एफ आई आर प्रपत्र';
 
 /* fir format ends here */
 /* bread crumb start */
+
 $lang['home'] = 'होम';
 $lang['dashboard'] = 'डैशबोर्ड';
 $lang['cases'] = 'मामलों';
@@ -158,6 +159,5 @@ $lang['all_offences'] = 'सभी अपराध';
 $lang['users'] = 'उपयोगकर्ताओं';
 $lang['all_users'] = 'सभी उपयोगकर्ताओं';
 $lang['mobile_number'] = 'मोबाइल नंबर';
-
 
  /* bread crumb ends here */
