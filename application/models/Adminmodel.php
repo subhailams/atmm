@@ -88,8 +88,7 @@ class Adminmodel extends CI_Model {
                 $JoinTable = array(
                     "users" => "users.user_id=cases.userid",
                     "offences_master" => "offences_master.offid=cases.offid",
-                    "gender" => "gender.gender_id=victimgender",
-                    "gender" => "gender.gender_id=offendergender",
+                    "gender" => "gender.gender_id=cases.victimgender",
                     "case_status_master" => "case_status_master.case_status_id=cases.casestatus",
                     "district" => "district.dist_id=victimdistrict",
                     "offender_master" => "offender_master.offenderid=cases.offenderid"
@@ -99,8 +98,6 @@ class Adminmodel extends CI_Model {
                 $JoinTable = array(
                     "cases" => "cases.caseid=caseid",
                     "users" => "users.user_id=userid",
-                    "gender" => "gender.gender_id=victimgender",
-                    "gender" => "gender.gender_id=offendergender",
                     "district" => "district.dist_id=victimdistrict",
                     "offender_master" => "offender_master.offenderid=cases.offenderref",
                 );

@@ -3,9 +3,9 @@
     <section class="content-header">
         <h1><?= $this->lang->line('casehistory') ?></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                            class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Cases</a></li>
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+                            class="fa fa-dashboard"></i> <?= $this->lang->line('home') ?></a></li>
+            <li><a href="#"><?= $this->lang->line('cases') ?></a></li>
             <li class="active"></li>
         </ol>
     </section>
@@ -95,6 +95,12 @@
                                 <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
                                 <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
                             </tr>
+                             <tr>
+                                <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('fir_no') ?></b></td>
+                                <td width="50%" style="line-height: 10px"> <?= $casedatabase['FirNumber'] ?></td>
+                            </tr>
+                            
+                            
                             </tbody>
                         </table>
                     </div>
@@ -158,7 +164,7 @@
                             </div>
                             <!-- /. submit button -->
                         </div>
-                    </form>
+                    </form> 
                 </div>
             </div>
             <!-- /.col-->
@@ -168,3 +174,4 @@
 </div>
 
 
+    

@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -338,7 +338,7 @@ class CI_URI {
 	 *
 	 * @see		CI_URI::$segments
 	 * @param	int		$n		Index
-	 * @param	mixed		$no_result	What to return if the segment logs is not found
+	 * @param	mixed		$no_result	What to return if the segment index is not found
 	 * @return	mixed
 	 */
 	public function segment($n, $no_result = NULL)
@@ -352,13 +352,13 @@ class CI_URI {
 	 * Fetch URI "routed" Segment
 	 *
 	 * Returns the re-routed URI segment (assuming routing rules are used)
-	 * based on the logs provided. If there is no routing, will return
+	 * based on the index provided. If there is no routing, will return
 	 * the same result as CI_URI::segment().
 	 *
 	 * @see		CI_URI::$rsegments
 	 * @see		CI_URI::segment()
 	 * @param	int		$n		Index
-	 * @param	mixed		$no_result	What to return if the segment logs is not found
+	 * @param	mixed		$no_result	What to return if the segment index is not found
 	 * @return	mixed
 	 */
 	public function rsegment($n, $no_result = NULL)
@@ -372,7 +372,7 @@ class CI_URI {
 	 * URI to assoc
 	 *
 	 * Generates an associative array of URI data starting at the supplied
-	 * segment logs. For example, if this is your URI:
+	 * segment index. For example, if this is your URI:
 	 *
 	 *	example.com/user/search/name/joe/location/UK/gender/male
 	 *

@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * CodeIgniter Email Class
  *
- * Permits emaillayouts to be sent using Mail, Sendmail, or SMTP.
+ * Permits email to be sent using Mail, Sendmail, or SMTP.
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -961,8 +961,10 @@ class CI_Email {
 		{
 			return 'plain-attach';
 		}
-
-		return 'plain';
+		else
+		{
+			return 'plain';
+		}
 	}
 
 	// --------------------------------------------------------------------
@@ -991,7 +993,7 @@ class CI_Email {
 	 */
 	protected function _get_mime_message()
 	{
-		return 'This is a multi-part message in MIME format.'.$this->newline.'Your emaillayouts application may not support this format.';
+		return 'This is a multi-part message in MIME format.'.$this->newline.'Your email application may not support this format.';
 	}
 
 	// --------------------------------------------------------------------
@@ -1032,13 +1034,9 @@ class CI_Email {
 	 */
 	public function valid_email($email)
 	{
-		if (function_exists('idn_to_ascii') && strpos($email, '@'))
+		if (function_exists('idn_to_ascii') && $atpos = strpos($email, '@'))
 		{
-			list($account, $domain) = explode('@', $email, 2);
-			$domain = is_php('5.4')
-				? idn_to_ascii($domain, 0, INTL_IDNA_VARIANT_UTS46)
-				: idn_to_ascii($domain);
-			$email = $account.'@'.$domain;
+			$email = self::substr($email, 0, ++$atpos).idn_to_ascii(self::substr($email, $atpos));
 		}
 
 		return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -1592,7 +1590,7 @@ class CI_Email {
 	/**
 	 * Prep Q Encoding
 	 *
-	 * Performs "Q Encoding" on a string for use in emaillayouts headers.
+	 * Performs "Q Encoding" on a string for use in email headers.
 	 * It's related but not identical to quoted-printable, so it has its
 	 * own method.
 	 *
@@ -1837,9 +1835,9 @@ class CI_Email {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Validate emaillayouts for shell
+	 * Validate email for shell
 	 *
-	 * Applies stricter, shell-safe validation to emaillayouts addresses.
+	 * Applies stricter, shell-safe validation to email addresses.
 	 * Introduced to prevent RCE via sendmail's -f option.
 	 *
 	 * @see	https://github.com/bcit-ci/CodeIgniter/issues/4963
@@ -1853,13 +1851,9 @@ class CI_Email {
 	 */
 	protected function _validate_email_for_shell(&$email)
 	{
-		if (function_exists('idn_to_ascii') && strpos($email, '@'))
+		if (function_exists('idn_to_ascii') && $atpos = strpos($email, '@'))
 		{
-			list($account, $domain) = explode('@', $email, 2);
-			$domain = is_php('5.4')
-				? idn_to_ascii($domain, 0, INTL_IDNA_VARIANT_UTS46)
-				: idn_to_ascii($domain);
-			$email = $account.'@'.$domain;
+			$email = self::substr($email, 0, ++$atpos).idn_to_ascii(self::substr($email, $atpos));
 		}
 
 		return (filter_var($email, FILTER_VALIDATE_EMAIL) === $email && preg_match('#\A[a-z0-9._+-]+@[a-z0-9.-]{1,253}\z#i', $email));
@@ -2265,8 +2259,10 @@ class CI_Email {
 				usleep(250000);
 				continue;
 			}
-
-			$timestamp = 0;
+			else
+			{
+				$timestamp = 0;
+			}
 		}
 
 		if ($result === FALSE)
@@ -2380,7 +2376,7 @@ class CI_Email {
 	protected function _set_error_message($msg, $val = '')
 	{
 		$CI =& get_instance();
-		$CI->lang->load('emaillayouts');
+		$CI->lang->load('email');
 
 		if (sscanf($msg, 'lang:%s', $line) !== 1 OR FALSE === ($line = $CI->lang->line($line)))
 		{

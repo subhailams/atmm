@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -44,8 +44,8 @@ $lang['db_unable_to_create'] = 'Unable to create the specified database: %s';
 $lang['db_invalid_query'] = 'The query you submitted is not valid.';
 $lang['db_must_set_table'] = 'You must set the database table to be used with your query.';
 $lang['db_must_use_set'] = 'You must use the "set" method to update an entry.';
-$lang['db_must_use_index'] = 'You must specify an logs to match on for batch updates.';
-$lang['db_batch_missing_index'] = 'One or more rows submitted for batch updating is missing the specified logs.';
+$lang['db_must_use_index'] = 'You must specify an index to match on for batch updates.';
+$lang['db_batch_missing_index'] = 'One or more rows submitted for batch updating is missing the specified index.';
 $lang['db_must_use_where'] = 'Updates are not allowed unless they contain a "where" clause.';
 $lang['db_del_must_use_where'] = 'Deletes are not allowed unless they contain a "where" or "like" clause.';
 $lang['db_field_param_missing'] = 'To fetch fields requires the name of the table as a parameter.';

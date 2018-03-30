@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>ATM</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -50,7 +50,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="<?= base_url('index.php/'.$this->router->fetch_class().'/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
@@ -89,22 +89,22 @@
                         <i class="fa fa-user"></i>
                         <span>User Management</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/updateprofile") ?>"><i
-                                        class="fa fa-circle-o"></i> Update Profile</a></li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
+                                    class="fa fa-circle-o"></i> Update Profile</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/changepassword") ?>"><i
-                                        class="fa fa-circle-o"></i> Change Password</a></li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
+                                    class="fa fa-circle-o"></i> Change Password</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/users/importantcontacts") ?>"><i
-                                        class="fa fa-circle-o"></i> Important Contacts</a></li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
+                                    class="fa fa-circle-o"></i> Important Contacts</a></li>
                         <li>
-                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "users/offencesandpunishments") ?>"><i
-                                        class="fa fa-circle-o"></i>Offences and Punishments</a></li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
+                                    class="fa fa-circle-o"></i>Offences and Punishments</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -112,8 +112,8 @@
                         <i class="fa fa-black-tie"></i>
                         <span>Role Management</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Create New Role</a></li>
@@ -126,13 +126,13 @@
                         <i class="fa fa-gears"></i>
                         <span>Admin Management</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li>
                             <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/logs") ?>"><i
-                                        class="fa fa-circle-o"></i> Show Logs</a></li>
+                                    class="fa fa-circle-o"></i> Show Logs</a></li>
                     </ul>
                 </li>
             <?php endif; ?>
@@ -145,20 +145,25 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <?php if(strtolower($_SESSION['UserRoleName'])!="organization"):?>
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
-                                    class="fa fa-circle-o"></i> Register New Case</a></li>
-                    <li>
+                                class="fa fa-circle-o"></i> Register New Case</a></li>
+                          <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/firshow") ?>"><i
+                                class="fa fa-circle-o"></i> Register FIR</a></li>      
+                    <?php endif; ?>
+                                <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
-                                    class="fa fa-circle-o"></i> Show all Cases</a></li>
-                  <li>
+                                class="fa fa-circle-o"></i> Show all Cases</a></li>
+                    <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alloffenders") ?>"><i
-                                    class="fa fa-circle-o"></i> Show all Offenders</a></li>
+                                class="fa fa-circle-o"></i> Show all Offenders</a></li>
                 </ul>
             </li>
 
             <li>
-                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/email/show") ?>">
+                <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/messages/show") ?>">
                     <i class="fa fa-medium"></i> <span>Messages</span>
                     <span class="pull-right-container">
                     </span>
@@ -172,9 +177,9 @@
             <li class="header">Change Language</li>
             <li>
                 <?php if (!$this->session->userdata('site_lang') == 'english'): ?>
-                <a href="#">
+                    <a href="#">
                     <?php else: ?>
-                    <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/english") ?>">
+                        <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/english") ?>">
                         <?php endif; ?>
                         <i class="fa fa-language"></i> <span>English</span>
                         <span class="pull-right-container"></span>
@@ -185,9 +190,9 @@
             </li>
             <li>
                 <?php if ($this->session->userdata('site_lang') == 'marathi'): ?>
-                <a href="#">
+                    <a href="#">
                     <?php else: ?>
-                    <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/marathi") ?>">
+                        <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/marathi") ?>">
                         <?php endif; ?>
                         <i class="fa fa-language"></i> <span> मराठी - (Marathi)</span>
                         <span class="pull-right-container"></span>
@@ -198,9 +203,9 @@
             </li>
             <li>
                 <?php if ($this->session->userdata('site_lang') == 'hindi'): ?>
-                <a href="#">
+                    <a href="#">
                     <?php else: ?>
-                    <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/hindi") ?>">
+                        <a href="<?= base_url("index.php/LanguageSwitcher/switchLang/hindi") ?>">
                         <?php endif; ?>
                         <i class="fa fa-language"></i> <span> हिंदी - (Hindi) </span>
                         <span class="pull-right-container"></span>
