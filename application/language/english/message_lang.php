@@ -146,4 +146,7 @@ $lang['mobile_number'] = 'Mobile Number';
 
 $lang['to'] = 'To:';
 
+$lang['act'] = 'Offence Act';
+$lang['compensation'] = 'Compensation';
+
  

@@ -327,9 +327,15 @@ class MY_Controller extends CI_Controller {
 
     /* Function for saving Cases in Database Ends here */
 
-    public function CaseHistoryShow($id) {
+    public function CaseHistoryVictimShow($id) {
         $condition = array("cases.caseid" => $id);
-        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,victimdistrict as districtname,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription,casestatus as CaseStatus";
+        $select = "offname as OffenceName, offcompensation as Compensation,caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState,casedescription as CaseDescription,casestatus as CaseStatus";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
+    }
+
+    public function CaseHistoryOffenderShow($id) {
+        $condition = array("cases.caseid"=>$id);
+        $select = "offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,cityname as OffenderCity,districtname as OffenderDistrict,statename as OffenderState";
 
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
@@ -540,7 +546,9 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "casehistory";
-                $casedatabase = $this->CaseHistoryShow($id);
+                $casevictimdatabase = $this->CaseHistoryVictimShow($id);
+                $caseoffenderdatabase = $this->CaseHistoryOffenderShow($id);
+
                 $casecomments = $this->CaseHistoryComments($id);
                 break;
 
@@ -597,8 +605,8 @@ class MY_Controller extends CI_Controller {
             case "users":
                 $Condition = array();
                 $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1', 'city');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1', 'city');
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1','cityname');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1','cityname');
                 $OrderBy = array('user_id' => 'desc');
                 break;
             default:
@@ -606,7 +614,7 @@ class MY_Controller extends CI_Controller {
                 break;
         }
 
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $UserNotice) {
@@ -616,9 +624,9 @@ class MY_Controller extends CI_Controller {
             $row[] = $UserNotice->username;
             $row[] = $UserNotice->mobilenumber;
             $row[] = $UserNotice->address1;
-            $row[] = $UserNotice->city;
+            $row[] = $UserNotice->cityname;
             //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+//            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/allusers' . $UserNotice->userid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
         }
 

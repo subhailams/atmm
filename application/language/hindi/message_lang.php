@@ -161,3 +161,6 @@ $lang['all_users'] = 'सभी उपयोगकर्ताओं';
 $lang['mobile_number'] = 'मोबाइल नंबर';
 
  /* bread crumb ends here */
+
+$lang['act'] = 'अपराध अधिनियम';
+$lang['compensation'] = 'नुकसान भरपाई';

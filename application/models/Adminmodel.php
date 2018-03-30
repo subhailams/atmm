@@ -84,7 +84,8 @@ class Adminmodel extends CI_Model {
         switch ($TableName) {
             case "users":
                 $JoinTable = array(
-                    "roles" => "roles.roleid=users.role"
+                "roles" => "roles.roleid=users.role",
+                "cities" => "cities.cityid=users.city",
                 );
                 break;
             case "cases":
