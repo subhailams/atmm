@@ -9,66 +9,11 @@
             <li class="active"></li>
         </ol>
     </section>
-
     <section class="content">
         <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="box-header">
-                            <h3 class="box-title"><?= $this->lang->line('victim_details') ?></h3>
-                        </div>
-
-                        <table id="showallNotices" class="table table-bordered table-striped dataTable" role="grid"
-                               aria-describedby="example1_info">
-                            <tbody>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('name') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimName'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('gender') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimGender'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px">
-                                        <b><?= $this->lang->line('mobile_number') ?></b></td>
-                                    <td width="50%"
-                                        style="line-height: 10px"> <?= $casevictimdatabase['VictimMobile'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('victimdob') ?></b>
-                                    </td>
-
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimDob'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('email_id') ?></b>
-                                    </td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimEmail'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px">
-                                        <b><?= $this->lang->line('victim_address') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimAddress'] ?></td>
-                                </tr>
-
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimState'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('district') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimDistrict'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casevictimdatabase['VictimCity'] ?></td>
-                                </tr>
-
-                        </table>
-                    </div>
                     </centre>
                     <div class="col-sm-6">
                         <div class="box-header">

@@ -155,3 +155,5 @@ $lang['mobile_number'] = 'मोबाइल नंबर';
 
  /* bread crumbs ends here */
 $lang['to'] = 'ते:';
+$lang['act'] = 'गुन्हा कायदा';
+$lang['compensation'] = 'भरपाई';
