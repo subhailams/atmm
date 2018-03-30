@@ -326,7 +326,7 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryShow($id) {
         $condition = array("cases.caseid" => $id);
-        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,victimdistrict as districtname,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,victimcity as VictimCity,offenderdistrict as OffenderDistrict,offenderstate as OffenderState,casedescription as CaseDescription ";
+        $select = "caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState, offendername as OffenderName , offenderaddress as OffenderAddress , gender_name as OffenderGender,cityname as OffenderCity,districtname as OffenderDistrict,statename as OffenderState,casedescription as CaseDescription ";
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
 
@@ -846,7 +846,8 @@ class MY_Controller extends CI_Controller {
         $select = "msgto as Msgto , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
-     public function EmailSent() {
+
+    public function EmailSent() {
         $condition = array("msgfrom" => $_SESSION['UserId'],);
         $select = "msgfrom as Msgfrom , msgdetails as Emaildetails";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");

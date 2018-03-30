@@ -94,11 +94,11 @@
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('city') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderCity'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('state') ?></b></td>
-                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['Time'] ?></td>
+                                    <td width="50%" style="line-height: 10px"> <?= $casedatabase['OffenderState'] ?></td>
                                 </tr>
                                 <tr>
                                     <td width="50%" style="line-height: 10px"><b><?= $this->lang->line('fir_no') ?></b></td>
