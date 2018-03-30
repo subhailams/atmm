@@ -154,53 +154,54 @@
                         </div>
                     </div>
                     <br>
-  
-                    <br>
                     <div class="row">
-                        <div class='col-md-12'>
-                            <div class="box box-info">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Notifications</h3>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total Cases</span>
+                                    <span class="info-box-number"><?= $casecount ?></span>
                                 </div>
-                                <!-- /.box-header -->
-                                <!-- form start -->
-                                <!--                                <form class="form-group">-->
-                                <div class="box-body">
-                                    <div>
-                                        <p>Total Cases: <?= $casecount ?></p>
-                                    </div>
-                                    <div>
-                                        <p>Solved Cases: <?= $solvedcount ?></p>
-                                    </div>
-                                    <div>
-                                        <p>Pending Cases: <?= $pendingcount ?> </p>
-                                    </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Solved Cases</span>
+                                    <span class="info-box-number"><?= $solvedcount ?></span>
                                 </div>
-
-                                <!-- /.box-body -->
-
-                                <!-- /.box-footer -->
-                                <!--                                </form>-->
+                                <!-- /.info-box-content -->
                             </div>
+                            <!-- /.info-box -->
                         </div>
+                        <!-- /.col -->
 
+                        <!-- fix for small devices only -->
+                        <div class="clearfix visible-sm-block"></div>
 
-                                        <!-- /.box-footer -->
-                                </form>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-red"><i class="ion ion-ios-cart-outline"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Pending Cases</span>
+                                    <span class="info-box-number"><?= $pendingcount ?></span>
+                                </div>
+                                <!-- /.info-box-content -->
                             </div>
+                            <!-- /.info-box -->
                         </div>
-
-
+                        <!-- /.col -->
                     </div>
                 </div>
-     
-
-                <br>
-
-
-            
-
-
+            </div>
+        </div>
         <!-- /.content -->
     </div>
     <!-- /.container -->
