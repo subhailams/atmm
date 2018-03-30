@@ -469,9 +469,10 @@ class MY_Controller extends CI_Controller {
             case "alloffences";
                 $render = "offender_offences";
                 $OffenderDetails = $this->OffenderDetail($id);
-                echo "<pre>";
-                print_r(get_defined_vars());
-                exit();
+                  $OffenderCaseDetails = $this->OffenderCaseDetail($id);
+//                echo "<pre>";
+//                print_r(get_defined_vars());
+//                exit();
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -487,10 +488,15 @@ class MY_Controller extends CI_Controller {
 
     private function OffenderDetail($id) {
         $condition = array("cases.offenderid" => $id);
-        $select = "offendername as OffenderName,offendermobile as OffenderMobile,case_status_name as CaseStatus";
-        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", true, "", "", "", "", "");
+        $select = "offendername as OffenderName,offendermobile as OffenderMobile,case_status_name as CaseStatus ";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "", true, "", "", "", "", "");
     }
-
+         
+    private function OffenderCaseDetail($id) {
+        $condition = array("cases.offenderid" => $id);
+        $select = "offname as OffenceName,offencedate as OffenceDate,case_status_name as CaseStatus,cases.caseid as CaseId";
+        return $this->Adminmodel->CSearch($condition, $select, "case", "Y", true, "", "", "", "", "");
+    }   
     /* Function for fetching  allusers file from  views starts here */
 
     public function user($options = null) {
@@ -742,44 +748,44 @@ class MY_Controller extends CI_Controller {
 
     /* Ajax Function for fetching offenders ends here */
 
-    public function offences_ajax_list($options = null) {
-        switch (strtolower($options)) {
-
-            case "offender_offences":
-                $Condition = array();
-                $TableListname = "case";
-                $ColumnOrder = array('offenece', 'offdate');
-                $ColumnSearch = array('offdate');
-                $OrderBy = array('offenderid' => 'desc');
-                break;
-            default:
-                $Condition = array();
-                break;
-        }
-
-        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
-        $data = array();
-        $no = $_POST['start'];
-        foreach ($list as $logNotice) {
-            $no++;
-            $row = array();
-            $row[] = $logNotice->offenece;
-            $row[] = $logNotice->offdate;
-
-            //add html for action
-            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
-            "data" => $data,
-        );
-        //output to json format
-        echo json_encode($output);
-    }
+//    public function offences_ajax_list($options = null) {
+//        switch (strtolower($options)) {
+//
+//            case "offender_offences":
+//                $Condition = array();
+//                $TableListname = "case";
+//                $ColumnOrder = array('offenece', 'offdate');
+//                $ColumnSearch = array('offdate');
+//                $OrderBy = array('offenderid' => 'desc');
+//                break;
+//            default:
+//                $Condition = array();
+//                break;
+//        }
+//
+//        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
+//        $data = array();
+//        $no = $_POST['start'];
+//        foreach ($list as $logNotice) {
+//            $no++;
+//            $row = array();
+//            $row[] = $logNotice->offenece;
+//            $row[] = $logNotice->offdate;
+//
+//            //add html for action
+//            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/casehistory/show/' . $logNotice->caseid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+//            $data[] = $row;
+//        }
+//
+//        $output = array(
+//            "draw" => $_POST['draw'],
+//            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+//            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
+//            "data" => $data,
+//        );
+//        //output to json format
+//        echo json_encode($output);
+//    }
 
     public function loginsave() {
         $postData = $this->input->post();

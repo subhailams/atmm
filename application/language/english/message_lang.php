@@ -53,7 +53,7 @@ $lang['actions']='Actions';
 $lang['all_cases']='All Cases';
 $lang['offencename']='Offence Name';
 $lang['alloffenders']='All Offenders';
-
+$lang['offendermobile']='Offender Mobile';
 $lang['male']='Male';
 $lang['female']='Female';
 $lang['others']='Others';
