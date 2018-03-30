@@ -18,7 +18,7 @@ class Organization extends MY_Controller {
                 $this->Inti(__CLASS__);
             }
         endif;
-        $userNameCnd = array("stp_username" => $this->session->userdata("UserName"));
+        $userNameCnd = array("username" => $this->session->userdata("UserName"));
         $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
         $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
         $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));

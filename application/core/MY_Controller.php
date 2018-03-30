@@ -313,9 +313,6 @@ class MY_Controller extends CI_Controller {
                 "casestatus" => "1"
             );
             $response1 = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
-//            echo "<pre>";
-//                     print_r(get_defined_vars());
-//                    exit();
             if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
@@ -345,6 +342,61 @@ class MY_Controller extends CI_Controller {
         return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", "", "", "", "", "", "");
     }
 
+    /* Maps Ajax Cases list statrs from here */
+
+    public function map_ajax_list($options = "", $id = "") {
+        switch (strtolower($options)) {
+            case "cases":
+                $Condition = array("casestatus" => '1', "victimdistrict" => $id);
+                $TableListname = "case";
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            case "solvedcases":
+                $Condition = array("casestatus" => '2', "victimdistrict" => $id);
+                $TableListname = "case";
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            case "pendingcases":
+                $Condition = array("casestatus" => '3', "victimdistrict" => $id);
+                $TableListname = "case";
+                $ColumnOrder = array('fir_no', 'victimname', 'victimmobile', 'casestatus');
+                $ColumnSearch = array('fir_no', 'victimname', 'victimmobile');
+                $OrderBy = array('caseid' => 'desc');
+                break;
+            default:
+                $Condition = array();
+                break;
+        }
+
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $logNotice) {
+            $no++;
+            $row = array();
+            $row[] = $logNotice->fir_no;
+            $row[] = $logNotice->victimname;
+            $row[] = $logNotice->victimmobile;
+            //add html for action
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, "N"),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+
+    /* Maps Ajax Cases list ends from here */
+
     /* Function for saving Case History in Database Starts here */
 
     public function CaseHistorySave() {
@@ -371,8 +423,6 @@ class MY_Controller extends CI_Controller {
     }
 
     /* Function for saving Case History in Database Ends here */
-
-
 
     /* Function for fetching cases files from  views starts here */
 
@@ -475,9 +525,9 @@ class MY_Controller extends CI_Controller {
 
     /* Function for fetching  casehistory file from  views ends here */
 
-    /* Function for fetching  email files from  views starts here */
+    /* Function for fetching  Messages files from  views starts here */
 
-    public function email($options = null) {
+    public function messages($options = null) {
         $render = "";
         switch (strtolower($options)) {
             case "show";
