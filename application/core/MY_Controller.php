@@ -257,12 +257,8 @@ class MY_Controller extends CI_Controller {
     /* Form Validation Ends Here */
 
     /* Function for saving Cases in Database Starts here */
-
     public function CaseRegisterSave() {
         $postData = $this->input->post();
-//        echo "<pre>";
-//                     print_r(get_defined_vars());
-//                    exit();
         if ($this->form_validation("cases")):
             //verify offender in offender master
             $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
@@ -288,9 +284,6 @@ class MY_Controller extends CI_Controller {
             $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offenderid as OffenderId";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
-//                               echo "<pre>";
-//                     print_r($response);
-//                    exit();
             $condition = array("caseid" => "");
 
             $DBData = array(
@@ -338,7 +331,7 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryComments($id) {
         $condition = array("caseid" => $id);
-        $select = "casehistorydesc as CaseHistoryDesc";
+        $select = "casehistorydesc as CaseHistoryDesc,createdat as CreatedOn,createdby as CreatedBy";
         return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", "", "", "", "", "", "");
     }
 
@@ -398,19 +391,18 @@ class MY_Controller extends CI_Controller {
     /* Maps Ajax Cases list ends from here */
 
     /* Function for saving Case History in Database Starts here */
-
     public function CaseHistorySave() {
         $postData = $this->input->post();
         if ($this->form_validation("casehistory")):
             $condition = array("casehistoryid" => "");
             $DBData = array("casehistorydesc" => $postData['casehistory'],
                 "userid" => $_SESSION['UserId'], "caseid" => $postData['caseid']);
-            $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
+
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "casehis");
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/commentupdate", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Comment Updated";
-                $this->SendEmail(trim($postData['rukhmanivenkatesan@gmail.com']), $Message, "N", $Subject, "");
+                //$this->SendEmail(trim(]), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Comment updated successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -425,7 +417,6 @@ class MY_Controller extends CI_Controller {
     /* Function for saving Case History in Database Ends here */
 
     /* Function for fetching cases files from  views starts here */
-
     public function cases($options = null, $id = "") {
         $render = "";
         switch (strtolower($options)) {
@@ -775,9 +766,6 @@ class MY_Controller extends CI_Controller {
     public function EmailSave() {
         $postData = $this->input->post();
         if ($this->form_validation("email")):
-//             echo "<pre>";
-//        print_r(get_defined_vars());
-//        exit();
 
             $condition = array("email" => $postData['emailto']);
             $select = "email as Email , user_id as EmailTo";
@@ -810,29 +798,6 @@ class MY_Controller extends CI_Controller {
         $this->render("showallusers", get_defined_vars());
     }
 
-//    public function users($options = null, $id = "") {
-//        $render = "";
-//        switch (strtolower($options)) {
-//            case "importantcontacts" :
-//                $render = "importantcontacts";
-//                break;
-//            case "offencesandpunishments":
-//                $render = "offencesandpunishments";
-//                break;
-//            case "changepassword":
-//                $render = "changepassword";
-//                break;
-//            case "updateprofile":
-//                $userdatabase = $this->profileshow($id);
-//                $render = "updateprofile";
-//                break;
-//            default:
-//
-//                break;
-//        }
-//
-//        $this->render($render, get_defined_vars());
-//    }
             
      public function updateprofile() {
         $render = "";

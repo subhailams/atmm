@@ -18,9 +18,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title"><?= $this->lang->line('registeration_form') ?></h3>
                     </div>
-
                     <!-- /.box-header -->
-                    <!-- form start -->"<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseRegisterSave") ?> ">
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseRegisterSave") ?> ">
                         <div class="box-body">
                             <div class="row">
