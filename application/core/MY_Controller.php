@@ -327,7 +327,7 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryVictimShow($id) {
         $condition = array("cases.caseid" => $id);
-        $select = "offname as OffenceName, offcompensation as Compensation,caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState,casedescription as CaseDescription,casestatus as CaseStatus";
+        $select = "offname as OffenceName, offcompensation as Compensation,caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState,casedescription as CaseDescription,casestatus as CaseStatus,case_status_name as CaseStatusName";
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
 
@@ -341,7 +341,7 @@ class MY_Controller extends CI_Controller {
     public function CaseHistoryComments($id) {
         $condition = array("casehistory.caseid" => $id);
         $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,users.name as CreatedBy,users.imageurl as ImageURL,rolename as RoleName,casehistory.imageurl as Attachment";
-        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true,"","","","","","casehistoryid");
+        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true, "", "", "", "", "", "casehistoryid");
     }
 
     /* Maps Ajax Cases list statrs from here */
@@ -578,6 +578,7 @@ class MY_Controller extends CI_Controller {
                 $casevictimdatabase = $this->CaseHistoryVictimShow($id);
                 $caseoffenderdatabase = $this->CaseHistoryOffenderShow($id);
                 $casecomments = $this->CaseHistoryComments($id);
+
                 break;
 
             default:
@@ -1067,7 +1068,7 @@ class MY_Controller extends CI_Controller {
         $condition = array("user_id" => $id);
         $select = "imageurl as ImageURL";
         $url = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-        if ($url == null):
+        if ($url != null):
             return $url['ImageURL'];
         else:
             return 'user2-160x160.jpg';
@@ -1075,4 +1076,21 @@ class MY_Controller extends CI_Controller {
     }
 
     /* function to show profile Image ends here */
+
+    /* Case Status Save Starts Here */
+
+    public function CaseStatusSave() {
+        $postData = $this->input->post();
+        $condition = array("caseid" => $postData['caseid']);
+        $DBData = array(
+            "casestatus" => $postData['casestatus']);
+        $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
+        if (!empty($response)):
+            $this->session->set_flashdata('ME_SUCCESS', 'Case Status Changed Successfully');
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Recheck');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
 }

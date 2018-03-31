@@ -1,6 +1,6 @@
 <div class="content-wrapper"> 
     <section class="content-header">
-        <h1>Mail box</h1>
+        <h1><?= $this->lang->line('mail_box')?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
@@ -8,33 +8,12 @@
         </ol>
     </section>
 
-<<<<<<< HEAD
     <section class="content">
         <div class="row">
             <div class="col-md-9">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Compose New Message</h3>
-=======
- <section class="content">
-   <div class="row">
-     <div class="col-md-9">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title"><?= $this->lang->line('compose_new_message')?></h3>
-            </div>
-            <!-- /.box-header -->
-            <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/EmailSave") ?> ">
-
-                <div class="box-body">
-                    <div class="form-group">
-
-                        <input class="form-control" placeholder="To:" name="emailto">
-                    </div>
-                    <div class="form-group">
-
-                        <input class="form-control" placeholder="Subject:" name="subject">
->>>>>>> 1dfb0f61c5445bab12e85dc903208f93bc9864ec
                     </div>
                     <!-- /.box-header -->
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/EmailSave") ?> ">
@@ -127,7 +106,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="btn btn-default btn-file">
-                                    <i class="fa fa-paperclip"></i> Attachment
+                                    <i class="fa fa-paperclip"></i>  <?= $this->lang->line('attachment') ?>
                                     <input type="file" name="attachment">
                                 </div>
                             </div>
