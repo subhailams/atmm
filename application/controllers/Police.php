@@ -36,5 +36,64 @@ class Police extends MY_Controller {
         $pendingcase = $this->PendingCaseShow();
         $this->render("dashboard", get_defined_vars());
     }
+ 
+    public function complaint($options = null,$id=null) {
+        $render = "";
+        switch (strtolower($options)) {
+            case "allcomplaints";
+                $render = "viewallcomplaints";
+                 break;
+            case "action";
+                $render = "complaintaction";
+                 break;
+            default:
+                
+                break;
+        }
+        $this->render($render, get_defined_vars());
+    }
+     public function complaints_ajax_list($options = null) {
+        switch (strtolower($options)) {
+            case "complaints":
+                $Condition = array();
+                $TableListname = "comp";
+                $ColumnOrder = array('name', 'city', 'mobilenumber','comp_comments');
+                $ColumnSearch = array('name', 'city');
+                $OrderBy = array('complaintsid' => 'desc');
+                break;
+            
+            default:
+                $Condition = array();
+                break;
+        }
+
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $logNotice) {
+            $no++;
+            $row = array();
+            $row[] = $logNotice->name;
+            $row[] = $logNotice->city;
+            $row[] = $logNotice->mobilenumber;
+            $row[] = $logNotice->comp_comments;
+           
+            //add html for action
+            $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/complaint/action/' . $logNotice->complaintsid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
+            
+    
+    
 
 }
