@@ -1,8 +1,9 @@
 <?php
-/*marathi language*/
+
+/* marathi language */
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'सबमिट करा';
-$lang['login']= 'लॉगइन';
+$lang['login'] = 'लॉगइन';
 $lang['signup'] = 'साइनअप';
 $lang['select'] = 'निवडा';
 $lang['name'] = 'नाव';
@@ -28,7 +29,7 @@ $lang['confirmation_password'] = 'पुष्टीकरण बदला';
 $lang['register'] = 'नोंदणी करा';
 $lang['update_profile'] = 'प्रोफाइल अद्यतनित करा';
 $lang['personal_information'] = 'वैयक्तिक माहिती';
-$lang['all_users']='सर्व वापरकर्ते';
+$lang['all_users'] = 'सर्व वापरकर्ते';
 /* Log Managment Starts Here */
 $lang['log_mgnt'] = 'लॉग व्यवस्थापन';
 $lang['more_info'] = 'और जानकारी';
@@ -36,59 +37,59 @@ $lang['notice'] = 'सूचना';
 /* Log Managment Ends Here */
 
 
-/* case management form*/
-$lang['cases']='प्रकरणे';
-$lang['new_cases']='नवीन प्रकरण';
-$lang['pending_cases']='प्रलंबित प्रकरणे';
-$lang['solved_cases']='निराकरण प्रकरणी';
+/* case management form */
+$lang['cases'] = 'प्रकरणे';
+$lang['new_cases'] = 'नवीन प्रकरण';
+$lang['pending_cases'] = 'प्रलंबित प्रकरणे';
+$lang['solved_cases'] = 'निराकरण प्रकरणी';
 $lang['address'] = 'पत्ता ';
 $lang['registration_form'] = 'नोंदणी पत्रक';
 $lang['case_details'] = 'केस तपशील';
 $lang['if_others'] = 'इतरांना तर';
-$lang['case_description'] ='केस विवरण';
-$lang['victim_details']='बळी तपशील';
-$lang['case_management']='विषयव्यवस्थापन';
-$lang['offender_details']='अपराधी तपशील';
+$lang['case_description'] = 'केस विवरण';
+$lang['victim_details'] = 'बळी तपशील';
+$lang['case_management'] = 'विषयव्यवस्थापन';
+$lang['offender_details'] = 'अपराधी तपशील';
 $lang['offender_address'] = 'पत्ता';
-$lang['victim_address']='पत्ता';
-$lang['gender']='लिंग';
-$lang['offence_date']='गुन्हा तारीख';
-$lang['victim_name']='बळी चे नाव';
-$lang['offender_name']='अपराधाचे नाव';
-$lang['age']='वय';
-$lang['status']='स्थिती';
-$lang['actions']='क्रिया';
-$lang['all_cases']='सर्व प्रकरणांमध्ये';
-$lang['male']='नर';
-$lang['female']='महिला';
-$lang['others']='इतर';
-$lang['select_gender']='लिंग निवडा';
-$lang['victimdob']='जन्म तारीख';
-$lang['fir_no']='एफआयआर क्रमांक';
-$lang['all_solvedcases']='सर्व निराकरण प्रकरणी';
- $lang['all_pendingcases']='सर्व प्रलंबित प्रकरण';     
- $lang['offencename']='गुन्हा नाव';
-$lang['alloffenders']='सर्व गुन्हेगार';
-$lang['district']='जिल्हा';
-$lang['show']='शो';
-$lang['entries']='नोंदी';
-$lang['search']='शोध';
+$lang['victim_address'] = 'पत्ता';
+$lang['gender'] = 'लिंग';
+$lang['offence_date'] = 'गुन्हा तारीख';
+$lang['victim_name'] = 'बळी चे नाव';
+$lang['offender_name'] = 'अपराधाचे नाव';
+$lang['age'] = 'वय';
+$lang['status'] = 'स्थिती';
+$lang['actions'] = 'क्रिया';
+$lang['all_cases'] = 'सर्व प्रकरणांमध्ये';
+$lang['male'] = 'नर';
+$lang['female'] = 'महिला';
+$lang['others'] = 'इतर';
+$lang['select_gender'] = 'लिंग निवडा';
+$lang['victimdob'] = 'जन्म तारीख';
+$lang['fir_no'] = 'एफआयआर क्रमांक';
+$lang['all_solvedcases'] = 'सर्व निराकरण प्रकरणी';
+$lang['all_pendingcases'] = 'सर्व प्रलंबित प्रकरण';
+$lang['offencename'] = 'गुन्हा नाव';
+$lang['alloffenders'] = 'सर्व गुन्हेगार';
+$lang['district'] = 'जिल्हा';
+$lang['show'] = 'शो';
+$lang['entries'] = 'नोंदी';
+$lang['search'] = 'शोध';
 $lang['postcomplaints'] = 'पोस्ट तक्रार';
 $lang['complainthere'] = 'येथे तक्रार';
 $lang['postyourcomplaintshere'] = 'येथे आपल्या तक्रारी पोस्ट करा';
-       
+
 /* case managment Ends Here */
 
 /* case history starts here */
- $lang['post']='पोस्ट';
- $lang['casehistory']='प्रकरण इतिहास';
- $lang['postedcomments']='टिप्पण्या';
- $lang['commenthere']='येथे टिप्पणी';
- $lang['typeyourcommenthere']='येथे आपली टिप्पणी टाइप करा';
- 
- /* case history ends here */
- 
- /* Dashboard Starts Here */
+$lang['post'] = 'पोस्ट';
+$lang['casehistory'] = 'प्रकरण इतिहास';
+$lang['postedcomments'] = 'टिप्पण्या';
+$lang['commenthere'] = 'येथे टिप्पणी';
+$lang['typeyourcommenthere'] = 'येथे आपली टिप्पणी टाइप करा';
+
+/* case history ends here */
+
+/* Dashboard Starts Here */
 $lang['dashboard'] = 'डॅशबोर्ड';
 $lang['control_panel'] = 'नियंत्रण पॅनेल';
 $lang['total_users'] = 'एकूण वापरकर्ते';
@@ -98,9 +99,9 @@ $lang['pending_cases'] = 'प्रलंबित प्रकरणे';
 $lang['more_info'] = 'अधिक माहिती';
 $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';
 
-/*district ends here */
+/* district ends here */
 
-/*Fir Format starts here */
+/* Fir Format starts here */
 
 
 $lang['send_to_sjsa'] = 'सामाजिक न्याय आणि विशेष मदत पाठवा';
@@ -156,30 +157,36 @@ $lang['all_users'] = 'सर्व वापरकर्ते';
 $lang['mobile_number'] = 'मोबाइल नंबर';
 
 
- /* bread crumbs ends here */
+/* bread crumbs ends here */
 
 $lang['offender_offence'] = 'अपराधी गुन्हा';
 $lang['offencereport'] = 'गुन्हा अहवाल';
 $lang['act'] = 'गुन्हा कायदा';
 $lang['compensation'] = 'भरपाई';
 
-/*email*/
-  $lang['mail_box'] = 'मेल बॉक्स';
- $lang['compose'] = 'तयार ';
- $lang['folder'] = 'फोल्डर ';
- $lang['inbox'] = 'रचनारचना';
- $lang['sent'] = 'पाठविले';
- $lang['bold'] = 'ठळक';
- $lang['italic'] = 'तिर्यक';
- $lang['underline'] = 'सामान्य';
- $lang['normal_text'] = 'मजकूर संलग्नक';
- $lang['attachment'] = 'रेखांकन';
- $lang['compose_new_message'] ='नवीन संदेश तयार करा';
+/* email */
+$lang['mail_box'] = 'मेल बॉक्स';
+$lang['compose'] = 'तयार ';
+$lang['folder'] = 'फोल्डर ';
+$lang['inbox'] = 'रचनारचना';
+$lang['sent'] = 'पाठविले';
+$lang['bold'] = 'ठळक';
+$lang['italic'] = 'तिर्यक';
+$lang['underline'] = 'सामान्य';
+$lang['normal_text'] = 'मजकूर संलग्नक';
+$lang['attachment'] = 'रेखांकन';
+$lang['compose_new_message'] = 'नवीन संदेश तयार करा';
 
- /*complaints*/
- $lang['complaint_action'] = 'तक्रार कारवाई';
+/* complaints */
+$lang['complaint_action'] = 'तक्रार कारवाई';
 $lang['police_details'] = 'पोलिस विवरण';
 $lang['comments'] = 'टिप्पण्या';
- $lang['complaint']='तक्रार';
- $lang['view_all_complaints'] = 'सर्व तक्रारी पहा';
+$lang['complaint'] = 'तक्रार';
+$lang['view_all_complaints'] = 'सर्व तक्रारी पहा';
 $lang['ChoosePoliceStation'] = 'पोलीस स्टेशन निवडा';
+
+
+
+/* Offences and Punishement Language starts here*/
+$lang['off_one']="Putting any inedible or obnoxious substance [Section 3(1)(a) of the Act]";
+/* Offences and Punishement Language ends here*/

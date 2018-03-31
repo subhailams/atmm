@@ -87,7 +87,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title"><b><?= $this->lang->line('offencereport') ?></b></h3>
                     </div>
-                    <div align="center" class="divC"><img width="732" height="568" border="0"
+                    <div align="center" class="divC"><img class="img-responsive" width="732" height="568" border="0"
                                                           src="<?= $this->lang->line('map') ?>"
                                                           usemap="#Map" alt="Maharashtra Map">
                         <map name="Map" id="map">

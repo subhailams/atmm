@@ -9,8 +9,8 @@
 $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['submit'] = 'जमा करें';
 
-$lang['login']= 'लॉग इन';
-$lang['signup']= 'साइन अप करें';
+$lang['login'] = 'लॉग इन';
+$lang['signup'] = 'साइन अप करें';
 $lang['select'] = 'चुनना';
 $lang['name'] = 'नाम';
 $lang['address1'] = 'पता 1';
@@ -34,15 +34,15 @@ $lang['user_name'] = 'उपयोगकर्ता नाम';
 $lang['register'] = 'रजिस्टर';
 $lang['update_profile'] = 'प्रोफ़ाइल अपडेट करें';
 $lang['personal_information'] = 'व्यक्तिगत जानकारी';
-$lang['all_users']='सभी उपयोगकर्ताओं';
-$lang['cases']='मामलों';
-$lang['new_cases']='नए मामले';
-$lang['pending_cases']='लंबित मामलों';
-$lang['solved_cases']='हल मामलों';
+$lang['all_users'] = 'सभी उपयोगकर्ताओं';
+$lang['cases'] = 'मामलों';
+$lang['new_cases'] = 'नए मामले';
+$lang['pending_cases'] = 'लंबित मामलों';
+$lang['solved_cases'] = 'हल मामलों';
 
 /* case management form */
 $lang['address'] = 'पता';
-$lang['fir_no']='एफआईआर संख्या';
+$lang['fir_no'] = 'एफआईआर संख्या';
 $lang['registration_form'] = 'पंजीकरण फॉर्म';
 $lang['case_details'] = 'केस विवरण';
 $lang['if_others'] = 'अगर अन्य';
@@ -65,14 +65,14 @@ $lang['male'] = 'नर';
 $lang['female'] = 'महिला';
 $lang['others'] = 'अन्य लोग';
 $lang['select_gender'] = 'लिंग चुनें';
-$lang['all_solvedcases']='सभी हल मामलों';
-$lang['all_pendingcases']='सभी लंबित मामले';     
-$lang['offencename']='अपराध नाम';
-$lang['alloffenders']='सभी अपराधियों';
-$lang['district']='जिला';
-$lang['show']='प्रदर्शन';
-$lang['entries']='प्रविष्टियों';
-$lang['search']='खोज';
+$lang['all_solvedcases'] = 'सभी हल मामलों';
+$lang['all_pendingcases'] = 'सभी लंबित मामले';
+$lang['offencename'] = 'अपराध नाम';
+$lang['alloffenders'] = 'सभी अपराधियों';
+$lang['district'] = 'जिला';
+$lang['show'] = 'प्रदर्शन';
+$lang['entries'] = 'प्रविष्टियों';
+$lang['search'] = 'खोज';
 $lang['postcomplaints'] = 'पोस्ट शिकायतें';
 $lang['complainthere'] = 'शिकायत यहाँ';
 $lang['postyourcomplaintshere'] = 'अपनी शिकायत यहाँ पोस्ट करें';
@@ -108,7 +108,7 @@ $lang['map'] = 'https://www.maharashtra.gov.in:443/Images/mapMaharashtraM.jpg';
 
 /* dashboard ends here */
 
-/*Fir Format starts here */
+/* Fir Format starts here */
 
 
 $lang['fir_no'] = 'एफ आई आर संख्या';
@@ -163,7 +163,7 @@ $lang['users'] = 'उपयोगकर्ताओं';
 $lang['all_users'] = 'सभी उपयोगकर्ताओं';
 $lang['mobile_number'] = 'मोबाइल नंबर';
 
- /* bread crumb ends here */
+/* bread crumb ends here */
 
 
 $lang['offender_offence'] = 'अपराधी अपराध';
@@ -171,22 +171,30 @@ $lang['offencereport'] = 'अपराध रिपोर्ट';
 $lang['act'] = 'अपराध अधिनियम';
 $lang['compensation'] = 'नुकसान भरपाई';
 
-/* email*/
- $lang['mail_box'] = 'मेल बॉक्स';
- $lang['compose'] = 'रचना';
- $lang['folder'] = 'रचना';
- $lang['inbox'] = 'रचना';
- $lang['sent'] = 'रचना';
- $lang['bold'] = 'बोल्ड ';
- $lang['italic'] = 'इटैलिक ';
- $lang['underline'] = 'रेखांकित ';
- $lang['normal_text'] = 'सामान्य पाठ';
- $lang['attachment'] = 'अनुलग्नक';
- $lang['compose_new_message'] = 'नया संदेश लिखें';
- /*complaints*/
+/* email */
+$lang['mail_box'] = 'मेल बॉक्स';
+$lang['compose'] = 'रचना';
+$lang['folder'] = 'रचना';
+$lang['inbox'] = 'रचना';
+$lang['sent'] = 'रचना';
+$lang['bold'] = 'बोल्ड ';
+$lang['italic'] = 'इटैलिक ';
+$lang['underline'] = 'रेखांकित ';
+$lang['normal_text'] = 'सामान्य पाठ';
+$lang['attachment'] = 'अनुलग्नक';
+$lang['compose_new_message'] = 'नया संदेश लिखें';
+/* complaints */
 $lang['complaint_action'] = 'शिकायत की कार्रवाई';
 $lang['police_details'] = 'पुलिस का ब्योरा';
 $lang['comments'] = 'टिप्पणियां';
- $lang['complaint']='शिकायत';
- $lang['view_all_complaints'] = 'सभी शिकायतें देखें';
+$lang['complaint'] = 'शिकायत';
+$lang['view_all_complaints'] = 'सभी शिकायतें देखें';
 $lang['ChoosePoliceStation'] = 'पुलिस स्टेशन चुनें';
+
+
+
+
+
+/* Offences and Punishement Language starts here */
+$lang['off_one'] = "कोणत्याही अभक्ष्य किंवा खराब वस्तू [कायदा] कलम 3 (1) (अ) लावून देणे]";
+/* Offences and Punishement Language ends here*/
