@@ -40,7 +40,7 @@
                         <li class="user-header">
                             <?php
                             if ($profileurl == null):
-                                $profileurl = 'user2-160x160.jpg';
+                                $profileurl = 'user4-128x128.jpg';
                             endif;
                             ?>
                             <img src="<?= base_url("assets/img/" . $profileurl) ?>" class="img-circle"
@@ -137,7 +137,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <?php if (strtolower($_SESSION['UserRoleName']) != "organization"): ?>
+                    <?php if (strtolower($_SESSION['UserRoleName']) != "organization" && strtolower($_SESSION['UserRoleName']) != "user"): ?>
                         <li>
                             <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
                                     class="fa fa-circle-o"></i> Register New Case</a></li>      
@@ -145,9 +145,11 @@
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
                                 class="fa fa-circle-o"></i> Show all Cases</a></li>
-                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alloffenders") ?>"><i
-                                class="fa fa-circle-o"></i> Show all Offenders</a></li>
+                        <?php if (strtolower($_SESSION['UserRoleName']) != "user"): ?>
+                        <li>
+                            <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alloffenders") ?>"><i
+                                    class="fa fa-circle-o"></i> Show all Offenders</a></li>
+                        <?php endif; ?>
                 </ul>
             </li>
 

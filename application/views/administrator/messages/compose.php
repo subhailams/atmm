@@ -1,6 +1,10 @@
 <div class="content-wrapper"> 
     <section class="content-header">
+<<<<<<< HEAD
         <h1><?= $this->lang->line('mailbox') ?></h1>
+=======
+        <h1><?= $this->lang->line('mail_box')?></h1>
+>>>>>>> 572a3b285157f14025b0ddcdaed860d4e56d525a
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
@@ -96,9 +100,6 @@
                                         <div class="box-body pad">
 
 
-
-
-
                                             <textarea class="textarea" placeholder="Type your email here" name="emaildetail"
                                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
@@ -110,7 +111,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="btn btn-default btn-file">
-                                    <i class="fa fa-paperclip"></i> Attachment
+                                    <i class="fa fa-paperclip"></i>  <?= $this->lang->line('attachment') ?>
                                     <input type="file" name="attachment">
                                 </div>
                             </div>

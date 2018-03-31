@@ -143,9 +143,28 @@ $lang['all_offences'] = 'All Offences';
 $lang['users'] = 'Users';
 $lang['all_users'] = 'All Users';
 $lang['mobile_number'] = 'Mobile Number';
+$lang['offender_offence'] = 'Offender Offences';
+$lang['offencereport'] = 'Offence Report';
 
 $lang['to'] = 'To:';
-$lang['mailbox'] = 'Mail Box';
+
 $lang['subject'] = 'Subject:';
 $lang['compose_new_message'] = 'Compose New Message';
 $lang['type_your_email_here'] = 'Type your email here';
+
+
+$lang['act'] = 'Offence Act';
+$lang['compensation'] = 'Compensation';
+
+ $lang['mail_box'] = 'Mail Box';
+ $lang['compose'] = 'Compose';
+ $lang['folder'] = 'Folder';
+ $lang['inbox'] = 'Inbox';
+ $lang['sent'] = 'Sent';
+ $lang['bold'] = 'Bold';
+ $lang['italic'] = 'Italic';
+ $lang['underline'] = 'Underline';
+ $lang['normal_text'] = 'Normal Text';
+ $lang['attachment'] = 'Attachment';
+ 
+
