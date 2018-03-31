@@ -106,11 +106,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="btn btn-default btn-file">
-<<<<<<< HEAD
-                                    <i class="fa fa-paperclip"></i> Attachment
-=======
                                     <i class="fa fa-paperclip"></i>  <?= $this->lang->line('attachment') ?>
->>>>>>> 1dfb0f61c5445bab12e85dc903208f93bc9864ec
                                     <input type="file" name="attachment">
                                 </div>
                             </div>
