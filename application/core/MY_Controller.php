@@ -635,8 +635,8 @@ class MY_Controller extends CI_Controller {
             case "users":
                 $Condition = array();
                 $TableListname = "usr";
-                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1', 'cityname');
-                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1', 'cityname');
+                $ColumnOrder = array('name', 'username', 'mobilenumber', 'address1');
+                $ColumnSearch = array('name', 'username', 'mobilenumber', 'address1');
                 $OrderBy = array('user_id' => 'desc');
                 break;
             default:
@@ -663,7 +663,7 @@ class MY_Controller extends CI_Controller {
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
-            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, false),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, d),
             "data" => $data,
         );
         //output to json format
