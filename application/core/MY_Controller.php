@@ -181,7 +181,8 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'State', 'label' => 'State', 'rules' => ''),
                     array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
                     array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
-                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required'),
+                    array('field' => 'Image', 'label' => 'Image', 'rules' => '')
                 );
                 break;
             case "email":

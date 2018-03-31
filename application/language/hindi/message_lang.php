@@ -73,6 +73,9 @@ $lang['district']='जिला';
 $lang['show']='प्रदर्शन';
 $lang['entries']='प्रविष्टियों';
 $lang['search']='खोज';
+$lang['postcomplaints'] = 'पोस्ट शिकायतें';
+$lang['complainthere'] = 'शिकायत यहाँ';
+$lang['postyourcomplaintshere'] = 'अपनी शिकायत यहाँ पोस्ट करें';
 
 
 /* case managment Ends Here */
