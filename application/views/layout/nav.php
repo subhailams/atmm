@@ -4,7 +4,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>ATM</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Atrocity Tracking</b></span>
+        <span class="logo-lg"><b><?= $this->lang->line('atrocity_tracking') ?></b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -91,7 +91,7 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i>
-                    <span>User Management</span>
+                    <span><?= $this->lang->line('user_management') ?></span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -99,38 +99,30 @@
                 <ul class="treeview-menu">
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/updateprofile") ?>"><i
-                                class="fa fa-circle-o"></i> Update Profile</a></li>
+                                class="fa fa-circle-o"></i><?= $this->lang->line('update_profile') ?></a></li>
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
-                                class="fa fa-circle-o"></i> Change Password</a></li>
+                                class="fa fa-circle-o"></i><?= $this->lang->line('change_password') ?></a></li>
                     
                     
                     
 
 
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandcompensations") ?>"><i
-                                class="fa fa-circle-o"></i>Offences and Compensations</a></li>
+                                class="fa fa-circle-o"></i><?= $this->lang->line('offences_and_compensations') ?></a></li>
                                 <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/postcomplaints") ?>"><i
-                                class="fa fa-circle-o"></i>Post Complaints</a></li>
+                                class="fa fa-circle-o"></i><?= $this->lang->line('post_complaints') ?></a></li>
 
                 </ul>
             </li>
             <?php if (strtoupper($_SESSION['UserRoleName']) == "ADMINISTRATOR"): ?>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-black-tie"></i>
-                        <span>Role Management</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                </li>
+               
             <?php endif; ?>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-paper-plane"></i>
-                    <span>Case Management</span>
+                    <span><?= $this->lang->line('case_management') ?></span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -139,11 +131,11 @@
                     <?php if (strtolower($_SESSION['UserRoleName']) != "organization" && strtolower($_SESSION['UserRoleName']) != "user"): ?>
                         <li>
                             <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/newcase") ?>"><i
-                                    class="fa fa-circle-o"></i> Register New Case</a></li>      
+                                    class="fa fa-circle-o"></i> <?= $this->lang->line('register_new_case')?></a></li>      
                         <?php endif; ?>
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><i
-                                class="fa fa-circle-o"></i> Show all Cases</a></li>
+                                class="fa fa-circle-o"></i></<?= $this->lang->line('show_all_cases') ?></a></li>
                         <?php if (strtolower($_SESSION['UserRoleName']) != "user"): ?>
                         <li>
                             <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alloffenders") ?>"><i

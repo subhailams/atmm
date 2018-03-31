@@ -181,6 +181,23 @@ $lang['police_details'] = 'Police Details';
 $lang['comments'] = 'Comments';
 $lang['ChoosePoliceStation'] = 'Choose Police Station';
 
+/* navigator*/
+
+$lang['atrocity_tracking'] = 'Atrocity Tracking';
+$lang['dashboard'] = 'Dashboard';
+$lang['user_management'] = 'User Management';
+$lang['case_management'] = 'Case Management';
+$lang['logout'] = 'Logout';
+$lang['message'] = 'Message';
+$lang['update'] = 'Update';
+$lang['change_password'] = 'Change Password';
+$lang['update_profile'] = 'Update Profile';
+$lang['offences_and_compensations'] = 'Offences and Compensations';
+$lang['post_complaints'] = 'Post Complaints';
+$lang['show_all_cases'] = 'Show all Cases';
+$lang['register_new_case'] = 'Register New Case';
+$lang['show_all_offenders'] = 'Show all Offenders';
+$lang['show_all_user_complaints'] = 'Show all User Complaints';
 
 
 

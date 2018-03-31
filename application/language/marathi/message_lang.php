@@ -192,3 +192,20 @@ $lang['ChoosePoliceStation'] = 'पोलीस स्टेशन निवड�
 $lang['off_one']="Putting any inedible or obnoxious substance [Section 3(1)(a) of the Act]";
 /* Offences and Punishement Language ends here*/
 
+/* navigator */
+
+$lang['atrocity_tracking'] = 'अत्याचार ट्रॅकिंग';
+$lang['dashboard'] = 'डॅशबोर्ड';
+$lang['user_management'] = 'वापरकर्ता व्यवस्थापन';
+$lang['case_management'] = 'विषयव्यवस्थापन';
+$lang['logout'] = 'बाहेर पडणे';
+$lang['message'] = 'बाहेर पडणे';
+$lang['update'] = 'अद्यतन करा';
+$lang['change_password'] = 'पासवर्ड बदला';
+$lang['update_profile'] = 'प्रोफाइल अद्यतनित करा';
+$lang['offences_and_compensations'] = 'गुन्हे आणि नुकसानभरपाई';
+$lang['post_complaints'] = 'तक्रार करा';
+$lang['show_all_cases'] = 'सर्व प्रकरणं दाखवा';
+$lang['register_new_case'] = 'नवीन केस नोंदवा';
+$lang['show_all_offenders'] = 'सर्व अपराध्यांना दाखवा';
+$lang['show_all_user_complaints'] = 'सर्व वापरकर्ता तक्रारी दाखवा';
