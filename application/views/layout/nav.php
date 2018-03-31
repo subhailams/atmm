@@ -145,9 +145,9 @@
                             <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alloffenders") ?>"><i
                                     class="fa fa-circle-o"></i> Show all Offenders</a></li>
                         <?php endif; ?>
-                    <li>
+<!--                    <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/complaint/allcomplaints") ?>"><i
-                                class="fa fa-circle-o"></i> Show all User Complaints</a></li>
+                                class="fa fa-circle-o"></i> Show all User Complaints</a></li>-->
                         <?php if (strtolower($_SESSION['UserRoleName']) == "user"): ?>
                         <li>
                             <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/postcomplaints") ?>"><i

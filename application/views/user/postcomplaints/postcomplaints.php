@@ -1,8 +1,8 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content">
+<!--    <section class="content">
         <div class="box">
-            <!-- /.box-header -->
+             /.box-header 
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-12">
@@ -45,7 +45,7 @@
             ],
         });
     });
-</script>
+</script>-->
     <section class="content-header">
         <h1><?= $this->lang->line('postcomplaints') ?></h1>
 
