@@ -2,12 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Dashboard
-            <small>Control panel</small>
+            <?= $this->lang->line('dashboard') ?>
+            <small><?= $this->lang->line('control_panel') ?></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+            <li class="active"><?= $this->lang->line('dashboard') ?></li>
         </ol>
     </section>
 
@@ -21,7 +21,7 @@
                     <div class="inner">
                         <h3><?= $usercount ?></h3>
 
-                        <p>Total Users</p>
+                        <p><?= $this->lang->line('total_users') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -36,7 +36,7 @@
                     <div class="inner">
                         <h3><?= $casecount ?></h3>
 
-                        <p>Total Cases</p>
+                        <p><?= $this->lang->line('total_cases') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -50,7 +50,7 @@
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3><?= $solvedcount ?></h3>
-                        <p>Solved Cases</p>
+                        <p><?= $this->lang->line('solved_cases') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -65,7 +65,7 @@
                     <div class="inner">
                         <h3><?= $pendingcount ?></h3>
 
-                        <p>Pending Cases</p>
+                        <p><?= $this->lang->line('pending_cases') ?></p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
@@ -80,7 +80,7 @@
             <div class="col-md-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><b>Offence Report</b></h3>
+                        <h3 class="box-title"><b><?= $this->lang->line('offencereport') ?></b></h3>
                     </div>
                     <div align="center" class="divC"><img width="732" height="568" border="0"
                                                           src="<?= $this->lang->line('map') ?>"

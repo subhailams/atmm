@@ -5,7 +5,10 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
-            <li class="active"><?= $this->lang->line('all_offenders') ?></li>
+              <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/alloffenders") ?>"><i
+                        class="fa fa-dashboard"></i><?= $this->lang->line('alloffenders') ?></a></li>
+          
+            <li class="active"><?= $this->lang->line('offender_offence') ?></li>
         </ol>
     </section>
     <!-- Main content -->

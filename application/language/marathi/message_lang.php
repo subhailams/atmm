@@ -154,6 +154,21 @@ $lang['mobile_number'] = 'मोबाइल नंबर';
 
 
  /* bread crumbs ends here */
-$lang['to'] = 'ते:';
+
+$lang['offender_offence'] = 'अपराधी गुन्हा';
+$lang['offencereport'] = 'गुन्हा अहवाल';
 $lang['act'] = 'गुन्हा कायदा';
 $lang['compensation'] = 'भरपाई';
+
+/*email*/
+  $lang['mail_box'] = 'मेल बॉक्स';
+ $lang['compose'] = 'तयार ';
+ $lang['folder'] = 'फोल्डर ';
+ $lang['inbox'] = 'रचनारचना';
+ $lang['sent'] = 'पाठविले';
+ $lang['bold'] = 'ठळक';
+ $lang['italic'] = 'तिर्यक';
+ $lang['underline'] = 'सामान्य';
+ $lang['normal_text'] = 'मजकूर संलग्नक';
+ $lang['attachment'] = 'रेखांकन';
+ $lang['compose_new_message'] ='नवीन संदेश तयार करा';

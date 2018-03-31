@@ -3,9 +3,8 @@
     <section class="content-header">
         <h1><?= $this->lang->line('all_pendingcases') ?></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= base_url("dashboard.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
-             <li><a href="#"><?= $this->lang->line('cases') ?></a></li>
             <li class="active"><?= $this->lang->line('all_pending_cases') ?></li>
         </ol>
     </section>

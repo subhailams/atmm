@@ -45,7 +45,7 @@ class Adminmodel extends CI_Model {
         }
     }
 
-    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY) {
+    public function CSearch($Condition, $Select, $TableName, $SelectAll, $JoinRequired, $JoinType, $Distinct, $Omit, $LeftJoin, $GroupBY, $orderBy) {
         $JoinType = NULL;
         $_TableName = $this->TableList[$TableName];
         if (!empty($Select)) {
@@ -69,7 +69,10 @@ class Adminmodel extends CI_Model {
         if (!empty($GroupBY)) {
             $this->db->group_by($GroupBY);
         }
-        $this->db->order_by($this->SeqId[$TableName], "desc");
+        if (!empty($orderBy)) {
+            $this->db->order_by($orderBy, "desc");
+        }
+
         $Result = $this->db->get($TableName);
 
         if (empty($SelectAll)):
@@ -84,8 +87,9 @@ class Adminmodel extends CI_Model {
         switch ($TableName) {
             case "users":
                 $JoinTable = array(
-                "roles" => "roles.roleid=users.role",
-                "cities" => "cities.cityid=users.city",
+                    "roles" => "roles.roleid=users.role",
+                    "cities" => "cities.cityid=users.city",
+                    "states" => "states.stateid=users.state",
                 );
                 break;
             case "cases":
