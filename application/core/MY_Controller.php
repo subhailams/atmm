@@ -171,18 +171,18 @@ class MY_Controller extends CI_Controller {
                 break;
             case "profile":
                 $rules = array(
-                array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
-                array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
-                array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
-                array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
-                array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
-                array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
-                array('field' => 'State', 'label' => 'State', 'rules' => ''),
-                array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
-                array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
-                array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
-
+                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
+                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
+                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
+                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
+                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
+                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
+                    array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
+                    array('field' => 'State', 'label' => 'State', 'rules' => ''),
+                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
+                    array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
+                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required'),
+                    array('field' => 'Image', 'label' => 'Image', 'rules' => '')
                 );
                 break;
             case "email":
@@ -244,6 +244,17 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'occupation', 'label' => 'Occupation', 'rules' => ''),
                     array('field' => 'address', 'label' => 'Address', 'rules' => 'required'),
                     array('field' => 'suspectparticulars', 'label' => 'Suspect Particulars', 'rules' => 'required'),
+                );
+                break;
+            case "complaints":
+                $rules = array(
+                    array('field' => 'policeassigned', 'label' => 'Police Assigned to', 'rules' => 'required'),
+                    array('field' => 'policecomments', 'label' => 'Police Comments', 'rules' => 'required'),
+                );
+                break;
+            case "usercomplaint":
+                $rules = array(
+                    array('field' => 'comments', 'label' => 'User Complaint', 'rules' => 'required'),
                 );
                 break;
         }
@@ -312,7 +323,7 @@ class MY_Controller extends CI_Controller {
             if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                $this->SendEmail(trim('rvp.cse@rmkec.ac.in'), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -881,7 +892,6 @@ class MY_Controller extends CI_Controller {
         $render = "updateprofile";
         $this->render($render, get_defined_vars());
     }
-    
 
     public function offencesandpunishments() {
         $render = "";
@@ -1029,38 +1039,34 @@ class MY_Controller extends CI_Controller {
 
     public function UpdateProfileSave() {
         $postData = $this->input->post();
-       
+
         if ($this->form_validation("profile")):
-              
-        $Condition = array("user_id" => $_SESSION['UserId']);
-        $imagename = current($this->Adminmodel->CSearch($Condition, "imageurl as imagename", "usr", "", TRUE));
-         
-        if ($imagename == null):
-            $imageName = "profile_" . rand(1000, 99999999999) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-        else:
-            $imageName = $imagename;
-        endif;
-        if ($this->upload($imageName) == false):
-            $this->session->set_flashdata('ME_ERROR', 'File Upload Failed');
-        else:
-            $condition = array("user_id" => $_SESSION['UserId']);
-            $DBData = array(
-                "name" => $postData['Name'],
-                "username" => $postData['UserName'],
-                "address1" => $postData['Address1'],
-                "address2" => $postData['Address2'],
-                "city" => $postData['City'],
-                "state" => $postData['State'],
-                "country" => $postData['Country'],
-                "mobilenumber" => $postData['MobileNumber'],
-                "aadhar" => $postData['AadhaarNumber'],
-                "email" => $postData['EmailID'],
-                "imageurl" => $imageName
-                    );
-            
-            
-            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
-        endif;
+            $Condition = array("user_id" => $_SESSION['UserId']);
+            $imagename = current($this->Adminmodel->CSearch($Condition, "imageurl as imagename", "usr", "", TRUE));
+            if ($imagename == null):
+                $imageName = "profile_" . rand(1000, 99999999999) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            else:
+                $imageName = $imagename;
+            endif;
+            if ($this->upload($imageName) == false):
+                $this->session->set_flashdata('ME_ERROR', 'File Upload Failed');
+            else:
+                $condition = array("user_id" => $_SESSION['UserId']);
+                $DBData = array(
+                    "name" => $postData['Name'],
+                    "username" => $postData['UserName'],
+                    "address1" => $postData['Address1'],
+                    "address2" => $postData['Address2'],
+                    "city" => $postData['City'],
+                    "state" => $postData['State'],
+                    "country" => $postData['Country'],
+                    "mobilenumber" => $postData['MobileNumber'],
+                    "aadhar" => $postData['AadhaarNumber'],
+                    "email" => $postData['EmailID'],
+                    "imageurl" => $imageName
+                );
+                $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
+            endif;
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/userprofileupdate", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - Your profile has been updated.";
@@ -1102,6 +1108,27 @@ class MY_Controller extends CI_Controller {
             $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Recheck');
         endif;
         redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function ComplaintCommentsSave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("complaints")):
+            $condition = array("complaintsid" => $postData['id']);
+            $DBData = array(
+                "comp_assignedto" => $postData['policeassigned'],
+                "comp_police_comments" => $postData['policecomments'],
+                "isassignedto" => "Y"
+            );
+            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "comp");
+            if (!empty($response)):
+                $this->session->set_flashdata('ME_SUCCESS', 'Case Status Changed Successfully');
+            else:
+                $this->session->set_flashdata('ME_ERROR', 'Data not Savedsdsd. Kindly Recheck');
+            endif;
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
+        endif;
+        redirect('index.php/' . strtolower($this->router->fetch_class()) . '/complaint/allcomplaints');
     }
 
 }

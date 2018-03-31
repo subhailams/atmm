@@ -10,8 +10,8 @@ class Adminmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases", "off_mst" => "offender_master", "sts" => "states", "dist" => "district", "city" => "cities", "ca_st" => "case_status_master", "notf" => "notifications", "of_mst" => "offences_master", "pm" => "privatemessages", "fir" => "fir");
-        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offenderid", "states" => "stateid", "district" => "dist_id", "cities" => "cityid", "case_status_master" => "case_status_id", "notifications" => "noty_id", "offences_master" => "offid", "privatemessages" => "msgid", "fir" => "fir_id");
+        $this->TableList = array("log" => "logs", "rol" => "roles", "usr" => "users", "casehis" => "casehistory", "case" => "cases", "off_mst" => "offender_master", "sts" => "states", "dist" => "district", "city" => "cities", "ca_st" => "case_status_master", "notf" => "notifications", "of_mst" => "offences_master", "pm" => "privatemessages", "fir" => "fir", "comp" => "complaints");
+        $this->SeqID = array("logs" => "id", "roles" => "roleid", "users" => "user_id", "casehistory" => "casehistoryid", "cases" => "caseid", "offender_master" => "offenderid", "states" => "stateid", "district" => "dist_id", "cities" => "cityid", "case_status_master" => "case_status_id", "notifications" => "noty_id", "offences_master" => "offid", "privatemessages" => "msgid", "fir" => "fir_id", "complaints" => "complaintsid");
     }
 
     public function FetchData($Condition, $Select, $TableList, $SelectAll, $GroupBY, $OrderBY) {
@@ -123,6 +123,11 @@ class Adminmodel extends CI_Model {
                 $JoinTable = array(
                     "users" => "users.user_id=privatemessages.msgfrom",
                     "users" => "users.user_id=privatemessages.msgto",
+                );
+                break;
+            case "complaints":
+                $JoinTable = array(
+                    "users" => "users.user_id=complaints.comp_usr_ref",
                 );
                 break;
         }
