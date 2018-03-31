@@ -148,6 +148,11 @@ $lang['offencereport'] = 'Offence Report';
 
 $lang['to'] = 'To:';
 
+$lang['subject'] = 'Subject:';
+$lang['compose_new_message'] = 'Compose New Message';
+$lang['type_your_email_here'] = 'Type your email here';
+
+
 $lang['act'] = 'Offence Act';
 $lang['compensation'] = 'Compensation';
 
@@ -161,4 +166,5 @@ $lang['compensation'] = 'Compensation';
  $lang['underline'] = 'Underline';
  $lang['normal_text'] = 'Normal Text';
  $lang['attachment'] = 'Attachment';
- $lang['compose_new_message'] = 'Compose New Message';
+ 
+
