@@ -18,8 +18,29 @@ class User extends MY_Controller {
     public function index() {
         $this->render("dashboard", get_defined_vars());
     }
-     public function postcomplaints() {
+
+    public function postcomplaints() {
         $this->render("postcomplaints", get_defined_vars());
+    }
+
+    public function PostComplaintSave() {
+        $postData = $this->input->post();
+        if ($this->form_validation("usercomplaint")):
+            $condition = array("complaintsid" => "");
+            $DBData = array(
+                "comp_usr_ref" => $_SESSION['UserId'],
+                "comp_comments" => $postData['comments']
+            );
+            $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "comp");
+            if (!empty($response)):
+                $this->session->set_flashdata('ME_SUCCESS', 'Complaint Filed Successfully');
+            else:
+                $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
+            endif;
+        else:
+            $this->session->set_flashdata('ME_ERROR', "Form Validation Failed");
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function users_cases_ajax_list($options = null) {
@@ -103,6 +124,43 @@ class User extends MY_Controller {
             $this->session->set_flashdata('ME_FORM', "ERROR");
         endif;
         $this->load->view('homepage/dashboard');
+    }
+   public function posted_complaints_ajax_list($options = null) {
+        switch (strtolower($options)) {
+            case "postedcomplaints":
+                $Condition = array("complaintsid"=>"");
+                $TableListname = "comp";
+                $ColumnOrder = array('comp_comments');
+                $ColumnSearch = array('comp_comments');
+                $OrderBy = array('complaintsid' => 'desc');
+                break;
+
+            default:
+                $Condition = array();
+                break;
+        }
+
+        $list = $this->Adminmodel->get_datatables($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $logNotice) {
+            $no++;
+            $row = array();
+            $row[] = $logNotice->comp_comments;
+            
+            //add html for action
+           // $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/complaint/action/' . $logNotice->complaintsid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->Adminmodel->count_all($TableListname, $Condition),
+            "recordsFiltered" => $this->Adminmodel->count_filtered($TableListname, $Condition, $ColumnOrder, $ColumnSearch, $OrderBy, true),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
     }
 
 }

@@ -9,46 +9,53 @@
             <li class="active"><?= $this->lang->line('casehistory') ?></li>
         </ol>
     </section>
-    <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/ComplaintCommentsSave") ?> ">
-        <input type="hidden" name="id" value="<?= $id ?>"/>
-        <section class="content">
-            <div class="box">
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label><?= $this->lang->line('police_details') ?><span style="color: red ">*</span></label>
-                                <select class="form-control" id="police" name="policeassigned" placeholder="Choose Police Station" required="true">
-                                    <option>Choose  Police Station</option>
-                                    <?php foreach ($this->db->where(array("isactive" => "Y", "rolename" => "Police"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
-                                        <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
-                                    <?php } ?>                
-                                </select>
+    <?php if ($VerifyStatus['AssignedTo'] == 'N'): ?>
+        <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/ComplaintCommentsSave") ?> ">
+            <input type="hidden" name="id" value="<?= $id ?>"/>
+            <section class="content">
+                <div class="box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label><?= $this->lang->line('police_details') ?><span style="color: red ">*</span></label>
+                                    <select class="form-control" id="police" name="policeassigned" placeholder="Choose Police Station" required="true">
+                                        <option>Choose  Police Station</option>
+                                        <?php foreach ($this->db->where(array("isactive" => "Y", "rolename" => "Police"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
+                                            <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
+                                        <?php } ?>                
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label><?= $this->lang->line('comments') ?><span style="color: red ">*</span></label>
+                                    <textarea class="textarea"
+                                              placeholder="Type your comments here"
+                                              name="policecomments"
+                                              style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label><?= $this->lang->line('comments') ?><span style="color: red ">*</span></label>
-                                <textarea class="textarea"
-                                          placeholder="Type your comments here"
-                                          name="policecomments"
-                                          style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            </div>
-                        </div>
+
+                        <br>
+
                     </div>
-
-                    <br>
-
+                    <div class="box-footer">
+                        <center>  <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
+                            </div></center>
+                    </div>
                 </div>
-                <div class="box-footer">
-                    <center>  <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
-                        </div></center>
+            </section>
+        <?php else: ?>
+            <div class="error-page">
+
+                <div class="error-content">
+                    <h3><i class="fa fa-warning text-red"></i> Already Complaint Assgined</h3>
                 </div>
             </div>
-        </section>
-    </form>
-
+        <?php endif; ?>
 
 </div>

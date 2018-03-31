@@ -252,6 +252,11 @@ class MY_Controller extends CI_Controller {
                     array('field' => 'policecomments', 'label' => 'Police Comments', 'rules' => 'required'),
                 );
                 break;
+            case "usercomplaint":
+                $rules = array(
+                    array('field' => 'comments', 'label' => 'User Complaint', 'rules' => 'required'),
+                );
+                break;
         }
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() == FALSE):
@@ -1060,8 +1065,6 @@ class MY_Controller extends CI_Controller {
                     "email" => $postData['EmailID'],
                     "imageurl" => $imageName
                 );
-
-
                 $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
             endif;
             if (!empty($response)):
@@ -1114,6 +1117,7 @@ class MY_Controller extends CI_Controller {
             $DBData = array(
                 "comp_assignedto" => $postData['policeassigned'],
                 "comp_police_comments" => $postData['policecomments'],
+                "isassignedto" => "Y"
             );
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "comp");
             if (!empty($response)):
@@ -1124,7 +1128,7 @@ class MY_Controller extends CI_Controller {
         else:
             $this->session->set_flashdata('ME_ERROR', 'Form Validation Failed');
         endif;
-        redirect($_SERVER['HTTP_REFERER']);
+        redirect('index.php/' . strtolower($this->router->fetch_class()) . '/complaint/allcomplaints');
     }
 
 }

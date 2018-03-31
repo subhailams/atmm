@@ -22,7 +22,7 @@ class Police extends MY_Controller {
         $userNameCnd = array("username" => $this->session->userdata("UserName"));
         $this->user = current($this->Adminmodel->CSearch($userNameCnd, "username as UserName", "usr"));
         $this->userid = current($this->Adminmodel->CSearch($userNameCnd, "user_id as UserId", "usr"));
-        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));        
+        $this->userRole = current($this->Adminmodel->CSearch($userNameCnd, "role as UserRole", "usr", "", TRUE));
     }
 
     public function index() {
@@ -36,32 +36,39 @@ class Police extends MY_Controller {
         $pendingcase = $this->PendingCaseShow();
         $this->render("dashboard", get_defined_vars());
     }
- 
-    public function complaint($options = null,$id=null) {
+
+    public function complaint($options = null, $id = null) {
         $render = "";
         switch (strtolower($options)) {
             case "allcomplaints";
                 $render = "viewallcomplaints";
-                 break;
+                break;
             case "action";
                 $render = "complaintaction";
-                 break;
+                $VerifyStatus = $this->toVerifyAssigned($id);
+                break;
             default:
-                
                 break;
         }
         $this->render($render, get_defined_vars());
     }
-     public function complaints_ajax_list($options = null) {
+
+    protected function toVerifyAssigned($id) {
+        $condition = array("complaintsid" => $id);
+        $select = "isassignedto as AssignedTo ";
+        return $this->Adminmodel->CSearch($condition, $select, "comp");
+    }
+
+    public function complaints_ajax_list($options = null) {
         switch (strtolower($options)) {
             case "complaints":
                 $Condition = array();
                 $TableListname = "comp";
-                $ColumnOrder = array('name', 'city', 'mobilenumber','comp_comments');
+                $ColumnOrder = array('name', 'city', 'mobilenumber', 'comp_comments');
                 $ColumnSearch = array('name', 'city');
                 $OrderBy = array('complaintsid' => 'desc');
                 break;
-            
+
             default:
                 $Condition = array();
                 break;
@@ -77,7 +84,7 @@ class Police extends MY_Controller {
             $row[] = $logNotice->city;
             $row[] = $logNotice->mobilenumber;
             $row[] = $logNotice->comp_comments;
-           
+
             //add html for action
             $row[] = '<a class="btn btn-xs btn-primary" href="' . base_url('index.php/' . $this->router->fetch_class() . '/complaint/action/' . $logNotice->complaintsid) . '" title="Edit" target="_blank"><i class="fa fa-eye"></i>   View</a>';
             $data[] = $row;
@@ -92,8 +99,5 @@ class Police extends MY_Controller {
         //output to json format
         echo json_encode($output);
     }
-            
-    
-    
 
 }
