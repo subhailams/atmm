@@ -183,7 +183,7 @@
         </div>
 
         <div class="row">
-            <?php if ($casedatabase['CaseStatus'] != 2): ?>
+            <?php if ($casevictimdatabase['CaseStatus'] != 2): ?>
                 <div class="col-md-12">
                     <div class="box">
                         <div class="box-header">

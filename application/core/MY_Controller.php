@@ -265,7 +265,6 @@ class MY_Controller extends CI_Controller {
             $condition = array("offendername" => $postData['offendername'], "offendermobile" => $postData['offendermobile']);
             $select = "offendername as OffenderName , offendermobile as OffenderMobile";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "Y", "Y", "", "", "", "", "");
-
             if (empty($response)) {
                 $condition1 = array("offenderid" => "");
                 $DBData = array(
@@ -286,7 +285,6 @@ class MY_Controller extends CI_Controller {
             $select = "offenderid as OffenderId";
             $response = $this->Adminmodel->CSearch($condition, $select, "off_mst", "", "Y", "", "", "", "", "");
             $condition = array("caseid" => "");
-
             $DBData = array(
                 "offenderid" => $response['OffenderId'],
                 "offid" => $postData['offenece'],
@@ -313,7 +311,7 @@ class MY_Controller extends CI_Controller {
             if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-                // $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
