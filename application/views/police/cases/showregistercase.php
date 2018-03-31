@@ -18,7 +18,6 @@
                     <div class="box-header with-border">
                         <h3 class="box-title"><?= $this->lang->line('registeration_form') ?></h3>
                     </div>
-
                     <!-- /.box-header -->
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseRegisterSave") ?> ">
                         <div class="box-body">
@@ -91,9 +90,18 @@
                             </div>
                             <div class="row">
 
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="state" name="victimstate" placeholder="Select State" required="true">
+                                            <option>Select State</option>
+                                            <?php foreach ($this->db->where(array("show" => "Y"))->order_by("statename", "asc")->get('states')->result() as $detail) { ?>
+                                                <option value="<?= $detail->stateid ?>"> <?= strtoupper($detail->statename) ?> </option>
+                                            <?php } ?>                         
+                                        </select>
 
-
-
+                                    </div>
+                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
@@ -115,19 +123,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                     <div class="form-group">
-                                        <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
-                                        <select class="form-control" id="state" name="victimstate" placeholder="Select State" required="true">
-                                            <option>Select State</option>
-                                            <?php foreach ($this->db->where(array("show" => "Y"))->order_by("statename", "asc")->get('states')->result() as $detail) { ?>
-                                                <option value="<?= $detail->stateid ?>"> <?= strtoupper($detail->statename) ?> </option>
-                                            <?php } ?>                         
 
-                                        </select>
-
-                                    </div>
-                                </div>
                             </div>
                             <hr>
                             <h4><?= $this->lang->line('offender_details') ?></h4>
@@ -186,7 +182,19 @@
                                 </div>
                             </div>
                             <div class="row">   
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="state" name="offenderstate" placeholder="Select State" required="true">
+                                            <option>Select State</option>
+                                            <?php foreach ($this->db->where(array("show" => "Y"))->order_by("statename", "asc")->get('states')->result() as $detail) { ?>
+                                                <option value="<?= $detail->stateid ?>"> <?= strtoupper($detail->statename) ?> </option>
+                                            <?php } ?>                         
 
+                                        </select>
+
+                                    </div>
+                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="district"><?= $this->lang->line('district') ?><span style="color: red ">*</span></label>
@@ -206,19 +214,6 @@
                                         <select class="form-control" id="ocity" name="offendercity" placeholder="Select City" required="true">
                                             <option>Select City</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                     <div class="form-group">
-                                        <label for="state"><?= $this->lang->line('state') ?><span style="color: red ">*</span></label>
-                                        <select class="form-control" id="state" name="offenderstate" placeholder="Select State" required="true">
-                                            <option>Select State</option>
-                                            <?php foreach ($this->db->where(array("show" => "Y"))->order_by("statename", "asc")->get('states')->result() as $detail) { ?>
-                                                <option value="<?= $detail->stateid ?>"> <?= strtoupper($detail->statename) ?> </option>
-                                            <?php } ?>                         
-
-                                        </select>
-
                                     </div>
                                 </div>
                             </div>
@@ -263,10 +258,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-
-
-                            </div>
+            <br/>
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-12">   
@@ -274,28 +266,49 @@
                                         <textarea class="form-control" rows="3" placeholder="Enter ..." name="casedescription" required="true"></textarea>
                                     </div>   
                                 </div>
+                            </div><br/>
+                            <div class="row">
+                                <div class="col-md-6">   
+                                    <div class="form-group">
+                                        <label><?= $this->lang->line('police_details') ?><span style="color: red ">*</span></label>
+                                        <select class="form-control" id="police" name="policeassigned" placeholder="Choose Police Station" required="true">
+                                            <option>Choose  Police Station</option>
+                                            <?php foreach ($this->db->where(array("isactive" => "Y", "rolename" => "Police"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
+                                                <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
+                                            <?php } ?>                
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">   
+                                    <label><?= $this->lang->line('organisation_details') ?></label>
+                                    <select class="form-control" id="organisation" name="organisationassigned" placeholder="Choose Organisation" required="true">
+                                        <option>Choose Organisation</option>
+                                        <?php foreach ($this->db->where(array("isactive" => "Y", "rolename" => "Organization"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
+                                            <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
+                                        <?php } ?>                
 
-
+                                    </select>
+                                </div>
                             </div>
-
-                            <div class="box-footer">
-                                <center>   <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
-                                    </div></center>
-                            </div>
-
+                        </div>
+                        <div class="box-footer">
+                            <center>   <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
+                                </div></center>
                         </div>
 
-                    </form>
-
-
-
-
                 </div>
+
+                </form>
+
+
+
+
             </div>
         </div>
-    </section>
-    <!-- /.content -->
+</div>
+</section>
+<!-- /.content -->
 </div>
 
 <script type="text/javascript">

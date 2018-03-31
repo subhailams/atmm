@@ -312,7 +312,7 @@ class MY_Controller extends CI_Controller {
             if (!empty($response1)):
                 $Message = $this->load->view("emaillayouts/registercase", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - New Case Registered";
-                $this->SendEmail(trim($postData['EmailID']), $Message, "N", $Subject, "");
+                $this->SendEmail(trim('rvp.cse@rmkec.ac.in'), $Message, "N", $Subject, "");
                 $this->session->set_flashdata('ME_SUCCESS', 'Case Registred Successfully');
             else:
                 $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Re Enter');
@@ -524,6 +524,7 @@ class MY_Controller extends CI_Controller {
                 $render = "offender_offences";
                 $OffenderDetails = $this->OffenderDetail($id);
                 $OffenderCaseDetails = $this->OffenderCaseDetail($id);
+
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -605,6 +606,7 @@ class MY_Controller extends CI_Controller {
                 break;
             case "composemail";
                 $render = "compose";
+
                 break;
             case "sent";
                 $render = "sent";

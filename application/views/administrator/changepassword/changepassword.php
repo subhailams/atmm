@@ -8,9 +8,9 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
-            <li><a href="#"><?= $this->lang->line('users') ?></a></li>
-            <li class="active"><?= $this->lang->line('mobile_number') ?></li>
+                      <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
+                        class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+             <li><a href="#"><?= $this->lang->line('users') ?></a></li>
         </ol>
 
     </section>

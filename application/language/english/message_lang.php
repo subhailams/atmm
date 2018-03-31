@@ -169,5 +169,10 @@ $lang['compensation'] = 'Compensation';
  $lang['underline'] = 'Underline';
  $lang['normal_text'] = 'Normal Text';
  $lang['attachment'] = 'Attachment';
+
+ $lang['compose_new_message'] = 'Compose New Message';
+ $lang['police_details'] = 'Police Details';
+ $lang['organisation_details'] = 'Organisation Deatils';
+
  
 
