@@ -40,7 +40,7 @@
                         <li class="user-header">
                             <?php
                             if ($profileurl == null):
-                                $profileurl = 'user2-160x160.jpg';
+                                $profileurl = 'user4-128x128.jpg';
                             endif;
                             ?>
                             <img src="<?= base_url("assets/img/" . $profileurl) ?>" class="img-circle"

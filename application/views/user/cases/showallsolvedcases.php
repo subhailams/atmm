@@ -23,10 +23,16 @@
                                       <th> <?= $this->lang->line('fir_no') ?></th>
                                     <th> <?= $this->lang->line('victim_name') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
+<<<<<<< HEAD:application/views/administrator/users/showallusers.php
+                                    <th> <?= $this->lang->line('address1') ?></th>
+                                    <th> <?= $this->lang->line('city') ?></th>
+                                    
+=======
                                     <th> <?= $this->lang->line('offender_name') ?></th>
                                     <th> <?= $this->lang->line('offence_date') ?></th>
                                     <th> <?= $this->lang->line('status') ?></th>
                                     <th> <?= $this->lang->line('actions') ?></th>
+>>>>>>> 69ca5bc854a70f8c888bc5b7bf290f3ecd1a0a0c:application/views/user/cases/showallsolvedcases.php
                                 </tr>
                             </thead>
                             <tbody></tbody>

@@ -601,14 +601,14 @@ class MY_Controller extends CI_Controller {
         switch (strtolower($options)) {
             case "show";
                 $render = "inbox";
-                $inboxMessages = $this->EmailShow();
+                $inboxMessages = $this->Emailinbox();
                 break;
             case "composemail";
                 $render = "compose";
                 break;
             case "sent";
                 $render = "sent";
-                $SentMessages = $this->EmailShow();
+                $SentMessages = $this->Emailsent();
                 break;
             default:
                 $caseregister = $this->getcase_register();
@@ -857,15 +857,15 @@ class MY_Controller extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function EmailShow() {
+    public function Emailsent() {
         $condition = array("msgfrom" => $_SESSION['UserId'],);
         $select = "name as SenderName,msgfrom as MessageFrom,msgto as MessageTo,msgsubject as MessageSubject,msgdetails as Messagedetails,privatemessages.createdat as CreatedOn";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", true);
     }
 
-    public function EmailSent() {
-        $condition = array("msgfrom" => $_SESSION['UserId'],);
-        $select = "msgfrom as Msgfrom , msgdetails as Emaildetails";
+    public function Emailinbox() {
+        $condition = array("msgto" => $_SESSION['UserId'],);
+        $select = "name as SenderName,msgfrom as MessageFrom,msgto as MessageTo,msgsubject as MessageSubject,msgdetails as Messagedetails,privatemessages.createdat as CreatedOn";
         return $this->Adminmodel->CSearch($condition, $select, "pm", "Y", "Y", "", "", "", "", "");
     }
 

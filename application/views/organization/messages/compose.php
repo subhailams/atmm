@@ -1,6 +1,6 @@
 <div class="content-wrapper"> 
     <section class="content-header">
-        <h1>Mail box</h1>
+        <h1><?= $this->lang->line('mail_box')?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
@@ -106,7 +106,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="btn btn-default btn-file">
+<<<<<<< HEAD
                                     <i class="fa fa-paperclip"></i> Attachment
+=======
+                                    <i class="fa fa-paperclip"></i>  <?= $this->lang->line('attachment') ?>
+>>>>>>> 1dfb0f61c5445bab12e85dc903208f93bc9864ec
                                     <input type="file" name="attachment">
                                 </div>
                             </div>

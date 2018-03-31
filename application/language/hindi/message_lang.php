@@ -162,9 +162,21 @@ $lang['mobile_number'] = 'मोबाइल नंबर';
 
  /* bread crumb ends here */
 
-$lang['act'] = 'अपराध अधिनियम';
-$lang['compensation'] = 'नुकसान भरपाई';
+
 $lang['offender_offence'] = 'अपराधी अपराध';
 $lang['offencereport'] = 'अपराध रिपोर्ट';
 $lang['act'] = 'अपराध अधिनियम';
 $lang['compensation'] = 'नुकसान भरपाई';
+
+/* email*/
+ $lang['mail_box'] = 'मेल बॉक्स';
+ $lang['compose'] = 'रचना';
+ $lang['folder'] = 'रचना';
+ $lang['inbox'] = 'रचना';
+ $lang['sent'] = 'रचना';
+ $lang['bold'] = 'बोल्ड ';
+ $lang['italic'] = 'इटैलिक ';
+ $lang['underline'] = 'रेखांकित ';
+ $lang['normal_text'] = 'सामान्य पाठ';
+ $lang['attachment'] = 'अनुलग्नक';
+ $lang['compose_new_message'] = 'नया संदेश लिखें';
