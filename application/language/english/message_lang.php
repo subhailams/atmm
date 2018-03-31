@@ -26,6 +26,24 @@ $lang['confirmation_password'] = 'Confirmation Password';
 $lang['register'] = 'Register';
 $lang['update_profile'] = 'Update Profile';
 $lang['signup'] = 'SignUp';
+
+$lang['all_users']='All Users';
+$lang['cases']='Cases';
+$lang['new_cases']='New Cases';
+$lang['pending_cases']='Pending Cases';
+$lang['solved_cases']='Solved Cases';
+
+/*Case Management Starts*/
+$lang['case_management']='Case Management';
+$lang['registeration_form']='Registration Form';
+$lang['fir_no']='FIR Number';
+$lang['victim_details']='Victim Details';
+$lang['offender_details']='Offender Details';
+$lang['case_details']='Case Details';
+$lang['case_id']='Case Id';
+$lang['if_others']='If Others';
+$lang['case_description']='Case Description';
+
 $lang['all_users'] = 'All Users';
 $lang['cases'] = 'Cases';
 $lang['new_cases'] = 'New Cases';
@@ -44,6 +62,7 @@ $lang['offender_details'] = 'Offender Details';
 $lang['case_details'] = 'Case Details';
 $lang['if_others'] = 'If Others';
 $lang['case_description'] = 'Case Description';
+
 $lang['offender_address'] = 'Address';
 $lang['victim_address'] = 'Address';
 $lang['gender'] = 'Gender';

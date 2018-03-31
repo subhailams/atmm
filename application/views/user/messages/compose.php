@@ -3,7 +3,7 @@
         <h1><?= $this->lang->line('mail_box')?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                        class="fa fa-dashboard"></i> Home</a></li>
+                        class="fa fa-dashboard"></i> <?= $this->lang->line('home') ?></a></li>
             <li class="active">Messages</li>
         </ol>
     </section>

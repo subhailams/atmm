@@ -11,13 +11,13 @@
         </ol>
     </section>
 
-    <!-- Main content -->
+<!--     Main content 
     <section class="content">
-        <!-- Small boxes (Stat box) -->
-        <!-- /.row -->
+         Small boxes (Stat box) 
+         /.row 
         <div class="row">
             <div class="col-md-12">
-                <!-- Custom Tabs -->
+                 Custom Tabs 
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">New Cases</a></li>
@@ -29,40 +29,40 @@
                             <br/>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                <tr>
-                                    <th>Case ID</th>
-                                    <th>Case Victim Name</th>
-                                    <th>Mobile Number</th>
-                                    <th>Status</th>
-                                </tr>
+                                    <tr>
+                                        <th> <?= $this->lang->line('case_id') ?></th>
+                                        <th> <?= $this->lang->line('victim_name') ?></th>
+                                        <th> <?= $this->lang->line('mobile_number') ?></th>                           
+                                        <th> <?= $this->lang->line('status') ?></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-info">Submitted</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-warning">Police Tracking</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td><span class="label label-success">Solved</span></td>
-                                </tr>
+                                    <tr>
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 4.0</td>
+                                        <td>9876543219</td>
+                                        <td><span class="label label-info">Submitted</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trident</td>
+                                        <td>Internet
+                                            Explorer 5.0
+                                        </td>
+                                        <td>7566432189</td>
+                                        <td><span class="label label-warning">Police Tracking</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trident</td>
+                                        <td>Internet
+                                            Explorer 5.5
+                                        </td>
+                                        <td>8597654387</td>
+                                        <td><span class="label label-success">Solved</span></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.tab-pane -->
+                         /.tab-pane 
                         <div class="tab-pane" id="tab_2">
                             The European languages are members of the same family. Their separate existence is a myth.
                             For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
@@ -72,7 +72,7 @@
                             words. If several languages coalesce, the grammar of the resulting language is more simple
                             and regular than that of the individual languages.
                         </div>
-                        <!-- /.tab-pane -->
+                         /.tab-pane 
                         <div class="tab-pane" id="tab_3">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -83,14 +83,14 @@
                             sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
                             like Aldus PageMaker including versions of Lorem Ipsum.
                         </div>
-                        <!-- /.tab-pane -->
+                         /.tab-pane 
                     </div>
-                    <!-- /.tab-content -->
+                     /.tab-content 
                 </div>
-                <!-- nav-tabs-custom -->
+                 nav-tabs-custom 
             </div>
-            <!-- /.col -->
+             /.col 
         </div>
     </section>
-    <!-- /.content -->
+     /.content -->
 </div>

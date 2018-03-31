@@ -1,11 +1,18 @@
 <div class="content-wrapper"> 
     <section class="content-header">
 
+<<<<<<< HEAD
+        <h1><?= $this->lang->line('mailbox') ?></h1>
+
         <h1><?= $this->lang->line('mail_box')?></h1>
+
+=======
+        <h1><?= $this->lang->line('mail_box')?></h1>
+>>>>>>> fc422244b15abca99fc95e3b21ce74ea36c1337a
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
-                        class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Messages</li>
+                        class="fa fa-dashboard"></i> <?= $this->lang->line('home') ?></a></li>
+            <li class="active"><?= $this->lang->line('messages') ?></li>
         </ol>
     </section>
 

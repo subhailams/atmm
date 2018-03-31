@@ -45,6 +45,7 @@ $lang['solved_cases'] = 'निराकरण प्रकरणी';
 $lang['address'] = 'पत्ता ';
 $lang['registration_form'] = 'नोंदणी पत्रक';
 $lang['case_details'] = 'केस तपशील';
+$lang['case_id']='केस आयडी';
 $lang['if_others'] = 'इतरांना तर';
 $lang['case_description'] = 'केस विवरण';
 $lang['victim_details'] = 'बळी तपशील';
