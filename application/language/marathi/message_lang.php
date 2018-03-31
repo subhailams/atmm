@@ -175,3 +175,11 @@ $lang['compensation'] = 'भरपाई';
  $lang['normal_text'] = 'मजकूर संलग्नक';
  $lang['attachment'] = 'रेखांकन';
  $lang['compose_new_message'] ='नवीन संदेश तयार करा';
+
+ /*complaints*/
+ $lang['complaint_action'] = 'तक्रार कारवाई';
+$lang['police_details'] = 'पोलिस विवरण';
+$lang['comments'] = 'टिप्पण्या';
+ $lang['complaint']='तक्रार';
+ $lang['view_all_complaints'] = 'सर्व तक्रारी पहा';
+$lang['ChoosePoliceStation'] = 'पोलीस स्टेशन निवडा';

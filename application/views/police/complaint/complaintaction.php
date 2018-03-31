@@ -1,12 +1,12 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1><?= $this->lang->line('casehistory') ?></h1>
+        <h1><?= $this->lang->line('complaint_action') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> <?= $this->lang->line('home') ?></a></li>
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><?= $this->lang->line('cases') ?></a></li>
-            <li class="active"><?= $this->lang->line('casehistory') ?></li>
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/complaint/allcomplaints") ?>"><?= $this->lang->line('view_all_complaints') ?></a></li>
+            <li class="active"><?= $this->lang->line('view_all_complaints') ?></li>
         </ol>
     </section>
     <?php if ($VerifyStatus['AssignedTo'] == 'N'): ?>

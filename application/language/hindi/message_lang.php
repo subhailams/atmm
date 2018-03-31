@@ -183,3 +183,10 @@ $lang['compensation'] = 'नुकसान भरपाई';
  $lang['normal_text'] = 'सामान्य पाठ';
  $lang['attachment'] = 'अनुलग्नक';
  $lang['compose_new_message'] = 'नया संदेश लिखें';
+ /*complaints*/
+$lang['complaint_action'] = 'शिकायत की कार्रवाई';
+$lang['police_details'] = 'पुलिस का ब्योरा';
+$lang['comments'] = 'टिप्पणियां';
+ $lang['complaint']='शिकायत';
+ $lang['view_all_complaints'] = 'सभी शिकायतें देखें';
+$lang['ChoosePoliceStation'] = 'पुलिस स्टेशन चुनें';

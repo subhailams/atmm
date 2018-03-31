@@ -31,8 +31,8 @@ $lang['new_cases']='New Cases';
 $lang['pending_cases']='Pending Cases';
 $lang['solved_cases']='Solved Cases';
 $lang['postcomplaints'] = 'Post Complaints';
-$lang['complainthere'] = 'Complainthere';
-$lang['postyourcomplaintshere'] = 'PostYourComplaintsHere';
+$lang['complainthere'] = 'Complaint Here';
+$lang['postyourcomplaintshere'] = 'Post Your Complaints Here';
 
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
@@ -173,6 +173,10 @@ $lang['compensation'] = 'Compensation';
  $lang['compose_new_message'] = 'Compose New Message';
  $lang['police_details'] = 'Police Details';
  $lang['organisation_details'] = 'Organisation Deatils';
-
  
+  /*complaints*/
+$lang['complaint_action'] = 'Complaint Action';
+ $lang['police_details'] = 'Police Details';
+ $lang['comments'] = 'Comments';
+$lang['ChoosePoliceStation'] = 'Choose Police Station';
 
