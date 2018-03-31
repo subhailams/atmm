@@ -273,6 +273,41 @@
 
                             </div>
 
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">   
+                                        <h4><?= $this->lang->line('police_details') ?><span style="color: red ">*</span></h4>
+                                        <select class="form-control" id="police" name="policeassigned" placeholder="Choose Police Station" required="true">
+                                            <option>Choose  Police Station</option>
+                                            <?php foreach ($this->db->where(array("isactive" => "Y","rolename"=>"Police"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
+                                                <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
+                                            <?php } ?>                
+                                    </div>   
+                                </div>
+                                </select>
+
+
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">   
+                                        <h4><?= $this->lang->line('organisation_details') ?></h4>
+                                        <select class="form-control" id="organisation" name="organisationassigned" placeholder="Choose Organisation" required="true">
+                                            <option>Choose Organisation</option>
+                                            <?php foreach ($this->db->where(array("isactive" => "Y","rolename"=>"Organization"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
+                                                <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
+                                            <?php } ?>                
+                                    </div>   
+                                </div>
+                                </select>
+
+
+                            </div>
+                        </div>
+                </div>
                             <div class="box-footer">
                                 <center>   <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>
