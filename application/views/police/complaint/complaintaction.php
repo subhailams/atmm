@@ -1,12 +1,12 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1><?= $this->lang->line('casehistory') ?></h1>
+        <h1><?= $this->lang->line('complaint_action') ?></h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> <?= $this->lang->line('home') ?></a></li>
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><?= $this->lang->line('cases') ?></a></li>
-            <li class="active"><?= $this->lang->line('casehistory') ?></li>
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/complaint/allcomplaints") ?>"><?= $this->lang->line('view_all_complaints') ?></a></li>
+            <li class="active"><?= $this->lang->line('view_all_complaints') ?></li>
         </ol>
     </section>
     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/ComplaintCommentsSave") ?> ">
@@ -20,7 +20,7 @@
                             <div class="form-group">
                                 <label><?= $this->lang->line('police_details') ?><span style="color: red ">*</span></label>
                                 <select class="form-control" id="police" name="policeassigned" placeholder="Choose Police Station" required="true">
-                                    <option>Choose  Police Station</option>
+                                    <option><?= $this->lang->line('ChoosePoliceStation') ?></option>
                                     <?php foreach ($this->db->where(array("isactive" => "Y", "rolename" => "Police"))->order_by("username", "asc")->join("roles", "roleid=role")->get('users')->result() as $detail) { ?>
                                         <option value="<?= $detail->user_id ?>"> <?= $detail->username . " - " . $detail->rolename ?> </option>
                                     <?php } ?>                
@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label><?= $this->lang->line('comments') ?><span style="color: red ">*</span></label>
                                 <textarea class="textarea"
-                                          placeholder="Type your comments here"
+                                          placeholder="<?= $this->lang->line('typeyourcommenthere') ?>"
                                           name="policecomments"
                                           style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                             </div>
