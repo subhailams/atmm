@@ -18,6 +18,9 @@ class User extends MY_Controller {
     public function index() {
         $this->render("dashboard", get_defined_vars());
     }
+     public function postcomplaints() {
+        $this->render("postcomplaints", get_defined_vars());
+    }
 
     public function users_cases_ajax_list($options = null) {
         switch (strtolower($options)) {

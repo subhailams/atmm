@@ -30,6 +30,9 @@ $lang['cases']='Cases';
 $lang['new_cases']='New Cases';
 $lang['pending_cases']='Pending Cases';
 $lang['solved_cases']='Solved Cases';
+$lang['postcomplaints'] = 'Post Complaints';
+$lang['complainthere'] = 'Complainthere';
+$lang['postyourcomplaintshere'] = 'PostYourComplaintsHere';
 
 /*Case Management Starts*/
 $lang['case_management']='Case Management';
