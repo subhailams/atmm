@@ -171,17 +171,18 @@ class MY_Controller extends CI_Controller {
                 break;
             case "profile":
                 $rules = array(
-                    array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
-                    array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
-                    array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
-                    array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
-                    array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
-                    array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
-                    array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
-                    array('field' => 'State', 'label' => 'State', 'rules' => ''),
-                    array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
-                    array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
-                    array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+                array('field' => 'Name', 'label' => 'Name', 'rules' => 'required|max_length[30]'),
+                array('field' => 'EmailID', 'label' => 'Email ID', 'rules' => 'valid_email'),
+                array('field' => 'Address1', 'label' => 'Address1', 'rules' => 'required'),
+                array('feild' => 'Address2', 'label' => 'Address2', 'rules' => ''),
+                array('field' => 'AadhaarNumber', 'label' => 'Aadhaar Number', 'rules' => ''),
+                array('field' => 'MobileNumber', 'label' => 'Mobile Number', 'rules' => 'required|integer'),
+                array('field' => 'City', 'label' => 'city', 'rules' => 'required'),
+                array('field' => 'State', 'label' => 'State', 'rules' => ''),
+                array('field' => 'UserName', 'label' => 'User Name', 'rules' => 'required'),
+                array('field' => 'Country', 'label' => 'Country', 'rules' => ''),
+                array('field' => 'Role', 'label' => 'Role', 'rules' => 'required')
+
                 );
                 break;
             case "email":
@@ -327,7 +328,7 @@ class MY_Controller extends CI_Controller {
 
     public function CaseHistoryVictimShow($id) {
         $condition = array("cases.caseid" => $id);
-        $select = "offname as OffenceName, offcompensation as Compensation,caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState,casedescription as CaseDescription,casestatus as CaseStatus";
+        $select = "offname as OffenceName, offcompensation as Compensation,caseid as CaseID ,fir_no as FirNumber , victimname as VictimName, victimaddress as VictimAddress , vicitmdob as VictimDob , gender_name as VictimGender , victimmobile as VictimMobile, victimemail as VictimEmail,cityname as VictimCity,districtname as VictimDistrict,statename as VictimState,casedescription as CaseDescription,casestatus as CaseStatus,case_status_name as CaseStatusName";
         return $this->Adminmodel->CSearch($condition, $select, "case", "", true);
     }
 
@@ -341,7 +342,7 @@ class MY_Controller extends CI_Controller {
     public function CaseHistoryComments($id) {
         $condition = array("casehistory.caseid" => $id);
         $select = "casehistorydesc as CaseHistoryDesc,casehistory.createdat as CreatedOn,users.name as CreatedBy,users.imageurl as ImageURL,rolename as RoleName,casehistory.imageurl as Attachment";
-        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true,"","","","","","casehistoryid");
+        return $this->Adminmodel->CSearch($condition, $select, "casehis", "Y", true, "", "", "", "", "", "casehistoryid");
     }
 
     /* Maps Ajax Cases list statrs from here */
@@ -579,6 +580,7 @@ class MY_Controller extends CI_Controller {
                 $casevictimdatabase = $this->CaseHistoryVictimShow($id);
                 $caseoffenderdatabase = $this->CaseHistoryOffenderShow($id);
                 $casecomments = $this->CaseHistoryComments($id);
+
                 break;
 
             default:
@@ -879,6 +881,7 @@ class MY_Controller extends CI_Controller {
         $render = "updateprofile";
         $this->render($render, get_defined_vars());
     }
+    
 
     public function offencesandpunishments() {
         $render = "";
@@ -1026,8 +1029,12 @@ class MY_Controller extends CI_Controller {
 
     public function UpdateProfileSave() {
         $postData = $this->input->post();
+       
+        if ($this->form_validation("profile")):
+              
         $Condition = array("user_id" => $_SESSION['UserId']);
         $imagename = current($this->Adminmodel->CSearch($Condition, "imageurl as imagename", "usr", "", TRUE));
+         
         if ($imagename == null):
             $imageName = "profile_" . rand(1000, 99999999999) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         else:
@@ -1048,9 +1055,12 @@ class MY_Controller extends CI_Controller {
                 "mobilenumber" => $postData['MobileNumber'],
                 "aadhar" => $postData['AadhaarNumber'],
                 "email" => $postData['EmailID'],
-                "imageurl" => $imageName);
+                "imageurl" => $imageName
+                    );
+            
+            
             $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "usr");
-
+        endif;
             if (!empty($response)):
                 $Message = $this->load->view("emaillayouts/userprofileupdate", get_defined_vars(), true);
                 $Subject = "Atrocity Case Management - Your profile has been updated.";
@@ -1069,7 +1079,7 @@ class MY_Controller extends CI_Controller {
         $condition = array("user_id" => $id);
         $select = "imageurl as ImageURL";
         $url = $this->Adminmodel->CSearch($condition, $select, "usr", "", "", "", "", "", "", "");
-        if ($url == null):
+        if ($url != null):
             return $url['ImageURL'];
         else:
             return 'user2-160x160.jpg';
@@ -1077,4 +1087,21 @@ class MY_Controller extends CI_Controller {
     }
 
     /* function to show profile Image ends here */
+
+    /* Case Status Save Starts Here */
+
+    public function CaseStatusSave() {
+        $postData = $this->input->post();
+        $condition = array("caseid" => $postData['caseid']);
+        $DBData = array(
+            "casestatus" => $postData['casestatus']);
+        $response = $this->Adminmodel->AllInsert($condition, $DBData, "", "case");
+        if (!empty($response)):
+            $this->session->set_flashdata('ME_SUCCESS', 'Case Status Changed Successfully');
+        else:
+            $this->session->set_flashdata('ME_ERROR', 'Data not Saved. Kindly Recheck');
+        endif;
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
 }

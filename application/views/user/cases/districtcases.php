@@ -3,30 +3,27 @@
     <section class="content-header">
         <h1>
             <th> <?= $this->lang->line('cases') ?></th>
-<!--            <small> <?= $this->lang->line('control_panel') ?></small>-->
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i class="fa fa-dashboard"></i><?= $this->lang->line('home') ?></a></li>
             <li class="active"><?= $this->lang->line('cases') ?></li>
         </ol>
     </section>
     <!-- Main content -->
     <section class="content">
-        <!-- Small boxes (Stat box) -->
 
-        <!-- /.row -->
+        <div class="box">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><?= $this->lang->line('new_cases') ?></a></li>
-                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false"><?= $this->lang->line('pending_cases') ?></a></li>
-                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false"><?= $this->lang->line('solved_cases') ?></a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_1">
-                            <br/>
+            <!-- /.row -->
+            <div class="box-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><?= $this->lang->line('new_cases') ?></h3>
+                            </div>
+
                             <table id="NewCase" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -42,16 +39,33 @@
                                             <td><?= $new['VictimName'] ?></td>
                                             <td><?= $new['VictimMobile'] ?></td>
                                         </tr>
-                                        </div>
+
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br/>
+    <section class="content">
+        <div class="box">
 
-                        <div class="tab-pane" id="tab_2">
-                            <br/>
+            <!-- /.row -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><?= $this->lang->line('solved_cases') ?></h3>
+                            </div>
+
                             <table id="SolvedCases" class="table table-bordered table-striped">
+
                                 <thead>
+
                                     <tr>
                                         <th> <?= $this->lang->line('fir_no') ?></th>
                                         <th> <?= $this->lang->line('victim_name') ?></th>
@@ -68,16 +82,32 @@
 
                                             <td><span class="label label-info">Police Tracking</span></td>
                                         </tr>
-                                        </div>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br/>
+    <section class="content">
+        <div class="box">
 
-                        <div class="tab-pane" id="tab_3">
-                            <br/>
+            <!-- /.row -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><?= $this->lang->line('pending_cases') ?></h3>
+                            </div>
+
                             <table id="PendingCases" class="table table-bordered table-striped">
+
                                 <thead>
+
                                     <tr>
                                         <th> <?= $this->lang->line('fir_no') ?></th>
                                         <th> <?= $this->lang->line('victim_name') ?></th>
@@ -91,25 +121,25 @@
                                             <td><?= $solved['FIR'] ?> </td>
                                             <td><?= $solved['VictimName'] ?></td>
                                             <td><?= $solved['VictimMobile'] ?></td>
-
                                             <td><span class="label label-info">Solved</span></td>
                                         </tr>
-                                        </div>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
-
             </div>
+
         </div>
-        <!-- /.col -->
+    </section>
+
 </div>
-</section>
+
+
+
+<!-- /.col -->
 <!-- /.content -->
-</div>
 <script type="text/javascript">
     var table;
     var base_url = '<?php echo base_url(); ?>';

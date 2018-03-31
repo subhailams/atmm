@@ -48,12 +48,11 @@
                             <p>
                                 <?= $_SESSION['UserFullName'] ?>
                             </p>
+                            <p><small><?= $_SESSION['UserRoleName'] ?></small></p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            </div>
+                            
                             <div class="pull-right">
                                 <a href="<?= base_url('index.php/' . $this->router->fetch_class() . '/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                             </div>
@@ -75,7 +74,7 @@
             </div>
             <div class="pull-left info">
                 <p><?= $_SESSION['UserFullName'] ?></p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><?= $_SESSION['UserRoleName'] ?></a>
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->

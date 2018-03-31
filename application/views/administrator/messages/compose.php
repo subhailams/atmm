@@ -1,6 +1,10 @@
 <div class="content-wrapper"> 
     <section class="content-header">
+<<<<<<< HEAD
+        <h1><?= $this->lang->line('mailbox') ?></h1>
+=======
         <h1><?= $this->lang->line('mail_box')?></h1>
+>>>>>>> 572a3b285157f14025b0ddcdaed860d4e56d525a
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> Home</a></li>
@@ -13,7 +17,7 @@
             <div class="col-md-9">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Compose New Message</h3>
+                        <h3 class="box-title"><?= $this->lang->line('compose_new_message') ?></h3>
                     </div>
                     <!-- /.box-header -->
                     <form role="form" method="post" action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/EmailSave") ?> ">
@@ -32,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Subject"></label>
-                                <input class="form-control" placeholder="Subject:" name="subject">
+                                <input class="form-control" placeholder="<?= $this->lang->line('subject') ?>" name="subject">
                             </div>
                             <div class="form-group">
                                 <ul class="wysihtml5-toolbar" style=""></ul><li class="dropdown">
@@ -94,6 +98,7 @@
                                         <!-- /.comment body -->
                                         <!--<form>-->
                                         <div class="box-body pad">
+
 
                                             <textarea class="textarea" placeholder="Type your email here" name="emaildetail"
                                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
