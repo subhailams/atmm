@@ -38,6 +38,7 @@ $lang['fir_no']='FIR Number';
 $lang['victim_details']='Victim Details';
 $lang['offender_details']='Offender Details';
 $lang['case_details']='Case Details';
+$lang['case_id']='Case Id';
 $lang['if_others']='If Others';
 $lang['case_description']='Case Description';
 $lang['offender_address'] = 'Address';
