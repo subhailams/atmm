@@ -23,8 +23,7 @@
                                     <th> <?= $this->lang->line('user_name') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
                                     <th> <?= $this->lang->line('address1') ?></th>
-                                    <th> <?= $this->lang->line('city') ?></th>
-                                    
+                                  
                                 </tr>
                             </thead>
                             <tbody></tbody>

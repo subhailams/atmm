@@ -5,7 +5,6 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> <?= $this->lang->line('home') ?></a></li>
-             
             <li class="active"><?= $this->lang->line('all_users') ?></li>
         </ol>
     </section>
@@ -24,8 +23,6 @@
                                     <th> <?= $this->lang->line('user_name') ?></th>
                                     <th> <?= $this->lang->line('mobile_number') ?></th>
                                     <th> <?= $this->lang->line('address1') ?></th>
-                                    <th> <?= $this->lang->line('city') ?></th>
-                                    
                                 </tr>
                             </thead>
                             <tbody></tbody>

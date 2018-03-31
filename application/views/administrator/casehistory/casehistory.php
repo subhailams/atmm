@@ -5,8 +5,8 @@
         <ol class="breadcrumb">
             <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/index") ?>"><i
                         class="fa fa-dashboard"></i> <?= $this->lang->line('home') ?></a></li>
-            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><?= $this->lang->line('all_cases') ?></a></li>
-            <li class="active" ><?= $this->lang->line('casehistory') ?></li>
+            <li><a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/cases/allcases") ?>"><?= $this->lang->line('cases') ?></a></li>
+            <li class="active"><?= $this->lang->line('casehistory') ?></li>
         </ol>
     </section>
 
@@ -183,7 +183,7 @@
         </div>
 
         <div class="row">
-            <?php if ($casedatabase['CaseStatus'] != 2): ?>
+            <?php if ($casevictimdatabase['CaseStatus'] != 2): ?>
                 <div class="col-md-12">
                     <div class="box">
                         <div class="box-header">
@@ -192,7 +192,7 @@
                         </div>
                         <form method="post"
                               action="<?= base_url('index.php/' . strtolower($this->router->fetch_class()) . "/CaseHistorySave") ?> " autocomplete="off" enctype="multipart/form-data">
-                            <input type="hidden" name="caseid" value="<?= $casedatabase['CaseID'] ?>"/>
+                            <input type="hidden" name="caseid" value="<?= $casevictimdatabase['CaseID'] ?>"/>
                             <div class="box-body pad">
                                 <textarea class="textarea"
                                           placeholder="<?= $this->lang->line('typeyourcommenthere') ?>"
