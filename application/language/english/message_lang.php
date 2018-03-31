@@ -143,6 +143,8 @@ $lang['all_offences'] = 'All Offences';
 $lang['users'] = 'Users';
 $lang['all_users'] = 'All Users';
 $lang['mobile_number'] = 'Mobile Number';
+$lang['offender_offence'] = 'Offender Offences';
+$lang['offencereport'] = 'Offence Report';
 
 $lang['to'] = 'To:';
 

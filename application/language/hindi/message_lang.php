@@ -164,3 +164,7 @@ $lang['mobile_number'] = 'मोबाइल नंबर';
 
 $lang['act'] = 'अपराध अधिनियम';
 $lang['compensation'] = 'नुकसान भरपाई';
+$lang['offender_offence'] = 'अपराधी अपराध';
+$lang['offencereport'] = 'अपराध रिपोर्ट';
+$lang['act'] = 'अपराध अधिनियम';
+$lang['compensation'] = 'नुकसान भरपाई';

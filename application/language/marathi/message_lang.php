@@ -157,3 +157,7 @@ $lang['mobile_number'] = 'मोबाइल नंबर';
 $lang['to'] = 'ते:';
 $lang['act'] = 'गुन्हा कायदा';
 $lang['compensation'] = 'भरपाई';
+$lang['offender_offence'] = 'अपराधी गुन्हा';
+$lang['offencereport'] = 'गुन्हा अहवाल';
+$lang['act'] = 'गुन्हा कायदा';
+$lang['compensation'] = 'भरपाई';
