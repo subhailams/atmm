@@ -187,6 +187,8 @@ $lang['ChoosePoliceStation'] = 'पोलीस स्टेशन निवड�
 
 
 
+
 /* Offences and Punishement Language starts here*/
 $lang['off_one']="Putting any inedible or obnoxious substance [Section 3(1)(a) of the Act]";
 /* Offences and Punishement Language ends here*/
+

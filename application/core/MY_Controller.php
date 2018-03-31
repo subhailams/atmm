@@ -893,10 +893,10 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function offencesandpunishments() {
+    public function offencesandcompensations() {
         $render = "";
         $userdatabase = $this->profileshow($id);
-        $render = "offencesandpunishments";
+        $render = "offencesandcompensations";
         $this->render($render, get_defined_vars());
     }
 
@@ -907,12 +907,6 @@ class MY_Controller extends CI_Controller {
         $this->render($render, get_defined_vars());
     }
 
-    public function importantcontacts() {
-        $render = "";
-        $userdatabase = $this->profileshow($id);
-        $render = "importantcontacts";
-        $this->render($render, get_defined_vars());
-    }
 
     public function FirRegisterSave() {
         $postData = $this->input->post();

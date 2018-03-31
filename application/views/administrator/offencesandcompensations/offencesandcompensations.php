@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Offences and Punishments
-            <small>List of Offences and Punishments</small>
+            Offences and Compensations
+            <small>List of Offences and Compensations</small>
         </h1>
     </section>
 
@@ -21,7 +21,7 @@
                             <tr>
                                 <th style="width: 10px">S.No</th>
                                 <th>NAME OF THE OFFENCE</th>
-                                <th>PUNISHMENT</th>
+                                <th>COMPENSATIONS</th>
 
                             </tr>
                             <tr>

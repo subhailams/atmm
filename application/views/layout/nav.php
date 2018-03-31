@@ -103,12 +103,16 @@
                     <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/changepassword") ?>"><i
                                 class="fa fa-circle-o"></i> Change Password</a></li>
-                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/importantcontacts") ?>"><i
-                                class="fa fa-circle-o"></i> Important Contacts</a></li>
-                    <li>
-                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandpunishments") ?>"><i
-                                class="fa fa-circle-o"></i>Offences and Punishments</a></li>
+                    
+                    
+                    
+
+
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandcompensations") ?>"><i
+                                class="fa fa-circle-o"></i>Offences and Compensations</a></li>
+                                <li>
+                        <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/postcomplaints") ?>"><i
+                                class="fa fa-circle-o"></i>Post Complaints</a></li>
 
                 </ul>
             </li>
