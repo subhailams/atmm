@@ -107,7 +107,7 @@
                     
                     
 
-
+                                <li>
                         <a href="<?= base_url("index.php/" . strtolower($this->router->fetch_class()) . "/offencesandcompensations") ?>"><i
                                 class="fa fa-circle-o"></i><?= $this->lang->line('offences_and_compensations') ?></a></li>
                                 <li>
